@@ -255,21 +255,12 @@
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
-				  <link rel="stylesheet" type="text/css" href="../css/stroke.css">
         <script src="js\profform.js"></script>
     </head>
     <body>
 			<?php require '../include/header/stp_db.php'; ?>
+			<?php require '../include/nav/nav.php'; ?>
         <div class="container">
-			<div class="item2">
-	        <nav id="mainNav" class="stroke">
-	        <ul>
-	            <li><a href="../stp_landing.php">HOME</a></li>
-	            <li><a href="Overview.php">COMPANY PROFILE</a></li>
-	            <li><a href="#">TOOLS & SERVICES</a></li>
-	        </ul>
-	        </nav>
-	    </div>
             <div class="main">
             	<div class="backimg">
                     <font style="font-size:30px;"><?= $Stname?></font>

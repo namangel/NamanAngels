@@ -1,5 +1,6 @@
 body {
     margin: 0px;
+
   }
 
   .wrapper {
@@ -22,7 +23,7 @@ body {
    background-color:lightgray;
   }
   .two{
-      margin-left: 100px;
+      margin-left: 50px;
    grid-column: 1;
    grid-row: 2/8;
    background-color:white;
@@ -31,10 +32,11 @@ body {
 
   }
   .three{
-      margin-left: 100px;
-      grid-column: 2/8;
-   grid-row: 2/6;
-   background-color:transparent;
+    margin-left: 50px;
+    margin-right: 50px;
+    grid-column: 2/8;
+    grid-row: 2/6;
+    background-color:transparent;
   }
   .four{
       grid-column: 1/8;

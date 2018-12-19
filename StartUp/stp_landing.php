@@ -2,23 +2,13 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="css\stp_landing.css">
-    <link rel="stylesheet" type="text/css" href="css\stroke.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Profile</title>
 </head>
 <body>
       <?php require 'include/header/stp_land.php'; ?>
+      <?php require 'include/nav/nav.php'; ?>
   <div class="outer-grid">
-
-    <div class="item2">
-        <nav id="mainNav" class="stroke">
-        <ul>
-            <li><a href="stp_landing.php">HOME</a></li>
-            <li><a href="DB/Overview.php">COMPANY PROFILE</a></li>
-            <li><a href="#">TOOLS & SERVICES</a></li>
-        </ul>
-        </nav>
-    </div>
 
          <div class="item3">
             <h1><b>Hello!</b></h1>

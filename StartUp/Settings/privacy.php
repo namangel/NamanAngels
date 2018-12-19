@@ -6,20 +6,11 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="stylesheet" href="../css/account.css" type="text/css">
-        <link rel="stylesheet" type="text/css" href="../css/stroke.css">
     </head>
 
 <body>
   	<?php require '../include/header/stp_db.php'; ?>
-    <div class="item2">
-        <nav id="mainNav" class="stroke">
-        <ul>
-            <li><a href="../stp_landing.php">HOME</a></li>
-            <li><a href="../DB/Overview.php">COMPANY PROFILE</a></li>
-            <li><a href="#">TOOLS & SERVICES</a></li>
-        </ul>
-        </nav>
-    </div>
+    <?php require '../include/nav/nav.php'; ?>
 <div class="wrapper">
   <div class="two">
     <div class=hvr-float-shadow >ACCOUNT SETTINGS</div>
