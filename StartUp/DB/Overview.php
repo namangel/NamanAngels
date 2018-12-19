@@ -31,10 +31,8 @@
 	$TwitterLink = $row['TwitterLink']==""? '--':$row['TwitterLink'];
 	$FBLink = $row['FBLink']==""? '--':$row['FBLink'];
 	$Summary = $row['Summary']==""? 'Tell the world who you are and what makes your company special.':$row['Summary'];
-	$CAdvName = $row['CAdvName']==""? '--':$row['CAdvName'];
-	$CAdvEmail = $row['CAdvEmail']==""? '--':$row['CAdvEmail'];
-	$PIName = $row['PIName']==""? '--':$row['PIName'];
-	$PIEmail = $row['PIEmail']==""? '--':$row['PIEmail'];
+	$PitchName = $row['PitchName'];
+	$PitchExt = $row['PitchExt'];
 	$OLP = $row['OLP']==""? '--':$row['OLP'];
 	$Logo = $row['Logo'];
 
@@ -159,19 +157,52 @@
 		header('location: Overview.php');
 	}
 
+	if(isset($_POST['pitchsub'])){
+		$name= $_FILES['pitchvid']['name'];
+		$tmp_name= $_FILES['pitchvid']['tmp_name'];
+		$submitbutton= $_POST['pitchsub'];
+		$position= strpos($name, ".");
+		$fileextension= substr($name, $position + 1);
+		$fileextension= strtolower($fileextension);
+		$success= -1;
+		if (isset($name)){
+			$path= '../../Uploads/';
+			if (!empty($name)){
+				if (($fileextension !== "mp4") && ($fileextension !== "ogg") && ($fileextension !== "webm")){
+					$success=0;
+					echo '<script>alert("The file extension must be .mp4, .ogg, or .webm in order to be uploaded")</script>';
+				}
+				else if (($fileextension == "mp4") || ($fileextension == "ogg") || ($fileextension == "webm")){
+					$success=1;
+					if (copy($tmp_name, $path.basename($_FILES['pitchvid']['name']))) {
+						echo '<script> alert("Uploaded!")</script>';
+						$q = "UPDATE st_overview SET PitchName='$name', PitchExt='$fileextension' where Username='$u';";
+						mysqli_query($db, $q);
+					}
+				}
+			}
+		}
+		header('location: Overview.php');
+	}
+
+	if(isset($_POST['tmsave'])){
+		$tmname = mysqli_real_escape_string($db, $_POST['tmname']);
+		$tmphone = mysqli_real_escape_string($db, $_POST['tmphone']);
+		$tmexp = mysqli_real_escape_string($db, $_POST['tmexp']);
+		$tmemail = mysqli_real_escape_string($db, $_POST['tmemail']);
+
+		$q = "INSERT INTO st_teams (Username, TName, TPhone, TExp, TEmail) VALUES ('$u','$tmname', '$tmphone', '$tmexp', '$tmemail')";
+		mysqli_query($db, $q);
+		header('location: Overview.php');
+
+	}
+
 	if(isset($_POST['casave'])){
 		$caname = mysqli_real_escape_string($db, $_POST['caname']);
 		$caemail = mysqli_real_escape_string($db, $_POST['caemail']);
-		if($caname !="")
-		{
-			$q = "UPDATE st_overview set CAdvName='$caname' where Username='$u';";
-			mysqli_query($db, $q);
-		}
-		if($caemail !="")
-		{
-			$q = "UPDATE st_overview set CAdvEmail='$caemail' where Username='$u';";
-			mysqli_query($db, $q);
-		}
+
+		$q = "INSERT INTO st_advisors (Username, CAName, CAEmail) VALUES ('$u', '$caname', '$caemail');";
+		mysqli_query($db, $q);
 
 		header('location: Overview.php');
 	}
@@ -179,16 +210,9 @@
 	if(isset($_POST['pisave'])){
 		$piname = mysqli_real_escape_string($db, $_POST['piname']);
 		$piemail = mysqli_real_escape_string($db, $_POST['piemail']);
-		if($piname !="")
-		{
-			$q = "UPDATE st_overview set PIName='$piname' where Username='$u';";
-			mysqli_query($db, $q);
-		}
-		if($piemail !="")
-		{
-			$q = "UPDATE st_overview set PIEmail='$piemail' where Username='$u';";
-			mysqli_query($db, $q);
-		}
+
+		$q = "INSERT INTO st_previnvestment (Username, PIName, PIEmail) VALUES ('$u', '$piname', '$piemail');";
+		mysqli_query($db, $q);
 
 		header('location: Overview.php');
 	}
@@ -203,6 +227,7 @@
 
 		header('location: Overview.php');
 	}
+
 
 
 	$rid = array();
@@ -429,32 +454,112 @@
                     <div class="databox">
                         <button onclick="summon()" class="pencil"><i class="fa fa-pencil"></i></button>
                         <h3>Company Summary</h3>
-                        <p>Tell the world who you are and what makes your company special.</p>
-                        <img src="../img/Capture.png">
+						<?php echo $Summary;
+							if($Summary == "Tell the world who you are and what makes your company special."){
+								echo '<img src="../img/Capture.png">';
+							}
+						?>
                     </div>
                     <div class="databox" style="padding:10px;">
-                        <label>Increase the impact of your profile by uploading a short pitch</label>
-                        <br>
-                        <input type="file">
+						<h3>Pitch</h3>
+						<?php
+							if($PitchName == ""){
+		                        echo '<label>Increase the impact of your profile by uploading a short pitch</label>';
+		                        echo '<br>';
+								echo '<form class="pitch" action="Overview.php" method="post" enctype="multipart/form-data">';
+									echo '<input type="file" name="pitchvid">';
+									echo '<input type="submit" name="pitchsub" value="Upload">';
+								echo '</form>';
+							}
+							else{
+								$videos_field=$PitchName;
+								$video_show= "../../Uploads/$videos_field";
+
+								echo '<form class="pitch" action="Overview.php" method="post" enctype="multipart/form-data">';
+									echo '<input type="file" name="pitchvid">';
+									echo '<input type="submit" name="pitchsub" value="Upload">';
+								echo '</form>';
+								echo "<div align=center><video max-height='500px' controls><source src='$video_show' type='video/$PitchExt'>Your browser does not support the video tag.</video></div>";
+							}
+						?>
                     </div>
                     <div class="databox">
                         <!-- <button onclick="teamon()" class="pencil"><i class="fa fa-pencil"></i></button> -->
                         <button onclick="addteamon()" class="add"><i class="fa fa-plus"></i></button>
                         <h4>Team</h4>
-                        <img src="../img/prof.png">
-                        <hr>
+						<?php
+							$q = "SELECT * FROM st_teams where Username='$u';";
+							$results=mysqli_query($db, $q);
+							if (mysqli_num_rows($results) > 0) {
+								echo "<table border=1px width=100%>";
+								echo "<tr>";
+								echo "<th>Name</th>";
+								echo "<th>Phone</th>";
+								echo "<th>Experience</th>";
+								echo "<th>Email</th>";
+								echo "</th>";
+							    while($row = mysqli_fetch_assoc($results)) {
+							        echo '<tr>';
+									echo '<td>'.$row["TName"].'</td>';
+									echo '<td>'.$row['TPhone'].'</td>';
+									echo '<td>'.$row['TExp'].'</td>';
+									echo '<td>'.$row['TEmail'].'</td>';
+									echo "</tr>";
+							    }
+								echo '</table>';
+							} else {
+								echo '<img src="../img/prof.png">';
+							}
+						?>
+
                     </div>
                     <div class="databox">
                         <button onclick="advon()" class="add"><i class="fa fa-plus"></i></button>
                         <h4>Advisors</h4>
-                        <img src="../img/prof.png">
-                        <hr>
+						<?php
+							$q = "SELECT * FROM st_advisors where Username='$u';";
+							$results=mysqli_query($db, $q);
+							if (mysqli_num_rows($results) > 0) {
+								echo "<table border=1px width=100%>";
+								echo "<tr>";
+								echo "<th>Name</th>";
+								echo "<th>Email</th>";
+								echo "</th>";
+							    while($row = mysqli_fetch_assoc($results)) {
+							        echo '<tr>';
+									echo '<td>'.$row["CAName"].'</td>';
+									echo '<td>'.$row['CAEmail'].'</td>';
+									echo "</tr>";
+							    }
+								echo '</table>';
+							} else {
+								echo '<img src="../img/prof.png">';
+							}
+						?>
                     </div>
                     <div class="databox">
                         <button onclick="invon()" class="add"><i class="fa fa-plus"></i></button>
                         <h4>Previous Investors</h4>
-                        <img src="../img/prof.png">
-                        <hr>
+						<?php
+							$q = "SELECT * FROM st_previnvestment where Username='$u';";
+							$results=mysqli_query($db, $q);
+							if (mysqli_num_rows($results) > 0) {
+								echo "<table border=1px width=100%>";
+								echo "<tr>";
+								echo "<th>Name</th>";
+								echo "<th>Email</th>";
+								echo "</th>";
+							    while($row = mysqli_fetch_assoc($results)) {
+							        echo '<tr>';
+									echo '<td>'.$row["PIName"].'</td>';
+									echo '<td>'.$row['PIEmail'].'</td>';
+									echo "</tr>";
+							    }
+								echo '</table>';
+							} else {
+								echo '<img src="../img/prof.png">';
+							}
+						?>
                     </div>
                 </div>
                 <div id="sumformov">
@@ -466,10 +571,10 @@
                         </div>
                         <div class="formtext">
                             <form method="post">
-                                <div class="formtext"><textarea rows="10" cols="150" name="summmaryform"></textarea></div>
+                                <div class="formtext"><textarea rows="10" cols="150" name="summaryform"><?= $Summary?></textarea></div>
                                 <div class="formtext submits">
                                     <input type="submit" value="Cancel" name="cancel" class="cancel">
-                                    <input type="submit" value="Save" name="save" class="save">
+                                    <input type="submit" value="Save" name="sumsave" class="save">
                                 </div>
                             </form>
                         </div>
@@ -484,13 +589,13 @@
                         </div>
                         <div class="formtext">
                             <form method="post">
-                                <div class="socialic"><i class="fa fa-linkedin"><input type="text" size="30"></i></div>
-                                <div class="socialic"><i class="fa fa-twitter"><input type="text" size="30"></i></div>
-                                <div class="socialic"><i class="fa fa-facebook"> <input type="text" size="30"></i></div>
+                                <div class="socialic"><i class="fa fa-linkedin"><input type="text" name="sflinkedin" size="30"></i></div>
+                                <div class="socialic"><i class="fa fa-twitter"><input type="text" name="sftwitter" size="30"></i></div>
+                                <div class="socialic"><i class="fa fa-facebook"> <input type="text" name="sffacebook" size="30"></i></div>
                                 <br>
                                 <div class="formtext submits">
                                         <input type="submit" value="Cancel" name="cancel" class="cancel">
-                                        <input type="submit" value="Save" name="save" class="save">
+                                        <input type="submit" value="Save" name="sfsave" class="save">
                                 </div>
                             </form>
                         </div>
@@ -506,20 +611,15 @@
                         <div class="formtext">
                                 <label for="phone">Phone Number</label>
                                 <br>
-                                <input type="text" name="phone"  size="40">
+                                <input type="text" name="cfphone"  size="40">
                                 <br>
                                 <label for="email">Email</label>
                                 <br>
-                                <input type="text" name="email" size="40">
-                                <br>
-                                <label for="loc">Location</label>
-                                <br>
-                                <input type="text" name="loc"  size="40">
-                                <br>
-                                <br>
+                                <input type="text" name="cfemail" size="40">
+                                <br><br>
                             <div class="formtext submits">
                                     <input type="submit" value="Cancel" name="cancel" class="cancel">
-                                    <input type="submit" value="Save" name="save" class="save">
+                                    <input type="submit" value="Save" name="cfsave" class="save">
                             </div>
                         </div>
                     </form>
@@ -563,46 +663,46 @@
                                 <form method="post">
                                     <div class="formtext">
                                         <label>Name</label><br>
-                                        <input type="text" size="50"><br><br>
+                                        <input type="text" name="tmname" size="50" required><br><br>
                                         <label>Phone Number</label><br>
-                                        <input type="text" size="50"><br><br>
+                                        <input type="number" name="tmphone" size="50" required><br><br>
                                         <label>Experience and Expertise</label><br>
-                                        <textarea rows="10" cols="150" name="exp"></textarea><br><br>
+                                        <textarea rows="10" name="tmexp" cols="150" required></textarea><br><br>
                                         <label>Email</label><br>
-                                        <input type="text" size="50"><br><br>
+                                        <input type="email" name="tmemail" size="50" required><br><br>
                                         <input type="checkbox">Can manage my Company Profile <br><br>
                                         <p class="icsize">Allow this team member to edit the Company Profile. Note: only the Account Owner can apply to investor groups.</p>
                                     </div>
                                     <div class="formtext submits">
                                         <input type="submit" value="Cancel" name="cancel" class="cancel">
-                                        <input type="submit" value="Save" name="save" class="save">
+                                        <input type="submit" value="Save" name="tmsave" class="save">
                                     </div>
                                 </form>
                             </div>
                         </div>
                 </div>
                 <div id="adv">
-                        <div class="form">
-                            <div class="formhead">
-                                <button onclick="advoff()" class="close"><i class="fa fa-close"></i></button>
-                                <h3>Add a Company Advisor</h3>
-                                <p class="icsize">Please provide the name and email address of your company advisor. Once they have confirmed their role, they'll gain access to your private profile. View our privacy policy</p>
-                            </div>
-                            <div class="formtext">
-                                <form method="post">
-                                    <div class="formtext">
-                                        <label>Name</label><br>
-                                        <input type="text" size="50"><br><br>
-                                        <label>Email</label><br>
-                                        <input type="text" size="50"><br><br>
-                                    </div>
-                                    <div class="formtext submits">
-                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
-                                        <input type="submit" value="Save" name="save" class="save">
-                                    </div>
-                                </form>
-                            </div>
+                    <div class="form">
+                        <div class="formhead">
+                            <button onclick="advoff()" class="close"><i class="fa fa-close"></i></button>
+                            <h3>Add a Company Advisor</h3>
+                            <p class="icsize">Please provide the name and email address of your company advisor. Once they have confirmed their role, they'll gain access to your private profile. View our privacy policy</p>
                         </div>
+                        <div class="formtext">
+                            <form method="post">
+                                <div class="formtext">
+                                    <label>Name</label><br>
+                                    <input type="text" name="caname" size="50" required><br><br>
+                                    <label>Email</label><br>
+                                    <input type="text" name="caemail" size="50" required><br><br>
+                                </div>
+                                <div class="formtext submits">
+                                    <input type="submit" value="Cancel" name="cancel" class="cancel">
+                                    <input type="submit" value="Save" name="casave" class="save">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <div id="inv">
                         <div class="form">
@@ -615,13 +715,13 @@
                                 <form method="post">
                                     <div class="formtext">
                                         <label>Name</label><br>
-                                        <input type="text" size="50"><br><br>
+                                        <input type="text" size="50" name="piname" required><br><br>
                                         <label>Email</label><br>
-                                        <input type="text" size="50"><br><br>
+                                        <input type="text" size="50" name="piemail" required><br><br>
                                     </div>
                                     <div class="formtext submits">
                                         <input type="submit" value="Cancel" name="cancel" class="cancel">
-                                        <input type="submit" value="Save" name="save" class="save">
+                                        <input type="submit" value="Save" name="pisave" class="save">
                                     </div>
                                 </form>
                             </div>
