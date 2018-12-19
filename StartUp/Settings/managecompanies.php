@@ -72,10 +72,6 @@
                         <br>
                         <input type="submit" name="submit_image" value="Upload">
                        </form>
-                  </form>
-
-
-
   </div>
 
 </div>

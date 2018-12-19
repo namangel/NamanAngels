@@ -155,7 +155,7 @@
                     <br><br><br>
                     <center>
                     Leverage the power of the India's largest startup network<br><br>
-                    <button class="button1" onclick="location.href='sign_up.php'">GET STARTED FOR FREE</button>
+                    <button class="button1" onclick="location.href='Signing/register.php'">GET STARTED FOR FREE</button>
                     <br><br><br>
                     </center>
                 </div>

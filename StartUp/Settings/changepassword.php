@@ -75,7 +75,6 @@
           </form>
 
   </div>
- <!-- <div class="four">Footer</div> -->
 
 </div>
 <?php require "../../include/footer/footer.php" ?>
