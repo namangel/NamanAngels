@@ -112,6 +112,7 @@
 </head>
 <body>
 	<?php require "../include/header/inv_db.php"?>
+	<?php require "../include/nav/nav.php"?>
     <div class="profbody">
         <div class="banner">
             <div>
