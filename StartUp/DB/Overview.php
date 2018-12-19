@@ -262,14 +262,15 @@
 			<?php require '../include/nav/nav.php'; ?>
         <div class="container">
             <div class="main">
-            		<div class="backimg">
+            	<div class="backimg">
                         <font style="font-size:30px;"><?= $Stname?></font>
                 </div>
                 <div class="sideprof">
+					<div class="pen">
+						<button class="pencil" onclick="on()"><i class="fa fa-pencil"></i></button>
+						<br>
+					</div>
                     <div class="upload">
-                        <div class="pen">
-                            <button class="pencil" onclick="on()"><i class="fa fa-pencil"></i></button>
-                        </div>
                         <div><?= '<img src="data:image/jpeg;base64,'.base64_encode($Logo).'"/>';?></div>
                     </div>
                     <ul class="proflist">
@@ -308,33 +309,39 @@
                         <li><button class="b1" name="requestbtn" onclick="reqon();showreqs(<?= $reqnum ?>)"><?=$transbtn."  ( ".$reqnum." ) " ?></button></li>
                     </ul>
                 </div>
-                <div class="social">
+                <div class="social sideprof">
                     <button class="pencil" onclick="socialon()"><i class="fa fa-pencil"></i></button>
                     <h3>Social presence</h3>
-                    <li class="item" style="list-style: none; display: inline">LinkedIn :  <span class="value"><?= $LinkedInLink?></span></li>
-                    <li style="list-style: none; display: inline">
-                        <hr>
-                    </li>
-                    <li class="item" style="list-style: none; display: inline">Twitter : <span class="value"><?= $TwitterLink?></span></li>
-                    <li style="list-style: none; display: inline">
-                        <hr>
-                    </li>
-                    <li class="item" style="list-style: none; display: inline">Facebook : <span class="value"><?= $FBLink?></span></li>
-                    <li style="list-style: none; display: inline">
-                        <hr>
-                    </li>
+					<ul class="proflist">
+						<li class="item">LinkedIn <span class="value"><?= $LinkedInLink?></span></li>
+	                    <li style="list-style: none; display: inline">
+	                        <hr>
+	                    </li>
+						<li class="item">Twitter <span class="value"><?= $TwitterLink?></span></li>
+	                    <li style="list-style: none; display: inline">
+	                        <hr>
+	                    </li>
+	                    <li class="item">Facebook <span class="value"><?= $FBLink?></span></li>
+	                    <li style="list-style: none; display: inline">
+	                        <hr>
+	                    </li>
+                    </ul>
                 </div>
-                <div class="contact">
+
+                <div class="contact sideprof">
                     <button class="pencil" onclick="contacton()"><i class="fa fa-pencil"></i></button>
                     <h3>Contact</h3>
-                    <li class="item" style="list-style: none; display: inline">Phone :  <span class="value"><?= $Phone?></span></li>
-                    <li style="list-style: none; display: inline">
-                        <hr>
-                    </li>
-                    <li class="item" style="list-style: none; display: inline">Email ID : <span class="value"><?= $Email?></span></li>
-                    <li style="list-style: none; display: inline">
-                        <hr>
-                    </li>
+					<ul class="proflist">
+						<li class="item">Phone :  <span class="value"><?= $Phone?></span></li>
+                        <li style="list-style: none; display: inline">
+                            <hr>
+                        </li>
+                        <li class="item">Email ID : <span class="value"><?= $Email?></span></li>
+                        <li style="list-style: none; display: inline">
+                            <hr>
+                        </li>
+                    </ul>
+
                 </div>
                 <div id="overlay">
                     <div class="compbasics">
@@ -458,7 +465,7 @@
                             <p>Add an overview to help investors evaluate your startup. You might like to include your business model, structure and products/services.</p>
                         </div>
                         <div class="formtext">
-                            <form>
+                            <form method="post">
                                 <div class="formtext"><textarea rows="10" cols="150" name="summmaryform"></textarea></div>
                                 <div class="formtext submits">
                                     <input type="submit" value="Cancel" name="cancel" class="cancel">
@@ -476,7 +483,7 @@
                             <p>Add your company's social media links.</p>
                         </div>
                         <div class="formtext">
-                            <form>
+                            <form method="post">
                                 <div class="socialic"><i class="fa fa-linkedin"><input type="text" size="30"></i></div>
                                 <div class="socialic"><i class="fa fa-twitter"><input type="text" size="30"></i></div>
                                 <div class="socialic"><i class="fa fa-facebook"> <input type="text" size="30"></i></div>
@@ -490,7 +497,7 @@
                     </div>
                 </div>
                 <div id="contactform">
-                    <form class="form">
+                    <form class="form" method="post">
                         <div class="formhead">
                             <button onclick="contactoff()" class="close"><i class="fa fa-close"></i></button>
                             <h3>Contact Information</h3>
@@ -524,7 +531,7 @@
                             <h3>Team</h3>
                         </div>
                         <div class="formtext">
-                            <form>
+                            <form method="post">
                                     <label for="owner">Name (Profile Owner) </label>
                                     <br>
                                     <input type="text" name="owner">
@@ -553,7 +560,7 @@
                                 <p class="icsize">Remember to split equity before applying for funding. Divide ownership fairly and easily with our free Co-founder Equity Split tool.</p>
                             </div>
                             <div class="formtext">
-                                <form>
+                                <form method="post">
                                     <div class="formtext">
                                         <label>Name</label><br>
                                         <input type="text" size="50"><br><br>
@@ -582,7 +589,7 @@
                                 <p class="icsize">Please provide the name and email address of your company advisor. Once they have confirmed their role, they'll gain access to your private profile. View our privacy policy</p>
                             </div>
                             <div class="formtext">
-                                <form>
+                                <form method="post">
                                     <div class="formtext">
                                         <label>Name</label><br>
                                         <input type="text" size="50"><br><br>
@@ -605,7 +612,7 @@
                                 <p class="icsize">Please provide the name and email address of a previous investor. Once they have confirmed their role, they'll gain access to your private profile. View our privacy policy</p>
                             </div>
                             <div class="formtext">
-                                <form>
+                                <form method="post">
                                     <div class="formtext">
                                         <label>Name</label><br>
                                         <input type="text" size="50"><br><br>
@@ -621,8 +628,8 @@
                         </div>
                 </div>
             </div>
+			<?php require "../../include/footer/footer.php" ?>
         </div>
-				<?php require "../../include/footer/footer.php" ?>
 
     </body>
 </html>

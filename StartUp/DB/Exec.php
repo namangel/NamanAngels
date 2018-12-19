@@ -210,84 +210,91 @@
 				</style>
     </head>
     <body>
-				<?php require '../include/header/stp_db.php'; ?>
-				<?php require '../include/nav/nav.php'; ?>
+		<?php require '../include/header/stp_db.php'; ?>
+		<?php require '../include/nav/nav.php'; ?>
 		<div class="container">
             <div class="main">
-            	<div class="backimg">
-                    <font style="font-size:30px;"><?= $Stname?></font>
-              </div>
-              <div class="sideprof">
-                  <div class="upload">
-                      <div class="pen">
-                          <button class="pencil" onclick="on()"><i class="fa fa-pencil"></i></button>
-                      </div>
-                      <div><?= '<img src="data:image/jpeg;base64,'.base64_encode($Logo).'"/>';?></div>
-                  </div>
-                  <ul class="proflist">
-                      <li class="item">Name <span class="value"><?= $Stname?></span></li>
-                      <li style="list-style: none; display: inline">
-                          <hr>
-                      </li>
-                      <li class="item">Stage <span class="value"><?= $Stage?></span></li>
-                      <li style="list-style: none; display: inline">
-                          <hr>
-                      </li>
-                      <li class="item">Industry <span class="value"><?= $Type?></span></li>
-                      <li style="list-style: none; display: inline">
-                          <hr>
-                      </li>
-                      <li class="item">Location <span class="value"><?= $City.", ".$State.", ".$Country?></span></li>
-                      <li style="list-style: none; display: inline">
-                          <hr>
-                      </li>
-                      <li class="item">Founded <span class="value"><?= $DOF?></span></li>
-                      <li style="list-style: none; display: inline">
-                          <hr>
-                      </li>
-                      <li class="item">Employees <span class="value"><?= $EmpNum?></span></li>
-                      <li style="list-style: none; display: inline">
-                          <hr>
-                      </li>
-                      <li class="item">Incorporation Type <span class="value"><?= $IncType?></span></li>
-                      <li style="list-style: none; display: inline">
-                          <hr>
-                      </li>
-                      <li class="item">Website <span class="value"><?= $Website?></span></li>
-                      <li style="list-style: none; display: inline">
-                          <hr>
-                      </li>
-                      <li><button class="b1" name="requestbtn" onclick="reqon();showreqs(<?= $reqnum ?>)"><?=$transbtn."  ( ".$reqnum." ) " ?></button></li>
-                  </ul>
-              </div>
-              <div class="social">
-                  <button class="pencil" onclick="socialon()"><i class="fa fa-pencil"></i></button>
-                  <h3>Social presence</h3>
-                  <li class="item" style="list-style: none; display: inline">LinkedIn :  <span class="value"><?= $LinkedInLink?></span></li>
-                  <li style="list-style: none; display: inline">
-                      <hr>
-                  </li>
-                  <li class="item" style="list-style: none; display: inline">Twitter : <span class="value"><?= $TwitterLink?></span></li>
-                  <li style="list-style: none; display: inline">
-                      <hr>
-                  </li>
-                  <li class="item" style="list-style: none; display: inline">Facebook : <span class="value"><?= $FBLink?></span></li>
-                  <li style="list-style: none; display: inline">
-                      <hr>
-                  </li>
-              </div>
-              <div class="contact">
-                  <button class="pencil" onclick="contacton()"><i class="fa fa-pencil"></i></button>
-                  <h3>Contact</h3>
-                  <li class="item" style="list-style: none; display: inline">Phone :  <span class="value"><?= $Phone?></span></li>
-                  <li style="list-style: none; display: inline">
-                      <hr>
-                  </li>
-                  <li class="item" style="list-style: none; display: inline">Email ID : <span class="value"><?= $Email?></span></li>
-                  <li style="list-style: none; display: inline">
-                      <hr>
-                  </li>
-              </div>
+				<div class="backimg">
+						<font style="font-size:30px;"><?= $Stname?></font>
+				</div>
+				<div class="sideprof">
+					<div class="pen">
+						<button class="pencil" onclick="on()"><i class="fa fa-pencil"></i></button>
+						<br>
+					</div>
+					<div class="upload">
+						<div><?= '<img src="data:image/jpeg;base64,'.base64_encode($Logo).'"/>';?></div>
+					</div>
+					<ul class="proflist">
+						<li class="item">Name <span class="value"><?= $Stname?></span></li>
+						<li style="list-style: none; display: inline">
+							<hr>
+						</li>
+						<li class="item">Stage <span class="value"><?= $Stage?></span></li>
+						<li style="list-style: none; display: inline">
+							<hr>
+						</li>
+						<li class="item">Industry <span class="value"><?= $Type?></span></li>
+						<li style="list-style: none; display: inline">
+							<hr>
+						</li>
+						<li class="item">Location <span class="value"><?= $City.", ".$State.", ".$Country?></span></li>
+						<li style="list-style: none; display: inline">
+							<hr>
+						</li>
+						<li class="item">Founded <span class="value"><?= $DOF?></span></li>
+						<li style="list-style: none; display: inline">
+							<hr>
+						</li>
+						<li class="item">Employees <span class="value"><?= $EmpNum?></span></li>
+						<li style="list-style: none; display: inline">
+							<hr>
+						</li>
+						<li class="item">Incorporation Type <span class="value"><?= $IncType?></span></li>
+						<li style="list-style: none; display: inline">
+							<hr>
+						</li>
+						<li class="item">Website <span class="value"><?= $Website?></span></li>
+						<li style="list-style: none; display: inline">
+							<hr>
+						</li>
+						<li><button class="b1" name="requestbtn" onclick="reqon();showreqs(<?= $reqnum ?>)"><?=$transbtn."  ( ".$reqnum." ) " ?></button></li>
+					</ul>
+				</div>
+				<div class="social sideprof">
+					<button class="pencil" onclick="socialon()"><i class="fa fa-pencil"></i></button>
+					<h3>Social presence</h3>
+					<ul class="proflist">
+						<li class="item">LinkedIn <span class="value"><?= $LinkedInLink?></span></li>
+						<li style="list-style: none; display: inline">
+							<hr>
+						</li>
+						<li class="item">Twitter <span class="value"><?= $TwitterLink?></span></li>
+						<li style="list-style: none; display: inline">
+							<hr>
+						</li>
+						<li class="item">Facebook <span class="value"><?= $FBLink?></span></li>
+						<li style="list-style: none; display: inline">
+							<hr>
+						</li>
+					</ul>
+				</div>
+
+				<div class="contact sideprof">
+					<button class="pencil" onclick="contacton()"><i class="fa fa-pencil"></i></button>
+					<h3>Contact</h3>
+					<ul class="proflist">
+						<li class="item">Phone :  <span class="value"><?= $Phone?></span></li>
+						<li style="list-style: none; display: inline">
+							<hr>
+						</li>
+						<li class="item">Email ID : <span class="value"><?= $Email?></span></li>
+						<li style="list-style: none; display: inline">
+							<hr>
+						</li>
+					</ul>
+
+				</div>
               <div id="overlay">
                   <div class="compbasics">
                       <form class="profform" method="post" action='Exec.php' enctype="multipart/form-data">
@@ -364,7 +371,7 @@
                       </form>
                   </div>
               </div>
-							<div class="nav">
+				<div class="nav">
                   <div><a href="Overview.php">Overview</a></div>
                   <div><a href="Exec.php" style="color:black;">Executive summary</a></div>
                   <div><a href="Finance.php">Financials</a></div>
@@ -651,7 +658,7 @@
 					           </div>
 				      </div>
 	        </div>
-			<?php require "../../include/footer/footer.php" ?>
+<?php require "../../include/footer/footer.php" ?>
 	    </div>
 
     </body>

@@ -263,14 +263,15 @@
 		<?php require '../include/nav/nav.php'; ?>
         <div class="container">
             <div class="main">
-                <div class="backimg">
-                    <font style="font-size:30px;"><?= $Stname?></font>
+				<div class="backimg">
+                        <font style="font-size:30px;"><?= $Stname?></font>
                 </div>
                 <div class="sideprof">
+					<div class="pen">
+						<button class="pencil" onclick="on()"><i class="fa fa-pencil"></i></button>
+						<br>
+					</div>
                     <div class="upload">
-                        <div class="pen">
-                            <button class="pencil" onclick="on()"><i class="fa fa-pencil"></i></button>
-                        </div>
                         <div><?= '<img src="data:image/jpeg;base64,'.base64_encode($Logo).'"/>';?></div>
                     </div>
                     <ul class="proflist">
@@ -309,33 +310,39 @@
                         <li><button class="b1" name="requestbtn" onclick="reqon();showreqs(<?= $reqnum ?>)"><?=$transbtn."  ( ".$reqnum." ) " ?></button></li>
                     </ul>
                 </div>
-                <div class="social">
+                <div class="social sideprof">
                     <button class="pencil" onclick="socialon()"><i class="fa fa-pencil"></i></button>
                     <h3>Social presence</h3>
-                    <li class="item" style="list-style: none; display: inline">LinkedIn :  <span class="value"><?= $LinkedInLink?></span></li>
-                    <li style="list-style: none; display: inline">
-                        <hr>
-                    </li>
-                    <li class="item" style="list-style: none; display: inline">Twitter : <span class="value"><?= $TwitterLink?></span></li>
-                    <li style="list-style: none; display: inline">
-                        <hr>
-                    </li>
-                    <li class="item" style="list-style: none; display: inline">Facebook : <span class="value"><?= $FBLink?></span></li>
-                    <li style="list-style: none; display: inline">
-                        <hr>
-                    </li>
+					<ul class="proflist">
+						<li class="item">LinkedIn <span class="value"><?= $LinkedInLink?></span></li>
+	                    <li style="list-style: none; display: inline">
+	                        <hr>
+	                    </li>
+						<li class="item">Twitter <span class="value"><?= $TwitterLink?></span></li>
+	                    <li style="list-style: none; display: inline">
+	                        <hr>
+	                    </li>
+	                    <li class="item">Facebook <span class="value"><?= $FBLink?></span></li>
+	                    <li style="list-style: none; display: inline">
+	                        <hr>
+	                    </li>
+                    </ul>
                 </div>
-                <div class="contact">
+
+                <div class="contact sideprof">
                     <button class="pencil" onclick="contacton()"><i class="fa fa-pencil"></i></button>
                     <h3>Contact</h3>
-                    <li class="item" style="list-style: none; display: inline">Phone :  <span class="value"><?= $Phone?></span></li>
-                    <li style="list-style: none; display: inline">
-                        <hr>
-                    </li>
-                    <li class="item" style="list-style: none; display: inline">Email ID : <span class="value"><?= $Email?></span></li>
-                    <li style="list-style: none; display: inline">
-                        <hr>
-                    </li>
+					<ul class="proflist">
+						<li class="item">Phone :  <span class="value"><?= $Phone?></span></li>
+                        <li style="list-style: none; display: inline">
+                            <hr>
+                        </li>
+                        <li class="item">Email ID : <span class="value"><?= $Email?></span></li>
+                        <li style="list-style: none; display: inline">
+                            <hr>
+                        </li>
+                    </ul>
+
                 </div>
                 <div id="overlay">
                     <div class="compbasics">
