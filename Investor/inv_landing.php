@@ -31,7 +31,7 @@
 </div>
     <div class="step">
         <div><i class="fa fa-calendar fa-3x" style="color: #008040"></i>
-            <button class="button1">Demo<br>Schedule an introductory call or demo</button></div>
+        <a href="inv_demo.php"><button class="button1">Demo<br>Schedule an introductory call or demo</button></a></div>
 
         <div><i class="fa fa-registered fa-3x" style="color: #008040"></i>
             <button class="button1">Register<br>Complete your enterprise license registration</button></div>

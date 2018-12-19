@@ -21,7 +21,9 @@ body{
     display: block;
     margin-left: auto;
 }
-
+.step a{
+    text-decoration: none;
+}
 .step i{
     padding: 5px;
     margin-top: 10px;

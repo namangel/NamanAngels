@@ -1,0 +1,36 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+.main{
+    display: grid;
+    grid-template-columns: 1fr,1fr;
+    margin: 10px 10px;
+}
+.call{
+    grid-column: 1;
+    background-color: 	 #eee;
+    padding: 20px;
+    margin: 20px;
+}
+.meet{
+    grid-column: 2;
+    background-color: 	 #e6eeff;
+    padding: 20px;
+    margin: 20px;
+}
+
+.image img{
+    height: 200px;
+    width: 300px;
+}
+
+.butn{
+    height: 30px;
+    width: 100px;
+    background-color: white;
+    border: 1px solid grey;
+}
+.butn:hover{
+    box-shadow: 2px 2px 8px 1px grey;
+}
