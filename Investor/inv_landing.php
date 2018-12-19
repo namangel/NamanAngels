@@ -2,53 +2,15 @@
 <html>
 <head>
   <title>Register Yourself - NamanAngels</title>
-  <link rel="stylesheet" type="text/css" href="css/login.css">
-  <link rel="stylesheet" type="text/css" href="css/navbar.css">
+  <link rel="stylesheet" type="text/css" href="css/inv_landing.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <style>
-
-.button1
-{
-    background-color: white;
-    border: 1px solid #008040;
-    color: black;
-    width: 400px;
-    padding: 10px 15px;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 20px;
-    margin: 4px 2px;
-    cursor: pointer;
-    font-family: "Times New Roman", Times, serif;
-}
-.step{
-    display: grid;
-    grid-template-columns: 70px auto;
-    margin-left: 350px;
-    margin-right: 150px;
-    margin-top: 20px;
-    grid-gap: 10px;
-}
-.button1:hover {
-    box-shadow: 0 10px 14px 0 rgba(0,0,0,0.24), 0 15px 48px 0 rgba(0,0,0,0.19);
-}
-
-p{
-	font-family: "Times New Roman", Times, serif;
-	color: #666666;
-}
-</style>
 </head>
 
 <body>
 
-  <div class="topnav">
-    <div class="nop"> </div>
-    <div class="top3">
-      <center><a href="index.html"><img src="img/logo3.png" style="height:50px;width:135px; margin: 5px;"></a></center>
-   </div>
-  </div>
+<?php require "include/header/inv_land.php"?>
 
+<div>
   <div style="margin-left: 150px; margin-right: 150px; margin-top: 20px; ">
   <br>
       <p><font size="6px"><center>License Naman For Your Investor Organization</center></font></p><br>
@@ -78,25 +40,7 @@ p{
         <div><button class="button1">Startups<br>Explore latest startups</button></div>
 
     </div>
-
-  <!-- <div class="no5">.</div> -->
-  <div style="grid-column: span 4; margin-top: 50px">
-    <div class="foot" style="background-color:#ecf0f1;">
-      <center>
-      <br>
-      <font style="font-size:15px;font-family:Courier;">
-    <pre>
-    <a class="a1" href="#">Company Info</a>  <a href="#" class="a1">For Startups</a>  <a href="#" class="a1">For Investors</a>  <a href="#" class="a1"> Support </a> <a href="#" class="a1"> Contact Us</a>
-    </pre>
-
-    <i class="fa fa-facebook-official" style="font-size:48px;color:#9cc5e0"></i>
-    <i class="fa fa-twitter-square" style="font-size:49px;color:#9cc5e0"></i>
-    <br><br>
-    <pre>
-    <a class="a2" href="#">Terms of Service </a> | <a href="#" class="a2"> Privacy </a> | <a class="a2" href="#" > License </a>
-        </font>
-  </center>
-    </div>
-  </div>
+</div>
+  <?php require "../include/footer/footer.php"?>
 </body>
 </html>

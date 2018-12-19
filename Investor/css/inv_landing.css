@@ -1,0 +1,30 @@
+body{
+  margin: 0px;
+  padding: 0px;
+}
+
+.button1
+{
+    background-color: white;
+    border: 1px solid #008040;
+    color: black;
+    width: 400px;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-family: "Times New Roman", Times, serif;
+}
+.step{
+    display: grid;
+    grid-template-columns: 70px auto;
+    margin-left: 350px;
+    margin-right: 150px;
+    margin-top: 20px;
+    grid-gap: 10px;
+}
+.button1:hover {
+    box-shadow: 0 10px 14px 0 rgba(0,0,0,0.24), 0 15px 48px 0 rgba(0,0,0,0.19);
+}
