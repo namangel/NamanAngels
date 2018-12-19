@@ -9,7 +9,7 @@
 <body>
 
 <?php require "include/header/inv_land.php"?>
-
+<?php require "include/nav/nav.php"?>
 <div>
   <div style="margin-left: 150px; margin-right: 150px; margin-top: 20px; ">
   <br>
@@ -30,16 +30,16 @@
 		<h3>Next Steps</h3>
 </div>
     <div class="step">
-        <div><i class="fa fa-calendar fa-3x" style="color: #008040"></i></div>
-        <div><button class="button1">Demo<br>Schedule an introductory call or demo</button></div>
+        <div><i class="fa fa-calendar fa-3x" style="color: #008040"></i>
+            <button class="button1">Demo<br>Schedule an introductory call or demo</button></div>
 
-        <div><i class="fa fa-registered fa-3x" style="color: #008040"></i></div>
-        <div><button class="button1">Register<br>Complete your enterprise license registration</button></div>
+        <div><i class="fa fa-registered fa-3x" style="color: #008040"></i>
+            <button class="button1">Register<br>Complete your enterprise license registration</button></div>
 
-        <div><i class="fa fa-info-circle fa-3x" style="color: #008040"></i></div>
-        <div><button class="button1">Startups<br>Explore latest startups</button></div>
-
+        <div><i class="fa fa-info-circle fa-3x" style="color: #008040"></i>
+            <button class="button1">Startups<br>Explore latest startups</button></div>
     </div>
+
 </div>
   <?php require "../include/footer/footer.php"?>
 </body>

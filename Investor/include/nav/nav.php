@@ -5,8 +5,9 @@
     <div class="item2">
         <nav id="mainNav" class="stroke">
         <ul>
-            <li><a href="/NamanAngels/StartUp/stp_landing.php">HOME</a></li>
-            <li><a href="/NamanAngels/StartUp/DB/Overview.php">COMPANY PROFILE</a></li>
+            <li><a href="../inv_landing.php">HOME</a></li>
+            <li><a href="DB/Inv_Profile.php">PROFILE</a></li>
+            <li><a href="#">MEMBERSHIP</a></li>
             <li><a href="#">TOOLS & SERVICES</a></li>
         </ul>
         </nav>

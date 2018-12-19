@@ -1,5 +1,5 @@
 <?php
-	require 'server.php';
+	require '../../server.php';
 	$u = $_SESSION['username'];
 	$qu = "SELECT * FROM user_inv WHERE Username='$u'";
   	$results = mysqli_query($db, $qu);
@@ -38,7 +38,7 @@
         }
 		header('location: Inv_Profile_Investment.php');
     }
-    
+
 
     if(isset($_POST["editsubmit"]))
 	{
@@ -63,13 +63,13 @@
 		}
 		header('location: Inv_Profile_Investment.php');
     }
-    
+
     if(isset($_POST["invsubmit"]))
 	{
 		$invname = mysqli_real_escape_string($db, $_POST['piname']);
         $invyear = mysqli_real_escape_string($db, $_POST['piyear']);
         $invstage = mysqli_real_escape_string($db, $_POST['pistage']);
-        
+
 		if($invname != NULL and $invyear != NULL and $invstage!= 'Select Stage')
 		{
 			$q = "INSERT INTO inv_prevInvestment  VALUES ('$u','$invname','$invyear','$invstage');";
@@ -81,7 +81,7 @@
     if(isset($_POST["invremove"]))
 	{
 		$invname = mysqli_real_escape_string($db, $_POST['piname']);
-        
+
 		if($invname != NULL)
 		{
 			$q = "DELETE FROM inv_prevInvestment WHERE Username='$u' AND PIName='$invname';";
@@ -95,15 +95,16 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="css\Investor-DashBoard.css" rel="stylesheet" type="text/css">
+    <link href="../css/invprof.css" rel="stylesheet" type="text/css">
     <script src="js\invprofile.js"></script>
 </head>
 <body>
+	<?php require "../include/header/inv_db.php"?>
     <div class="profbody">
         <div class="banner">
             <div class="pic"></div>
             <div class="social">
-                <button class="butn" onclick="on()">Social Links</button>                
+                <button class="butn" onclick="on()">Social Links</button>
             </div>
             <div class="detail">
                 <div class="name"><?= $fname." ".$lname?></div>
@@ -134,9 +135,9 @@
         </div>
         <div class="tabs">
             <center>
-                <div class="tab"><a href="http://localhost/naman/Inv_Profile.php">Summary</a></div>
-                <div class="tab"><a href="http://localhost/naman/Inv_Profile_Group.php" >Group</a></div>
-                <div class="tab"><a href="http://localhost/naman/Inv_Profile_Investment.php" style="color:#004de6;">Investments</a></div>
+                <div class="tab"><a href="Inv_Profile.php">Summary</a></div>
+                <div class="tab"><a href="Inv_Profile_Group.php" >Group</a></div>
+                <div class="tab"><a href="Inv_Profile_Investment.php" style="color:#004de6;">Investments</a></div>
             </center>
         </div>
         <div class="pane">
@@ -158,8 +159,8 @@
                         </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="submit" value="Add" name="invsubmit" class="butn" style="margin-left:50px;">&nbsp;&nbsp;
                         <input type="submit" value="Remove" name="invremove" class="butn">
-                    </center> 
-                        <p style="float:right; font-size:9pt; color:gray;">Fill all details to add an investment and only the name to remove corresponding investment.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>         
+                    </center>
+                        <p style="float:right; font-size:9pt; color:gray;">Fill all details to add an investment and only the name to remove corresponding investment.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                 </form>
                 <br><br><br><br>
                 <table>
@@ -167,7 +168,7 @@
         </div>
     </div>
 
-    <div id="links"">
+    <div id="links">
             <form class="ovform" method="post">
                 <i class="fa fa-window-close" onclick="off()" style="float:right;"></i>
                 <div class="inp">
@@ -199,8 +200,9 @@
             <div class="inp">
             <label>Website:</label>
             <input type="text" name="updwebsite" value="<?php echo $website; ?>">
-            </div>    
-            <input type="submit" name="editsubmit" class="butn">      
+            </div>
+            <input type="submit" name="editsubmit" class="butn">
         </form>
     </div>
+	<?php require "../../include/footer/footer.php"?>
 </body>

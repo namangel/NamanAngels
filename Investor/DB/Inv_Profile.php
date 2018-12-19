@@ -1,5 +1,5 @@
 <?php
-	require 'server.php';
+	require '../../server.php';
 	$u = $_SESSION['username'];
 	$qu = "SELECT * FROM user_inv WHERE Username='$u'";
   	$results = mysqli_query($db, $qu);
@@ -107,10 +107,11 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="css\Investor-DashBoard.css" rel="stylesheet" type="text/css">
+    <link href="../css/invprof.css" rel="stylesheet" type="text/css">
     <script src="js\invprofile.js"></script>
 </head>
 <body>
+	<?php require "../include/header/inv_db.php"?>
     <div class="profbody">
         <div class="banner">
             <div>
@@ -154,9 +155,9 @@
         </div>
         <div class="tabs">
             <center>
-                <div class="tab"><a href="http://localhost/naman/Inv_Profile.php" style="color:#004de6;">Summary</a></div>
-                <div class="tab"><a href="http://localhost/naman/Inv_Profile_Group.php">Group</a></div>
-                <div class="tab"><a href="http://localhost/naman/Inv_Profile_Investment.php">Investments</a></div>
+                <div class="tab"><a href="Inv_Profile.php" style="color:#004de6;">Summary</a></div>
+                <div class="tab"><a href="Inv_Profile_Group.php">Group</a></div>
+                <div class="tab"><a href="Inv_Profile_Investment.php">Investments</a></div>
             </center>
         </div>
         <div class="pane">
@@ -172,7 +173,7 @@
         </div>
     </div>
 
-    <div id="links"">
+    <div id="links">
             <form class="ovform" method="post">
                 <i class="fa fa-window-close" onclick="off()" style="float:right;"></i>
                 <div class="inp">
@@ -208,4 +209,5 @@
             <input type="submit" name="editsubmit" class="butn">
         </form>
     </div>
+	<?php require "../../include/footer/footer.php"?>
 </body>
