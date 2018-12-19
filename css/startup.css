@@ -1,0 +1,90 @@
+
+body {
+  background-color: #fff;
+  margin:0px;
+  padding:0px;
+}
+big{
+  font-size: 30px;
+}
+font{
+  padding-top: 5px;
+  text-align: center;
+  font-size: 20px;
+}
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+.container{
+    display: grid;
+    color: black;
+    grid-gap: 0px;
+    grid-template-columns:repeat(12,1fr);
+}
+
+.ss{
+  grid-column: span 12;
+  text-align: center;
+  background-color: #00cec9;
+  color:white;
+  padding-top: 15px;
+  font-size:40px;
+}
+
+.one{
+  grid-column: span 6;
+  font-size: 10px;
+}
+
+.imageone{
+  grid-column: span 6;
+  padding-top: 15px;
+  font-size: 2em;
+  justify-content: center;
+}
+
+.two{
+  grid-column: span 6;
+  font-size: 10px;
+  background-color:#f0f0f0;
+}
+
+.imagetwo{
+  grid-column: span 6;
+  padding-top: 15px;
+  font-size: 2em;
+  justify-content: center;
+  background-color:#f0f0f0;
+}
+.gs{
+  grid-column: span 12;
+  text-align: center;
+  padding-top: 15px;
+  background-color:#f0f0f0;
+}
+.none{
+  grid-column: span 12;
+}
+
+.create{
+  text-decoration: none;
+}
+.create:hover:before{
+  color:red;
+}
+.create:hover{
+  color: #003d99;
+  font-size: 30px;
+  transition: .2s ease;
+}
+
+.buttonx:hover{
+  opacity:0.6;
+}
+
+.no5{
+  grid-column:span 12;
+  height:20px;
+}

@@ -1,0 +1,127 @@
+.container{
+  display: grid;
+  grid-template-columns: repeat(12,1fr);
+}
+body{
+  margin: 0px;
+}
+img{
+  height:auto;
+  max-width: 90%;
+  align-items: center;
+}
+.imgs{
+	height:75;
+	width:75;
+}
+font{
+  padding-top: 5px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.no{
+  grid-column: span 12;
+}
+.no2{
+  grid-column: span 1;
+}
+.title{
+  grid-column: span 10;
+  color: black;
+  background: #f5f5f5;
+  font-size: 45px;
+  font-family: times;
+  text-align: center;
+}
+.start{
+  grid-column: span 12;
+  color: black;
+  display: grid;
+  grid-template-columns: repeat(12,1fr);
+  font-size: 25px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.start1{
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: repeat(12,1fr);
+  color: white;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  line-height: 2;
+  font-size: 20px;
+  text-align: center;
+}
+.imggrid{
+  grid-column: span 6;
+}
+.deal{
+  grid-column: span 6;
+  display: grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows: auto;
+}
+.deal1{
+  grid-column: span 2;
+}
+
+.objs{
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: repeat(13,1fr);
+}
+
+.FAQ{
+  grid-column: span 12;
+}
+
+.obj{
+  grid-column: span 3;
+  background-color: #1ABC96;
+  color : white;
+}
+
+/*BUTTON*/
+.button1 {
+  border-radius: 4px;
+  background-color: red;
+  border: none;
+  color: white;
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 2px;
+}
+.button1 span {
+  cursor: pointer;
+  display: inline-block;
+  position:relative;
+  transition: 0.5s;
+}
+.button1 span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.button1:hover span {
+  padding-right: 25px;
+}
+.button1:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.no5{
+  grid-column:span 12;
+  height:20px;
+}

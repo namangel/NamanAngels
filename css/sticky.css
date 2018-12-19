@@ -1,0 +1,52 @@
+#navbar {
+  overflow: hidden;
+  background-color:#F9F9F9;
+}
+#navbar a {
+  color:#4A4A4A;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+#navbar a:hover {
+			background-color:#F9F9F9;
+			color:#1E87CD;
+			text-decoration: underline #1E87CD;
+		}
+
+#navbar a.active {
+  background-color:#F9F9F9;
+}
+
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+
+
+.stick{
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns:repeat(12,1fr);
+}
+
+.sticknop{
+  grid-column: span 2;
+  background-color: inherit;
+}
+
+.stickin{
+  grid-column: span 8;
+  background-color: inherit;
+}

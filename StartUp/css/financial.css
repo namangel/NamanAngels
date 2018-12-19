@@ -1,0 +1,82 @@
+
+.finance {
+  margin-left:10px;
+  margin-right:10px;
+}
+.finance{
+    display: grid;
+    grid-row-gap: 50px;
+    grid-template-rows: auto ;
+    color:#333333;
+    font-family: Helvetica;
+}
+.cfr{
+  border: 1px dashed #B8B8B8;
+  background-color: white;
+  padding:20px;
+
+}
+.fh{
+  border: 1px dashed #B8B8B8;
+  background-color: white;
+  padding:20px;
+}
+.af{  background-color: white;
+  border: 1px dashed #B8B8B8;
+  padding:20px;
+}
+.tables
+{  background-color: white;
+  border: 1px dashed#B8B8B8;
+margin-bottom: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+table,td{
+  width: 100%;
+  border: 2px solid silver;
+  border-collapse: collapse;
+  padding: 10px 10px 10px 10px;
+}
+.btnfund{
+  background-color:#10ac84;
+  font-size: 16px;
+  color:white;
+  border:2px ;
+  text-align:center;
+  width:240px;
+  height:30px;
+  align:right;
+  right:80px;
+  top:120px;
+}
+
+.circlei {
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  padding: 1px;
+  background: #fff;
+  border: 2px solid #666;
+  color: #666;
+  text-align: center;
+  font: 14px Arial, sans-serif;
+  position: absolute;top:62.5%;left:25%;
+}
+.circlei:hover{
+  border-color:  #0066ff;
+  color:#0066ff;
+
+}
+
+.btnfund:hover{
+  text-align:center;
+  opacity:0.6;
+  cursor: pointer;
+
+}
+a{
+  color:#000;
+}
