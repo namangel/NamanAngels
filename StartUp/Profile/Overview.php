@@ -1,5 +1,5 @@
 <?php
-	require('../../server.php');
+	require '../../server.php';
 	// $_SESSION['username'] = 'xyz123';//predefine -- nikalo mujhe
 	$u = $_SESSION['username'];
 
@@ -31,12 +31,11 @@
 	$TwitterLink = $row['TwitterLink']==""? '--':$row['TwitterLink'];
 	$FBLink = $row['FBLink']==""? '--':$row['FBLink'];
 	$Summary = $row['Summary']==""? 'Tell the world who you are and what makes your company special.':$row['Summary'];
-	$CAdvName = $row['CAdvName']==""? '--':$row['CAdvName'];
-	$CAdvEmail = $row['CAdvEmail']==""? '--':$row['CAdvEmail'];
-	$PIName = $row['PIName']==""? '--':$row['PIName'];
-	$PIEmail = $row['PIEmail']==""? '--':$row['PIEmail'];
+	$PitchName = $row['PitchName'];
+	$PitchExt = $row['PitchExt'];
 	$OLP = $row['OLP']==""? '--':$row['OLP'];
 	$Logo = $row['Logo'];
+
 
 	$rid = array();
 	$rfn = array();
@@ -88,12 +87,13 @@
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
+        <script src="js\profform.js"></script>
     </head>
     <body>
 			<?php require '../include/header/stp_profile.php'; ?>
         <div class="container">
             <div class="main">
-            		<div class="backimg">
+            	<div class="backimg">
                         <font style="font-size:30px;"><?= $Stname?></font>
                 </div>
                 <div class="sideprof">
@@ -136,32 +136,39 @@
                         <li><button class="b1" name="requestbtn" onclick="reqon();showreqs(<?= $reqnum ?>)"><?=$transbtn."  ( ".$reqnum." ) " ?></button></li>
                     </ul>
                 </div>
-                <div class="social">
+                <div class="social sideprof">
                     <h3>Social presence</h3>
-                    <li class="item" style="list-style: none; display: inline">LinkedIn :  <span class="value"><?= $LinkedInLink?></span></li>
-                    <li style="list-style: none; display: inline">
-                        <hr>
-                    </li>
-                    <li class="item" style="list-style: none; display: inline">Twitter : <span class="value"><?= $TwitterLink?></span></li>
-                    <li style="list-style: none; display: inline">
-                        <hr>
-                    </li>
-                    <li class="item" style="list-style: none; display: inline">Facebook : <span class="value"><?= $FBLink?></span></li>
-                    <li style="list-style: none; display: inline">
-                        <hr>
-                    </li>
+					<ul class="proflist">
+						<li class="item">LinkedIn <span class="value"><?= $LinkedInLink?></span></li>
+	                    <li style="list-style: none; display: inline">
+	                        <hr>
+	                    </li>
+						<li class="item">Twitter <span class="value"><?= $TwitterLink?></span></li>
+	                    <li style="list-style: none; display: inline">
+	                        <hr>
+	                    </li>
+	                    <li class="item">Facebook <span class="value"><?= $FBLink?></span></li>
+	                    <li style="list-style: none; display: inline">
+	                        <hr>
+	                    </li>
+                    </ul>
                 </div>
-                <div class="contact">
+
+                <div class="contact sideprof">
                     <h3>Contact</h3>
-                    <li class="item" style="list-style: none; display: inline">Phone :  <span class="value"><?= $Phone?></span></li>
-                    <li style="list-style: none; display: inline">
-                        <hr>
-                    </li>
-                    <li class="item" style="list-style: none; display: inline">Email ID : <span class="value"><?= $Email?></span></li>
-                    <li style="list-style: none; display: inline">
-                        <hr>
-                    </li>
+					<ul class="proflist">
+						<li class="item">Phone :  <span class="value"><?= $Phone?></span></li>
+                        <li style="list-style: none; display: inline">
+                            <hr>
+                        </li>
+                        <li class="item">Email ID : <span class="value"><?= $Email?></span></li>
+                        <li style="list-style: none; display: inline">
+                            <hr>
+                        </li>
+                    </ul>
+
                 </div>
+
                 <div class="nav">
                     <div><a href="Overview.php" style="color:black;">Overview</a></div>
                     <div><a href="Exec.php">Executive summary</a></div>
@@ -171,31 +178,103 @@
                 <div class="summary">
                     <div class="databox">
                         <h3>Company Summary</h3>
-                        <p>Tell the world who you are and what makes your company special.</p>
-                        <img src="..\img\Capture.png">
+						<?php echo $Summary;
+							if($Summary == "Tell the world who you are and what makes your company special."){
+								echo '<img src="../img/Capture.png">';
+							}
+						?>
                     </div>
                     <div class="databox" style="padding:10px;">
-                        <label>Increase the impact of your profile by uploading a short pitch</label>
-                        <br>
+						<h3>Pitch</h3>
+						<?php
+							if($PitchName == ""){
+		                        echo 'The StartUp Has Not Uploaded Any Pitch';
+							}
+							else{
+								$videos_field=$PitchName;
+								$video_show= "../../Uploads/$videos_field";
+
+								echo "<div align=center><video max-height='500px' controls><source src='$video_show' type='video/$PitchExt'>Your browser does not support the video tag.</video></div>";
+							}
+						?>
                     </div>
                     <div class="databox">
                         <h4>Team</h4>
-                        <img src="..\img\prof.png">
-                        <hr>
+						<?php
+							$q = "SELECT * FROM st_teams where Username='$u';";
+							$results=mysqli_query($db, $q);
+							if (mysqli_num_rows($results) > 0) {
+								echo "<table border=1px width=100%>";
+								echo "<tr>";
+								echo "<th>Name</th>";
+								echo "<th>Phone</th>";
+								echo "<th>Experience</th>";
+								echo "<th>Email</th>";
+								echo "</th>";
+							    while($row = mysqli_fetch_assoc($results)) {
+							        echo '<tr>';
+									echo '<td>'.$row["TName"].'</td>';
+									echo '<td>'.$row['TPhone'].'</td>';
+									echo '<td>'.$row['TExp'].'</td>';
+									echo '<td>'.$row['TEmail'].'</td>';
+									echo "</tr>";
+							    }
+								echo '</table>';
+							} else {
+								echo '<img src="../img/prof.png">';
+							}
+						?>
+
                     </div>
                     <div class="databox">
                         <h4>Advisors</h4>
-                        <img src="..\img\prof.png">
-                        <hr>
+						<?php
+							$q = "SELECT * FROM st_advisors where Username='$u';";
+							$results=mysqli_query($db, $q);
+							if (mysqli_num_rows($results) > 0) {
+								echo "<table border=1px width=100%>";
+								echo "<tr>";
+								echo "<th>Name</th>";
+								echo "<th>Email</th>";
+								echo "</th>";
+							    while($row = mysqli_fetch_assoc($results)) {
+							        echo '<tr>';
+									echo '<td>'.$row["CAName"].'</td>';
+									echo '<td>'.$row['CAEmail'].'</td>';
+									echo "</tr>";
+							    }
+								echo '</table>';
+							} else {
+								echo '<img src="../img/prof.png">';
+							}
+						?>
                     </div>
                     <div class="databox">
                         <h4>Previous Investors</h4>
-                        <img src="..\img\prof.png">
-                        <hr>
+						<?php
+							$q = "SELECT * FROM st_previnvestment where Username='$u';";
+							$results=mysqli_query($db, $q);
+							if (mysqli_num_rows($results) > 0) {
+								echo "<table border=1px width=100%>";
+								echo "<tr>";
+								echo "<th>Name</th>";
+								echo "<th>Email</th>";
+								echo "</th>";
+							    while($row = mysqli_fetch_assoc($results)) {
+							        echo '<tr>';
+									echo '<td>'.$row["PIName"].'</td>';
+									echo '<td>'.$row['PIEmail'].'</td>';
+									echo "</tr>";
+							    }
+								echo '</table>';
+							} else {
+								echo '<img src="../img/prof.png">';
+							}
+						?>
                     </div>
                 </div>
-
-							</div>
+            </div>
+			<?php require "../../include/footer/footer.php" ?>
         </div>
 
     </body>
