@@ -141,7 +141,7 @@
             <center>
                 <div class="tab"><a href="Inv_Profile.php">Summary</a></div>
                 <div class="tab"><a href="Inv_Profile_Group.php" style="color:#004de6;">Group</a></div>
-                <div class="tab"><a href="Inv_Profile_Investment.php">Investments</a></div>
+                <div class="tab"><a href="Overview.php">Investments</a></div>
             </center>
         </div>
         <div class="pane">
