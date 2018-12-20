@@ -53,9 +53,9 @@
             </font>
           </center>
             </div>
-            <div class="imageone"><center><img src="img/Launch.png" height="300px"></center></div>
+            <div class="imageone"><center><img src="img/launch.png" height="300px"></center></div>
 
-            <div class="imagetwo"><center><img src="img/happy.png" height="300px"></center></div>
+            <div class="imagetwo"><center><img src="img/Happy.png" height="300px"></center></div>
 
             <div class="two" id="rc">
               <center>
