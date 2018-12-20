@@ -73,7 +73,7 @@ body {
     width: 90%;
     margin: 10px;
 }
-#overlay,#sumformov,#socialformov,#overly,#product,#cust,#target,#bussi,#segs,#sales,#comp,#adv,#contactform,#profteam,#addteam,#adv,#inv{
+#overlay,#sumformov,#socialformov,#overly,#product,#cust,#target,#bussi,#segs,#sales,#comp,#adv,#contactform,#profteam,#addteam,#adv,#inv,#olpformov {
     position: fixed;
     overflow-y: scroll;
     display: none;
@@ -87,7 +87,20 @@ body {
     z-index: 2;
     cursor: pointer;
 }
-
+#olpformov {
+    position: fixed;
+    overflow-y: scroll;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color:rgba(0,0,0,0.5);;
+    z-index: 2;
+    cursor: pointer;
+}
 .databox{
   border: 1px dashed gray;
   margin:10px;

@@ -71,8 +71,6 @@ function invoff() {
     document.getElementById("inv").style.display = "none";
 }
 
-
-
 function ovon() {
     document.getElementById("overly").style.display = "block";
 }

@@ -280,7 +280,7 @@
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
-        <script src="js\profform.js"></script>
+        <script src="js/profform.js"></script>
     </head>
     <body>
 			<?php require '../include/header/stp_db.php'; ?>
@@ -460,6 +460,13 @@
 							}
 						?>
                     </div>
+					<div class="databox">
+                        <button onclick="olpon()" class="pencil"><i class="fa fa-pencil"></i></button>
+                        <h3>One Line Pitch</h3>
+						Write A Short Pitch For Your Company In One Line
+						<?php echo $OLP;
+							?>
+                    </div>
                     <div class="databox" style="padding:10px;">
 						<h3>Pitch</h3>
 						<?php
@@ -575,6 +582,24 @@
                                 <div class="formtext submits">
                                     <input type="submit" value="Cancel" name="cancel" class="cancel">
                                     <input type="submit" value="Save" name="sumsave" class="save">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+				<div id="olpformov">
+                    <div class="form">
+                        <div class="formhead">
+                            <button onclick="olpoff()" class="close"><i class="fa fa-close"></i></button>
+                            <h3>One Line Pitch</h3>
+                            <p>Add A Short Pitch For Your Company In One Line</p>
+                        </div>
+                        <div class="formtext">
+                            <form method="post">
+                                <div class="formtext"><textarea rows="10" cols="150" name="olpform"><?= $OLP?></textarea></div>
+                                <div class="formtext submits">
+                                    <input type="submit" value="Cancel" name="cancel" class="cancel">
+                                    <input type="submit" value="Save" name="olpsave" class="save">
                                 </div>
                             </form>
                         </div>
