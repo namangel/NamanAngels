@@ -213,10 +213,6 @@
 	$req = mysqli_query($db, $qr);
 	$reqnum = mysqli_num_rows($req);
 	$count = $reqnum;
-	// $row = mysqli_fetch_assoc($req);
-	// $rname1 = $row['inv_name'];
-	// $row = mysqli_fetch_assoc($req);
-	// $rname2 = $row['inv_name'];
 	while($count >0)
 	{
 		$row = mysqli_fetch_assoc($req);
@@ -257,6 +253,7 @@
         <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
         <link rel="stylesheet" href="../css/financial.css" type="text/css">
         <script src="js\profform.js"></script>
+				<title>StartUp Profile - NamanAngels</title>
     </head>
     <body>
 		<?php require '../include/header/stp_profile.php'; ?>

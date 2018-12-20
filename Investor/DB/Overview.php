@@ -189,6 +189,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../css/invprof.css" type="text/css">
         <script src="js/invprofform.js"></script>
+				<title>Investor Profile - NamanAngels</title>
     </head>
     <body>
 		<?php require '../include/header/inv_db.php'; ?>
@@ -196,7 +197,7 @@
         <div class="container">
             <div class="main">
             	<div class="backimg">
-                        <font style="font-size:30px;"></font>
+                        <font style="font-size:30px;"><?= $cname ?></font>
                 </div>
                 <div class="sideprof">
 					<div class="pen">

@@ -299,6 +299,7 @@
 						height: 1200px;
 					}
 				</style>
+				<title>StartUp Profile - NamanAngels</title>
     </head>
     <body>
 		<?php require '../include/header/stp_db.php'; ?>

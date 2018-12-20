@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="css\stp_landing.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Profile</title>
+    <title>StartUp Profile - NamanAngels</title>
 </head>
 <body>
       <?php require 'include/header/stp_land.php'; ?>
@@ -34,7 +34,7 @@
 
         <div class="item4">
                 <br><br><br>
-                <big><center><b>Approach investors</b></big></center>
+                <big><center><b style="color: #003866;">APPROACH INVESTORS</b></big></center>
                 <br><br><br>
         </div>
 
@@ -51,7 +51,7 @@
                 Most investor Groups focus on industries with which they're familiar.<br>
                 Selecting your industry will help us put you in front of the right investors.<br><br>
                 <br>
-                <button type="button" onclick="window.location.href='DB/Overview.php'" style="width:30%; height:40px; background:#10ac84; border-radius:10px"/>Continue Building Your Company Profile</button>
+                <button type="button" onclick="window.location.href='DB/Overview.php'" style="width:30%; height:40px; background:#B2DCFF;">Continue Building Your Company Profile</button>
                 <br>
         </div>
       </div>

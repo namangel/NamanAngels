@@ -19,15 +19,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/browse.css">
-
+  <title>Investor Profile - NamanAngels</title>
 </head>
 
 <body>
 
-    <?php require "../include/header/inv_land.php"?>
+    <?php require "../include/header/inv_db.php"?>
     <?php require "../include/nav/nav.php"?>
     <div class="browsesearch">
-
         <div class="bsearch">
             <form class="searchform" action="browse.php" method="post">
                 <input type="text" name="searchkey" placeholder="Enter Your Search Keyword">
@@ -208,7 +207,7 @@
                     echo "</div>";
                 }
 
-                
+
                 echo '<div class="pages">';
                     echo '<ul class="pagination">';
                         echo '<li><a href="?pageno=1">First</a></li>';

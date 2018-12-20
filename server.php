@@ -86,6 +86,12 @@ if (isset($_POST['reg_inv'])) {
     $query = "INSERT INTO inv_overview (Username) values ('$username')";
   	mysqli_query($db, $query);
 
+    $query = "INSERT INTO inv_group (Username) values ('$username')";
+  	mysqli_query($db, $query);
+
+    $query = "INSERT INTO inv_previnvestment (Username) values ('$username')";
+  	mysqli_query($db, $query);
+
   	// $_SESSION['success'] = "You are now logged in";
   	header('location: ../Investor/inv_landing.php');
   }
@@ -152,6 +158,18 @@ if (isset($_POST['reg_st'])) {
     $_SESSION['phone'] = $phone;
 
     $query = "INSERT INTO st_overview (Username) values ('$username')";
+  	mysqli_query($db, $query);
+
+    $query = "INSERT INTO st_advisors (Username) values ('$username')";
+  	mysqli_query($db, $query);
+
+    $query = "INSERT INTO st_exec (Username) values ('$username')";
+  	mysqli_query($db, $query);
+
+    $query = "INSERT INTO st_previnvestment (Username) values ('$username')";
+  	mysqli_query($db, $query);
+
+    $query = "INSERT INTO st_teams (Username) values ('$username')";
   	mysqli_query($db, $query);
 
   	// $_SESSION['success'] = "You are now logged in";

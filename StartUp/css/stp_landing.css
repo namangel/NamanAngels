@@ -82,13 +82,13 @@
 
             .button1:active
             {
-                background-color:#10ac84;
+                background-color:#B2DCFF;
                 color: white;
             }
 
             .button1:hover
             {
-                background-color:#10ac84;
+                background-color:#B2DCFF;
                 color: black;
             }
             .button2
