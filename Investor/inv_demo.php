@@ -24,7 +24,7 @@
             <div class="meet">
                 <center>
                 <h3>Schedule a meeting</h3>
-                <div class="image"><img src="../img/meet.jpg"></div>
+                <div class="image"><img src="../img/meet.png"></div>
                 <br>
                 <button class="butn">Meet us</button>
                 <p style="color: gray; font-size:10pt;">By clicking above, we will be notified of your request to meet.<br>We will contact you shortly.</p>

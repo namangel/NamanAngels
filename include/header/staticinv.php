@@ -5,7 +5,7 @@
 <body>
     <div class="topnav">
         <div class="toplogo">
-            <center><a href="./index.php"><img src="/NamanAngels/img/headerlogo.png" style="height:50px;width:135px; margin: 5px;"></a></center>
+            <center><a href="./index.php"><img src="/NamanAngels/img/headerlogo1.png" style="height:50px;width:135px; margin: 5px;"></a></center>
         </div>
         <div class="topbutn">
             <button class="button" onclick="location.href='./Signing/register_inv.php'"><span >Sign Up</span></button>
