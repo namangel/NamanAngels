@@ -21,6 +21,79 @@
     $indOfInt=$row['IndustryOfInterest'];
     $summary=$row['Summary'];
 
+	if(isset($_POST["cbsave"])){
+		$cbname = mysqli_real_escape_string($db, $_POST['cbname']);
+		$cbstage = mysqli_real_escape_string($db, $_POST['cbstage']);
+		$cbcity = mysqli_real_escape_string($db, $_POST['cbcity']);
+		$cbstate = mysqli_real_escape_string($db, $_POST['cbstate']);
+		$cbcountry = mysqli_real_escape_string($db, $_POST['cbcountry']);
+		$cbdate = mysqli_real_escape_string($db, $_POST['cbdate']);
+		$cbempnum = mysqli_real_escape_string($db, $_POST['cbempnum']);
+		$cbinc = mysqli_real_escape_string($db, $_POST['cbinc']);
+		$cbweb = mysqli_real_escape_string($db, $_POST['cbweb']);
+
+
+		if($cbname != "")
+		{
+			$q = "UPDATE user_st set Stname='$cbname' where Username='$u';";
+			mysqli_query($db, $q);
+		}
+
+		if($cbstage != 'Select Stage')
+		{
+			$q = "UPDATE st_overview set Stage='$cbstage' where Username='$u';";
+			mysqli_query($db, $q);
+		}
+
+		if($cbcity != "")
+		{
+			$q = "UPDATE user_st set City='$cbcity' where Username='$u';";
+			mysqli_query($db, $q);
+		}
+		if($cbstate != "")
+		{
+			$q = "UPDATE user_st set State='$cbstate' where Username='$u';";
+			mysqli_query($db, $q);
+		}
+		if($cbcountry != "")
+		{
+			$q = "UPDATE user_st set Country='$cbcountry' where Username='$u';";
+			mysqli_query($db, $q);
+		}
+		if($cbdate != "")
+		{
+			$q = "UPDATE st_overview set DOF='$cbdate' where Username='$u';";
+			mysqli_query($db, $q);
+		}
+		if($cbempnum != "")
+		{
+			$q = "UPDATE st_overview set EmpNum='$cbempnum' where Username='$u';";
+			mysqli_query($db, $q);
+		}
+		if($cbinc != 'Select Incorporation')
+		{
+			$q = "UPDATE st_overview set IncType='$cbinc' where Username='$u';";
+			mysqli_query($db, $q);
+		}
+		if($cbweb != "")
+		{
+			$q = "UPDATE user_st set Website='$cbweb' where Username='$u';";
+			mysqli_query($db, $q);
+		}
+
+		$check = getimagesize($_FILES["cblogo"]["tmp_name"]);
+	    if($check !== false){
+			$image = $_FILES['cblogo']['tmp_name'];
+	        $imgContent = addslashes(file_get_contents($image));
+
+			$q = "UPDATE st_overview set Logo='$imgContent' where Username='$u';";
+			mysqli_query($db, $q);
+		}
+
+		header('location: Overview.php');
+	}
+
+
     if(isset($_POST["slsave"]))
 	{
 		$sllinkin = mysqli_real_escape_string($db, $_POST['sllinkin']);
@@ -69,20 +142,6 @@
 		header('location: Inv_Profile.php');
     }
 
-    if(isset($_POST["upload"]))
-	{
-        $check = getimagesize($_FILES["profpic"]["tmp_name"]);
-        if($check !== false)
-        {
-            $image = $_FILES['profpic']['tmp_name'];
-            $imgContent = addslashes(file_get_contents($image));
-
-            $q = "UPDATE inv_overview set ProfileImage='$imgContent' where Username='$u';";
-            mysqli_query($db, $q);
-        }
-        header('location: Inv_Profile.php');
-    }
-
     if(isset($_POST["summarysubmit"]))
 	{
 		$ioi = mysqli_real_escape_string($db, $_POST['ioi']);
@@ -109,8 +168,8 @@
         <script src="js\invprofform.js"></script>
     </head>
     <body>
-			<?php require '../include/header/inv_db.php'; ?>
-			<?php require '../include/nav/nav.php'; ?>
+		<?php require '../include/header/inv_db.php'; ?>
+		<?php require '../include/nav/nav.php'; ?>
         <div class="container">
             <div class="main">
             	<div class="backimg">
@@ -122,10 +181,10 @@
 						<br>
 					</div>
                     <div class="upload">
-                        <div><?= '<img src="data:image/jpeg;base64,'.base64_encode().'"/>';?></div>
+                        <div><?= '<img src="data:image/jpeg;base64,'.base64_encode($img).'"/>';?></div>
                     </div>
                     <ul class="proflist">
-                        <li class="item">Name <span class="value"></span></li>
+                        <li class="item">Name <span class="value">abc</span></li>
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
@@ -138,6 +197,10 @@
                             <hr>
                         </li>
                         <li class="item">Country <span class="value"></span></li>
+                        <li style="list-style: none; display: inline">
+                            <hr>
+                        </li>
+						<li class="item">Industry Of Interest <span class="value"></span></li>
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
@@ -159,6 +222,66 @@
                         </li>
                     </ul>
                 </div>
+				<div id="overlay">
+                    <div class="compbasics">
+                        <form class="profform" method="post" action='Overview.php' enctype="multipart/form-data">
+                            <button class="close" onclick="off()"><i class="fa fa-close"></i></button>
+                            <div class="i1">
+                                <h2>Investor Basics</h2>
+                                <p>Add or edit required basic information about yourself or firm.</p>
+                                <hr>
+                            </div>
+							<div class="i2">
+                                <label for="cbpic">Profile Image</label><br>
+                                <input name="cbpic" type="file">
+                            </div>
+                            <div class="i2">
+                                <label for="cbname">Name</label><br>
+                                <input name="cbname" type="text" placeholder="">
+                            </div>
+                            <div class="i2">
+                                <label for="name">Company Name</label><br>
+                                <input name="cbcomp" type="text" placeholder="">
+                            </div>
+                            <div class="i5">
+                                <label for="cbcity">City</label><br>
+                                <input name="cbcity" type="text"placeholder="">
+                            </div>
+                            <div class="i5">
+                                <label for="cbcountry">Country</label><br>
+                                <input name="cbcountry" type="text" placeholder="">
+                            </div>
+                            <div class="i7">
+                                <label for="cbrole">Role</label><br>
+                                <input name="cbrole" type="text" placeholder="">
+                            </div>
+                            <div class="i8">
+                                <label for="cbpartner">Partner Name</label><br>
+                                <input name="cbpartner" type="text" placeholder="">
+                            </div>
+                            <div class="i3">
+                                <label for="invrange">Investment Range</label><br>
+                                <select name="cbrange" placeholder=">">
+                                    <option>0 - 1,00,000</option>
+                                    <option>1,00,000 - 10,00,000</option>
+                                    <option>10,00,000 - 50,00,000</option>
+                                    <option>50,00,000 - 1,00,00,000</option>
+                                    <option>More than 1,00,00,000</option>
+                                </select>
+                            </div>
+                            <div class="i9">
+                                <label for="cbweb">Website</label><br>
+                                <input name="cbweb" type="text" placeholder="">
+                            </div>
+                            <div class="butn">
+                                <button class="cancel" onclick="off()">Cancel</button> <button class="save" name="cbsave">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+
                 <div class="social sideprof">
                     <button class="pencil" onclick="socialon()"><i class="fa fa-pencil"></i></button>
                     <h3>Social presence</h3>
@@ -177,184 +300,7 @@
 	                    </li>
                     </ul>
                 </div>
-
-                <div class="contact sideprof">
-                    <button class="pencil" onclick="contacton()"><i class="fa fa-pencil"></i></button>
-                    <h3>Contact</h3>
-					<ul class="proflist">
-						<li class="item">Phone :  <span class="value"></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                        <li class="item">Email ID : <span class="value"></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                    </ul>
-                </div>
-                <div id="overlay">
-                    <div class="compbasics">
-                        <form class="profform" method="post" action='Overview.php' enctype="multipart/form-data">
-                            <button class="close" onclick="off()"><i class="fa fa-close"></i></button>
-                            <div class="i1">
-                                <h2>Investor Information</h2>
-                                <p>Add your company name, elevator pitch, and other basic information about your company.</p>
-                                <hr>
-                            </div>
-                            <div class="i2">
-                                <label for="cblogo">Company Logo</label><br>
-                                <input name="cblogo" type="file">
-                            </div>
-                            <div class="i2">
-                                <label for="name">Company Name</label><br>
-                                <input name="cbname" type="text" placeholder="<?= $Stname?>">
-                            </div>
-                            <div class="i4">
-                                <label for="stage">Company Stage</label><br>
-                                <select name="cbstage" placeholder="<?= $Stage?>">
-                                    <option>Select Stage</option>
-                                    <option>Concept Only</option>
-                                    <option>Product in Development</option>
-                                    <option>Prototype ready</option>
-                                    <option>Full Product Ready</option>
-                                    <option>$500K in TTM Revenue</option>
-                                    <option>$1M in TTM Revenue</option>
-                                    <option>$5M in TTM Revenue</option>
-                                    <option>$10M in TTM Revenue</option>
-                                    <option>$20M in TTM Revenue</option>
-                                    <option>$50M in TTM Revenue</option>
-                                    <option>$50M+ in TTM Revenue</option>
-                                </select>
-                            </div>
-                            <div class="i5">
-                                <label for="cbcity">City</label><br>
-                                <input name="cbcity" type="text"placeholder="<?= $City?>">
-                            </div>
-                            <div class="i5">
-                                <label for="cbstate">State</label><br>
-                                <input name="cbstate" type="text" placeholder="<?= $State?>">
-                            </div>
-                            <div class="i5">
-                                <label for="cbcountry">Country</label><br>
-                                <input name="cbcountry" type="text" placeholder="<?= $Country?>">
-                            </div>
-                            <div class="i7">
-                                <label for="cbdate">Founding Date</label><br>
-                                <input name="cbdate" type="text" placeholder="<?= $DOF?>" onfocus="(this.type='date')">
-                            </div>
-                            <div class="i8">
-                                <label for="cbempnum">Number of Employees</label><br>
-                                <input name="cbempnum" type="number" placeholder="<?= $EmpNum?>">
-                            </div>
-                            <div class="i3">
-                                <label for="inc">Incorporation Type</label><br>
-                                <select name="cbinc" placeholder="<?= $IncType?>">
-                                    <option><?= $IncType?></option>
-                                    <option>Not Incorporated</option>
-                                    <option>C-corp</option>
-                                    <option>S-corp</option>
-                                    <option>B-corp</option>
-                                    <option>LLC</option>
-                                    <option>Other</option>
-                                </select>
-                            </div>
-                            <div class="i9">
-                                <label for="cbweb">Company Website</label><br>
-                                <input name="cbweb" type="text" placeholder="<?= $Website?>">
-                            </div>
-                            <div class="butn">
-                                <button class="cancel" onclick="off()">Cancel</button> <button class="save" name="cbsave">Save</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="nav">
-                    <div><a href="Overview.php" style="color:black;">Overview</a></div>
-                </div>
-                <div class="summary">
-                    <div class="databox">
-                        <button onclick="summon()" class="pencil"><i class="fa fa-pencil"></i></button>
-                        <h3>Company Summary</h3>
-                    </div>
-										<div class="databox">
-                        <!-- <button onclick="teamon()" class="pencil"><i class="fa fa-pencil"></i></button> -->
-                        <button onclick="addgrpon()" class="add"><i class="fa fa-plus"></i></button>
-                        <h4>Team</h4>
-						<?php
-							$q = "SELECT * FROM st_teams where Username='$u';";
-							$results=mysqli_query($db, $q);
-							if (mysqli_num_rows($results) > 0) {
-								echo "<table border=1px width=100%>";
-								echo "<tr>";
-								echo "<th>Name</th>";
-								echo "<th>Phone</th>";
-								echo "<th>Experience</th>";
-								echo "<th>Email</th>";
-								echo "</th>";
-							    while($row = mysqli_fetch_assoc($results)) {
-							        echo '<tr>';
-									echo '<td>'.$row["TName"].'</td>';
-									echo '<td>'.$row['TPhone'].'</td>';
-									echo '<td>'.$row['TExp'].'</td>';
-									echo '<td>'.$row['TEmail'].'</td>';
-									echo "</tr>";
-							    }
-								echo '</table>';
-							} else {
-								echo '<img src="../img/prof.png">';
-							}
-						?>
-
-                    </div>
-										<div class="databox">
-                        <!-- <button onclick="teamon()" class="pencil"><i class="fa fa-pencil"></i></button> -->
-                        <button onclick="addpion()" class="add"><i class="fa fa-plus"></i></button>
-                        <h4>Team</h4>
-						<?php
-							$q = "SELECT * FROM st_teams where Username='$u';";
-							$results=mysqli_query($db, $q);
-							if (mysqli_num_rows($results) > 0) {
-								echo "<table border=1px width=100%>";
-								echo "<tr>";
-								echo "<th>Name</th>";
-								echo "<th>Phone</th>";
-								echo "<th>Experience</th>";
-								echo "<th>Email</th>";
-								echo "</th>";
-							    while($row = mysqli_fetch_assoc($results)) {
-							        echo '<tr>';
-									echo '<td>'.$row["TName"].'</td>';
-									echo '<td>'.$row['TPhone'].'</td>';
-									echo '<td>'.$row['TExp'].'</td>';
-									echo '<td>'.$row['TEmail'].'</td>';
-									echo "</tr>";
-							    }
-								echo '</table>';
-							} else {
-								echo '<img src="../img/prof.png">';
-							}
-						?>
-
-                    </div>
-                <div id="sumformov">
-                    <div class="form">
-                        <div class="formhead">
-                            <button onclick="summoff()" class="close"><i class="fa fa-close"></i></button>
-                            <h3>Comapany Summary</h3>
-                            <p>Add an overview to help investors evaluate your startup. You might like to include your business model, structure and products/services.</p>
-                        </div>
-                        <div class="formtext">
-                            <form method="post">
-                                <div class="formtext"><textarea rows="10" cols="150" name="summaryform"><?= $Summary?></textarea></div>
-                                <div class="formtext submits">
-                                    <input type="submit" value="Cancel" name="cancel" class="cancel">
-                                    <input type="submit" value="Save" name="sumsave" class="save">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div id="socialformov">
+				<div id="socialformov">
                     <div class="form">
                         <div class="formhead">
                             <button onclick="socialoff()" class="close"><i class="fa fa-close"></i></button>
@@ -375,7 +321,24 @@
                         </div>
                     </div>
                 </div>
-                <div id="contactform">
+
+
+
+                <div class="contact sideprof">
+                    <button class="pencil" onclick="contacton()"><i class="fa fa-pencil"></i></button>
+                    <h3>Contact</h3>
+					<ul class="proflist">
+						<li class="item">Phone :  <span class="value"></span></li>
+                        <li style="list-style: none; display: inline">
+                            <hr>
+                        </li>
+                        <li class="item">Email ID : <span class="value"></span></li>
+                        <li style="list-style: none; display: inline">
+                            <hr>
+                        </li>
+                    </ul>
+                </div>
+				<div id="contactform">
                     <form class="form" method="post">
                         <div class="formhead">
                             <button onclick="contactoff()" class="close"><i class="fa fa-close"></i></button>
@@ -399,7 +362,50 @@
                     </form>
                 </div>
 
+                <div class="nav">
+                    <div><a href="Overview.php" style="color:black;">Overview</a></div>
                 </div>
+                <div id="sumformov">
+                    <div class="form">
+                        <div class="formhead">
+                            <button onclick="summoff()" class="close"><i class="fa fa-close"></i></button>
+                            <h3>Comapany Summary</h3>
+                            <p>Add an overview to help investors evaluate your startup. You might like to include your business model, structure and products/services.</p>
+                        </div>
+                        <div class="formtext">
+                            <form method="post">
+                                <div class="formtext"><textarea rows="10" cols="150" name="summaryform"><?= $Summary?></textarea></div>
+                                <div class="formtext submits">
+                                    <input type="submit" value="Cancel" name="cancel" class="cancel">
+                                    <input type="submit" value="Save" name="sumsave" class="save">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+				<div class="summary">
+                    <div class="databox">
+                        <button onclick="summon()" class="pencil"><i class="fa fa-pencil"></i></button>
+                        <h3>Company Summary</h3>
+                    </div>
+					<div class="databox">
+                        <button onclick="addgrpon()" class="add"><i class="fa fa-plus"></i></button>
+                        <h4>Team</h4>
+
+                    </div>
+					<div class="databox">
+                        <!-- <button onclick="teamon()" class="pencil"><i class="fa fa-pencil"></i></button> -->
+                        <button onclick="addpion()" class="add"><i class="fa fa-plus"></i></button>
+                        <h4>Team</h4>
+                    </div>
+				</div>
             </div>
         </div>
 <?php require "../../include/footer/footer.php" ?>
