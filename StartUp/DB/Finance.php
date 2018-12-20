@@ -31,10 +31,6 @@
 	$TwitterLink = $row['TwitterLink']==""? '--':$row['TwitterLink'];
 	$FBLink = $row['FBLink']==""? '--':$row['FBLink'];
 	$Summary = $row['Summary']==""? 'Tell the world who you are and what makes your company special.':$row['Summary'];
-	$CAdvName = $row['CAdvName']==""? '--':$row['CAdvName'];
-	$CAdvEmail = $row['CAdvEmail']==""? '--':$row['CAdvEmail'];
-	$PIName = $row['PIName']==""? '--':$row['PIName'];
-	$PIEmail = $row['PIEmail']==""? '--':$row['PIEmail'];
 	$OLP = $row['OLP']==""? '--':$row['OLP'];
 	$Logo = $row['Logo'];
 
@@ -151,60 +147,7 @@
 		header('location: StartUp-DB.php');
 	}
 
-	if(isset($_POST['sumsave'])){
-		$summaryform = mysqli_real_escape_string($db, $_POST['summaryform']);
-		$q = "UPDATE st_overview set Summary='$summaryform' where Username='$u';";
-		mysqli_query($db, $q);
-
-		header('location: StartUp-DB.php');
-	}
-
-	if(isset($_POST['casave'])){
-		$caname = mysqli_real_escape_string($db, $_POST['caname']);
-		$caemail = mysqli_real_escape_string($db, $_POST['caemail']);
-		if($caname !="")
-		{
-			$q = "UPDATE st_overview set CAdvName='$caname' where Username='$u';";
-			mysqli_query($db, $q);
-		}
-		if($caemail !="")
-		{
-			$q = "UPDATE st_overview set CAdvEmail='$caemail' where Username='$u';";
-			mysqli_query($db, $q);
-		}
-
-		header('location: StartUp-DB.php');
-	}
-
-	if(isset($_POST['pisave'])){
-		$piname = mysqli_real_escape_string($db, $_POST['piname']);
-		$piemail = mysqli_real_escape_string($db, $_POST['piemail']);
-		if($piname !="")
-		{
-			$q = "UPDATE st_overview set PIName='$piname' where Username='$u';";
-			mysqli_query($db, $q);
-		}
-		if($piemail !="")
-		{
-			$q = "UPDATE st_overview set PIEmail='$piemail' where Username='$u';";
-			mysqli_query($db, $q);
-		}
-
-		header('location: StartUp-DB.php');
-	}
-
-	if(isset($_POST['olpsave'])){
-		$olpnew = mysqli_real_escape_string($db, $_POST['olpform']);
-		if($olpnew !="")
-		{
-			$q = "UPDATE st_overview set OLP='$olpnew' where Username='$u';";
-			mysqli_query($db, $q);
-		}
-
-		header('location: StartUp-DB.php');
-	}
-
-
+	
 	$rid = array();
 	$rfn = array();
 	$rln = array();

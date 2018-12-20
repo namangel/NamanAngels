@@ -31,10 +31,6 @@
 	$TwitterLink = $row['TwitterLink']==""? '--':$row['TwitterLink'];
 	$FBLink = $row['FBLink']==""? '--':$row['FBLink'];
 	$Summary = $row['Summary']==""? 'Tell the world who you are and what makes your company special.':$row['Summary'];
-	$CAdvName = $row['CAdvName']==""? '--':$row['CAdvName'];
-	$CAdvEmail = $row['CAdvEmail']==""? '--':$row['CAdvEmail'];
-	$PIName = $row['PIName']==""? '--':$row['PIName'];
-	$PIEmail = $row['PIEmail']==""? '--':$row['PIEmail'];
 	$OLP = $row['OLP']==""? '--':$row['OLP'];
 	$Logo = $row['Logo'];
 
