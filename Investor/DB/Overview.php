@@ -5,7 +5,8 @@
   	$results = mysqli_query($db, $qu);
 	$row = mysqli_fetch_assoc($results);
 	$fname = $row['Fname'];
-	$lname = $row['Lname'];
+    $lname = $row['Lname'];
+    $cname = $row['Cname'];
     $web = $row['Website'];
     $city = $row['City'];
     $state = $row['State'];
@@ -18,66 +19,76 @@
     $results = mysqli_query($db, $qu);
     $row = mysqli_fetch_assoc($results);
     $img = $row['ProfileImage'];
+    $role = $row['Role'];
+    $partner = $row['Partner'];
+    $invrange = $row['InvRange'];
     $indOfInt=$row['IndustryOfInterest'];
     $summary=$row['Summary'];
 
 	if(isset($_POST["cbsave"])){
-		$cbname = mysqli_real_escape_string($db, $_POST['cbname']);
-		$cbstage = mysqli_real_escape_string($db, $_POST['cbstage']);
+        $cbfname = mysqli_real_escape_string($db, $_POST['cbfname']);
+        $cblname = mysqli_real_escape_string($db, $_POST['cblname']);
+		$cbcomp = mysqli_real_escape_string($db, $_POST['cbcomp']);
 		$cbcity = mysqli_real_escape_string($db, $_POST['cbcity']);
-		$cbstate = mysqli_real_escape_string($db, $_POST['cbstate']);
 		$cbcountry = mysqli_real_escape_string($db, $_POST['cbcountry']);
-		$cbdate = mysqli_real_escape_string($db, $_POST['cbdate']);
-		$cbempnum = mysqli_real_escape_string($db, $_POST['cbempnum']);
-		$cbinc = mysqli_real_escape_string($db, $_POST['cbinc']);
+		$cbrole = mysqli_real_escape_string($db, $_POST['cbrole']);
+        $cbpartner = mysqli_real_escape_string($db, $_POST['cbpartner']);
+        $cbioi = mysqli_real_escape_string($db, $_POST['cbioi']);
+		$cbrange = mysqli_real_escape_string($db, $_POST['cbrange']);
 		$cbweb = mysqli_real_escape_string($db, $_POST['cbweb']);
 
 
-		if($cbname != "")
+		if($cbfname != "")
 		{
-			$q = "UPDATE user_st set Stname='$cbname' where Username='$u';";
+			$q = "UPDATE user_inv set FirstName ='$cbfname' where Username='$u';";
+			mysqli_query($db, $q);
+        }
+        
+        if($cblname != "")
+		{
+			$q = "UPDATE user_inv set LastName ='$cbfname' where Username='$u';";
 			mysqli_query($db, $q);
 		}
 
-		if($cbstage != 'Select Stage')
+		if($cbcomp != "")
 		{
-			$q = "UPDATE st_overview set Stage='$cbstage' where Username='$u';";
+			$q = "UPDATE user_inv set Stage='$cbcomp' where Username='$u';";
 			mysqli_query($db, $q);
 		}
 
 		if($cbcity != "")
 		{
-			$q = "UPDATE user_st set City='$cbcity' where Username='$u';";
-			mysqli_query($db, $q);
-		}
-		if($cbstate != "")
-		{
-			$q = "UPDATE user_st set State='$cbstate' where Username='$u';";
+			$q = "UPDATE user_inv set City='$cbcity' where Username='$u';";
 			mysqli_query($db, $q);
 		}
 		if($cbcountry != "")
 		{
-			$q = "UPDATE user_st set Country='$cbcountry' where Username='$u';";
+			$q = "UPDATE user_inv set Country='$cbcountry' where Username='$u';";
 			mysqli_query($db, $q);
 		}
-		if($cbdate != "")
+		if($cbrole != "")
 		{
-			$q = "UPDATE st_overview set DOF='$cbdate' where Username='$u';";
+			$q = "UPDATE inv_overview set Role ='$cbrole' where Username='$u';";
 			mysqli_query($db, $q);
 		}
-		if($cbempnum != "")
+		if($cbpartner != "")
 		{
-			$q = "UPDATE st_overview set EmpNum='$cbempnum' where Username='$u';";
+			$q = "UPDATE inv_overview set Partner ='$cbpartner' where Username='$u';";
 			mysqli_query($db, $q);
-		}
-		if($cbinc != 'Select Incorporation')
+        }
+        if($cbioi != "")
 		{
-			$q = "UPDATE st_overview set IncType='$cbinc' where Username='$u';";
+			$q = "UPDATE inv_overview set IndustryOfInterest ='$cbioi' where Username='$u';";
 			mysqli_query($db, $q);
 		}
+		if($cbrange != 'Select Investment')
+		{
+			$q = "UPDATE st_overview set InvRange ='$cbrange' where Username='$u';";
+			mysqli_query($db, $q);
+        }
 		if($cbweb != "")
 		{
-			$q = "UPDATE user_st set Website='$cbweb' where Username='$u';";
+			$q = "UPDATE user_inv set Website='$cbweb' where Username='$u';";
 			mysqli_query($db, $q);
 		}
 
@@ -184,39 +195,39 @@
                         <div><?= '<img src="data:image/jpeg;base64,'.base64_encode($img).'"/>';?></div>
                     </div>
                     <ul class="proflist">
-                        <li class="item">Name <span class="value">abc</span></li>
+                        <li class="item">Name <span class="value"><?= $fname ?>&nbsp;<?= $lname ?></span></li>
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
-                        <li class="item">Company <span class="value"></span></li>
+                        <li class="item">Company <span class="value"><?= $cname ?></span></li>
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
-                        <li class="item">City <span class="value"></span></li>
+                        <li class="item">City <span class="value"><?= $city ?></span></li>
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
-                        <li class="item">Country <span class="value"></span></li>
+                        <li class="item">Country <span class="value"><?= $country ?></span></li>
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
-						<li class="item">Industry Of Interest <span class="value"></span></li>
+						<li class="item">Industry Of Interest <span class="value"><?= $indOfInt ?></span></li>
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
-                        <li class="item">Role <span class="value"></span></li>
+                        <li class="item">Role <span class="value"><?= $role ?></span></li>
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
-                        <li class="item">Partner <span class="value"></span></li>
+                        <li class="item">Partner <span class="value"><?= $partner ?></span></li>
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
-                        <li class="item">Investment Range <span class="value"></span></li>
+                        <li class="item">Investment Range <span class="value"><?= $invrange ?></span></li>
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
-                        <li class="item">Website <span class="value"></span></li>
+                        <li class="item">Website <span class="value"><?= $website ?></span></li>
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
@@ -236,11 +247,15 @@
                                 <input name="cbpic" type="file">
                             </div>
                             <div class="i2">
-                                <label for="cbname">Name</label><br>
+                                <label for="cbfname">First Name</label><br>
                                 <input name="cbname" type="text" placeholder="">
                             </div>
                             <div class="i2">
-                                <label for="name">Company Name</label><br>
+                                <label for="cblname">Last Name</label><br>
+                                <input name="cbname" type="text" placeholder="">
+                            </div>
+                            <div class="i2">
+                                <label for="cbcomp">Company Name</label><br>
                                 <input name="cbcomp" type="text" placeholder="">
                             </div>
                             <div class="i5">
@@ -259,9 +274,14 @@
                                 <label for="cbpartner">Partner Name</label><br>
                                 <input name="cbpartner" type="text" placeholder="">
                             </div>
+                            <div class="i5">
+                                <label for="cbioi">Industry Of Interest</label><br>
+                                <input name="cbioi" type="text"placeholder="">
+                            </div>
                             <div class="i3">
                                 <label for="invrange">Investment Range</label><br>
                                 <select name="cbrange" placeholder=">">
+                                    <option>Select Investment</option>
                                     <option>0 - 1,00,000</option>
                                     <option>1,00,000 - 10,00,000</option>
                                     <option>10,00,000 - 50,00,000</option>
