@@ -424,7 +424,7 @@
     </div>
     <div class="contbot">
   	<div class="input-group">
-  	  <button type="submit" class="btn" name="reg_st" style="background :#00b894;">Register Startup</button>
+  	  <button type="submit" class="btn" name="reg_st" style="background :#7ec5fd;">Register Startup</button>
   	</div>
   	<p  style="font-size:15px">
   		Already a member? <a href="login_st.php">Sign in</a>

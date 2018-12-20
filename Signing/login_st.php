@@ -27,7 +27,7 @@
                 </div>
                 <div class="butcont">
                     <div class="input-group">
-                        <button type="submit" class="btn" style="background:#00b894" name="login_st">Login</button>
+                        <button type="submit" class="btn" style="background:#7ec5fd;" name="login_st">Login</button>
                     </div>
                     <p style="font-size:12px">
                         Not a member yet? <a href="register_st.php">Register</a>

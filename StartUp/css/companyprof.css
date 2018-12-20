@@ -24,7 +24,7 @@ body {
 }
 
 .backimg{
-    background-color:#10ac84;
+    background-color:#7ec5fd;
     text-align: center;
     color: white;
     padding: 4px;
@@ -118,7 +118,7 @@ body {
 }
 .nav a:hover{
     color:black;
-    text-decoration:underline #10ac84;
+    text-decoration:underline #36a6fc;
 }
 .video{
     margin-top:20px;
@@ -162,9 +162,9 @@ body {
     margin-bottom: 5px;
 }
 .save,.b1,.adddoc{
-    background-color: #10ac84;
+    background-color: #7ec5fd;
     color: white;
-    border:2px solid #10ac84;
+    border:2px solid #7ec5fd;
     padding: 10px;
     margin-left: 10px;
 }
@@ -178,7 +178,7 @@ body {
 }
 .cancel,.b2,.pencil,.add{
     margin-top: 5px;
-    border:2px solid #10ac84;
+    border:2px solid #7ec5fd;
     background-color: white;
     padding: 10px;
     cursor: pointer;
