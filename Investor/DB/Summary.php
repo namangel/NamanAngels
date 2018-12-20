@@ -107,7 +107,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="../css/invprof.css" rel="stylesheet" type="text/css">
+    <link href="../css/invprof1.css" rel="stylesheet" type="text/css">
     <script src="js\invprofile.js"></script>
 </head>
 <body>
@@ -156,9 +156,9 @@
         </div>
         <div class="tabs">
             <center>
-                <div class="tab"><a href="Inv_Profile.php" style="color:#004de6;">Summary</a></div>
-                <div class="tab"><a href="Inv_Profile_Group.php">Group</a></div>
-                <div class="tab"><a href="Inv_Profile_Investment.php">Investments</a></div>
+                <div class="tab"><a href="Summary.php" style="color:#004de6;">Summary</a></div>
+                <div class="tab"><a href="Group.php">Group</a></div>
+                <div class="tab"><a href="Pre_Inv.php">Investments</a></div>
             </center>
         </div>
         <div class="pane">
