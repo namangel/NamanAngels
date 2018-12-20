@@ -176,7 +176,7 @@
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../css/invprof.css" type="text/css">
-        <script src="js\invprofform.js"></script>
+        <script src="js/invprofform.js"></script>
     </head>
     <body>
 		<?php require '../include/header/inv_db.php'; ?>
@@ -394,7 +394,7 @@
                         </div>
                         <div class="formtext">
                             <form method="post">
-                                <div class="formtext"><textarea rows="10" cols="150" name="summaryform"><?= $Summary?></textarea></div>
+                                <div class="formtext"><textarea rows="10" cols="150" name="summaryform"></textarea></div>
                                 <div class="formtext submits">
                                     <input type="submit" value="Cancel" name="cancel" class="cancel">
                                     <input type="submit" value="Save" name="sumsave" class="save">
@@ -414,18 +414,94 @@
                     <div class="databox">
                         <button onclick="summon()" class="pencil"><i class="fa fa-pencil"></i></button>
                         <h3>Company Summary</h3>
+						Tell the world who you are and what makes your company special.
+						<img src="../img/Capture.png">
                     </div>
 					<div class="databox">
                         <button onclick="addgrpon()" class="add"><i class="fa fa-plus"></i></button>
-                        <h4>Team</h4>
-
+                        <h4>Group</h4>
+						<img src="../img/prof.png">
                     </div>
 					<div class="databox">
                         <!-- <button onclick="teamon()" class="pencil"><i class="fa fa-pencil"></i></button> -->
                         <button onclick="addpion()" class="add"><i class="fa fa-plus"></i></button>
-                        <h4>Team</h4>
+                        <h4>Previous Investment</h4>
+						<img src="../img/prof.png">
                     </div>
 				</div>
+
+				<div id="sumformov">
+                    <div class="form">
+                        <div class="formhead">
+                            <button onclick="summoff()" class="close"><i class="fa fa-close"></i></button>
+                            <h3>Comapany Summary</h3>
+                            <p>Add an overview to help investors evaluate your startup. You might like to include your business model, structure and products/services.</p>
+                        </div>
+                        <div class="formtext">
+                            <form method="post">
+                                <div class="formtext"><textarea rows="10" cols="150" name="summaryform"></textarea></div>
+                                <div class="formtext submits">
+                                    <input type="submit" value="Cancel" name="cancel" class="cancel">
+                                    <input type="submit" value="Save" name="sumsave" class="save">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+				<div id="addteam">
+                        <div class="form">
+                            <div class="formhead">
+                                <button onclick="addgrpoff()" class="close"><i class="fa fa-close"></i></button>
+                                <h3>Add a Group Member</h3>
+                                <p>Your Group is one of the most influential factors driving the investment process.</p>
+                            </div>
+                            <div class="formtext">
+                                <form method="post">
+                                    <div class="formtext">
+                                        <label>Name</label><br>
+                                        <input type="text" name="tmname" size="50" required><br><br>
+                                        <label>Phone Number</label><br>
+                                        <input type="number" name="tmphone" size="50" required><br><br>
+                                        <label>Experience and Expertise</label><br>
+                                        <textarea rows="10" name="tmexp" cols="150" required></textarea><br><br>
+                                        <label>Email</label><br>
+                                        <input type="email" name="tmemail" size="50" required><br><br>
+                                        <input type="checkbox">Can manage my Company Profile <br><br>
+                                        <p class="icsize">Allow this team member to edit the Company Profile. Note: only the Account Owner can apply to investor groups.</p>
+                                    </div>
+                                    <div class="formtext submits">
+                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
+                                        <input type="submit" value="Save" name="gmsave" class="save">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                </div>
+
+				<div id="inv">
+                        <div class="form">
+                            <div class="formhead">
+                                <button onclick="addpioff()" class="close"><i class="fa fa-close"></i></button>
+                                <h3>Add a Previous Investment</h3>
+                                <p class="icsize">Please provide the name and email address of a previous investment.</p>
+                            </div>
+                            <div class="formtext">
+                                <form method="post">
+                                    <div class="formtext">
+                                        <label>Name</label><br>
+                                        <input type="text" size="50" name="piname" required><br><br>
+                                        <label>Email</label><br>
+                                        <input type="text" size="50" name="piemail" required><br><br>
+                                    </div>
+                                    <div class="formtext submits">
+                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
+                                        <input type="submit" value="Save" name="pisave" class="save">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                </div>
             </div>
         </div>
 <?php require "../../include/footer/footer.php" ?>
