@@ -33,7 +33,7 @@
 	$Summary = $row['Summary']==""? 'Tell the world who you are and what makes your company special.':$row['Summary'];
 	$PitchName = $row['PitchName'];
 	$PitchExt = $row['PitchExt'];
-	$OLP = $row['OLP']==""? '--':$row['OLP'];
+	$OLP = $row['OLP']==""? 'Write A Short Pitch For Your Company In One Line':$row['OLP'];
 	$Logo = $row['Logo'];
 
 
@@ -463,9 +463,8 @@
 					<div class="databox">
                         <button onclick="olpon()" class="pencil"><i class="fa fa-pencil"></i></button>
                         <h3>One Line Pitch</h3>
-						Write A Short Pitch For Your Company In One Line
 						<?php echo $OLP;
-							?>
+						?>
                     </div>
                     <div class="databox" style="padding:10px;">
 						<h3>Pitch</h3>
