@@ -29,7 +29,7 @@
 			<br><br>
 			<hr style="align:center;size:10px;width:30%">
 			<br>
-			Already registered? <a href="sign_in.php" class="a1">Sign In</a>
+			Already registered? <a href="login.php" class="a1">Sign In</a>
 		</div>
 		</div>
 		<?php require "../include/footer/footer.php"?>

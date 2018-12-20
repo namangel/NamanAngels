@@ -10,6 +10,7 @@
 
 <body>
   	<?php require '../include/header/inv_db.php'; ?>
+    <?php require "../include/nav/nav.php"?>
 <div class="wrapper">
   <div class="two">
     <div class=hvr-float-shadow >ACCOUNT SETTINGS</div>
