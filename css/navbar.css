@@ -113,7 +113,7 @@
 /*DROPDOWN */
 
 .dropbtn {
-    background-color: #B2DCFF;
+    background-color: rgba(178, 220, 255,0.5);
     color: #727171;
     padding: 20px;
     font-size: 15px;
@@ -130,7 +130,7 @@
     display: none;
     position: fixed;
     /* background-color: #0A2B40; */
-    background-color: #B2DCFF;
+    background-color: rgba(178, 220, 255,0.5);
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
@@ -142,8 +142,8 @@
     display: block;
 }
 
-.dropdown-content a:hover {background-color:  rgba(178, 220, 255,0.5);}
+.dropdown-content a:hover {background-color:  #B2DCFF;}
 
 .dropdown:hover .dropdown-content {display: block;}
 
-.dropdown:hover .dropbtn {background-color:  rgba(178, 220, 255,0.5);}
+.dropdown:hover .dropbtn {background-color: #B2DCFF; }

@@ -10,7 +10,7 @@
     <?php require 'include/header/staticinv.php'; ?>
 <div class="container">
 
-  <div class="start1" style=" background-color: #00cec9;" >
+  <div class="start1" style=" background-color: #7ec5fd;" >
     <div style="grid-column: span 2; background-color: inherit;"></div>
     <div style="grid-column: span 8; background-color: inherit;">
     <center>
@@ -64,7 +64,7 @@
     </div>
   </div>
 
-  <div class="start" style="background-color:#1ABC96;color:white;" id="des">
+  <div class="start" style="background-color: #4fb1fc;color:white;" id="des">
     <div style="grid-column: span 11; background-color: inherit; text-align:right;">
       <br>
         <font style="font-size:3vw;font-family:Arial;">DESIGNED AROUND YOU</font>
@@ -80,7 +80,7 @@
   <div class="imggrid" height="400px" id="func">
     <br><br><br><br><br><br><br>
     <center>
-      <img src="img/rel.jpg">
+      <img src="img/rel1.png">
     </center>
   </div>
 
@@ -140,7 +140,7 @@
       <div class="obj">
         <br>
         <center>
-          <img src="img/s.png" class="imgs"></img><br><br>
+          <img src="img/Settings.png" class="imgs"></img><br><br>
         <b><font style="font-size:24px;font-family:Arial;">SIMPLE SETUP<br>
         </font></b><br>
         <font>Naman offers tools and support to ensure importing member data and
@@ -151,7 +151,7 @@
       <div class="obj">
         <br>
         <center>
-        <img src="img/s1.png"class="imgs"></img><br><br>
+        <img src="img/easy.png"class="imgs"></img><br><br>
         <b><font style="font-size:24px;font-family:Arial;">EASY TO USE<br>
         </font></b><br>
         <font>Naman's funding platform is designed to work with your
@@ -164,7 +164,7 @@
       <div class="obj">
         <br>
         <center>
-        <img src="img/c.png" class="imgs"></img><br><br>
+        <img src="img/support.png" class="imgs"></img><br><br>
         <b><font style="font-size:24px;font-family:Arial;">TOTAL SUPPORT<br>
         </font></b><br>
         <font>With dedicated customer support and help guides
