@@ -29,13 +29,13 @@
         }
         #icon{
             display: inline-block;
-            width: 100px;
             font-size: 48px;
             color:#9cc5e0;
+            margin-right:10px;
         }
         #icon:hover{
             cursor:pointer;
-            font-size: 52px;
+            font-size: 50px;
             color:black;
         }
     </style>
@@ -62,7 +62,9 @@
                 </span>
             </p>
             <i class="fa fa-facebook-official" id="icon"></i>
+            <i class="fa fa-linkedin-square" id="icon"></i>
             <i class="fa fa-twitter-square" id="icon"></i>
+            <i class="fa fa-instagram" id="icon"></i>
             <br>
             <p>
                 <span class="spa">

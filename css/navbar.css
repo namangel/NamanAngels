@@ -3,14 +3,14 @@
   display: grid;
   grid-template-columns:repeat(24,1fr);
   overflow: hidden;
-  background-color: #0A2B40;
+  background-color: #F4F5FA;
 }
 
 .topfor{
-  grid-column: 9/12;
+  grid-column: 8/12;
 }
 .topfor2{
-  grid-column: 12/15;
+  grid-column: 12/16;
 }
 
 .topfor:hover{
@@ -60,11 +60,12 @@
 }
 
 .cs1 {
-  color: #f2f2f2;
+  color: #727171;
   text-align: center;
   padding: 15px 16px;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 20px;
+  font-family: Tw Cen MT;
 }
 
 
@@ -112,8 +113,8 @@
 /*DROPDOWN */
 
 .dropbtn {
-    background-color: #0A2B40;
-    color: white;
+    background-color: #B2DCFF;
+    color: #727171;
     padding: 20px;
     font-size: 15px;
     border: none;
@@ -129,13 +130,13 @@
     display: none;
     position: fixed;
     /* background-color: #0A2B40; */
-    background-color: #0A2B40;
+    background-color: #B2DCFF;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
 
 .dropdown-content a {
-    color: white;
+    color: #727171;
     padding: 12px 16px;
     text-decoration: none;
     display: block;

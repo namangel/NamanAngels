@@ -21,8 +21,8 @@
 
             <div class="item3 container">
                 <center>
-                    <b><p class="cs2" style="border-style: solid; border-width: 2px;">FOR STARTUPS</p></b>
-                    <img src="img/idea.png" height="110" width="110"><br>
+                    <b><p class="cs2" >FOR STARTUPS</p></b>
+                    <img src="img/idea1.png" height="120" width="120"><br>
                     <div class="overlay">
                         <div class="text"><br><br>Build a profile and share it with investors to get funding.<br><button onclick="location.href='static_st.php'" class="learn_more_bt">Learn More</button></div>
                     </div>
@@ -30,8 +30,8 @@
             </div>
             <div class="item4 container">
                 <center>
-                    <b><p class="cs2" style="border-style: solid; border-width: 2px;">FOR INVESTORS</p></b>
-                    <img src="img/loan.png" height="110" width="110"><br>
+                    <b><p class="cs2" >FOR INVESTORS</p></b>
+                    <img src="img/loan1.png" height="120" width="120"><br>
                 	<div class="overlay">
                 	       <div class="text"><br><br>Access powerful deal flow on a secure platform.<br><button onclick="location.href='static_inv.php'" class="learn_more_bt">Learn More</button></div>
                     </div>
