@@ -8,7 +8,7 @@
             <li><a href="/NamanAngels/Investor/inv_landing.php">HOME</a></li>
             <li><a href="/NamanAngels/Investor/DB/Overview.php">PROFILE</a></li>
             <li><a href="#">INVESTMENTS</a></li>
-            <li><a href="#">BROWSE</a></li>
+            <li><a href="/NamanAngels/Investor/DB/browse.php">BROWSE</a></li>
         </ul>
         </nav>
     </div>

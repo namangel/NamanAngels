@@ -331,7 +331,7 @@
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
-                        <li><button class="b1" name="requestbtn" onclick="reqon();showreqs(<?= $reqnum ?>)"><?=$transbtn."  ( ".$reqnum." ) " ?></button></li>
+                        <li><button class="b1" name="requestbtn" onclick="">Download One Pager</button></li>
                     </ul>
                 </div>
                 <div class="social sideprof">

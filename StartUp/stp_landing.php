@@ -16,7 +16,7 @@
 
             <div class="eval">
                     <div class="eval-info">
-                        <center>
+                        <center><br><br>
                         <big><b>Evaluate your startup.</b></big><br><br>
                         <font>Find out what investors think of your<br>
                         startup. Our automated fundraising coach<br>
@@ -33,9 +33,9 @@
             </div>
 
         <div class="item4">
+                <br><br><br>
                 <big><center><b>Approach investors</b></big></center>
-                <br>
-                <br>
+                <br><br><br>
         </div>
 
         <div class="item5">
@@ -47,71 +47,12 @@
             <br><br><br>
         </div>
         <div class="item6">
-            <big><b>Find Relevant Investors.</b></big><br><br>
+            <big><b>Find Relevant Investors.</b></big><br><br><br>
                 Most investor Groups focus on industries with which they're familiar.<br>
-                      Selecting your industry will help us put you in front of the right investors.<br><br>
-                <label><big><b>
-                  Select your industry
-                    <input list="industry" name="industry" size="50">
-                  </b></big><label><br>
-                    <datalist id="industry" size="50">
-                        <option value="Aerospace">
-                        <option value="Agricultre">
-                        <option value="Biotechnology">
-                        <option value="Bussiness Products">
-                        <option value="Bussiness Services">
-                        <option value="Chemicals and Chemical Products">
-                        <option value="Clean Technology">
-                        <option value="Computers and Peripherals">
-                        <option value="Construction">
-                        <option value="Consulting">
-                        <option value="Consumer Products">
-                        <option value="Consumer services">
-                        <option value="Digital Marketing">
-                        <option value="Education">
-                        <option value="Electronics/Instrumentation">
-                        <option value="Fashion">
-                        <option value="Financial Services">
-                        <option value="Fintech">
-                        <option value="Food and Beverage">
-                        <option value="Gaming">
-                        <option value="Healthcre Services">
-                        <option value="Industrial/Energy">
-                        <option value="Inetrnet/ Web Services">
-                        <option value="IT Services">
-                        <option value="Legal">
-                        <option value="Lifestyle">
-                        <option value="Marine">
-                        <option value="Maritime/Shipping">
-                        <option value="Marketing/Advertising">
-                        <option value="Media and Entertainment">
-                        <option value="Medical Devices and Equipments">
-                        <option value="Mining">
-                        <option value="Mobile">
-                        <option value="Nanotechnology">
-                        <option value="Networking and Equipment">
-                        <option value="Oils and Gases">
-                        <option value="Other">
-                        <option value="Real Estate">
-                        <option value="Retailing/Distribution">
-                        <option value="Robotics">
-                        <option value="Security">
-                        <option value="Semiconductors">
-                        <option value="Software">
-                        <option value="Sports">
-                        <option value="Telecommunications">
-                        <option value="Transportation">
-                        <option value="Travel">
-                    </datalist><br>
-                <a href="#" class="button"><b>FIND INVESTOR</b></a>
+                Selecting your industry will help us put you in front of the right investors.<br><br>
                 <br>
+                <button type="button" onclick="window.location.href='DB/Overview.php'" style="width:30%; height:40px; background:#10ac84; border-radius:10px"/>Continue Building Your Company Profile</button>
                 <br>
-        </div>
-        <div class="item7">
-            <a href="#" class="button2"><b>DOWNLOAD ONE PAGER</b></a>
-            <a href="#" class="button2"><b>SHARE YOUR PROFILE</b></a>
-            <a href="#" class="button2"><b>APPLY FOR FUNDING</b></a>
-            <br><br><br>
         </div>
       </div>
       <?php require '../include/footer/footer.php'; ?>
