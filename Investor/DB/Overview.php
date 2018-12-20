@@ -23,7 +23,10 @@
     $partner = $row['Partner'];
     $invrange = $row['InvRange'];
     $indOfInt=$row['IndustryOfInterest'];
-    $summary=$row['Summary'];
+    $summary=$row['Summary']==""? 'Tell the world who you are and what makes your company special.':$row['Summary'];
+	$linkedin=$row['LinkedIn'];
+	$facebook=$row['FBLink'];
+	$twitter=$row['TwitterLink'];
 
 	if(isset($_POST["cbsave"])){
         $cbfname = mysqli_real_escape_string($db, $_POST['cbfname']);
@@ -43,7 +46,7 @@
 			$q = "UPDATE user_inv set FirstName ='$cbfname' where Username='$u';";
 			mysqli_query($db, $q);
         }
-        
+
         if($cblname != "")
 		{
 			$q = "UPDATE user_inv set LastName ='$cbfname' where Username='$u';";
@@ -83,7 +86,7 @@
 		}
 		if($cbrange != 'Select Investment')
 		{
-			$q = "UPDATE st_overview set InvRange ='$cbrange' where Username='$u';";
+			$q = "UPDATE inv_overview set InvRange='$cbrange' where Username='$u';";
 			mysqli_query($db, $q);
         }
 		if($cbweb != "")
@@ -92,12 +95,12 @@
 			mysqli_query($db, $q);
 		}
 
-		$check = getimagesize($_FILES["cblogo"]["tmp_name"]);
+		$check = getimagesize($_FILES["cbpic"]["tmp_name"]);
 	    if($check !== false){
-			$image = $_FILES['cblogo']['tmp_name'];
+			$image = $_FILES['cbpic']['tmp_name'];
 	        $imgContent = addslashes(file_get_contents($image));
 
-			$q = "UPDATE st_overview set Logo='$imgContent' where Username='$u';";
+			$q = "UPDATE inv_overview set ProfileImage='$imgContent' where Username='$u';";
 			mysqli_query($db, $q);
 		}
 
@@ -105,11 +108,10 @@
 	}
 
 
-    if(isset($_POST["slsave"]))
-	{
-		$sllinkin = mysqli_real_escape_string($db, $_POST['sllinkin']);
-		$sltwit = mysqli_real_escape_string($db, $_POST['sltwit']);
-		$slfb = mysqli_real_escape_string($db, $_POST['slfb']);
+    if(isset($_POST["sfsave"])){
+		$sllinkin = mysqli_real_escape_string($db, $_POST['sflinkedin']);
+		$sltwit = mysqli_real_escape_string($db, $_POST['sftwitter']);
+		$slfb = mysqli_real_escape_string($db, $_POST['sffacebook']);
 
 		if($sllinkin != NULL)
 		{
@@ -126,50 +128,60 @@
 			$q = "UPDATE inv_overview set FBLink='$slfb' where Username='$u'";
 			mysqli_query($db, $q);
         }
-		header('location: Inv_Profile.php');
+		header('location: Overview.php');
     }
 
-    if(isset($_POST["editsubmit"]))
+    if(isset($_POST["cfsave"]))
 	{
-		$updemail = mysqli_real_escape_string($db, $_POST['updemail']);
-		$updphone = mysqli_real_escape_string($db, $_POST['updphone']);
-		$updwebsite = mysqli_real_escape_string($db, $_POST['updwebsite']);
+		$cfemail = mysqli_real_escape_string($db, $_POST['cfemail']);
+		$cfphone = mysqli_real_escape_string($db, $_POST['cfphone']);
 
-		if($updemail != NULL)
+		if($cfemail != NULL)
 		{
-			$q = "UPDATE user_inv set Email='$updemail' where Username='$u'";
+			$q = "UPDATE user_inv set Email='$cfemail' where Username='$u'";
 			mysqli_query($db, $q);
 		}
 		if($updphone != NULL)
 		{
-			$q = "UPDATE user_inv set Phone='$updphone' where Username='$u'";
+			$q = "UPDATE user_inv set Phone='$cfphone' where Username='$u'";
 			mysqli_query($db, $q);
 		}
-		if($updwebsite != NULL)
-		{
-			$q = "UPDATE user_inv set Website='$updwebsite' where Username='$u'";
-			mysqli_query($db, $q);
-		}
-		header('location: Inv_Profile.php');
+
+		header('location: Overview.php');
     }
 
-    if(isset($_POST["summarysubmit"]))
+    if(isset($_POST["sumsave"]))
 	{
-		$ioi = mysqli_real_escape_string($db, $_POST['ioi']);
-        $ovw = mysqli_real_escape_string($db, $_POST['ovw']);
-
-		if($ioi != NULL)
+        $summ = mysqli_real_escape_string($db, $_POST['summaryform']);
+		if($summ != NULL)
 		{
-			$q = "UPDATE inv_overview set IndustryOfInterest ='$ioi' where Username='$u'";
+			$q = "UPDATE inv_overview set Summary='$summ' where Username='$u'";
 			mysqli_query($db, $q);
 		}
-		if($ovw != NULL)
-		{
-			$q = "UPDATE inv_overview set Summary='$ovw' where Username='$u'";
-			mysqli_query($db, $q);
-		}
-		header('location: Inv_Profile.php');
+		header('location: Overview.php');
     }
+
+	if(isset($_POST['gmsave'])){
+		$tmname = mysqli_real_escape_string($db, $_POST['tmname']);
+		$tmdesig = mysqli_real_escape_string($db, $_POST['tmdesig']);
+		$tmexp = mysqli_real_escape_string($db, $_POST['tmexp']);
+
+		$q = "INSERT INTO inv_group (Username, GrpName, GrpDesignation, GrpExperience) VALUES ('$u','$tmname', '$tmdesig', '$tmexp')";
+		mysqli_query($db, $q);
+		header('location: Overview.php');
+
+	}
+
+	if(isset($_POST['pisave'])){
+		$piname = mysqli_real_escape_string($db, $_POST['piname']);
+		$piyear = mysqli_real_escape_string($db, $_POST['piyear']);
+		$pistage = mysqli_real_escape_string($db, $_POST['pistage']);
+
+		$q = "INSERT INTO inv_previnvestment (Username, PIName, PIYear, PIStage) VALUES ('$u', '$piname', '$piyear', '$pistage');";
+		mysqli_query($db, $q);
+
+		header('location: Overview.php');
+	}
 
 ?>
 <html>
@@ -279,7 +291,7 @@
                                 <input name="cbioi" type="text"placeholder="">
                             </div>
                             <div class="i3">
-                                <label for="invrange">Investment Range</label><br>
+                                <label for="cbrange">Investment Range</label><br>
                                 <select name="cbrange" placeholder=">">
                                     <option>Select Investment</option>
                                     <option>0 - 1,00,000</option>
@@ -306,15 +318,15 @@
                     <button class="pencil" onclick="socialon()"><i class="fa fa-pencil"></i></button>
                     <h3>Social presence</h3>
 					<ul class="proflist">
-						<li class="item">LinkedIn <span class="value"></span></li>
+						<li class="item">LinkedIn <span class="value"><?=$linkedin?></span></li>
 	                    <li style="list-style: none; display: inline">
 	                        <hr>
 	                    </li>
-						<li class="item">Twitter <span class="value"></span></li>
+						<li class="item">Twitter <span class="value"><?=$twitter?></span></li>
 	                    <li style="list-style: none; display: inline">
 	                        <hr>
 	                    </li>
-	                    <li class="item">Facebook <span class="value"></span></li>
+	                    <li class="item">Facebook <span class="value"><?=$facebook?></span></li>
 	                    <li style="list-style: none; display: inline">
 	                        <hr>
 	                    </li>
@@ -348,11 +360,11 @@
                     <button class="pencil" onclick="contacton()"><i class="fa fa-pencil"></i></button>
                     <h3>Contact</h3>
 					<ul class="proflist">
-						<li class="item">Phone :  <span class="value"></span></li>
+						<li class="item">Phone :  <span class="value"><?=$phone?></span></li>
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
-                        <li class="item">Email ID : <span class="value"></span></li>
+                        <li class="item">Email ID : <span class="value"><?= $email?></span></li>
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
@@ -413,20 +425,65 @@
 				<div class="summary">
                     <div class="databox">
                         <button onclick="summon()" class="pencil"><i class="fa fa-pencil"></i></button>
-                        <h3>Company Summary</h3>
-						Tell the world who you are and what makes your company special.
-						<img src="../img/Capture.png">
+                        <h3>Investor Description</h3>
+						<?php echo $summary;
+							if($summary == "Describe yourself and the value of your investment."){
+								echo '<img src="../img/Capture.png">';
+							}
+						?>
                     </div>
 					<div class="databox">
                         <button onclick="addgrpon()" class="add"><i class="fa fa-plus"></i></button>
                         <h4>Group</h4>
-						<img src="../img/prof.png">
+						<?php
+							$q = "SELECT * FROM inv_group where Username='$u';";
+							$results=mysqli_query($db, $q);
+							if (mysqli_num_rows($results) > 0) {
+								echo "<table border=1px width=100%>";
+								echo "<tr>";
+								echo "<th>Name</th>";
+								echo "<th>Designation</th>";
+								echo "<th>Experience</th>";
+								echo "</th>";
+							    while($row = mysqli_fetch_assoc($results)) {
+							        echo '<tr>';
+									echo '<td>'.$row["GrpName"].'</td>';
+									echo '<td>'.$row['GrpDesignation'].'</td>';
+									echo '<td>'.$row['GrpExperience'].'</td>';
+									echo "</tr>";
+							    }
+								echo '</table>';
+							} else {
+								echo '<img src="../img/prof.png">';
+							}
+						?>
                     </div>
 					<div class="databox">
                         <!-- <button onclick="teamon()" class="pencil"><i class="fa fa-pencil"></i></button> -->
                         <button onclick="addpion()" class="add"><i class="fa fa-plus"></i></button>
                         <h4>Previous Investment</h4>
-						<img src="../img/prof.png">
+						<?php
+							$q = "SELECT * FROM inv_previnvestment where Username='$u';";
+							$results=mysqli_query($db, $q);
+							if (mysqli_num_rows($results) > 0) {
+								echo "<table border=1px width=100%>";
+								echo "<tr>";
+								echo "<th>Name</th>";
+								echo "<th>Year</th>";
+								echo "<th>Stage</th>";
+								echo "</th>";
+							    while($row = mysqli_fetch_assoc($results)) {
+							        echo '<tr>';
+									echo '<td>'.$row["PIName"].'</td>';
+									echo '<td>'.$row['PIYear'].'</td>';
+									echo '<td>'.$row['PIStage'].'</td>';
+									echo "</tr>";
+							    }
+								echo '</table>';
+							} else {
+								echo '<img src="../img/prof.png">';
+							}
+						?>
                     </div>
 				</div>
 
@@ -461,14 +518,10 @@
                                     <div class="formtext">
                                         <label>Name</label><br>
                                         <input type="text" name="tmname" size="50" required><br><br>
-                                        <label>Phone Number</label><br>
-                                        <input type="number" name="tmphone" size="50" required><br><br>
+                                        <label>Designation</label><br>
+                                        <input type="text" name="tmdesig" size="50" required><br><br>
                                         <label>Experience and Expertise</label><br>
                                         <textarea rows="10" name="tmexp" cols="150" required></textarea><br><br>
-                                        <label>Email</label><br>
-                                        <input type="email" name="tmemail" size="50" required><br><br>
-                                        <input type="checkbox">Can manage my Company Profile <br><br>
-                                        <p class="icsize">Allow this team member to edit the Company Profile. Note: only the Account Owner can apply to investor groups.</p>
                                     </div>
                                     <div class="formtext submits">
                                         <input type="submit" value="Cancel" name="cancel" class="cancel">
@@ -491,8 +544,23 @@
                                     <div class="formtext">
                                         <label>Name</label><br>
                                         <input type="text" size="50" name="piname" required><br><br>
-                                        <label>Email</label><br>
-                                        <input type="text" size="50" name="piemail" required><br><br>
+                                        <label>Year</label><br>
+                                        <input type="number" min="1900" max="2099" step="1" value="2016" size="50" name="piyear" required /><br><br>
+										<label>Stage</label><br>
+										<select name="pistage" name="pistage" required>
+		                                    <option>Select Stage</option>
+		                                    <option>Concept Only</option>
+		                                    <option>Product in Development</option>
+		                                    <option>Prototype ready</option>
+		                                    <option>Full Product Ready</option>
+		                                    <option>$500K in TTM Revenue</option>
+		                                    <option>$1M in TTM Revenue</option>
+		                                    <option>$5M in TTM Revenue</option>
+		                                    <option>$10M in TTM Revenue</option>
+		                                    <option>$20M in TTM Revenue</option>
+		                                    <option>$50M in TTM Revenue</option>
+		                                    <option>$50M+ in TTM Revenue</option>
+		                                </select>
                                     </div>
                                     <div class="formtext submits">
                                         <input type="submit" value="Cancel" name="cancel" class="cancel">
@@ -503,7 +571,8 @@
                         </div>
                 </div>
             </div>
+			<?php require "../../include/footer/footer.php" ?>
         </div>
-<?php require "../../include/footer/footer.php" ?>
+
     </body>
 </html>
