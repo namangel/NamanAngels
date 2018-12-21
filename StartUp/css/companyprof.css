@@ -214,3 +214,7 @@ body {
 .compbasics butn{
     float: right;
 }
+.databox div video{
+    max-height: 300px;
+    max-width: 100px;
+}

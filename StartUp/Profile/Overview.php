@@ -89,6 +89,12 @@
         <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
         <script src="js\profform.js"></script>
 				<title>StartUp Profile - NamanAngels</title>
+				<style media="screen">
+				.databox div video{
+					max-height: 300px;
+					max-width: 100%;
+				}
+				</style>
     </head>
     <body>
 			<?php require '../include/header/stp_profile.php'; ?>
