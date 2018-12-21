@@ -1,6 +1,5 @@
 <?php
     require('../../server.php');
-    $_SESSION['search']="";
     if(isset($_POST['submit'])){
         $_SESSION['search'] =  $_POST['searchkey'];
         $_SESSION['searchby']="company";
@@ -153,10 +152,12 @@
                 echo '<div class="browse">';
                     echo '<div><img src="data:image/jpeg;base64,'.base64_encode($row['Logo']).'"/></div>';
                     echo "<div class='info'>";
+                        echo '<b>'.$row['Stname'].'</b>';
+                        echo "<br>";
                         echo $row['OLP'];
                     echo "</div>";
                     echo "<div class='invest'>";
-                        echo "<a href='../Profile/Overview.php?searchquery=".$row['Username']."'><button type='submit' name='subinv' class='submitinv' value='View Profile' action='index.php'>View Profile</button></a>";
+                        echo "<a href='../Profile/Overview.php?searchquery=".$row['Username']."' target='_blank'><button type='submit' name='subinv' class='submitinv' value='View Profile' action='index.php'>View Profile</button></a>";
                     echo "</div>";
                 echo "</div>";
             }

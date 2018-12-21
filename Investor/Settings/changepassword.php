@@ -1,4 +1,4 @@
-<?php 
+<?php
     require '../../server.php';
 
     $u = $_SESSION['username'];
@@ -27,6 +27,7 @@
             $pw=sha1($pw_1);
             $q = "UPDATE user_inv set Password='$pw' where Username='$u';";
 			mysqli_query($db, $q);
+            echo "<script>alert('Password Changed Successfully')</script>";
         }
     }
 
