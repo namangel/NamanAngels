@@ -152,7 +152,7 @@
             $res_data = mysqli_query($db,$sql);
             while($row = mysqli_fetch_array($res_data)){
                 echo '<div class="browse">';
-                    echo '<img src="data:image/jpeg;base64,'.base64_encode($row['Logo']).'"/>';
+                    echo '<div><img src="data:image/jpeg;base64,'.base64_encode($row['Logo']).'"/></div>';
                     echo "<div class='info'>";
                         echo $row['OLP'];
                     echo "</div>";
@@ -161,32 +161,33 @@
                     echo "</div>";
                 echo "</div>";
             }
-
-            echo '<div class="pages">';
-                echo '<ul class="pagination">';
-                    echo '<li><a href="?pageno=1">First</a></li>';
-                    echo '<li class=';
-                        if($pageno <= 1){ echo 'disabled'; };
-                            echo '>';
-                        echo '<a href=';
-                        if($pageno <= 1){ echo "#"; } else { echo "?pageno=".($pageno - 1); };
-                        echo '>Prev</a>';
-                    echo '</li>';
-                    echo '<li class=';
-                    if($pageno >= $total_pages){ echo 'disabled'; };
-                    echo '>';
-                        echo '<a href=';
-                        if($pageno >= $total_pages){ echo "#"; } else { echo "?pageno=".($pageno + 1); };
-                        echo '>Next</a>';
-                    echo '</li>';
-                    echo "<li><a href='?pageno=$total_pages'>Last</a></li>";
-                echo '</ul>';
-            echo '</div>';
-
             ?>
         </div>
+        <?php
+            echo '<div class="pages">';
+            echo '<ul class="pagination">';
+                echo '<li><a href="?pageno=1">First</a></li>';
+                echo '<li class=';
+                    if($pageno <= 1){ echo 'disabled'; };
+                        echo '>';
+                    echo '<a href=';
+                    if($pageno <= 1){ echo "#"; } else { echo "?pageno=".($pageno - 1); };
+                    echo '>Prev</a>';
+                echo '</li>';
+                echo '<li class=';
+                if($pageno >= $total_pages){ echo 'disabled'; };
+                echo '>';
+                    echo '<a href=';
+                    if($pageno >= $total_pages){ echo "#"; } else { echo "?pageno=".($pageno + 1); };
+                    echo '>Next</a>';
+                echo '</li>';
+                echo "<li><a href='?pageno=$total_pages'>Last</a></li>";
+            echo '</ul>';
+        echo '</div>';
+        ?>
+        <?php require "../../include/footer/footer.php"?>
     </div>
-    <?php require "../../include/footer/footer.php"?>
+    
 
 </body>
 </html>

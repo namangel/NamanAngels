@@ -37,22 +37,28 @@ body{
     padding: 10px;
     width: 180px
   }
+
   .output{
-      display: block;
+      margin-left: 100px;
+      margin-right: 100px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+      grid-gap: 20px;
       text-align: center;
-      padding: 100px
   }
 
   .browse{
       margin: 20px;
-      display: inline-block;
+      display: grid;
+      grid-template-rows: 5fr 1fr 1fr;
+      grid-template-columns: 1fr;
       margin-top: 20px;
       padding: 10px;
-      background-color: azure;
-      border: 2px dashed black;
-      height: 20%;
-      max-width: 20%;
-      min-width: 20%;
+      background-color: #f2f2f2;
+      border: 1px solid black;
+      min-width: 200px; 
+    
   }
   .browse img{
       max-width: 70%;
@@ -61,14 +67,19 @@ body{
 
 
   .submitinv{
-      padding: 10px;
-      line-height: 10%;
-      max-width: 80%;
-      max-height: 20%;
+      padding: 20px;
+      line-height: 15%;
+      background-color: #0693cd;
+      border: 0;
+      border-radius: 3px;
+      cursor: pointer;
+      color: #fff;
+      font-size:16px;
   }
 
   .pages{
-      display: block;
+      display: inline-block;
       width: 100%;
       text-align: center;
+      
   }
