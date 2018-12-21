@@ -1,5 +1,4 @@
 <?php require('../server.php') ?>
-
 <html>
 <head>
   <title>Start-Up Login</title>
@@ -27,9 +26,9 @@
                 </div>
                 <div class="butcont">
                     <div class="input-group">
-                        <button type="submit" class="btn" style="background:#7ec5fd;" name="login_st">Login</button>
+                        <button type="submit" class="btn" style="background: #0e3c58;" name="login_st">Login</button>
                     </div>
-                    <p style="font-size:12px">
+                    <p style="font-size:14px">
                         Not a member yet? <a href="register_st.php">Register</a>
                     </p>
                 </div>
@@ -43,3 +42,4 @@
 
 </body>
 </html>
+

@@ -326,7 +326,7 @@
 </div>
 <div class="contbot">
       <div class="input-group">
-        <button type="submit" class="btn" name="reg_inv" style="background-color:#7ec5fd;">Register Invester</button>
+        <button type="submit" class="btn" name="reg_inv" style="background-color: #0e3c58;">Register Invester</button>
       </div>
       <p style="font-size:15px">
           Already a member? <a href="login_inv.php">Sign in</a>
