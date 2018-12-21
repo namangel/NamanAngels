@@ -140,7 +140,6 @@
 
             $sname = $_SESSION['search'];
 
-
             $total_pages_sql = "SELECT COUNT(*) FROM st_overview where Username IN (Select Username from user_st where Type='$sname')";
 
             $result = mysqli_query($db,$total_pages_sql);
@@ -157,7 +156,7 @@
                         echo $row['OLP'];
                     echo "</div>";
                     echo "<div class='invest'>";
-                        echo "<button type='submit' name='subinv' class='submitinv' value='View Profile' action='index.php'>View Profile</button>";
+                        echo "<a href='../Profile/Overview.php?searchquery=".$row['Username']."'><button type='submit' name='subinv' class='submitinv' value='View Profile' action='index.php'>View Profile</button></a>";
                     echo "</div>";
                 echo "</div>";
             }

@@ -1,8 +1,11 @@
 <?php
 	require '../../server.php';
 	// $_SESSION['username'] = 'xyz123';//predefine -- nikalo mujhe
-	$u = $_SESSION['username'];
-
+	$u = "";
+	if (isset($_GET['searchquery'])) {
+		$u = $_GET['searchquery'];
+	}
+	
 	$qu = "SELECT * FROM user_st WHERE Username='$u'";
 	$results = mysqli_query($db, $qu);
 	$row = mysqli_fetch_assoc($results);
@@ -31,6 +34,8 @@
 	$TwitterLink = $row['TwitterLink']==""? '--':$row['TwitterLink'];
 	$FBLink = $row['FBLink']==""? '--':$row['FBLink'];
 	$Summary = $row['Summary']==""? 'Tell the world who you are and what makes your company special.':$row['Summary'];
+	$PitchName = $row['PitchName'];
+	$PitchExt = $row['PitchExt'];
 	$OLP = $row['OLP']==""? '--':$row['OLP'];
 	$Logo = $row['Logo'];
 
@@ -41,12 +46,18 @@
         <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
         <script src="js\profform.js"></script>
 				<title>StartUp Profile - NamanAngels</title>
+				<style media="screen">
+				.databox div video{
+					max-height: 300px;
+					max-width: 100%;
+				}
+				</style>
     </head>
     <body>
 			<?php require '../include/header/stp_profile.php'; ?>
         <div class="container">
             <div class="main">
-				<div class="backimg">
+            	<div class="backimg">
                         <font style="font-size:30px;"><?= $Stname?></font>
                 </div>
                 <div class="sideprof">
@@ -120,28 +131,114 @@
                     </ul>
 
                 </div>
-				<div class="nav">
-                    <div><a href="Overview.php">Overview</a></div>
+
+                <div class="nav">
+                    <div><a href="Overview.php" style="color:black;">Overview</a></div>
                     <div><a href="Exec.php">Executive summary</a></div>
                     <div><a href="Finance.php">Financials</a></div>
-                    <div><a href="Doc.php" style="color:black;">Documents</a></div>
+                    <div><a href="Doc.php">Documents</a></div>
                 </div>
-				<div class="summary">
-						<div class="databox">
-	                        <h3>Business Plan</h3>
-	                        <p>What is your long term business plan? Preferred file types: .pdf, .doc, .xls</p>
-						</div>
-						<div class="databox">
-	                        <h3>Financial Projections</h3>
-	                        <p>Provide an overview of where your financials are headed within the next 5 years. Preferred file types: .pdf, .doc, .xls</p>
-	        	</div>
-						<div class="databox">
-	                        <h3>Supplemental Documents</h3>
-	                        <p>Upload any documents to support your company.</p>
-						</div>
-				</div>
-    		</div>
+                <div class="summary">
+                    <div class="databox">
+                        <h3>Company Summary</h3>
+						<?php echo $Summary;
+							if($Summary == "Tell the world who you are and what makes your company special."){
+								echo '<img src="../img/Capture.png">';
+							}
+						?>
+                    </div>
+                    <div class="databox" style="padding:10px;">
+						<h3>Pitch</h3>
+						<?php
+							if($PitchName == ""){
+		                        echo 'The StartUp Has Not Uploaded Any Pitch';
+							}
+							else{
+								$videos_field=$PitchName;
+								$video_show= "../../Uploads/$videos_field";
+
+								echo "<div align=center><video max-height='500px' controls><source src='$video_show' type='video/$PitchExt'>Your browser does not support the video tag.</video></div>";
+							}
+						?>
+                    </div>
+                    <div class="databox">
+                        <h4>Team</h4>
+						<?php
+							$q = "SELECT * FROM st_teams where Username='$u';";
+							$results=mysqli_query($db, $q);
+							if (mysqli_num_rows($results) > 0) {
+								echo '<table class="tables">';
+								echo "<tr>";
+								echo "<th>Name</th>";
+								echo "<th>Phone</th>";
+								echo "<th>Experience</th>";
+								echo "<th>Email</th>";
+								echo "</th>";
+							    while($row = mysqli_fetch_assoc($results)) {
+							        echo '<tr>';
+									echo '<td>'.$row["TName"].'</td>';
+									echo '<td>'.$row['TPhone'].'</td>';
+									echo '<td>'.$row['TExp'].'</td>';
+									echo '<td>'.$row['TEmail'].'</td>';
+									echo "</tr>";
+							    }
+								echo '</table>';
+							} else {
+								echo '<img src="../img/prof.png">';
+							}
+						?>
+
+                    </div>
+                    <div class="databox">
+                        <h4>Advisors</h4>
+						<?php
+							$q = "SELECT * FROM st_advisors where Username='$u';";
+							$results=mysqli_query($db, $q);
+							if (mysqli_num_rows($results) > 0) {
+								echo '<table class="tables">';
+								echo "<tr>";
+								echo "<th>Name</th>";
+								echo "<th>Email</th>";
+								echo "</th>";
+							    while($row = mysqli_fetch_assoc($results)) {
+							        echo '<tr>';
+									echo '<td>'.$row["CAName"].'</td>';
+									echo '<td>'.$row['CAEmail'].'</td>';
+									echo "</tr>";
+							    }
+								echo '</table>';
+							} else {
+								echo '<img src="../img/prof.png">';
+							}
+						?>
+                    </div>
+                    <div class="databox">
+                        <h4>Previous Investors</h4>
+						<?php
+							$q = "SELECT * FROM st_previnvestment where Username='$u';";
+							$results=mysqli_query($db, $q);
+							if (mysqli_num_rows($results) > 0) {
+								echo '<table class="tables">';
+								echo "<tr>";
+								echo "<th>Name</th>";
+								echo "<th>Email</th>";
+								echo "</th>";
+							    while($row = mysqli_fetch_assoc($results)) {
+							        echo '<tr>';
+									echo '<td>'.$row["PIName"].'</td>';
+									echo '<td>'.$row['PIEmail'].'</td>';
+									echo "</tr>";
+							    }
+								echo '</table>';
+							} else {
+								echo '<img src="../img/prof.png">';
+							}
+						?>
+                    </div>
+                </div>
+            </div>
+			<?php require "../../include/footer/footer.php" ?>
         </div>
-		<?php include '../../include/footer/footer.php'; ?>
+
     </body>
 </html>
