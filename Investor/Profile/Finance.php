@@ -1,7 +1,10 @@
 <?php
 	require '../../server.php';
 	// $_SESSION['username'] = 'xyz123';//predefine -- nikalo mujhe
-	$u = $_SESSION['username'];
+	$u = "";
+	if (isset($_GET['searchquery'])) {
+		$u = $_GET['searchquery'];
+	}
 
 	$qu = "SELECT * FROM user_st WHERE Username='$u'";
 	$results = mysqli_query($db, $qu);
@@ -126,11 +129,11 @@
 
                 </div>
 				<div class="nav">
-					<div><a href="Overview.php">Overview</a></div>
-					<div><a href="Exec.php">Executive summary</a></div>
-					<div><a href="Finance.php" style="color:black;">Financials</a></div>
-					<div><a href="Doc.php">Documents</a></div>
-				</div>
+                    <div><a href="Overview.php?searchquery=<?=$u?>">Overview</a></div>
+                    <div><a href="Exec.php?searchquery=<?=$u?>">Executive summary</a></div>
+                    <div><a href="Finance.php?searchquery=<?=$u?>">Financials</a></div>
+                    <div><a href="Doc.php?searchquery=<?=$u?>">Documents</a></div>
+                </div>
 				<div class="summary">
 					<center><i class="fa fa-lock icsize">Only NamanAngels users who have been granted access can view this content.</i></center>
 					<div class="databox">
