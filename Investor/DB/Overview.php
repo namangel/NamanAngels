@@ -261,35 +261,35 @@
                             </div>
                             <div class="i2">
                                 <label for="cbfname">First Name</label><br>
-                                <input name="cbname" type="text" placeholder="">
+                                <input name="cbname" type="text" placeholder="<?=$fname?>">
                             </div>
                             <div class="i2">
                                 <label for="cblname">Last Name</label><br>
-                                <input name="cbname" type="text" placeholder="">
+                                <input name="cbname" type="text" placeholder="<?=$lname?>">
                             </div>
                             <div class="i2">
                                 <label for="cbcomp">Company Name</label><br>
-                                <input name="cbcomp" type="text" placeholder="">
+                                <input name="cbcomp" type="text" placeholder="<?=$cname?>">
                             </div>
                             <div class="i5">
                                 <label for="cbcity">City</label><br>
-                                <input name="cbcity" type="text"placeholder="">
+                                <input name="cbcity" type="text"placeholder="<?=$city?>">
                             </div>
                             <div class="i5">
                                 <label for="cbcountry">Country</label><br>
-                                <input name="cbcountry" type="text" placeholder="">
+                                <input name="cbcountry" type="text" placeholder="<?=$country?>">
                             </div>
                             <div class="i7">
                                 <label for="cbrole">Role</label><br>
-                                <input name="cbrole" type="text" placeholder="">
+                                <input name="cbrole" type="text" placeholder="<?=$role?>">
                             </div>
                             <div class="i8">
                                 <label for="cbpartner">Partner Name</label><br>
-                                <input name="cbpartner" type="text" placeholder="">
+                                <input name="cbpartner" type="text" placeholder="<?=$partner?>">
                             </div>
                             <div class="i5">
                                 <label for="cbioi">Industry Of Interest</label><br>
-                                <input name="cbioi" type="text"placeholder="">
+                                <input name="cbioi" type="text"placeholder="<?=$indOfInt?>">
                             </div>
                             <div class="i3">
                                 <label for="cbrange">Investment Range</label><br>
@@ -304,7 +304,7 @@
                             </div>
                             <div class="i9">
                                 <label for="cbweb">Website</label><br>
-                                <input name="cbweb" type="text" placeholder="">
+                                <input name="cbweb" type="text" placeholder="<?=$website?>">
                             </div>
                             <div class="butn">
                                 <button class="cancel" onclick="off()">Cancel</button> <button class="save" name="cbsave">Save</button>
@@ -338,13 +338,13 @@
                         <div class="formhead">
                             <button onclick="socialoff()" class="close"><i class="fa fa-close"></i></button>
                             <h3>Social Presence</h3>
-                            <p>Add your company's social media links.</p>
+                            <p>Add your social media links.</p>
                         </div>
                         <div class="formtext">
                             <form method="post">
-                                <div class="socialic"><i class="fa fa-linkedin"><input type="text" name="sflinkedin" size="30"></i></div>
-                                <div class="socialic"><i class="fa fa-twitter"><input type="text" name="sftwitter" size="30"></i></div>
-                                <div class="socialic"><i class="fa fa-facebook"> <input type="text" name="sffacebook" size="30"></i></div>
+                                <div class="socialic"><i class="fa fa-linkedin"><input type="text" name="sflinkedin" size="30" placeholder="<?=$linkedin?>"></i></div><br>
+                                <div class="socialic"><i class="fa fa-twitter"><input type="text" name="sftwitter" size="30" placeholder="<?=$twitter?>"></i></div><br>
+                                <div class="socialic"><i class="fa fa-facebook"> <input type="text" name="sffacebook" size="30" placeholder="<?=$facebook?>"></i></div><br>
                                 <br>
                                 <div class="formtext submits">
                                         <input type="submit" value="Cancel" name="cancel" class="cancel">
@@ -381,11 +381,11 @@
                         <div class="formtext">
                                 <label for="phone">Phone Number</label>
                                 <br>
-                                <input type="text" name="cfphone"  size="40">
+                                <input type="text" name="cfphone"  size="40" placeholder="<?=$phone?>">
                                 <br>
                                 <label for="email">Email</label>
                                 <br>
-                                <input type="text" name="cfemail" size="40">
+                                <input type="text" name="cfemail" size="40" placeholder="<?= $email?>">
                                 <br><br>
                             <div class="formtext submits">
                                     <input type="submit" value="Cancel" name="cancel" class="cancel">
