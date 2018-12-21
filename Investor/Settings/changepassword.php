@@ -1,4 +1,36 @@
-<?php require('../../server.php') ?>
+<?php 
+    require '../../server.php';
+
+    $u = $_SESSION['username'];
+    $qu = "SELECT * FROM user_inv WHERE Username='$u'";
+    $results = mysqli_query($db, $qu);
+    $row = mysqli_fetch_assoc($results);
+    $Password = $row['Password'];
+
+    if(isset($_POST["changepw"]))
+	{
+        $curr_pw= mysqli_real_escape_string($db, $_POST['currentpassword']);
+        $curr_pwd=sha1($curr_pw);
+        $pw_1 = mysqli_real_escape_string($db, $_POST['pw_1']);
+        $pw_2 = mysqli_real_escape_string($db, $_POST['pw_2']);
+
+        if ($Password != $curr_pwd) {
+            array_push($errors, "Your password is incorrect");
+        }
+        if (strlen($pw_1) < 8) {
+            array_push($errors, "Enter Password Greater than 8 Characters");
+           }
+        if ($pw_1 != $pw_2) {
+            array_push($errors, "The two passwords do not match");
+        }
+        if (count($errors) == 0){
+            $pw=sha1($pw_1);
+            $q = "UPDATE user_inv set Password='$pw' where Username='$u';";
+			mysqli_query($db, $q);
+        }
+    }
+
+?>
 <html>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -59,21 +91,23 @@
                 CHANGE PASSWORD </div>
       <hr>
 
-        <form action="/action_page.php">
+      <?php include 'errors.php';?>
+
+        <form method="post" action="changepassword.php">
             <label for="current-password">Current Password*</label>
             <br>
             <input autocomplete="current-password" type="password" id="current-password" name="currentpassword" placeholder="Your current password..">
         <br>
             <label for="new-password">Password*</label>
             <br>
-            <input autocomplete="new-password" type="password" id="new-password" name="newpassword" placeholder="Your  new password..">
+            <input autocomplete="new-password" type="password" id="new-password" name="pw_1" placeholder="Your  new password..">
         <br>
             <label for="confirm-password">Confirm Password*</label>
             <br>
-            <input autocomplete="confirm-password" type="password" id="confirm-password" name="confirmpassword" placeholder="Confirm new password..">
+            <input autocomplete="confirm-password" type="password" id="confirm-password" name="pw_2" placeholder="Confirm new password..">
         <br>
-        <input type="submit" value="Change Password">
-          </form>
+        <input type="submit" value="Change Password" name="changepw">
+        </form>
 
   </div>
 
@@ -81,7 +115,7 @@
 <?php require "../../include/footer/footer.php" ?>
 </body>
 </html>
-<script>
+<!-- <script>
         var newPassword = document.getElementById("new_password");
         var confirmPassword = document.getElementById("confirm_password");
 
@@ -95,4 +129,4 @@
         }
         newPassword.addEventListener("change", validatePassword);
         confirmPassword.addEventListener("change", validatePassword);
-      </script>
+      </script> -->

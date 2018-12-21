@@ -114,7 +114,7 @@
 <?php require "../../include/footer/footer.php" ?>
 </body>
 </html>
-<script>
+<!-- <script>
         var newPassword = document.getElementById("new_password");
         var confirmPassword = document.getElementById("confirm_password");
 
@@ -128,4 +128,4 @@
         }
         newPassword.addEventListener("change", validatePassword);
         confirmPassword.addEventListener("change", validatePassword);
-      </script>
+      </script> -->
