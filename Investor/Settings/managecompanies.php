@@ -1,4 +1,26 @@
-<?php require('../../server.php') ?>
+<?php 
+    require '../../server.php';
+
+    $u = $_SESSION['username'];
+    
+    if(isset($_POST["upload"]))
+	{
+        $cname = mysqli_real_escape_string($db, $_POST['cname']);
+        if($cname != NULL)
+		{
+			$q = "UPDATE user_inv set Cname='$cname' where Username='$u';";
+			mysqli_query($db, $q);
+        }
+        $check = getimagesize($_FILES["myimage"]["tmp_name"]);
+        if($check !== false){
+            $image = $_FILES['myimage']['tmp_name'];
+            $imgContent = addslashes(file_get_contents($image));
+
+            $q = "UPDATE inv_overview set ProfileImage='$imgContent' where Username='$u';";
+            mysqli_query($db, $q);
+        }
+    }
+?>
 
 <html>
     <head>
@@ -62,16 +84,16 @@
       <hr>
 
 
-                    <form method="POST" action="getdata.php" enctype="multipart/form-data">
-                        First name:<br>
-                        <input type="text" name="firstname" value="Mickey" size=100px>
+                     <form method="post" action="managecompanies.php" enctype="multipart/form-data">
+                        Company name:<br>
+                        <input type="text" name="cname" placeholder="Enter Company Name.." size=100px>
                              <br>
                          Profile Pic:<br>
                         <input type="file" name="myimage">
                         <br>
                         <br>
                         <br>
-                        <input type="submit" name="submit_image" value="Upload">
+                        <input type="submit" name="upload" value="Upload">
                        </form>
   </div>
 

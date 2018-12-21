@@ -440,7 +440,7 @@
 							$q = "SELECT * FROM inv_group where Username='$u';";
 							$results=mysqli_query($db, $q);
 							if (mysqli_num_rows($results) > 0) {
-								echo "<table border=1px width=100%>";
+								echo '<table class="tables">';
 								echo "<tr>";
 								echo "<th>Name</th>";
 								echo "<th>Designation</th>";
@@ -467,7 +467,7 @@
 							$q = "SELECT * FROM inv_previnvestment where Username='$u';";
 							$results=mysqli_query($db, $q);
 							if (mysqli_num_rows($results) > 0) {
-								echo "<table border=1px width=100%>";
+								echo '<table class="tables">';
 								echo "<tr>";
 								echo "<th>Name</th>";
 								echo "<th>Year</th>";

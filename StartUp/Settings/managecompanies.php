@@ -6,7 +6,7 @@
     if(isset($_POST["upload"]))
 	{
         $cname = mysqli_real_escape_string($db, $_POST['cname']);
-        if($lname != NULL)
+        if($cname != NULL)
 		{
 			$q = "UPDATE user_st set Stname='$cname' where Username='$u';";
 			mysqli_query($db, $q);
