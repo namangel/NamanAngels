@@ -398,30 +398,7 @@
                 <div class="nav">
                     <div><a href="Overview.php" style="color:black;">Overview</a></div>
                 </div>
-                <div id="sumformov">
-                    <div class="form">
-                        <div class="formhead">
-                            <button onclick="summoff()" class="close"><i class="fa fa-close"></i></button>
-                            <h3>Comapany Summary</h3>
-                            <p>Add an overview to help investors evaluate your startup. You might like to include your business model, structure and products/services.</p>
-                        </div>
-                        <div class="formtext">
-                            <form method="post">
-                                <div class="formtext"><textarea rows="10" cols="150" name="summaryform"></textarea></div>
-                                <div class="formtext submits">
-                                    <input type="submit" value="Cancel" name="cancel" class="cancel">
-                                    <input type="submit" value="Save" name="sumsave" class="save">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-
+            
 
 				<div class="summary">
                     <div class="databox">
