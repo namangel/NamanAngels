@@ -27,9 +27,9 @@
                 </div>
                 <div class="butcont">
                     <div class="input-group">
-                        <button type="submit" class="btn" name="login_inv" style="background-color:#7ec5fd;">Login</button>
+                        <button type="submit" class="btn" name="login_inv" style="background-color:#0e3c58;">Login</button>
                     </div>
-                    <p style="font-size:12px">
+                    <p style="font-size:14px">
                         Not a member yet? <a href="register_inv.php">Register</a>
                     </p>
                 </div>

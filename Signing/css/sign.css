@@ -11,9 +11,9 @@ body{
     font-kerning: auto;
   }
   .buttonst{
-  			background-color:#7ec5fd;
+  			background-color: #0e3c58;
   			border:none;
-				width:40%;
+				width:35%;
 				height:50px;
   			color:white;
   			padding:10px 60px;
@@ -29,9 +29,9 @@ body{
   }
 
 	.buttoninv{
-				background-color:#7ec5fd;
+				background-color: #0e3c58;
 				border:none;
-				width:40%;
+				width:35%;
 				height:50px;
 				color:white;
 				padding:10px 60px;
@@ -62,11 +62,11 @@ body{
 }
 .a1{
   text-decoration: none;
-  color:#51a0d6;
+  color: #0A2B40;
 }
 .a1:hover{
   text-decoration: underline;
-  color:#51a0d6;
+  color:#0A2B40;
 }
 i:hover{
   opacity: 0.7;

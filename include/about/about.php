@@ -113,13 +113,13 @@
           text-transform: uppercase;
         }
         .contact form input[type=submit]:hover{
-          background: red;
-          color: white;
+          background: #bfbfbf;
+          color: black;
           outline: 0;
           transition: background 2s ease-out;
         }
         .contact form input[type=text]:hover , .contact form textarea:hover ,.contact form input[type=email]:hover {
-          background-color: #87CEFA;
+          background-color: #e6e6e6;
         }
         @media(min-width:700px) {
         .wrapper{
@@ -212,9 +212,36 @@
 <body>
     <div class="c1" id="fstp">
         <font style="font-size:30 ; color:blue">For startup</font>
+          <p>
+              <font style="font-family: arial ; font-size:18">
+                Building a successful business requires more than just capital - a motivated team, a business edge,
+                mentoring, technological support and networks. <br>We at Naman carefully curate startups and hand-hold them 
+                through the entire process of angel investing. The startups we choose have an overall access to all <br>amenities of
+                our incubation center, networks and technology support.Start and run your company confidently with startup legal,
+                accounting, and financial tools and services all on one simple platform. Naman was designed by experienced startup
+                founders, investors, and lawyers, to help you incorporate and grow your company like a seasoned entrepreneur.
+              </font>
+          </p>
+          <br>
+          <button class="button" style="width:250px; height:50px; background-color:#0A2B40; color:white;" onclick="location.href='/NamanAngels/Signing/register_st.php'">APPLY NOW </button>
+          <br>
     </div>
     <div class="c2" id="finv">
         <font style="font-size:30 ; color:blue">For Investor</font>
+          <p>
+              <font style="font-family: arial ; font-size:18">
+                We partner with exceptional entrepreneurs in the US and India. Our team comprises ex-entrepreneurs who are strong
+                "bottom-up" thinkers and "sleeves rolled up" operators. <br>With decades of experience in building and funding globally 
+                leading companies,we manage USD 1.5 billion across funds. Our footprint in world's two leading markets positions us
+                uniquely with global insights and ability to serve entrepreneurs.Naman offers the tools accredited angel investors,
+                venture funds and startup programs need to get the job done. Whether you're an angel investor group syndicating a deal,
+                a venture fund vetting a big investment,or a startup program connecting investors with top startup talent,<br>
+                Naman is designed for safe collaboration.
+              </font>
+          </p>
+          <br>
+          <button class="button" style="width:250px; height:50px; background-color:#0A2B40; color:white;" onclick="location.href='/NamanAngels/Signing/register_inv.php'">APPLY NOW </button>
+          <br>
     </div>
     <div class="c3" id="cinf">
         <font style="font-size:30 ; color:blue">Company Info</font>
