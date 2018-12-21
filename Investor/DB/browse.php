@@ -1,6 +1,6 @@
 <?php
     require('../../server.php');
-    $_SESSION['searchby']="";
+    $_SESSION['search']="";
     if(isset($_POST['submit'])){
         $_SESSION['search'] =  $_POST['searchkey'];
         $_SESSION['searchby']="company";
@@ -187,7 +187,7 @@
         ?>
         <?php require "../../include/footer/footer.php"?>
     </div>
-    
+
 
 </body>
 </html>
