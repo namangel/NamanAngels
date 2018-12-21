@@ -23,7 +23,7 @@
     $partner = $row['Partner'];
     $invrange = $row['InvRange'];
     $indOfInt=$row['IndustryOfInterest'];
-    $summary=$row['Summary']==""? 'Tell the world who you are and what makes your company special.':$row['Summary'];
+    $summary=$row['Summary']==""? 'Describe yourself and the value of your investment.':$row['Summary'];
 	$linkedin=$row['LinkedIn'];
 	$facebook=$row['FBLink'];
 	$twitter=$row['TwitterLink'];
@@ -153,11 +153,8 @@
     if(isset($_POST["sumsave"]))
 	{
         $summ = mysqli_real_escape_string($db, $_POST['summaryform']);
-		if($summ != NULL)
-		{
 			$q = "UPDATE inv_overview set Summary='$summ' where Username='$u'";
 			mysqli_query($db, $q);
-		}
 		header('location: Overview.php');
     }
 
@@ -398,7 +395,7 @@
                 <div class="nav">
                     <div><a href="Overview.php" style="color:black;">Overview</a></div>
                 </div>
-            
+
 
 				<div class="summary">
                     <div class="databox">
@@ -553,9 +550,9 @@
         </div>
 
     </body>
-	<script>
-if ( window.history.replaceState ) {
-  window.history.replaceState( null, null, window.location.href );
-}
+<script>
+	if ( window.history.replaceState ) {
+		window.history.replaceState( null, null, window.location.href );
+	}
 </script>
 </html>
