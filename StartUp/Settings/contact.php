@@ -112,11 +112,21 @@
 
             <label for="email">Email</label>
             <br>
-            <input type="email" id="email" name="email" placeholder="Enter your email..">
+            <input type="email" id="email" name="email" placeholder="Enter your email.." 
+            style="border: 1px solid rgb(133, 166, 194); width:100%; padding: 12px; border-radius: 4px;
+                  box-sizing: border-box;
+                  margin-top: 6px;
+                  margin-bottom: 16px;
+                  resize: vertical;">
 
             <label for="email">Phone Number</label>
             <br>
-            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number..">
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number.."
+            style="border: 1px solid rgb(133, 166, 194); width:60%; padding: 12px; border-radius: 4px;
+                  box-sizing: border-box;
+                  margin-top: 6px;
+                  margin-bottom: 16px;
+                  resize: vertical;">
 
            <br>
            <br>
