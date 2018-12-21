@@ -138,7 +138,7 @@ body {
 
   .nav1 li:last-child a:after{ background: lightblue; }
 
-  input[type=text], select, textarea {
+  input[type=text], select, textarea , input[type=email]{
       width: 100%;
       padding: 12px;
       border: 1px solid rgb(133, 166, 194);
@@ -177,7 +177,7 @@ body {
       float:left;
       align-content: center;
   }
-  input[type=password], select, textarea {
+  input[type=password], select, textarea input[type=tel]{
       width: 60%;
       padding: 12px;
       border: 1px solid rgb(133, 166, 194);
@@ -274,4 +274,15 @@ body {
 
       color:black;
       size: 50px;
+  }
+
+  .error {
+    width: 92%;
+    margin: 0px auto;
+    padding: 10px;
+    border: 1px solid #a94442;
+    color: #a94442;
+    background: #f2dede;
+    border-radius: 5px;
+    text-align: left;
   }

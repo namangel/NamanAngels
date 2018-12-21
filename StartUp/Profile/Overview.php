@@ -205,7 +205,7 @@
 							$q = "SELECT * FROM st_teams where Username='$u';";
 							$results=mysqli_query($db, $q);
 							if (mysqli_num_rows($results) > 0) {
-								echo "<table border=1px width=100%>";
+								echo '<table class="tables">';
 								echo "<tr>";
 								echo "<th>Name</th>";
 								echo "<th>Phone</th>";
@@ -233,7 +233,7 @@
 							$q = "SELECT * FROM st_advisors where Username='$u';";
 							$results=mysqli_query($db, $q);
 							if (mysqli_num_rows($results) > 0) {
-								echo "<table border=1px width=100%>";
+								echo '<table class="tables">';
 								echo "<tr>";
 								echo "<th>Name</th>";
 								echo "<th>Email</th>";
@@ -256,7 +256,7 @@
 							$q = "SELECT * FROM st_previnvestment where Username='$u';";
 							$results=mysqli_query($db, $q);
 							if (mysqli_num_rows($results) > 0) {
-								echo "<table border=1px width=100%>";
+								echo '<table class="tables">';
 								echo "<tr>";
 								echo "<th>Name</th>";
 								echo "<th>Email</th>";

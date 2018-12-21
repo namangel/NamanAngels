@@ -1,4 +1,48 @@
-<?php require('../../server.php') ?>
+<?php 
+  
+  require '../../server.php';
+
+  $u = $_SESSION['username'];
+  $qu = "SELECT * FROM user_st WHERE Username='$u'";
+	$results = mysqli_query($db, $qu);
+	$row = mysqli_fetch_assoc($results);
+	$ID = $row['ID'];
+	$Stname = $row['Stname'];
+	$Ffname = $row['Ffname'];
+	$Sfname = $row['Sfname'];
+	$Email = $row['Email'];
+	$Password = $row['Password'];
+
+  if(isset($_POST["contactset"]))
+	{
+    $fname = mysqli_real_escape_string($db, $_POST['fname']);
+    $lname = mysqli_real_escape_string($db, $_POST['lname']);
+    $email = mysqli_real_escape_string($db, $_POST['email']);
+    $phone = mysqli_real_escape_string($db, $_POST['phone']);
+		if($fname != NULL)
+		{
+			$q = "UPDATE user_st set Ffname='$fname' where Username='$u';";
+			mysqli_query($db, $q);
+    }
+    if($lname != NULL)
+		{
+			$q = "UPDATE user_st set Sfname='$lname' where Username='$u';";
+			mysqli_query($db, $q);
+    }
+    if($email != NULL)
+		{
+			$q = "UPDATE user_st set Email='$email' where Username='$u';";
+			mysqli_query($db, $q);
+    }
+    if($phone != NULL)
+		{
+			$q = "UPDATE user_st set Phone='$phone' where Username='$u';";
+			mysqli_query($db, $q);
+		}
+		header('location: contact.php');
+  }
+
+?>
 <html>
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -59,25 +103,25 @@
             CONTACT INFORMATION </div>
       <hr>
 
-        <form action="/action_page.php">
+        <form  method="post" action="contact.php">
             <label for="fname">First Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="Your name..">
+            <input type="text" id="fname" name="fname" placeholder="Enter your name..">
 
             <label for="lname">Last Name</label>
-            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+            <input type="text" id="lname" name="lname" placeholder="Enter your last name..">
 
-            <label for="country">Country</label>
+            <label for="email">Email</label>
             <br>
-            <select id="country" name="country">
-              <option value="australia">Australia</option>
-              <option value="canada">Canada</option>
-              <option value="usa">USA</option>
-            </select>
+            <input type="email" id="email" name="email" placeholder="Enter your email..">
+
+            <label for="email">Phone Number</label>
+            <br>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number..">
 
            <br>
            <br>
 
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" name="contactset">
           </form>
   </div>
 </div>
