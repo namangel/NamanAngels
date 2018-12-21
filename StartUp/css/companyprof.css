@@ -214,19 +214,3 @@ body {
 .compbasics butn{
     float: right;
 }
-.tables {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-.tables td, .tables th {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-.tables th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #7ec5fd;
-    color: white;
-}
