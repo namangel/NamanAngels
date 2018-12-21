@@ -1,9 +1,8 @@
 <?php
     require('../../server.php');
-    $_SESSION['search']="";
     $_SESSION['searchby']="";
     if(isset($_POST['submit'])){
-        $_SESSION['search'] = mysqli_real_escape_string($db, $_POST['searchkey']);
+        $_SESSION['search'] =  $_POST['searchkey'];
         $_SESSION['searchby']="company";
         header('location: browse.php');
     }
@@ -15,11 +14,10 @@
 ?>
 <html>
 <head>
-  <title>Register Yourself - NamanAngels</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/browse.css">
-  <title>Investor Profile - NamanAngels</title>
+  <title>Find Your StartUp - NamanAngels</title>
 </head>
 
 <body>
@@ -33,7 +31,7 @@
                 <input type="submit" name="submit" value="Search">
             </form>
         </div>
-        <div class="bsearch">
+        <!-- <div class="bsearch">
             <form class="searchform" action="browse.php" method="post">
                 <select  name="indsearchkey">
                     <option value="">Select Industry</option>
@@ -129,7 +127,7 @@
                   </select>
                 <input type="submit" name="indsubmit" value="Search">
             </form>
-        </div>
+        </div> -->
         <div class='output'>
             <?php
             if (isset($_GET['pageno'])) {
@@ -138,102 +136,58 @@
                 $pageno = 1;
             }
             $no_of_records_per_page = 10;
-            $offset = ($pageno-1) * $no_of_records_per_page;
-            echo $offset;
+            $offset = ($pageno - 1) * $no_of_records_per_page;
+
             $sname = $_SESSION['search'];
 
-            if($_SESSION['searchby']==="company"){
-                $total_pages_sql = "SELECT COUNT(*) FROM st_overview where Username IN (Select Username from user_st where Stname Like '%{$sname}%')";
 
-                $result = mysqli_query($db,$total_pages_sql);
-                $total_rows = mysqli_fetch_array($result)[0];
-                $total_pages = ceil($total_rows / $no_of_records_per_page);
+            $total_pages_sql = "SELECT COUNT(*) FROM st_overview where Username IN (Select Username from user_st where Type='$sname')";
 
+            $result = mysqli_query($db,$total_pages_sql);
+            $total_rows = mysqli_fetch_array($result)[0];
+            $total_pages = ceil($total_rows / $no_of_records_per_page);
+            $total_pages = ($total_pages < 1? 1:$total_pages);
 
-                $sql = "SELECT * FROM st_overview where Username IN (Select Username from user_st where Stname Like '%{$sname}%') LIMIT $offset, $no_of_records_per_page";
-                $res_data = mysqli_query($db,$sql);
-                while($row = mysqli_fetch_array($res_data)){
-                    echo '<div class="browse">';
-                        echo '<img src="data:image/jpeg;base64,'.base64_encode($row['Logo']).'"/>';
-                        echo "<div class='info'>";
-                            echo $row['OLP'];
-                        echo "</div>";
-                        echo "<div class='invest'>";
-                            echo "<button type='submit' name='subinv' class='submitinv' value='View Profile' action='index.php'>View Profile</button>";
-                        echo "</div>";
+            $sql = "SELECT * FROM st_overview where Username IN (Select Username from user_st where Stname Like '%{$sname}%') LIMIT $offset, $no_of_records_per_page";
+            $res_data = mysqli_query($db,$sql);
+            while($row = mysqli_fetch_array($res_data)){
+                echo '<div class="browse">';
+                    echo '<div><img src="data:image/jpeg;base64,'.base64_encode($row['Logo']).'"/></div>';
+                    echo "<div class='info'>";
+                        echo $row['OLP'];
                     echo "</div>";
-                }
-                echo '<div class="pages">';
-                    echo '<ul class="pagination">';
-                        echo '<li><a href="?pageno=1">First</a></li>';
-                        echo '<li class=';
-                            if($pageno <= 1){ echo 'disabled'; };
-                                echo '>';
-                            echo '<a href=';
-                            if($pageno <= 1){ echo "#"; } else { echo "?pageno=".($pageno - 1); };
-                            echo '>Prev</a>';
-                        echo '</li>';
-                        echo '<li class=';
-                        if($pageno >= $total_pages){ echo 'disabled'; };
-                        echo '>';
-                            echo '<a href=';
-                            if($pageno >= $total_pages){ echo "#"; } else { echo "?pageno=".($pageno + 1); };
-                            echo '>Next</a>';
-                        echo '</li>';
-                        echo "<li><a href='?pageno=$total_pages;''>Last</a></li>";
-                    echo '</ul>';
-                echo '</div>';
-
-            }
-            if($_SESSION['searchby']==="industry"){
-                $total_pages_sql = "SELECT COUNT(*) FROM st_overview where Username IN (Select Username from user_st where Type='$sname')";
-
-                $result = mysqli_query($db,$total_pages_sql);
-                $total_rows = mysqli_fetch_array($result)[0];
-                $total_pages = ceil($total_rows / $no_of_records_per_page);
-
-
-                $sql = "SELECT * FROM st_overview where Username IN (Select Username from user_st where Type='$sname') LIMIT $offset, $no_of_records_per_page";
-                $res_data = mysqli_query($db,$sql);
-                while($row = mysqli_fetch_array($res_data)){
-                    echo '<div class="browse">';
-                        echo '<img src="data:image/jpeg;base64,'.base64_encode($row['Logo']).'"/>';
-                        echo "<div class='info'>";
-                            echo $row['OLP'];
-                        echo "</div>";
-                        echo "<div class='invest'>";
-                            echo "<button type='submit' name='subinv' class='submitinv' value='View Profile' action='index.php'>View Profile</button>";
-                        echo "</div>";
+                    echo "<div class='invest'>";
+                        echo "<button type='submit' name='subinv' class='submitinv' value='View Profile' action='index.php'>View Profile</button>";
                     echo "</div>";
-                }
-
-
-                echo '<div class="pages">';
-                    echo '<ul class="pagination">';
-                        echo '<li><a href="?pageno=1">First</a></li>';
-                        echo '<li class=';
-                            if($pageno <= 1){ echo 'disabled'; };
-                                echo '>';
-                            echo '<a href=';
-                            if($pageno <= 1){ echo "#"; } else { echo "?pageno=".($pageno - 1); };
-                            echo '>Prev</a>';
-                        echo '</li>';
-                        echo '<li class=';
-                        if($pageno >= $total_pages){ echo 'disabled'; };
-                        echo '>';
-                            echo '<a href=';
-                            if($pageno >= $total_pages){ echo "#"; } else { echo "?pageno=".($pageno + 1); };
-                            echo '>Next</a>';
-                        echo '</li>';
-                        echo "<li><a href='?pageno=$total_pages;''>Last</a></li>";
-                    echo '</ul>';
-                echo '</div>';
+                echo "</div>";
             }
-
             ?>
         </div>
+        <?php
+            echo '<div class="pages">';
+            echo '<ul class="pagination">';
+                echo '<li><a href="?pageno=1">First</a></li>';
+                echo '<li class=';
+                    if($pageno <= 1){ echo 'disabled'; };
+                        echo '>';
+                    echo '<a href=';
+                    if($pageno <= 1){ echo "#"; } else { echo "?pageno=".($pageno - 1); };
+                    echo '>Prev</a>';
+                echo '</li>';
+                echo '<li class=';
+                if($pageno >= $total_pages){ echo 'disabled'; };
+                echo '>';
+                    echo '<a href=';
+                    if($pageno >= $total_pages){ echo "#"; } else { echo "?pageno=".($pageno + 1); };
+                    echo '>Next</a>';
+                echo '</li>';
+                echo "<li><a href='?pageno=$total_pages'>Last</a></li>";
+            echo '</ul>';
+        echo '</div>';
+        ?>
+        <?php require "../../include/footer/footer.php"?>
     </div>
-    <?php require "../../include/footer/footer.php"?>
+    
 
 </body>
 </html>
