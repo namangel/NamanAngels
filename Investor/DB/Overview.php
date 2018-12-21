@@ -43,13 +43,13 @@
 
 		if($cbfname != "")
 		{
-			$q = "UPDATE user_inv set FirstName ='$cbfname' where Username='$u';";
+			$q = "UPDATE user_inv set FName ='$cbfname' where Username='$u';";
 			mysqli_query($db, $q);
         }
 
         if($cblname != "")
 		{
-			$q = "UPDATE user_inv set LastName ='$cbfname' where Username='$u';";
+			$q = "UPDATE user_inv set LName ='$cbfname' where Username='$u';";
 			mysqli_query($db, $q);
 		}
 
@@ -261,11 +261,11 @@
                             </div>
                             <div class="i2">
                                 <label for="cbfname">First Name</label><br>
-                                <input name="cbname" type="text" placeholder="<?=$fname?>">
+                                <input name="cbfname" type="text" placeholder="<?=$fname?>">
                             </div>
                             <div class="i2">
                                 <label for="cblname">Last Name</label><br>
-                                <input name="cbname" type="text" placeholder="<?=$lname?>">
+                                <input name="cblname" type="text" placeholder="<?=$lname?>">
                             </div>
                             <div class="i2">
                                 <label for="cbcomp">Company Name</label><br>
@@ -492,12 +492,12 @@
                     <div class="form">
                         <div class="formhead">
                             <button onclick="summoff()" class="close"><i class="fa fa-close"></i></button>
-                            <h3>Comapany Summary</h3>
-                            <p>Add an overview to help investors evaluate your startup. You might like to include your business model, structure and products/services.</p>
+                            <h3>Investor Description</h3>
+                            <p>Add an overview to describe yourself, your motives and sight for the startups.</p>
                         </div>
                         <div class="formtext">
                             <form method="post">
-                                <div class="formtext"><textarea rows="10" cols="150" name="summaryform"></textarea></div>
+                                <div class="formtext"><textarea rows="10" cols="150" name="summaryform"><?=$summary?></textarea></div>
                                 <div class="formtext submits">
                                     <input type="submit" value="Cancel" name="cancel" class="cancel">
                                     <input type="submit" value="Save" name="sumsave" class="save">
@@ -576,4 +576,9 @@
         </div>
 
     </body>
+	<script>
+if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
+</script>
 </html>
