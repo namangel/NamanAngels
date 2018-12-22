@@ -66,8 +66,7 @@
 			$q = "INSERT into request(inv_name,st_name) values ('$invu','$u')";
 			mysqli_query($db, $q);
 		}
-
-		header('location: Overview.php?searchquery='.$row['Username']);
+		header('location: Overview.php?searchquery='.$row['st_name']);
 	}
 
 ?>
@@ -128,7 +127,7 @@
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
-												<li><form method="post"><button class="b1" name="make_deal"><?= $transbtn?></button></form></li>
+						<li><form method="post"><button class="b1" name="make_deal"><?= $transbtn?></button></form></li>
                     </ul>
                 </div>
                 <div class="social sideprof">

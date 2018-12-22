@@ -134,10 +134,14 @@
             } else {
                 $pageno = 1;
             }
+            $sname="";
             $no_of_records_per_page = 10;
             $offset = ($pageno - 1) * $no_of_records_per_page;
 
-            $sname = $_SESSION['search'];
+            if(isset($_SESSION['search'])){
+                $sname = $_SESSION['search'];
+            }
+
 
             $total_pages_sql = "SELECT COUNT(*) FROM st_overview where Username IN (Select Username from user_st where Type='$sname')";
 
