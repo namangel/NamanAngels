@@ -6,6 +6,8 @@
 		$u = $_GET['searchquery'];
 	}
 
+		$invu = $_SESSION['username'];
+
 	$qu = "SELECT * FROM user_st WHERE Username='$u'";
 	$results = mysqli_query($db, $qu);
 	$row = mysqli_fetch_assoc($results);
@@ -52,79 +54,33 @@
 	$Competitors = $row['Competitors'];
 	$CompAdv = $row['CompAdv'];
 
+	$transbtn = "Invest";
 
-	if(isset($_POST["mtsave"])){
-		$MTeam = mysqli_real_escape_string($db, $_POST['manageform']);
-
-		$q = "UPDATE st_exec SET MTeam='$MTeam' WHERE Username='$u';";
-		mysqli_query($db, $q);
-
-		header('location: Exec.php');
-	}
-	if(isset($_POST["cprobsave"])){
-		$CProb = mysqli_real_escape_string($db, $_POST['custform']);
-
-		$q = "UPDATE st_exec SET CProb='$CProb' WHERE Username='$u';";
-		mysqli_query($db, $q);
-
-		header('location: Exec.php');
-	}
-	if(isset($_POST["pssave"])){
-		$ProdSer = mysqli_real_escape_string($db, $_POST['prodser']);
-
-		$q = "UPDATE st_exec SET ProdSer='$ProdSer' WHERE Username='$u';";
-		mysqli_query($db, $q);
-
-		header('location: Exec.php');
-	}
-	if(isset($_POST["tmsave"])){
-		$TarMar = mysqli_real_escape_string($db, $_POST['TarMar']);
-
-		$q = "UPDATE st_exec SET TarMar='$TarMar' WHERE Username='$u';";
-		mysqli_query($db, $q);
-
-		header('location: Exec.php');
-	}
-	if(isset($_POST["bmsave"])){
-		$BModel = mysqli_real_escape_string($db, $_POST['BModel']);
-
-		$q = "UPDATE st_exec SET BModel='$BModel' WHERE Username='$u';";
-		mysqli_query($db, $q);
-
-		header('location: Exec.php');
-	}
-	if(isset($_POST["cssave"])){
-		$CSegments = mysqli_real_escape_string($db, $_POST['CSegments']);
-
-		$q = "UPDATE st_exec SET CSegments='$CSegments' WHERE Username='$u';";
-		mysqli_query($db, $q);
-
-		header('location: Exec.php');
+	$qr = "SELECT * FROM request WHERE inv_name='$invu' AND st_name='$u'";
+	$req = mysqli_query($db, $qr);
+	if (mysqli_num_rows($req) == 1)
+	{
+		$row = mysqli_fetch_assoc($req);
+		$deal = $row['deal'];
+		if($deal == 1)
+		{
+			$transbtn = "Invested";
+		}
+		if($deal == 0)
+		{
+			$transbtn = "Transaction In Progress";
+		}
 	}
 
-	if(isset($_POST["smssave"])){
-		$SMStrat = mysqli_real_escape_string($db, $_POST['SMStrat']);
+	if(isset($_POST["make_deal"]))
+	{
+		if (mysqli_num_rows($req) == 0)
+		{
+			$q = "INSERT into request(inv_name,st_name) values ('$invu','$u')";
+			mysqli_query($db, $q);
+		}
 
-		$q = "UPDATE st_exec SET SMStrat='$SMStrat' WHERE Username='$u';";
-		mysqli_query($db, $q);
-
-		header('location: Exec.php');
-	}
-	if(isset($_POST["compsave"])){
-		$Competitors = mysqli_real_escape_string($db, $_POST['Competitors']);
-
-		$q = "UPDATE st_exec SET Competitors='$Competitors' WHERE Username='$u';";
-		mysqli_query($db, $q);
-
-		header('location: Exec.php');
-	}
-	if(isset($_POST["cadvsave"])){
-		$CompAdv = mysqli_real_escape_string($db, $_POST['CompAdv']);
-
-		$q = "UPDATE st_exec SET CompAdv='$CompAdv' WHERE Username='$u';";
-		mysqli_query($db, $q);
-
-		header('location: Exec.php');
+			header('location: Exec.php?searchquery='.$row['Username']);
 	}
 
 ?>
@@ -179,6 +135,7 @@
 						<li style="list-style: none; display: inline">
 							<hr>
 						</li>
+						<li><form method="post"><button class="b1" name="make_deal"><?= $transbtn?></button></form></li>
 					</ul>
 				</div>
 				<div class="social sideprof">

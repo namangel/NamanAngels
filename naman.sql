@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Dec 21, 2018 at 07:22 PM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.10
+-- Host: 127.0.0.1
+-- Generation Time: Dec 22, 2018 at 01:18 AM
+-- Server version: 10.1.33-MariaDB
+-- PHP Version: 7.2.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -100,9 +100,16 @@ INSERT INTO `inv_previnvestment` (`Username`, `PIName`, `PIYear`, `PIStage`) VAL
 CREATE TABLE `request` (
   `inv_name` varchar(100) NOT NULL,
   `st_name` varchar(100) NOT NULL,
-  `inv_approve` int(50) NOT NULL DEFAULT '0',
-  `st_approve` int(50) NOT NULL DEFAULT '0'
+  `deal` int(10) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `request`
+--
+
+INSERT INTO `request` (`inv_name`, `st_name`, `deal`) VALUES
+('xyz123', 'jbezo', 0),
+('xyz123', 'abc123', 1);
 
 -- --------------------------------------------------------
 

@@ -6,6 +6,8 @@
 		$u = $_GET['searchquery'];
 	}
 
+	$invu = $_SESSION['username'];
+
 	$qu = "SELECT * FROM user_st WHERE Username='$u'";
 	$results = mysqli_query($db, $qu);
 	$row = mysqli_fetch_assoc($results);
@@ -40,6 +42,35 @@
 	// $PIEmail = $row['PIEmail']==""? '--':$row['PIEmail'];
 	$OLP = $row['OLP']==""? '--':$row['OLP'];
 	$Logo = $row['Logo'];
+
+	$transbtn = "Invest";
+
+	$qr = "SELECT * FROM request WHERE inv_name='$invu' AND st_name='$u'";
+	$req = mysqli_query($db, $qr);
+	if (mysqli_num_rows($req) == 1)
+	{
+		$row = mysqli_fetch_assoc($req);
+		$deal = $row['deal'];
+		if($deal == 1)
+		{
+			$transbtn = "Invested";
+		}
+		if($deal == 0)
+		{
+			$transbtn = "Transaction In Progress";
+		}
+	}
+
+	if(isset($_POST["make_deal"]))
+	{
+		if (mysqli_num_rows($req) == 0)
+		{
+			$q = "INSERT into request(inv_name,st_name) values ('$invu','$u')";
+			mysqli_query($db, $q);
+		}
+
+			header('location: Finance.php?searchquery='.$row['Username']);
+	}
 
 ?>
 <html>
@@ -94,6 +125,7 @@
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
+												<li><form method="post"><button class="b1" name="make_deal"><?= $transbtn?></button></form></li>
                     </ul>
                 </div>
                 <div class="social sideprof">
