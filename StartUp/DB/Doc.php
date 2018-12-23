@@ -205,7 +205,7 @@
 	$rfn = array();
 	$rln = array();
 	$transbtn = "Requests";
-	$qr = "SELECT * FROM request WHERE st_name='$u' AND st_approve = 0";
+	$qr = "SELECT * FROM request WHERE st_name='$u' AND deal = 0";
 	$req = mysqli_query($db, $qr);
 	$reqnum = mysqli_num_rows($req);
 	$count = $reqnum;
@@ -432,13 +432,13 @@
                         <div class="formtext">
                             <form method="post">
                                 <div class="socialic">
-                                    <i class="fa fa-linkedin"></i><input size="30" type="text" name="sflinkedin">
+                                    <i class="fa fa-linkedin"></i><input size="30" type="text" name="sflinkedin" placeholder="<?= $LinkedInLink?>">
                                 </div>
                                 <div class="socialic">
-                                    <i class="fa fa-twitter"></i><input size="30" type="text" name="sftwitter">
+                                    <i class="fa fa-twitter"></i><input size="30" type="text" name="sftwitter" placeholder="<?= $TwitterLink?>">
                                 </div>
                                 <div class="socialic">
-                                    <i class="fa fa-facebook"></i><input size="30" type="text" name="sffacebook">
+                                    <i class="fa fa-facebook"></i><input size="30" type="text" name="sffacebook" placeholder="<?= $FBLink?>">
                                 </div><br>
                                 <div class="formtext submits">
                                     <input class="cancel" name="cancel" type="submit" value="Cancel"> <input class="save" name="sfsave" type="submit" value="Save">
@@ -456,9 +456,9 @@
                         </div>
                         <div class="formtext">
                             <label for="cfphone">Phone Number</label><br>
-                            <input name="cfphone" size="40" type="text"><br>
+                            <input name="cfphone" size="40" type="text" placeholder="<?= $Phone?>"><br>
                             <label for="cfemail">Email</label><br>
-                            <input name="cfemail" size="40" type="email"><br>
+                            <input name="cfemail" size="40" type="email" placeholder="<?= $Email?>"><br>
                             <br>
                             <div class="formtext submits">
                                 <input class="cancel" name="cancel" type="submit" value="Cancel"> <input class="save" name="cfsave" type="submit" value="Save">

@@ -574,9 +574,9 @@
                         </div>
                         <div class="formtext">
                             <form method="post">
-                                <div class="socialic"><i class="fa fa-linkedin"><input type="text" name="sflinkedin" size="30"></i></div>
-                                <div class="socialic"><i class="fa fa-twitter"><input type="text" name="sftwitter" size="30"></i></div>
-                                <div class="socialic"><i class="fa fa-facebook"> <input type="text" name="sffacebook" size="30"></i></div>
+                                <div class="socialic"><i class="fa fa-linkedin"><input type="text" name="sflinkedin"  placeholder="<?= $LinkedInLink?>" size="30"></i></div>
+                                <div class="socialic"><i class="fa fa-twitter"><input type="text" name="sftwitter" placeholder="<?= $TwitterLink?>" size="30"></i></div>
+                                <div class="socialic"><i class="fa fa-facebook"> <input type="text" name="sffacebook" placeholder="<?= $FBLink?>" size="30"></i></div>
                                 <br>
                                 <div class="formtext submits">
                                         <input type="submit" value="Cancel" name="cancel" class="cancel">
@@ -596,11 +596,11 @@
                         <div class="formtext">
                                 <label for="phone">Phone Number</label>
                                 <br>
-                                <input type="text" name="cfphone"  size="40">
+                                <input type="text" name="cfphone" placeholder="<?= $Phone?>" size="40">
                                 <br>
                                 <label for="email">Email</label>
                                 <br>
-                                <input type="text" name="cfemail" size="40">
+                                <input type="text" name="cfemail" placeholder="<?= $Email?>" size="40">
                                 <br><br>
                             <div class="formtext submits">
                                     <input type="submit" value="Cancel" name="cancel" class="cancel">
