@@ -48,7 +48,30 @@
         body{
         background: white;
         line-height: 1.6;
-        padding: 1px;
+        padding-right: 50px;
+        padding-left: 50px;
+        padding-top: 20px;
+        } 
+
+        .top{
+          font-size: 30;
+          color: blue;
+        }
+
+        .content{
+          font-family: arial;
+          font-size: 18px;
+        }
+
+        .apply-button{
+          width:200px;
+          height:50px;
+          background-color: #0A2B40;
+          color:white;
+        }
+
+        .apply-button:hover{
+          opacity: 0.8;
         }
         .container1{
           max-width: 1000px;
@@ -77,14 +100,14 @@
           padding: 1em;
         }
         .company{
-          background: #B0C4DE;
+          background: #d9d9d9;
         }
         .company ul{
           text-align: center;
           padding: 0 0 1rem 0;
         }
         .contact{
-          background: darkgray;
+          background: #d9d9d9;
         }
         .contact span{
           color: blue;
@@ -109,19 +132,16 @@
           padding: 10px;
         }
         .contact form input[type=submit] {
-          background: #B0C4DE;
+          background-color: #0A2B40;
+          color:white;
           text-transform: uppercase;
+          width: 200px;
         }
         .contact form input[type=submit]:hover{
-          background: #bfbfbf;
-          color: black;
-          outline: 0;
+          opacity: 0.8;
           transition: background 2s ease-out;
         }
-        .contact form input[type=text]:hover , .contact form textarea:hover ,.contact form input[type=email]:hover {
-          background-color: #e6e6e6;
-        }
-        @media(min-width:700px) {
+         @media(min-width:700px) { 
         .wrapper{
           display: grid;
           grid-template-columns: 1fr 2fr;
@@ -133,9 +153,6 @@
           text-align: left;
         }
         }
-        body{
-          margin: 0;
-        }
         .h1{
           width: 100%;
           height: 150px;
@@ -146,12 +163,56 @@
           width: 100%;
           height: 300px;
           background: #ecf0f1;
-          margin-bottom: 50px;
           box-sizing: border-box;
-          padding: 0px;
           color: black;
-          text-align: center;
         }
+
+        .c2{
+          width: 100%;
+          height: 400px;
+          margin-top: 50px;
+        }
+
+        .c3{
+          position: relative;
+          width: 100%;
+          height: 700px;
+          background: #ecf0f1;
+          margin-bottom: 100px;
+        }
+
+        .objective{
+          display: grid;
+          margin-left: 200px;
+          margin-right: 200px;
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-gap: 40px;
+        }
+
+        .obj{
+          padding-top: 20px;
+          background-color: white;
+          text-align: center;
+          border-bottom: 1px solid #ccc;
+        }
+
+        .obj:hover{
+          border-bottom: 8px solid #1e90ff;
+        }
+        .obj img{
+          height: 90px;
+          width: 90px;
+        }
+        .c4{
+          width: 100%;
+          height: 600px;
+        }
+        .c1 p, .c2 p, .c3 p{
+          padding-top: 20px;
+          padding-left: 50px;
+          padding-right: 50px;
+          }
+
         .c1:after{
           position: absolute;
           width: 100%;
@@ -167,15 +228,7 @@
           transform: skewY(4deg);
 
         }
-        .c3{
-          position: relative;
-          width: 100%;
-          height: 300px;
-          background: #ecf0f1;
-          margin-bottom: 100px;
-          text-align: center;
-
-        }
+       
         .c3:after{
           position: absolute;
           width: 100%;
@@ -191,71 +244,66 @@
           transform: skewY(-4deg);
 
         }
-        .c2{
-          width: 100%;
-          height: 400px;
-          text-align: center;
 
-
-        }
-        .c4{
-          width: 100%;
-          height: 600px;
-        }
-        .c3 p{
-          padding-top: 20px;
-          padding-left: 40px;
-          padding-right: 40px;
-          text-align: center;
-          }
     </style>
 <body>
     <div class="c1" id="fstp">
-        <font style="font-size:30 ; color:blue">For startup</font>
+        <font class="top"><center>For startup</center></font>
           <p>
-              <font style="font-family: arial ; font-size:18">
-                Building a successful business requires more than just capital - a motivated team, a business edge,
-                mentoring, technological support and networks. <br>We at Naman carefully curate startups and hand-hold them 
-                through the entire process of angel investing. The startups we choose have an overall access to all <br>amenities of
-                our incubation center, networks and technology support.Start and run your company confidently with startup legal,
-                accounting, and financial tools and services all on one simple platform. Naman was designed by experienced startup
-                founders, investors, and lawyers, to help you incorporate and grow your company like a seasoned entrepreneur.
+              <font class="content">
+              Building a successful business requires more than just capital – a motivated team, a business edge, mentoring, technological
+              support and networks NAMAN nurtures the idea of start-ups, helps them grow with proper mentoring and provides varied investment
+              opportunities for the investors. NAMAN ensures that quality startups are given the support they need in the form of capital,
+              tech support and mentoring. NAMAN carefully curate startups and hand-hold them through the entire process of angel investing.
+              The startups choose by NAMAN and they have an overall access to all amenities of our incubation center, networks and technology
+              support.
               </font>
           </p>
-          <br>
-          <button class="button" style="width:250px; height:50px; background-color:#0A2B40; color:white;" onclick="location.href='/NamanAngels/Signing/register_st.php'">APPLY NOW </button>
-          <br>
+          <br><center>
+          <button class="apply-button" onclick="location.href='/NamanAngels/Signing/register_st.php'">APPLY NOW </button>
+          </center><br>
     </div>
     <div class="c2" id="finv">
-        <font style="font-size:30 ; color:blue">For Investor</font>
+        <center><font class="top">For Investor</font></center>
           <p>
-              <font style="font-family: arial ; font-size:18">
-                We partner with exceptional entrepreneurs in the US and India. Our team comprises ex-entrepreneurs who are strong
-                "bottom-up" thinkers and "sleeves rolled up" operators. <br>With decades of experience in building and funding globally 
-                leading companies,we manage USD 1.5 billion across funds. Our footprint in world's two leading markets positions us
-                uniquely with global insights and ability to serve entrepreneurs.Naman offers the tools accredited angel investors,
-                venture funds and startup programs need to get the job done. Whether you're an angel investor group syndicating a deal,
-                a venture fund vetting a big investment,or a startup program connecting investors with top startup talent,<br>
-                Naman is designed for safe collaboration.
+              <font class="content">
+              As Seed Investment continues to grow, Naman Angels India Foundation will strive to bring investors a greater breadth of
+              investment opportunities. Investors when onboard are provided with Investor Development Program (IDP) and opportunities to
+              attend round table conferences with fellow investors. Once the agreement is signed the investor becomes a certified NAMAN
+              investor with recognition across social media.
               </font>
           </p>
           <br>
-          <button class="button" style="width:250px; height:50px; background-color:#0A2B40; color:white;" onclick="location.href='/NamanAngels/Signing/register_inv.php'">APPLY NOW </button>
-          <br>
+          <center>
+          <button class="apply-button" onclick="location.href='/NamanAngels/Signing/register_inv.php'">APPLY NOW </button>
+          </center><br>
     </div>
     <div class="c3" id="cinf">
-        <font style="font-size:30 ; color:blue">Company Info</font>
+        <center><font class="top">Company Info</font></center>
         <p>
-            <font style="font-family: arial ; font-size:18">
+            <font class="content">
                 Naman Angels India Foundation (NAMAN) is Navi Mumbai’s first Seed Investment & Innovation Platform.
                 We are committed to disrupt the seed investment in Navi Mumbai and Maharashtra. Our innovation platform
                 provides values to startups through its angel networks, venture funds & co-working facility and strategic tie-ups.<br>
                 NAMAN ensures that quality startups are given the support they need in the form of capital, tech support and mentoring.
                 NAMAN carefully curate startups and hand-hold them through the entire process of angel investing.
-                The startups choose by NAMAN and they have an overall access to all amenities of our incubation center,
-                networks and technology support.
             </font>
         </p>
+        <center><font style="font-size: 24px; color: #1390ff;">Objectives</font></center><br>
+        <div class="objective">
+          <div class="obj">
+            <img src="../img/objective1.png">
+            <p>Providing a platform to support and mentor selected entrepreneurs to reach the stage of “investor readiness”.</p>
+          </div>
+          <div class="obj">
+            <img src="../img/objective2.png">
+            <p>Facilitating a Pan-India Network of Entrepreneurs, Investors and Mentors.</p>
+          </div>
+          <div class="obj">
+            <img src="../img/objective3.png">
+            <p>Provide investment opportunities to deserving entrepreneurs, provide real time solutions to grave problems of modern economies.</p>
+          </div>
+        </div>
     </div>
 <div class="c4" id="cont">
     <div class="container1">
@@ -294,7 +342,7 @@
                     <textarea  name=msg  rows="5" required></textarea>
                 </p>
                 <p class="full">
-                    <input type="submit" value="SEND MESSAGE" onclick="return val()">
+                    <center><input type="submit" value="SEND MESSAGE" onclick="return val()"></center>
                 </p>
             </form>
             </div>
