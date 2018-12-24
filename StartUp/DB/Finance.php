@@ -254,7 +254,24 @@
                         <li><button class="b1" name="requestbtn" onclick="">Download One Pager</button></li>
                     </ul>
                 </div>
-                <div class="social sideprof">
+
+                <div class="contact sideprof">
+                    <button class="pencil" onclick="contacton()"><i class="fa fa-pencil"></i></button>
+                    <h3>Contact</h3>
+					<ul class="proflist">
+						<li class="item">Phone :  <span class="value"><?= $Phone?></span></li>
+                        <li style="list-style: none; display: inline">
+                            <hr>
+                        </li>
+                        <li class="item">Email ID : <span class="value"><?= $Email?></span></li>
+                        <li style="list-style: none; display: inline">
+                            <hr>
+                        </li>
+                    </ul>
+
+                </div>
+
+				<div class="social sideprof">
                     <button class="pencil" onclick="socialon()"><i class="fa fa-pencil"></i></button>
                     <h3>Social presence</h3>
 					<ul class="proflist">
@@ -271,22 +288,6 @@
 	                        <hr>
 	                    </li>
                     </ul>
-                </div>
-
-                <div class="contact sideprof">
-                    <button class="pencil" onclick="contacton()"><i class="fa fa-pencil"></i></button>
-                    <h3>Contact</h3>
-					<ul class="proflist">
-						<li class="item">Phone :  <span class="value"><?= $Phone?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                        <li class="item">Email ID : <span class="value"><?= $Email?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                    </ul>
-
                 </div>
                 <div id="overlay">
                     <div class="compbasics">
