@@ -68,7 +68,15 @@ font{
 .deal1{
   grid-column: span 2;
 }
-
+.reg{
+  grid-column: span 5;
+  color: black;
+  background: #f5f5f5;
+  font-size: 45px;
+  font-family: times;
+  text-align: center;
+  margin: 10px;
+}
 .objs{
   grid-column: span 12;
   display: grid;

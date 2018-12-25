@@ -203,14 +203,24 @@
   </div>
 
   <div class="no2"></div>
-  <div class="title">
+  <div class="reg">
     <center>
     <br><font style="font-size:35px;font-family:Arial;">READY TO VENTURE FORWARD?</font><br><br>
-      <button class="button" type="submit" style="width:250px;background-color:#0A2B40;color:white;"  onclick="location.href='Signing/register_inv.php'">
-        <span>GET STARTED</span></button>
+      <button class="button" type="submit" style="width:270px;background-color:#0A2B40;color:white;"  onclick="location.href='Signing/register_inv.php'">
+        <span>CREATE YOUR PROFILE</span></button>
     </center>
     <br>
   </div>
+
+  <div class="reg">
+    <center>
+    <br><font style="font-size:35px;font-family:Arial;">BE A PART OF OUR NETWORK</font><br><br>
+      <button class="button" type="submit" style="width:270px;background-color:#0A2B40;color:white;"  onclick="location.href='Signing/direct_member.php'">
+        <span>GET A MEMBERSHIP</span></button>
+    </center>
+    <br>
+  </div>
+
   <div class="no2"></div>
   <div class="no5">.</div>
 

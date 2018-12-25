@@ -91,6 +91,23 @@ if (isset($_POST['reg_inv'])) {
   }
 }
 
+if (isset($_POST['dir_mem'])) {
+
+  $iname = mysqli_real_escape_string($db, $_POST['iname']);
+  $fname = mysqli_real_escape_string($db, $_POST['fname']);
+  $lname = mysqli_real_escape_string($db, $_POST['lname']);
+  $email = mysqli_real_escape_string($db, $_POST['email']);
+  $country = mysqli_real_escape_string($db, $_POST['country']);
+  $city = mysqli_real_escape_string($db, $_POST['city']);
+  $state = mysqli_real_escape_string($db, $_POST['state']);
+  $website = mysqli_real_escape_string($db, $_POST['website']);
+
+  header('location: ../Signing/mem_email.php');
+
+}
+
+
+
 //REGISTOR STARTUP
 if (isset($_POST['reg_st'])) {
 
