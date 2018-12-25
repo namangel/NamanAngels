@@ -34,7 +34,8 @@
 	$PitchName = $row['PitchName'];
 	$PitchExt = $row['PitchExt'];
 	$OLP = $row['OLP']==""? 'Write A Short Pitch For Your Company In One Line':$row['OLP'];
-	$Logo = $row['Logo'];
+    $Logo = $row['Logo'];
+    $Backimg = $row['BackImage'];
 
 
 	if(isset($_POST["cbsave"])){
@@ -226,7 +227,19 @@
 		}
 
 		header('location: Overview.php');
-	}
+    }
+    
+    if(isset($_POST['BIsave'])){
+        $check = getimagesize($_FILES["backim"]["tmp_name"]);
+	    if($check !== false){
+			$image = $_FILES['backim']['tmp_name'];
+	        $imgContent = addslashes(file_get_contents($image));
+
+			$q = "UPDATE st_overview set BackImage ='$imgContent' where Username='$u';";
+			mysqli_query($db, $q);
+		}
+        header('location: Overview.php');
+    }
 
 
 ?>
@@ -249,7 +262,9 @@
         <div class="container">
             <div class="main">
             	<div class="backimg">
-                        <font style="font-size:30px;"><?= $Stname?></font>
+                    <button class="pencil" onclick="backimgon()"><i class="fa fa-pencil"></i></button>
+                    <div style="height:100px;"><?= '<img src="data:image/jpeg;base64,'.base64_encode($Backimg).'"/>';?></div>
+                        <!-- <font style="font-size:30px;"><?= $Stname?></font> -->
                 </div>
                 <div class="sideprof">
 					<div class="pen">
@@ -355,13 +370,8 @@
                                     <option>Product in Development</option>
                                     <option>Prototype ready</option>
                                     <option>Full Product Ready</option>
-                                    <option>$500K in TTM Revenue</option>
-                                    <option>$1M in TTM Revenue</option>
-                                    <option>$5M in TTM Revenue</option>
-                                    <option>$10M in TTM Revenue</option>
-                                    <option>$20M in TTM Revenue</option>
-                                    <option>$50M in TTM Revenue</option>
-                                    <option>$50M+ in TTM Revenue</option>
+                                    <option>Early Revenue Stage</option>
+                                    <option>Growth Stage</option>
                                 </select>
                             </div>
                             <div class="i5">
@@ -528,6 +538,23 @@
 								echo '<img src="../img/prof.png">';
 							}
 						?>
+                    </div>
+                </div>
+                <div id="backimg">
+                    <div class="form">
+                        <div class="formhead">
+                            <button onclick="summoff()" class="close"><i class="fa fa-close"></i></button>
+                            <h3>Background Image</h3>
+                        </div>
+                        <div class="formtext">
+                            <form method="post" action='Overview.php'>
+                                <div class="formtext"><input type="file" name="backim"><br></div>
+                                <div class="formtext submits">
+                                    <input type="submit" value="Cancel" name="cancel" class="cancel">
+                                    <input type="submit" value="Save" name="BIsave" class="save">
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <div id="sumformov">

@@ -168,7 +168,7 @@ if (isset($_POST['reg_st'])) {
     $_SESSION['website'] = $website;
     $_SESSION['phone'] = $phone;
 
-    $query = "INSERT INTO st_overview (Username, Stname) values ('$username', '$stname')";
+    $query = "INSERT INTO st_overview (Username) values ('$username')";
   	mysqli_query($db, $query);
 
     $query = "INSERT INTO st_exec (Username) values ('$username')";
