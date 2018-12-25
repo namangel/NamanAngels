@@ -93,7 +93,23 @@
                         </li>
                     </ul>
                 </div>
-                <div class="social sideprof">
+
+                <div class="contact sideprof">
+                    <h3>Contact</h3>
+					<ul class="proflist">
+						<li class="item">Phone :  <span class="value"><?= $Phone?></span></li>
+                        <li style="list-style: none; display: inline">
+                            <hr>
+                        </li>
+                        <li class="item">Email ID : <span class="value"><?= $Email?></span></li>
+                        <li style="list-style: none; display: inline">
+                            <hr>
+                        </li>
+                    </ul>
+
+                </div>
+
+				<div class="social sideprof">
                     <h3>Social presence</h3>
 					<ul class="proflist">
 						<li class="item">LinkedIn <span class="value"><?= $LinkedInLink?></span></li>
@@ -109,21 +125,6 @@
 	                        <hr>
 	                    </li>
                     </ul>
-                </div>
-
-                <div class="contact sideprof">
-                    <h3>Contact</h3>
-					<ul class="proflist">
-						<li class="item">Phone :  <span class="value"><?= $Phone?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                        <li class="item">Email ID : <span class="value"><?= $Email?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                    </ul>
-
                 </div>
 				<div class="nav">
 					<div><a href="Overview.php">Overview</a></div>

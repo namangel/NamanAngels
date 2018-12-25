@@ -148,11 +148,13 @@
 	}
 
 
+<<<<<<< HEAD
+=======
 	$rid = array();
 	$rfn = array();
 	$rln = array();
 	$transbtn = "Requests";
-	$qr = "SELECT * FROM request WHERE st_name='$u' AND st_approve = 0";
+	$qr = "SELECT * FROM request WHERE st_name='$u' AND deal = 0";
 	$req = mysqli_query($db, $qr);
 	$reqnum = mysqli_num_rows($req);
 	$count = $reqnum;
@@ -193,6 +195,7 @@
 		$_SESSION['search'] = $rid[4];
 		header('location: Investor-Profile.php');
 	}
+>>>>>>> 7f3f86c7269c92cdd78587eeb4466e5ee83f29db
 ?>
 
 
@@ -353,6 +356,23 @@
 						<li><button class="b1" name="requestbtn" onclick="">Download One Pager</button></li>
 					</ul>
 				</div>
+
+				<div class="contact sideprof">
+					<button class="pencil" onclick="contacton()"><i class="fa fa-pencil"></i></button>
+					<h3>Contact</h3>
+					<ul class="proflist">
+						<li class="item">Phone :  <span class="value"><?= $Phone?></span></li>
+						<li style="list-style: none; display: inline">
+							<hr>
+						</li>
+						<li class="item">Email ID : <span class="value"><?= $Email?></span></li>
+						<li style="list-style: none; display: inline">
+							<hr>
+						</li>
+					</ul>
+
+				</div>
+
 				<div class="social sideprof">
 					<button class="pencil" onclick="socialon()"><i class="fa fa-pencil"></i></button>
 					<h3>Social presence</h3>
@@ -370,22 +390,6 @@
 							<hr>
 						</li>
 					</ul>
-				</div>
-
-				<div class="contact sideprof">
-					<button class="pencil" onclick="contacton()"><i class="fa fa-pencil"></i></button>
-					<h3>Contact</h3>
-					<ul class="proflist">
-						<li class="item">Phone :  <span class="value"><?= $Phone?></span></li>
-						<li style="list-style: none; display: inline">
-							<hr>
-						</li>
-						<li class="item">Email ID : <span class="value"><?= $Email?></span></li>
-						<li style="list-style: none; display: inline">
-							<hr>
-						</li>
-					</ul>
-
 				</div>
 				<div id="overlay">
 				  <div class="compbasics">
@@ -479,13 +483,13 @@
 						<div class="formtext">
 							<form method="post">
 								<div class="socialic">
-									<i class="fa fa-linkedin"></i><input size="30" type="text" name="sflinkedin">
+									<i class="fa fa-linkedin"></i><input size="30" type="text" placeholder="<?= $LinkedInLink?>" name="sflinkedin">
 								</div>
 								<div class="socialic">
-									<i class="fa fa-twitter"></i><input size="30" type="text" name="sftwitter">
+									<i class="fa fa-twitter"></i><input size="30" type="text" placeholder="<?= $TwitterLink?>" name="sftwitter">
 								</div>
 								<div class="socialic">
-									<i class="fa fa-facebook"></i><input size="30" type="text" name="sffacebook">
+									<i class="fa fa-facebook"></i><input size="30" type="text" placeholder="<?= $FBLink?>" name="sffacebook">
 								</div><br>
 								<div class="formtext submits">
 									<input class="cancel" name="cancel" type="submit" value="Cancel"> <input class="save" name="sfsave" type="submit" value="Save">
@@ -503,9 +507,9 @@
 						</div>
 						<div class="formtext">
 						<label for="cfphone">Phone Number</label><br>
-							<input name="cfphone" size="40" type="text"><br>
+							<input name="cfphone" size="40" type="text" placeholder="<?= $Phone?>"><br>
 							<label for="cfemail">Email</label><br>
-							<input name="cfemail" size="40" type="email"><br>
+							<input name="cfemail" size="40" type="email" placeholder="<?= $Email?>"><br>
 							<br>
 							<div class="formtext submits">
 								<input class="cancel" name="cancel" type="submit" value="Cancel"> <input class="save" name="cfsave" type="submit" value="Save">

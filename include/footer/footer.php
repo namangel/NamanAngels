@@ -49,6 +49,9 @@
                   <a href="/NamanAngels/include/about/about.php#cinf" class="foota1">Company Info</a>
                 </span>
                 <span class="spa">
+                  <a href="/NamanAngels/include/about/team.php" class="foota1"> Our Team</a>
+                </span>
+                <span class="spa">
                   <a href="/NamanAngels/include/about/about.php#fstp" class="foota1">For Startups</a>
                 </span>
                 <span class="spa">
@@ -60,6 +63,7 @@
                 <span class="spa">
                   <a href="/NamanAngels/include/about/about.php#cont" class="foota1"> Contact Us</a>
                 </span>
+                
             </p>
             <i class="fa fa-facebook-official" id="icon"></i>
             <i class="fa fa-linkedin-square" id="icon"></i>

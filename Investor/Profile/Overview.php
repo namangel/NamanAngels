@@ -1,6 +1,5 @@
 <?php
 	require '../../server.php';
-	// $_SESSION['username'] = 'xyz123';//predefine -- nikalo mujhe
 	$u = "";
 	if (isset($_GET['searchquery'])) {
 		$u = $_GET['searchquery'];
@@ -11,6 +10,7 @@
 	$qu = "SELECT * FROM user_st WHERE Username='$u'";
 	$results = mysqli_query($db, $qu);
 	$row = mysqli_fetch_assoc($results);
+	$uname = $row['Username'];
 	$ID = $row['ID'];
 	$Stname = $row['Stname'];
 	$Ffname = $row['Ffname'];
@@ -47,8 +47,8 @@
 	$req = mysqli_query($db, $qr);
 	if (mysqli_num_rows($req) == 1)
 	{
-		$row = mysqli_fetch_assoc($req);
-		$deal = $row['deal'];
+		$row1 = mysqli_fetch_assoc($req);
+		$deal = $row1['deal'];
 		if($deal == 1)
 		{
 			$transbtn = "Invested";
@@ -66,7 +66,7 @@
 			$q = "INSERT into request(inv_name,st_name) values ('$invu','$u')";
 			mysqli_query($db, $q);
 		}
-		header('location: Overview.php?searchquery='.$row['st_name']);
+		header('location: Overview.php?searchquery='.$uname);
 	}
 
 ?>

@@ -1,0 +1,44 @@
+.adv{
+    font-size: 35px;
+    font-weight: bolder;
+    color: #00aaff;
+}
+.advisory{
+    display: grid;
+    margin-top: 40px;
+    margin-left: 150px;
+    margin-right: 150px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-row: auto;
+    grid-gap: 10px;
+}
+
+.member{
+    padding: 20px
+}
+.member img{
+    height: 250px;
+    width: 250px;
+}
+
+.linkedin{
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.linkedin:hover{
+    color: #00aaff;
+}
+
+.name{
+    font-size: 30px;
+    color: black;
+}
+
+.designation{
+    font-size: 16px;
+    padding: 10px;
+    line-height: 1.7;
+}

@@ -21,7 +21,7 @@
 	<div class="item3">
 		Please select the role that describes you.
 		<br>
-		<button class="buttonst" onclick="location.href='login_st.php'">I'm An Entrepreneur</button>
+		<button class="buttonst" onclick="location.href='login_st.php'">I'm A Start-up</button>
 		<br>
 		<button class="buttoninv" onclick="location.href='login_inv.php'">I'm An Investor</button>
 		<br>

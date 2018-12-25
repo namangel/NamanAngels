@@ -295,6 +295,23 @@
                         <li><button class="b1" name="requestbtn" onclick="">Download One Pager</button></li>
                     </ul>
                 </div>
+
+                <div class="contact sideprof">
+                    <button class="pencil" onclick="contacton()"><i class="fa fa-pencil"></i></button>
+                    <h3>Contact</h3>
+					<ul class="proflist">
+						<li class="item">Phone :  <span class="value"><?= $Phone?></span></li>
+                        <li style="list-style: none; display: inline">
+                            <hr>
+                        </li>
+                        <li class="item">Email ID : <span class="value"><?= $Email?></span></li>
+                        <li style="list-style: none; display: inline">
+                            <hr>
+                        </li>
+                    </ul>
+
+                </div>
+
                 <div class="social sideprof">
                     <button class="pencil" onclick="socialon()"><i class="fa fa-pencil"></i></button>
                     <h3>Social presence</h3>
@@ -312,22 +329,6 @@
 	                        <hr>
 	                    </li>
                     </ul>
-                </div>
-
-                <div class="contact sideprof">
-                    <button class="pencil" onclick="contacton()"><i class="fa fa-pencil"></i></button>
-                    <h3>Contact</h3>
-					<ul class="proflist">
-						<li class="item">Phone :  <span class="value"><?= $Phone?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                        <li class="item">Email ID : <span class="value"><?= $Email?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                    </ul>
-
                 </div>
                 <div id="overlay">
                     <div class="compbasics">
@@ -574,9 +575,9 @@
                         </div>
                         <div class="formtext">
                             <form method="post">
-                                <div class="socialic"><i class="fa fa-linkedin"><input type="text" name="sflinkedin" size="30"></i></div>
-                                <div class="socialic"><i class="fa fa-twitter"><input type="text" name="sftwitter" size="30"></i></div>
-                                <div class="socialic"><i class="fa fa-facebook"> <input type="text" name="sffacebook" size="30"></i></div>
+                                <div class="socialic"><i class="fa fa-linkedin"><input type="text" name="sflinkedin"  placeholder="<?= $LinkedInLink?>" size="30"></i></div>
+                                <div class="socialic"><i class="fa fa-twitter"><input type="text" name="sftwitter" placeholder="<?= $TwitterLink?>" size="30"></i></div>
+                                <div class="socialic"><i class="fa fa-facebook"> <input type="text" name="sffacebook" placeholder="<?= $FBLink?>" size="30"></i></div>
                                 <br>
                                 <div class="formtext submits">
                                         <input type="submit" value="Cancel" name="cancel" class="cancel">
@@ -596,11 +597,11 @@
                         <div class="formtext">
                                 <label for="phone">Phone Number</label>
                                 <br>
-                                <input type="text" name="cfphone"  size="40">
+                                <input type="text" name="cfphone" placeholder="<?= $Phone?>" size="40">
                                 <br>
                                 <label for="email">Email</label>
                                 <br>
-                                <input type="text" name="cfemail" size="40">
+                                <input type="text" name="cfemail" placeholder="<?= $Email?>" size="40">
                                 <br><br>
                             <div class="formtext submits">
                                     <input type="submit" value="Cancel" name="cancel" class="cancel">
