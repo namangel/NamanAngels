@@ -310,7 +310,43 @@
                     </div>
                 </div>
 
-
+								<div class="contact sideprof">
+                    <button class="pencil" onclick="contacton()"><i class="fa fa-pencil"></i></button>
+                    <h3>Contact</h3>
+					<ul class="proflist">
+						<li class="item">Phone :  <span class="value"><?=$phone?></span></li>
+                        <li style="list-style: none; display: inline">
+                            <hr>
+                        </li>
+                        <li class="item">Email ID : <span class="value"><?= $email?></span></li>
+                        <li style="list-style: none; display: inline">
+                            <hr>
+                        </li>
+                    </ul>
+                </div>
+				<div id="contactform">
+                    <form class="form" method="post">
+                        <div class="formhead">
+                            <button onclick="contactoff()" class="close"><i class="fa fa-close"></i></button>
+                            <h3>Contact Information</h3>
+                            <p>Provide contact information for your company.</p>
+                        </div>
+                        <div class="formtext">
+                                <label for="phone">Phone Number</label>
+                                <br>
+                                <input type="text" name="cfphone"  size="40" placeholder="<?=$phone?>">
+                                <br>
+                                <label for="email">Email</label>
+                                <br>
+                                <input type="text" name="cfemail" size="40" placeholder="<?= $email?>">
+                                <br><br>
+                            <div class="formtext submits">
+                                    <input type="submit" value="Cancel" name="cancel" class="cancel">
+                                    <input type="submit" value="Save" name="cfsave" class="save">
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
                 <div class="social sideprof">
                     <button class="pencil" onclick="socialon()"><i class="fa fa-pencil"></i></button>
@@ -354,43 +390,7 @@
 
 
 
-                <div class="contact sideprof">
-                    <button class="pencil" onclick="contacton()"><i class="fa fa-pencil"></i></button>
-                    <h3>Contact</h3>
-					<ul class="proflist">
-						<li class="item">Phone :  <span class="value"><?=$phone?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                        <li class="item">Email ID : <span class="value"><?= $email?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                    </ul>
-                </div>
-				<div id="contactform">
-                    <form class="form" method="post">
-                        <div class="formhead">
-                            <button onclick="contactoff()" class="close"><i class="fa fa-close"></i></button>
-                            <h3>Contact Information</h3>
-                            <p>Provide contact information for your company.</p>
-                        </div>
-                        <div class="formtext">
-                                <label for="phone">Phone Number</label>
-                                <br>
-                                <input type="text" name="cfphone"  size="40" placeholder="<?=$phone?>">
-                                <br>
-                                <label for="email">Email</label>
-                                <br>
-                                <input type="text" name="cfemail" size="40" placeholder="<?= $email?>">
-                                <br><br>
-                            <div class="formtext submits">
-                                    <input type="submit" value="Cancel" name="cancel" class="cancel">
-                                    <input type="submit" value="Save" name="cfsave" class="save">
-                            </div>
-                        </div>
-                    </form>
-                </div>
+
 
                 <div class="nav">
                     <div><a href="Overview.php" style="color:black;">Overview</a></div>
