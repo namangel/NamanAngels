@@ -134,3 +134,10 @@ function advon() {
 function advoff() {
     document.getElementById("adv").style.display = "none";
 }
+
+function backimgon() {
+    document.getElementById("backimg").style.display = "block";
+}
+function backimgoff() {
+    document.getElementById("backimg").style.display = "none";
+}
