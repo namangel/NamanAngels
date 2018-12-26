@@ -1,21 +1,38 @@
 body {
-  margin:0px;
-  padding:0px;
-}
+    margin:0px;
+    padding:0px;
+  }
 
+.summary>h3{
+    margin-left: 50px;
+    color: #0e3c58;
+    font-size: 25px;
+ }
 .container{
     display: grid;
-    grid-template-rows: 2fr 8fr 3fr;
-    grid-gap: 1em;
-    height: 1100px;
-}
+    grid-template-rows: 3fr 4fr 1fr;
+    grid-gap: 30px;
+    background-color: #F4F5FA;
+} 
+
 .main{
     display: grid;
-    grid-template-columns:1fr 2fr;
-    grid-gap: 1em;
-    grid-auto-rows: minmax(20px,auto);
-    margin-left: 7em;
-    margin-right: 7em;
+    grid-template-columns: 1fr 1fr;
+    grid-column: 1;
+    margin-top: 25px;
+    margin-left: 150px;
+    margin-right: 150px;
+    background-color: white;
+}
+
+.mainright{
+    display: grid;
+    grid-template-rows: 1fr 1fr 2fr;
+    grid-column: 2;
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 10px;
+    height: 380px;
 }
 
 .backimg{
@@ -31,41 +48,72 @@ body {
     height: 40px;
 }
 
-.sideprof,.social,.contact{
+.sideprof{
     grid-column: 1;
-    margin-left: 1em;
-    margin-bottom: 1em;
+    grid-row: 1/9;
     padding: 15px;
     align-content: center;
-    border: 1px solid gray;
     background-color: white;
+    margin-left: 100px;
+    margin-right: 80px;
+    margin-top: 10px;
+    line-height: 2;
+} 
+.sideprof:hover{
+    display:inline-block;
 }
 
-.sideprof{
-    grid-row:3/6;
-}
-.social{
-    grid-row:7/8;
+.info{
+    grid-column: 2;
+    grid-row: 1;
+    margin-left: 1em;
+    margin-right: 100px;
+    align-content: center;
+    background-color: white;
+    line-height: 2;
 }
 .contact{
-    grid-row:6/7;
+    grid-column: 2;
+    grid-row: 2;
+    margin-left: 1em;
+    margin-right: 80px;
+    align-content: center;
+    background-color: white;
+    line-height: 2;
 }
+
+.social{
+    grid-column: 2;
+    grid-row: 3;
+    margin-left: 1em;
+    margin-right: 80px;
+    align-content: center;
+    background-color: white;
+    line-height: 2;
+}
+
+
 .sideprof img{
-    max-height: 112px;
-    max-width: 112px;
-    border: 1px dotted gray;
+    max-height: 240px;
+    max-width: 240px;
 }
 .sideprof .upload,.cam{
     text-align: center;
     padding: 4px;
 }
-.sideprof .pen{
-    float:right;
+
+.upload{
+    font-size: 20px;
+    line-height: 1.5;
 }
-.sideprof ul{
+.sideprof .pen{
+    float:left;
+}
+.sideprof ul, .contact ul, .social ul, .info ul{
     list-style-type: none;
     padding: 4px;
 }
+
 .sideprof .value{
     float:right;
 }
@@ -73,6 +121,18 @@ body {
     width: 90%;
     margin: 10px;
 }
+.summary{
+    grid-row: 2;
+    background-color: white;
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+.icsize{
+    font-size:11pt;
+    color: gray;
+}
+
 #overlay,#sumformov,#socialformov,#overly,#product,#cust,#target,#bussi,#segs,#sales,#comp,#adv,#contactform,#profteam,#addteam,#adv,#inv{
     position: fixed;
     overflow-y: scroll;
@@ -88,54 +148,10 @@ body {
     cursor: pointer;
 }
 
-.databox{
-  border: 1px dashed gray;
-  margin:10px;
-  padding: 10px;
-  padding-top: 0px;
-}
-.databox .pencil{
-  margin-top: 10px;
-}
-
-.nav{
-    grid-column: 2;
-    grid-row: 3;
-    border-bottom: 1px solid gray;
-}
-.nav >div{
-    float:left;
-    margin: 1em;
-    margin-top:0px;
-    margin-bottom: 0px;
-    padding: 10px;;
-}
-.nav a{
-    text-decoration: none;
-    color: gray;
-}
-.nav a:active{
-    color:black;
-}
-.nav a:hover{
-    color:black;
-    text-decoration:underline #36a6fc;
-}
-.video{
-    margin-top:20px;
-}
-
-.summary{
-    grid-column: 2;
-    grid-row: 4/9;
-}
-.icsize{
-    font-size:11pt;
-    color: gray;
-}
-.summary .pen,.pencil,.add{
+.pen,.pencil,.add{
     float:right;
 }
+
 .form{
     display: grid;
     grid-template-rows:1fr 2fr;
@@ -149,7 +165,6 @@ body {
 .formtext {
     grid-row:2;
     max-width: 100%;
-    /* height: 100%; */
     width: 400px;
 }
 .formhead {
@@ -215,6 +230,25 @@ body {
 .compbasics butn{
     float: right;
 }
+
+.databox{
+  border: 1px dashed gray;
+  margin:10px;
+  padding: 10px;
+  padding-top: 0px;
+}
+.databox .pencil{
+  margin-top: 10px;
+}
+
+.video{
+    margin-top:20px;
+}
+.details{
+    text-align: center;
+    font-size: 18px;
+}
+
 .tables {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;

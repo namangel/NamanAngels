@@ -5,6 +5,10 @@
     </head>
 
     <body>
+      <?php
+      include "../header/sign.php"
+      ?>
+      
         <font class="adv"><center>Our Chief Advisory</center></font>
         <div class="advisory">
             <div class="member">
@@ -121,5 +125,8 @@
                 <p class="designation">Digital Marketing</p></center>
             </div>
         </div>
+        <?php
+        include "../footer/footer.php"
+        ?>
     </body>
     </html>

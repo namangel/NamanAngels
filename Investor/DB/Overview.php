@@ -189,61 +189,27 @@
 				<title>Investor Profile - NamanAngels</title>
     </head>
     <body>
-		<?php require '../include/header/inv_db.php'; ?>
-		<?php require '../include/nav/nav.php'; ?>
-        <div class="container">
-            <div class="main">
-            	<div class="backimg">
-                        <font style="font-size:30px;"><?= $cname ?></font>
-                </div>
-                <div class="sideprof">
-					<div class="pen">
-						<button class="pencil" onclick="on()"><i class="fa fa-pencil"></i></button>
-						<br>
-					</div>
-                    <div class="upload">
-                        <div><?= '<img src="data:image/jpeg;base64,'.base64_encode($img).'"/>';?></div>
-                    </div>
-                    <ul class="proflist">
-                        <li class="item">Name <span class="value"><?= $fname ?>&nbsp;<?= $lname ?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                        <li class="item">Company <span class="value"><?= $cname ?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                        <li class="item">City <span class="value"><?= $city ?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                        <li class="item">Country <span class="value"><?= $country ?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-						<li class="item">Industry Of Interest <span class="value"><?= $indOfInt ?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                        <li class="item">Role <span class="value"><?= $role ?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                        <li class="item">Partner <span class="value"><?= $partner ?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                        <li class="item">Investment Range <span class="value"><?= $invrange ?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                        <li class="item">Website <span class="value"><?= $website ?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                    </ul>
-                </div>
-				<div id="overlay">
+    <?php require '../include/header/inv_db.php'; ?>
+    <?php require '../include/nav/nav.php'; ?><br>
+    <div class="container">
+
+    <div class="main">
+        
+        <div class="sideprof">
+			<div class="pen">
+				<button class="pencil" onclick="on()"><i class="fa fa-pencil"></i></button>
+				<br>
+			</div>
+            <div class="upload">
+                <div><?= '<img src="data:image/jpeg;base64,'.base64_encode($img).'"/>';?></div><br>
+                <b><?= $fname ?>&nbsp;<?= $lname ?></b><br>
+                <?= $cname ?><br>
+                <?= $role ?><br>
+              <b> Location: </b><?= $city ?>&nbsp;,<?= $country ?><br><br>
+            </div>
+        </div>
+
+        <div id="overlay">
                     <div class="compbasics">
                         <form class="profform" method="post" action='Overview.php' enctype="multipart/form-data">
                             <button class="close" onclick="off()"><i class="fa fa-close"></i></button>
@@ -299,74 +265,47 @@
                                     <option>More than 1,00,00,000</option>
                                 </select>
                             </div>
-                            <div class="i9">
-                                <label for="cbweb">Website</label><br>
-                                <input name="cbweb" type="text" placeholder="<?=$website?>">
-                            </div>
+                            
                             <div class="butn">
                                 <button class="cancel" onclick="off()">Cancel</button> <button class="save" name="cbsave">Save</button>
                             </div>
                         </form>
                     </div>
                 </div>
-
-								<div class="contact sideprof">
-                    <button class="pencil" onclick="contacton()"><i class="fa fa-pencil"></i></button>
-                    <h3>Contact</h3>
-					<ul class="proflist">
-						<li class="item">Phone :  <span class="value"><?=$phone?></span></li>
+        
+        <div class="mainright">
+            <div class="info">
+                <ul class="proflist">
+                        <li class="item"><b>Industry Of Interest : </b> <span class="value"><?= $indOfInt ?></span></li>
                         <li style="list-style: none; display: inline">
-                            <hr>
                         </li>
-                        <li class="item">Email ID : <span class="value"><?= $email?></span></li>
+                        <li class="item"><b>Partner : </b> <span class="value"><?= $partner ?></span></li>
                         <li style="list-style: none; display: inline">
-                            <hr>
                         </li>
-                    </ul>
-                </div>
-				<div id="contactform">
-                    <form class="form" method="post">
-                        <div class="formhead">
-                            <button onclick="contactoff()" class="close"><i class="fa fa-close"></i></button>
-                            <h3>Contact Information</h3>
-                            <p>Provide contact information for your company.</p>
-                        </div>
-                        <div class="formtext">
-                                <label for="phone">Phone Number</label>
-                                <br>
-                                <input type="text" name="cfphone"  size="40" placeholder="<?=$phone?>">
-                                <br>
-                                <label for="email">Email</label>
-                                <br>
-                                <input type="text" name="cfemail" size="40" placeholder="<?= $email?>">
-                                <br><br>
-                            <div class="formtext submits">
-                                    <input type="submit" value="Cancel" name="cancel" class="cancel">
-                                    <input type="submit" value="Save" name="cfsave" class="save">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="social sideprof">
-                    <button class="pencil" onclick="socialon()"><i class="fa fa-pencil"></i></button>
-                    <h3>Social presence</h3>
-					<ul class="proflist">
-						<li class="item">LinkedIn <span class="value"><?=$linkedin?></span></li>
-	                    <li style="list-style: none; display: inline">
-	                        <hr>
-	                    </li>
-						<li class="item">Twitter <span class="value"><?=$twitter?></span></li>
-	                    <li style="list-style: none; display: inline">
-	                        <hr>
-	                    </li>
-	                    <li class="item">Facebook <span class="value"><?=$facebook?></span></li>
-	                    <li style="list-style: none; display: inline">
-	                        <hr>
-	                    </li>
-                    </ul>
-                </div>
-				<div id="socialformov">
+                        <li class="item"><b>Investment Range : </b> <span class="value"><?= $invrange ?></span></li>
+                        <li style="list-style: none; display: inline">
+                        </li>
+                </ul>
+            </div>
+            <div class="social">
+                <button class="pencil" onclick="socialon()"><i class="fa fa-pencil"></i></button>
+                <!-- <h3>Social presence</h3> -->
+        		<ul class="proflist">
+    			<li class="item"><i class="fa fa-linkedin" style="color: #36a6fc"></i><span class="value"><?=$linkedin?></span></li>
+                <li style="list-style: none; display: inline">
+                </li>
+    			<li class="item"><i class="fa fa-twitter" style="color: #36a6fc"></i><span class="value"><?=$twitter?></span></li>
+                <li style="list-style: none; display: inline">
+                </li>
+                <li class="item"><i class="fa fa-facebook" style="color: #36a6fc"></i><span class="value"><?=$facebook?></span></li>
+                <li style="list-style: none; display: inline">
+                </li>
+                <li class="item"><i class="fa fa-globe" style="color: #36a6fc"></i><span class="value"><?= $website ?></span></li>
+                <li style="list-style: none; display: inline">
+                </li>
+                </ul>
+            </div>
+            <div id="socialformov">
                     <div class="form">
                         <div class="formhead">
                             <button onclick="socialoff()" class="close"><i class="fa fa-close"></i></button>
@@ -378,6 +317,10 @@
                                 <div class="socialic"><i class="fa fa-linkedin"><input type="text" name="sflinkedin" size="30" placeholder="<?=$linkedin?>"></i></div><br>
                                 <div class="socialic"><i class="fa fa-twitter"><input type="text" name="sftwitter" size="30" placeholder="<?=$twitter?>"></i></div><br>
                                 <div class="socialic"><i class="fa fa-facebook"> <input type="text" name="sffacebook" size="30" placeholder="<?=$facebook?>"></i></div><br>
+                                <div class="i9">
+                                <label for="cbweb">Website</label><br>
+                                <input name="cbweb" type="text" placeholder="<?=$website?>">
+                                </div>
                                 <br>
                                 <div class="formtext submits">
                                         <input type="submit" value="Cancel" name="cancel" class="cancel">
@@ -387,169 +330,220 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-
-                <div class="nav">
-                    <div><a href="Overview.php" style="color:black;">Overview</a></div>
-                </div>
-
-
-				<div class="summary">
-                    <div class="databox">
-                        <button onclick="summon()" class="pencil"><i class="fa fa-pencil"></i></button>
-                        <h3>Investor Description</h3>
-						<?php echo $summary;
-							if($summary == "Describe yourself and the value of your investment."){
-								echo '<img src="../img/Capture.png">';
-							}
-						?>
+            <div class="contact">
+                <button class="pencil" onclick="contacton()"><i class="fa fa-pencil"></i></button>
+                <!-- <h3>Contact</h3> -->
+        		<ul class="proflist">
+				<li class="item"><i class="fa fa-phone" style="color: #36a6fc"></i><span class="value"><?=$phone?></span></li>
+                <li style="list-style: none; display: inline">
+                </li>
+                <li class="item"><i class="fa fa-envelope-o" style="color: #36a6fc"></i><span class="value"><?= $email?></span></li>
+                <li style="list-style: none; display: inline">
+                </li>
+                </ul>
+            </div>
+            <div id="contactform">
+                <form class="form" method="post">
+                    <div class="formhead">
+                        <button onclick="contactoff()" class="close"><i class="fa fa-close"></i></button>
+                        <h3>Contact Information</h3>
+                        <p>Provide contact information for your company.</p>
                     </div>
-					<div class="databox">
-                        <button onclick="addgrpon()" class="add"><i class="fa fa-plus"></i></button>
-                        <h4>Group</h4>
-						<?php
-							$q = "SELECT * FROM inv_group where Username='$u';";
-							$results=mysqli_query($db, $q);
-							if (mysqli_num_rows($results) > 0) {
-								echo '<table class="tables">';
-								echo "<tr>";
-								echo "<th>Name</th>";
-								echo "<th>Designation</th>";
-								echo "<th>Experience</th>";
-								echo "</th>";
-							    while($row = mysqli_fetch_assoc($results)) {
-							        echo '<tr>';
-									echo '<td>'.$row["GrpName"].'</td>';
-									echo '<td>'.$row['GrpDesignation'].'</td>';
-									echo '<td>'.$row['GrpExperience'].'</td>';
-									echo "</tr>";
-							    }
-								echo '</table>';
-							} else {
-								echo '<img src="../img/prof.png">';
-							}
-						?>
-                    </div>
-					<div class="databox">
-                        <!-- <button onclick="teamon()" class="pencil"><i class="fa fa-pencil"></i></button> -->
-                        <button onclick="addpion()" class="add"><i class="fa fa-plus"></i></button>
-                        <h4>Previous Investment</h4>
-						<?php
-							$q = "SELECT * FROM inv_previnvestment where Username='$u';";
-							$results=mysqli_query($db, $q);
-							if (mysqli_num_rows($results) > 0) {
-								echo '<table class="tables">';
-								echo "<tr>";
-								echo "<th>Name</th>";
-								echo "<th>Year</th>";
-								echo "<th>Stage</th>";
-								echo "</th>";
-							    while($row = mysqli_fetch_assoc($results)) {
-							        echo '<tr>';
-									echo '<td>'.$row["PIName"].'</td>';
-									echo '<td>'.$row['PIYear'].'</td>';
-									echo '<td>'.$row['PIStage'].'</td>';
-									echo "</tr>";
-							    }
-								echo '</table>';
-							} else {
-								echo '<img src="../img/prof.png">';
-							}
-						?>
-                    </div>
-				</div>
-
-				<div id="sumformov">
-                    <div class="form">
-                        <div class="formhead">
-                            <button onclick="summoff()" class="close"><i class="fa fa-close"></i></button>
-                            <h3>Investor Description</h3>
-                            <p>Add an overview to describe yourself, your motives and sight for the startups.</p>
-                        </div>
-                        <div class="formtext">
-                            <form method="post">
-                                <div class="formtext"><textarea rows="10" cols="150" name="summaryform"><?=$summary?></textarea></div>
-                                <div class="formtext submits">
-                                    <input type="submit" value="Cancel" name="cancel" class="cancel">
-                                    <input type="submit" value="Save" name="sumsave" class="save">
-                                </div>
-                            </form>
-                        </div>
+                    <div class="formtext">
+                        <label for="phone">Phone Number</label>
+                        <br>
+                        <input type="text" name="cfphone"  size="40" placeholder="<?=$phone?>">
+                        <br>
+                        <label for="email">Email</label>
+                        <br>
+                        <input type="text" name="cfemail" size="40" placeholder="<?= $email?>">
+                        <br><br>
+                        <div class="formtext submits">
+                        <input type="submit" value="Cancel" name="cancel" class="cancel">
+                        <input type="submit" value="Save" name="cfsave" class="save">
                     </div>
                 </div>
-
-				<div id="addteam">
-                        <div class="form">
-                            <div class="formhead">
-                                <button onclick="addgrpoff()" class="close"><i class="fa fa-close"></i></button>
-                                <h3>Add a Group Member</h3>
-                                <p>Your Group is one of the most influential factors driving the investment process.</p>
-                            </div>
-                            <div class="formtext">
-                                <form method="post">
-                                    <div class="formtext">
-                                        <label>Name</label><br>
-                                        <input type="text" name="tmname" size="50" required><br><br>
-                                        <label>Designation</label><br>
-                                        <input type="text" name="tmdesig" size="50" required><br><br>
-                                        <label>Experience and Expertise</label><br>
-                                        <textarea rows="10" name="tmexp" cols="150" required></textarea><br><br>
-                                    </div>
-                                    <div class="formtext submits">
-                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
-                                        <input type="submit" value="Save" name="gmsave" class="save">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                </form>
+            </div>
+        </div>
+        
+        </div>
+        
+        <!-- <div class="overview">
+         -->
+        <!-- <div class="sidenav">
+                <div><i class="fa fa-home fa-2x" style="color:#0e3c58"></i>
+                <a href="/NamanAngels/Investor/inv_landing.php"><button class="button1">HOME</button></a>
+                </div>
+                <div><i class="fa fa-user fa-2x" style="color:#0e3c58"></i>
+                    <a href="/NamanAngels/Investor/DB/Overview.php"><button class="button1">  PROFILE</button></a>
                 </div>
 
-				<div id="inv">
-                        <div class="form">
-                            <div class="formhead">
-                                <button onclick="addpioff()" class="close"><i class="fa fa-close"></i></button>
-                                <h3>Add a Previous Investment</h3>
-                                <p class="icsize">Please provide the name and email address of a previous investment.</p>
-                            </div>
-                            <div class="formtext">
-                                <form method="post">
-                                    <div class="formtext">
-                                        <label>Name</label><br>
-                                        <input type="text" size="50" name="piname" required><br><br>
-                                        <label>Year</label><br>
-                                        <input type="number" min="2000" max="2099" step="1" size="50" name="piyear" required /><br><br>
-										<label>Stage</label><br>
-										<select name="pistage" name="pistage" required>
-		                                    <option>Select Stage</option>
-		                                    <option>Concept Only</option>
-		                                    <option>Product in Development</option>
-		                                    <option>Prototype ready</option>
-		                                    <option>Full Product Ready</option>
-		                                    <option>$500K in TTM Revenue</option>
-		                                    <option>$1M in TTM Revenue</option>
-		                                    <option>$5M in TTM Revenue</option>
-		                                    <option>$10M in TTM Revenue</option>
-		                                    <option>$20M in TTM Revenue</option>
-		                                    <option>$50M in TTM Revenue</option>
-		                                    <option>$50M+ in TTM Revenue</option>
-		                                </select>
-                                    </div>
-                                    <div class="formtext submits">
-                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
-                                        <input type="submit" value="Save" name="pisave" class="save">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                <div><i class="fa fa-users fa-2x" style="color:#0e3c58"></i>
+                        <a href="/NamanAngels/Investor/DB/membership.php"><button class="button1">MEMBERSHIP</button></a>
+                </div>
+                <div><i class="fa fa-search fa-2x" style="color:#0e3c58"></i>
+                        <a href="/NamanAngels/Investor/DB/browse.php"><button class="button1"> BROWSE</button></a>
+                </div>
+        </div> -->
+
+        <div class="summary">
+        <!-- <div class="nav">
+            <div><a href="Overview.php" style="color:black;">Overview</a></div>
+        </div><br><br> -->
+        <h3> Company Overview</h3>
+            <div class="databox">
+                <button onclick="summon()" class="pencil"><i class="fa fa-pencil"></i></button>
+                <h3>Investor Description</h3>
+    			<?php echo $summary;
+				if($summary == "Describe yourself and the value of your investment."){
+				echo '<img src="../img/Capture.png">';
+				}
+				?>
+            </div>
+    		<div class="databox">
+                <button onclick="addgrpon()" class="add"><i class="fa fa-plus"></i></button>
+                <h4>Group</h4>
+	    		<?php
+			    	$q = "SELECT * FROM inv_group where Username='$u';";
+		    		$results=mysqli_query($db, $q);
+					if (mysqli_num_rows($results) > 0) {
+					echo '<table class="tables">';
+					echo "<tr>";
+					echo "<th>Name</th>";
+					echo "<th>Designation</th>";
+					echo "<th>Experience</th>";
+					echo "</th>";
+				    while($row = mysqli_fetch_assoc($results)) {
+				        echo '<tr>';
+						echo '<td>'.$row["GrpName"].'</td>';
+						echo '<td>'.$row['GrpDesignation'].'</td>';
+						echo '<td>'.$row['GrpExperience'].'</td>';
+						echo "</tr>";
+				    }
+					echo '</table>';
+					} else {
+					echo '<img src="../img/prof.png">';
+					}
+				?>
+            </div>
+			<div class="databox">
+                <!-- <button onclick="teamon()" class="pencil"><i class="fa fa-pencil"></i></button> -->
+                <button onclick="addpion()" class="add"><i class="fa fa-plus"></i></button>
+                <h4>Previous Investment</h4>
+    			<?php
+    				$q = "SELECT * FROM inv_previnvestment where Username='$u';";
+					$results=mysqli_query($db, $q);
+	    			if (mysqli_num_rows($results) > 0) {
+					echo '<table class="tables">';
+					echo "<tr>";
+    				echo "<th>Name</th>";
+					echo "<th>Year</th>";
+					echo "<th>Stage</th>";
+					echo "</th>";
+				    while($row = mysqli_fetch_assoc($results)) {
+				        echo '<tr>';
+						echo '<td>'.$row["PIName"].'</td>';
+						echo '<td>'.$row['PIYear'].'</td>';
+						echo '<td>'.$row['PIStage'].'</td>';
+						echo "</tr>";
+				    }
+					echo '</table>';
+					} else {
+					echo '<img src="../img/prof.png">';
+					}
+				?>
+            </div>
+		</div>
+
+		<div id="sumformov">
+            <div class="form">
+                <div class="formhead">
+                    <button onclick="summoff()" class="close"><i class="fa fa-close"></i></button>
+                    <h3>Investor Description</h3>
+                    <p>Add an overview to describe yourself, your motives and sight for the startups.</p>
+                </div>
+                <div class="formtext">
+                    <form method="post">
+                    <div class="formtext"><textarea rows="10" cols="150" name="summaryform"><?=$summary?></textarea></div>
+                    <div class="formtext submits">
+                        <input type="submit" value="Cancel" name="cancel" class="cancel">
+                        <input type="submit" value="Save" name="sumsave" class="save">
+                    </div>
+                    </form>
                 </div>
             </div>
-			<?php require "../../include/footer/footer.php" ?>
         </div>
 
-    </body>
+    	<div id="addteam">
+            <div class="form">
+                <div class="formhead">
+                    <button onclick="addgrpoff()" class="close"><i class="fa fa-close"></i></button>
+                    <h3>Add a Group Member</h3>
+                    <p>Your Group is one of the most influential factors driving the investment process.</p>
+                </div>
+                <div class="formtext">
+                    <form method="post">
+                        <div class="formtext">
+                            <label>Name</label><br>
+                            <input type="text" name="tmname" size="50" required><br><br>
+                            <label>Designation</label><br>
+                            <input type="text" name="tmdesig" size="50" required><br><br>
+                            <label>Experience and Expertise</label><br>
+                            <textarea rows="10" name="tmexp" cols="150" required></textarea><br><br>
+                        </div>
+                        <div class="formtext submits">
+                            <input type="submit" value="Cancel" name="cancel" class="cancel">
+                            <input type="submit" value="Save" name="gmsave" class="save">
+                        </div>
+                       </form>
+                </div>
+            </div>
+        </div>
+
+    	<div id="inv">
+            <div class="form">
+                <div class="formhead">
+                    <button onclick="addpioff()" class="close"><i class="fa fa-close"></i></button>
+                    <h3>Add a Previous Investment</h3>
+                    <p class="icsize">Please provide the name and email address of a previous investment.</p>
+                </div>
+                <div class="formtext">
+                    <form method="post">
+                        <div class="formtext">
+                            <label>Name</label><br>
+                            <input type="text" size="50" name="piname" required><br><br>
+                            <label>Year</label><br>
+                            <input type="number" min="2000" max="2099" step="1" size="50" name="piyear" required /><br><br>
+    						<label>Stage</label><br>
+	    					<select name="pistage" name="pistage" required>
+		                    <option>Select Stage</option>
+		                    <option>Concept Only</option>
+		                    <option>Product in Development</option>
+		                    <option>Prototype ready</option>
+		                    <option>Full Product Ready</option>
+		                    <option>$500K in TTM Revenue</option>
+		                    <option>$1M in TTM Revenue</option>
+		                    <option>$5M in TTM Revenue</option>
+		                    <option>$10M in TTM Revenue</option>
+		                    <option>$20M in TTM Revenue</option>
+		                    <option>$50M in TTM Revenue</option>
+		                    <option>$50M+ in TTM Revenue</option>
+		                    </select>
+                        </div>
+                        <div class="formtext submits">
+                            <input type="submit" value="Cancel" name="cancel" class="cancel">
+                            <input type="submit" value="Save" name="pisave" class="save">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- </div> -->
+        <?php require "../../include/footer/footer.php" ?> 
+    </div>
+
+</body>
 <script>
 	if ( window.history.replaceState ) {
 		window.history.replaceState( null, null, window.location.href );
