@@ -2,7 +2,6 @@
 	require '../../server.php';
 	// $_SESSION['username'] = 'xyz123';//predefine -- nikalo mujhe
 	$u = $_SESSION['username'];
-
 	$qu = "SELECT * FROM user_st WHERE Username='$u'";
 	$results = mysqli_query($db, $qu);
 	$row = mysqli_fetch_assoc($results);
@@ -12,6 +11,7 @@
 	$Sfname = $row['Sfname'];
 	$Email = $row['Email'];
 	$Type = $row['Type'];
+	$Address = $row['Address'];
 	$Country = $row['Country'];
 	$State = $row['State'];
 	$City = $row['City'];
@@ -38,9 +38,11 @@
     $Backimg = $row['BackImage'];
 
 
+
 	if(isset($_POST["cbsave"])){
 		$cbname = mysqli_real_escape_string($db, $_POST['cbname']);
 		$cbstage = mysqli_real_escape_string($db, $_POST['cbstage']);
+		$cbaddress = mysqli_real_escape_string($db, $_POST['cbaddress']);
 		$cbcity = mysqli_real_escape_string($db, $_POST['cbcity']);
 		$cbstate = mysqli_real_escape_string($db, $_POST['cbstate']);
 		$cbcountry = mysqli_real_escape_string($db, $_POST['cbcountry']);
@@ -61,7 +63,11 @@
 			$q = "UPDATE st_overview set Stage='$cbstage' where Username='$u';";
 			mysqli_query($db, $q);
 		}
-
+		if($cbaddress != "")
+		{
+			$q = "UPDATE user_st set Address='$cbaddress' where Username='$u';";
+			mysqli_query($db, $q);
+		}
 		if($cbcity != "")
 		{
 			$q = "UPDATE user_st set City='$cbcity' where Username='$u';";
@@ -106,6 +112,7 @@
 			$q = "UPDATE st_overview set Logo='$imgContent' where Username='$u';";
 			mysqli_query($db, $q);
 		}
+
 
 		header('location: Overview.php');
 	}
@@ -187,12 +194,15 @@
 	}
 
 	if(isset($_POST['tmsave'])){
-		$tmname = mysqli_real_escape_string($db, $_POST['tmname']);
-		$tmphone = mysqli_real_escape_string($db, $_POST['tmphone']);
+
+		$tmfname = mysqli_real_escape_string($db, $_POST['tmfname']);
+		$tmlname = mysqli_real_escape_string($db, $_POST['tmlname']);
+		$tmdsgn = mysqli_real_escape_string($db, $_POST['tmdsgn']);
 		$tmexp = mysqli_real_escape_string($db, $_POST['tmexp']);
 		$tmemail = mysqli_real_escape_string($db, $_POST['tmemail']);
+		$tmlinkedin = mysqli_real_escape_string($db, $_POST['tmlinkedin']);
 
-		$q = "INSERT INTO st_teams (Username, TName, TPhone, TExp, TEmail) VALUES ('$u','$tmname', '$tmphone', '$tmexp', '$tmemail')";
+		$q = "INSERT INTO st_teams (Username, TFName, TLName, TDsgn, TExp, TEmail, TLinkedIn) VALUES ('$u','$tmfname', '$tmlname', '$tmdsgn', '$tmexp', '$tmemail', '$tmlinkedin')";
 		mysqli_query($db, $q);
 		header('location: Overview.php');
 
@@ -228,11 +238,11 @@
 
 		header('location: Overview.php');
     }
-    
+
     if(isset($_POST['BIsave'])){
-        $check = getimagesize($_FILES["backim"]["tmp_name"]);
+        $check = getimagesize($_FILES["backimg"]["tmp_name"]);
 	    if($check !== false){
-			$image = $_FILES['backim']['tmp_name'];
+			$image = $_FILES['backimg']['tmp_name'];
 	        $imgContent = addslashes(file_get_contents($image));
 
 			$q = "UPDATE st_overview set BackImage ='$imgContent' where Username='$u';";
@@ -264,6 +274,7 @@
             	<div class="backimg">
                     <button class="pencil" onclick="backimgon()"><i class="fa fa-pencil"></i></button>
                     <div style="height:100px;"><?= '<img src="data:image/jpeg;base64,'.base64_encode($Backimg).'"/>';?></div>
+
                         <!-- <font style="font-size:30px;"><?= $Stname?></font> -->
                 </div>
                 <div class="sideprof">
@@ -284,6 +295,10 @@
                             <hr>
                         </li>
                         <li class="item">Industry <span class="value"><?= $Type?></span></li>
+                        <li style="list-style: none; display: inline">
+                            <hr>
+                        </li>
+												<li class="item">Address <span class="value"><?= $Address?></span></li>
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
@@ -374,9 +389,13 @@
                                     <option>Growth Stage</option>
                                 </select>
                             </div>
+														<div class="i5">
+																<label for="cbaddress">Address</label><br>
+																<input name="cbaddress" type="text" placeholder="<?= $Address?>">
+														</div>
                             <div class="i5">
                                 <label for="cbcity">City</label><br>
-                                <input name="cbcity" type="text"placeholder="<?= $City?>">
+                                <input name="cbcity" type="text" placeholder="<?= $City?>">
                             </div>
                             <div class="i5">
                                 <label for="cbstate">State</label><br>
@@ -384,11 +403,262 @@
                             </div>
                             <div class="i5">
                                 <label for="cbcountry">Country</label><br>
-                                <input name="cbcountry" type="text" placeholder="<?= $Country?>">
+																<select name="cbcountry" required placeholder="<?= $Country?>">
+											            <option value=""><?= $Country?></option>
+											            <option value="AF">Afghanisthan</option>
+											            <option value="AX">Aland Islands</option>
+											            <option value="AL">Albania</option>
+											            <option value="DZ">Algeria</option>
+											            <option value="AS">American Samoa</option>
+											            <option value="AD">Andorra</option>
+											            <option value="AO">Angola</option>
+											            <option value="AI">Anguilla</option>
+											            <option value="AQ">Antarctica</option>
+											            <option value="AG">Antigua and Barbuda</option>
+											            <option value="AR">Argentina</option>
+											            <option value="AM">Armenia</option>
+											            <option value="AW">Aruba</option>
+											            <option value="AU">Australia</option>
+											            <option value="AT">Austria</option>
+											            <option value="AZ">Azerbaijan</option>
+											            <option value="BS">Bahamas</option>
+											            <option value="BH">Bahrain</option>
+											            <option value="BD">Bangladesh</option>
+											            <option value="BB">Barbados</option>
+											            <option value="BY">Belarus</option>
+											            <option value="BE">Belgium</option>
+											            <option value="BZ">Belize</option>
+											            <option value="BJ">Benin</option>
+											            <option value="BM">Bermuda</option>
+											            <option value="BT">Bhutan</option>
+											            <option value="BO">Bolivia, Plurinational State of</option>
+											            <option value="BQ">Bonaire, Sint Eustatius and Saba</option>
+											            <option value="BA">Bosnia and Herzegovina</option>
+											            <option value="BW">Botswana</option>
+											            <option value="BV">Bouvet Island</option>
+											            <option value="BR">Brazil</option>
+											            <option value="IO">British Indian Ocean Territory</option>
+											            <option value="BN">Brunei Darussalam</option>
+											            <option value="BG">Bulgaria</option>
+											            <option value="BF">Burkina Faso</option>
+											            <option value="BI">Burundi</option>
+											            <option value="KH">Cambodia</option>
+											            <option value="CM">Cameroon</option>
+											            <option value="CA">Canada</option>
+											            <option value="CV">Cape Verde</option>
+											            <option value="KY">Cayman Islands</option>
+											            <option value="CF">Central African Republic</option>
+											            <option value="TD">Chad</option>
+											            <option value="CL">Chile</option>
+											            <option value="CN">China</option>
+											            <option value="CX">Christmas Island</option>
+											            <option value="CC">Cocos (Keeling) Islands</option>
+											            <option value="CO">Colombia</option>
+											            <option value="KM">Comoros</option>
+											            <option value="CG">Congo</option>
+											            <option value="CD">Congo, the Democratic Republic of the</option>
+											            <option value="CK">Cook Islands</option>
+											            <option value="CR">Costa Rica</option>
+											            <option value="CI">C�te d'Ivoire</option>
+											            <option value="HR">Croatia</option>
+											            <option value="CU">Cuba</option>
+											            <option value="CW">Cura�ao</option>
+											            <option value="CY">Cyprus</option>
+											            <option value="CZ">Czech Republic</option>
+											            <option value="DK">Denmark</option>
+											            <option value="DJ">Djibouti</option>
+											            <option value="DM">Dominica</option>
+											            <option value="DO">Dominican Republic</option>
+											            <option value="EC">Ecuador</option>
+											            <option value="EG">Egypt</option>
+											            <option value="SV">El Salvador</option>
+											            <option value="GQ">Equatorial Guinea</option>
+											            <option value="ER">Eritrea</option>
+											            <option value="EE">Estonia</option>
+											            <option value="ET">Ethiopia</option>
+											            <option value="FK">Falkland Islands (Malvinas)</option>
+											            <option value="FO">Faroe Islands</option>
+											            <option value="FJ">Fiji</option>
+											            <option value="FI">Finland</option>
+											            <option value="FR">France</option>
+											            <option value="GF">French Guiana</option>
+											            <option value="PF">French Polynesia</option>
+											            <option value="TF">French Southern Territories</option>
+											            <option value="GA">Gabon</option>
+											            <option value="GM">Gambia</option>
+											            <option value="GE">Georgia</option>
+											            <option value="DE">Germany</option>
+											            <option value="GH">Ghana</option>
+											            <option value="GI">Gibraltar</option>
+											            <option value="GR">Greece</option>
+											            <option value="GL">Greenland</option>
+											            <option value="GD">Grenada</option>
+											            <option value="GP">Guadeloupe</option>
+											            <option value="GU">Guam</option>
+											            <option value="GT">Guatemala</option>
+											            <option value="GG">Guernsey</option>
+											            <option value="GN">Guinea</option>
+											            <option value="GW">Guinea-Bissau</option>
+											            <option value="GY">Guyana</option>
+											            <option value="HT">Haiti</option>
+											            <option value="HM">Heard Island and McDonald Islands</option>
+											            <option value="VA">Holy See (Vatican City State)</option>
+											            <option value="HN">Honduras</option>
+											            <option value="HK">Hong Kong</option>
+											            <option value="HU">Hungary</option>
+											            <option value="IS">Iceland</option>
+											            <option value="IN">India</option>
+											            <option value="ID">Indonesia</option>
+											            <option value="IR">Iran, Islamic Republic of</option>
+											            <option value="IQ">Iraq</option>
+											            <option value="IE">Ireland</option>
+											            <option value="IM">Isle of Man</option>
+											            <option value="IL">Israel</option>
+											            <option value="IT">Italy</option>
+											            <option value="JM">Jamaica</option>
+											            <option value="JP">Japan</option>
+											            <option value="JE">Jersey</option>
+											            <option value="JO">Jordan</option>
+											            <option value="KZ">Kazakhstan</option>
+											            <option value="KE">Kenya</option>
+											            <option value="KI">Kiribati</option>
+											            <option value="KP">Korea, Democratic People's Republic of</option>
+											            <option value="KR">Korea, Republic of</option>
+											            <option value="KW">Kuwait</option>
+											            <option value="KG">Kyrgyzstan</option>
+											            <option value="LA">Lao People's Democratic Republic</option>
+											            <option value="LV">Latvia</option>
+											            <option value="LB">Lebanon</option>
+											            <option value="LS">Lesotho</option>
+											            <option value="LR">Liberia</option>
+											            <option value="LY">Libya</option>
+											            <option value="LI">Liechtenstein</option>
+											            <option value="LT">Lithuania</option>
+											            <option value="LU">Luxembourg</option>
+											            <option value="MO">Macao</option>
+											            <option value="MK">Macedonia, the former Yugoslav Republic of</option>
+											            <option value="MG">Madagascar</option>
+											            <option value="MW">Malawi</option>
+											            <option value="MY">Malaysia</option>
+											            <option value="MV">Maldives</option>
+											            <option value="ML">Mali</option>
+											            <option value="MT">Malta</option>
+											            <option value="MH">Marshall Islands</option>
+											            <option value="MQ">Martinique</option>
+											            <option value="MR">Mauritania</option>
+											            <option value="MU">Mauritius</option>
+											            <option value="YT">Mayotte</option>
+											            <option value="MX">Mexico</option>
+											            <option value="FM">Micronesia, Federated States of</option>
+											            <option value="MD">Moldova, Republic of</option>
+											            <option value="MC">Monaco</option>
+											            <option value="MN">Mongolia</option>
+											            <option value="ME">Montenegro</option>
+											            <option value="MS">Montserrat</option>
+											            <option value="MA">Morocco</option>
+											            <option value="MZ">Mozambique</option>
+											            <option value="MM">Myanmar</option>
+											            <option value="NA">Namibia</option>
+											            <option value="NR">Nauru</option>
+											            <option value="NP">Nepal</option>
+											            <option value="NL">Netherlands</option>
+											            <option value="NC">New Caledonia</option>
+											            <option value="NZ">New Zealand</option>
+											            <option value="NI">Nicaragua</option>
+											            <option value="NE">Niger</option>
+											            <option value="NG">Nigeria</option>
+											            <option value="NU">Niue</option>
+											            <option value="NF">Norfolk Island</option>
+											            <option value="MP">Northern Mariana Islands</option>
+											            <option value="NO">Norway</option>
+											            <option value="OM">Oman</option>
+											            <option value="PK">Pakistan</option>
+											            <option value="PW">Palau</option>
+											            <option value="PS">Palestinian Territory, Occupied</option>
+											            <option value="PA">Panama</option>
+											            <option value="PG">Papua New Guinea</option>
+											            <option value="PY">Paraguay</option>
+											            <option value="PE">Peru</option>
+											            <option value="PH">Philippines</option>
+											            <option value="PN">Pitcairn</option>
+											            <option value="PL">Poland</option>
+											            <option value="PT">Portugal</option>
+											            <option value="PR">Puerto Rico</option>
+											            <option value="QA">Qatar</option>
+											            <option value="RE">R�union</option>
+											            <option value="RO">Romania</option>
+											            <option value="RU">Russian Federation</option>
+											            <option value="RW">Rwanda</option>
+											            <option value="BL">Saint Barth�lemy</option>
+											            <option value="SH">Saint Helena, Ascension and Tristan da Cunha</option>
+											            <option value="KN">Saint Kitts and Nevis</option>
+											            <option value="LC">Saint Lucia</option>
+											            <option value="MF">Saint Martin (French part)</option>
+											            <option value="PM">Saint Pierre and Miquelon</option>
+											            <option value="VC">Saint Vincent and the Grenadines</option>
+											            <option value="WS">Samoa</option>
+											            <option value="SM">San Marino</option>
+											            <option value="ST">Sao Tome and Principe</option>
+											            <option value="SA">Saudi Arabia</option>
+											            <option value="SN">Senegal</option>
+											            <option value="RS">Serbia</option>
+											            <option value="SC">Seychelles</option>
+											            <option value="SL">Sierra Leone</option>
+											            <option value="SG">Singapore</option>
+											            <option value="SX">Sint Maarten (Dutch part)</option>
+											            <option value="SK">Slovakia</option>
+											            <option value="SI">Slovenia</option>
+											            <option value="SB">Solomon Islands</option>
+											            <option value="SO">Somalia</option>
+											            <option value="ZA">South Africa</option>
+											            <option value="GS">South Georgia and the South Sandwich Islands</option>
+											            <option value="SS">South Sudan</option>
+											            <option value="ES">Spain</option>
+											            <option value="LK">Sri Lanka</option>
+											            <option value="SD">Sudan</option>
+											            <option value="SR">Suriname</option>
+											            <option value="SJ">Svalbard and Jan Mayen</option>
+											            <option value="SZ">Swaziland</option>
+											            <option value="SE">Sweden</option>
+											            <option value="CH">Switzerland</option>
+											            <option value="SY">Syrian Arab Republic</option>
+											            <option value="TW">Taiwan, Province of China</option>
+											            <option value="TJ">Tajikistan</option>
+											            <option value="TZ">Tanzania, United Republic of</option>
+											            <option value="TH">Thailand</option>
+											            <option value="TL">Timor-Leste</option>
+											            <option value="TG">Togo</option>
+											            <option value="TK">Tokelau</option>
+											            <option value="TO">Tonga</option>
+											            <option value="TT">Trinidad and Tobago</option>
+											            <option value="TN">Tunisia</option>
+											            <option value="TR">Turkey</option>
+											            <option value="TM">Turkmenistan</option>
+											            <option value="TC">Turks and Caicos Islands</option>
+											            <option value="TV">Tuvalu</option>
+											            <option value="UG">Uganda</option>
+											            <option value="UA">Ukraine</option>
+											            <option value="AE">United Arab Emirates</option>
+											            <option value="GB">United Kingdom</option>
+											            <option value="US">United States</option>
+											            <option value="UM">United States Minor Outlying Islands</option>
+											            <option value="UY">Uruguay</option>
+											            <option value="UZ">Uzbekistan</option>
+											            <option value="VU">Vanuatu</option>
+											            <option value="VE">Venezuela, Bolivarian Republic of</option>
+											            <option value="VN">Viet Nam</option>
+											            <option value="VG">Virgin Islands, British</option>
+											            <option value="VI">Virgin Islands, U.S.</option>
+											            <option value="WF">Wallis and Futuna</option>
+											            <option value="EH">Western Sahara</option>
+											            <option value="YE">Yemen</option>
+											            <option value="ZM">Zambia</option>
+											            <option value="ZW">Zimbabwe</option>
+											          </select>
                             </div>
                             <div class="i7">
                                 <label for="cbdate">Founding Date</label><br>
-                                <input name="cbdate" type="text" placeholder="<?= $DOF?>" onfocus="(this.type='date')">
+                                <input name="cbdate" type="date" placeholder="<?= $DOF?>">
                             </div>
                             <div class="i8">
                                 <label for="cbempnum">Number of Employees</label><br>
@@ -399,10 +669,10 @@
                                 <select name="cbinc" placeholder="<?= $IncType?>">
                                     <option><?= $IncType?></option>
                                     <option>Not Incorporated</option>
-                                    <option>C-corp</option>
-                                    <option>S-corp</option>
-                                    <option>B-corp</option>
-                                    <option>LLC</option>
+                                    <option>Proprietorship</option>
+                                    <option>Partnership</option>
+                                    <option>LLP</option>
+                                    <option>Pvt Ltd</option>
                                     <option>Other</option>
                                 </select>
                             </div>
@@ -434,7 +704,7 @@
                     </div>
 					<div class="databox">
                         <button onclick="olpon()" class="pencil"><i class="fa fa-pencil"></i></button>
-                        <h3>One Line Pitch</h3>
+                        <h3>Elevator Pitch</h3>
 						<?php echo $OLP;
 						?>
                     </div>
@@ -472,16 +742,20 @@
 								echo '<table class="tables">';
 								echo "<tr>";
 								echo "<th>Name</th>";
-								echo "<th>Phone</th>";
-								echo "<th>Experience</th>";
+								echo "<th>Designation</th>";
+								echo "<th>Exp(Yrs)</th>";
 								echo "<th>Email</th>";
+								echo "<th>LinkedIn</th>";
+
 								echo "</th>";
 							    while($row = mysqli_fetch_assoc($results)) {
 							        echo '<tr>';
-									echo '<td>'.$row["TName"].'</td>';
-									echo '<td>'.$row['TPhone'].'</td>';
+									echo '<td>'.$row["TFName"].'&nbsp;'.$row["TLName"].'</td>';
+									echo '<td>'.$row["TDsgn"].'</td>';
 									echo '<td>'.$row['TExp'].'</td>';
 									echo '<td>'.$row['TEmail'].'</td>';
+									echo '<td>'.$row['TLinkedIn'].'</td>';
+
 									echo "</tr>";
 							    }
 								echo '</table>';
@@ -548,7 +822,7 @@
                         </div>
                         <div class="formtext">
                             <form method="post" action='Overview.php'>
-                                <div class="formtext"><input type="file" name="backim"><br></div>
+                                <div class="formtext"><input type="file" name="backimg"><br></div>
                                 <div class="formtext submits">
                                     <input type="submit" value="Cancel" name="cancel" class="cancel">
                                     <input type="submit" value="Save" name="BIsave" class="save">
@@ -562,13 +836,13 @@
                         <div class="formhead">
                             <button onclick="summoff()" class="close"><i class="fa fa-close"></i></button>
                             <h3>Company Summary</h3>
-                            <p>Add an overview to help investors evaluate your startup. You might like to include your business model, structure and products/services.</p>
+                            <p>Add an overview to help investors evaluate your startup. You might like to include your business model, structure and products/services. (upto 2000 chars.)</p>
                         </div>
                         <div class="formtext">
                             <form method="post">
-                                <div class="formtext"><textarea rows="10" cols="150" name="summaryform"><?= $Summary?></textarea></div>
+                                <div class="formtext"><textarea rows="10" cols="150" name="summaryform" maxlength="2000" required><?= $Summary?></textarea></div>
                                 <div class="formtext submits">
-                                    <input type="submit" value="Cancel" name="cancel" class="cancel">
+                                    <input type="submit" onclick="summoff()"value="Cancel" name="cancel" class="cancel">
                                     <input type="submit" value="Save" name="sumsave" class="save">
                                 </div>
                             </form>
@@ -579,14 +853,14 @@
                     <div class="form">
                         <div class="formhead">
                             <button onclick="olpoff()" class="close"><i class="fa fa-close"></i></button>
-                            <h3>One Line Pitch</h3>
+                            <h3>Elevator Pitch</h3>
                             <p>Add A Short Pitch For Your Company In One Line</p>
                         </div>
                         <div class="formtext">
                             <form method="post">
-                                <div class="formtext"><textarea rows="10" cols="150" name="olpform"><?= $OLP?></textarea></div>
+                                <div class="formtext"><textarea rows="10" cols="150" name="olpform" required><?= $OLP?></textarea></div>
                                 <div class="formtext submits">
-                                    <input type="submit" value="Cancel" name="cancel" class="cancel">
+                                    <input type="submit" onclick="olpoff()" value="Cancel" name="cancel" class="cancel">
                                     <input type="submit" value="Save" name="olpsave" class="save">
                                 </div>
                             </form>
@@ -607,7 +881,7 @@
                                 <div class="socialic"><i class="fa fa-facebook"> <input type="text" name="sffacebook" placeholder="<?= $FBLink?>" size="30"></i></div>
                                 <br>
                                 <div class="formtext submits">
-                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
+                                        <input type="submit" onclick="socialoff()" value="Cancel" name="cancel" class="cancel">
                                         <input type="submit" value="Save" name="sfsave" class="save">
                                 </div>
                             </form>
@@ -631,7 +905,7 @@
                                 <input type="text" name="cfemail" placeholder="<?= $Email?>" size="40">
                                 <br><br>
                             <div class="formtext submits">
-                                    <input type="submit" value="Cancel" name="cancel" class="cancel">
+                                    <input type="submit" onclick="contactoff()" value="Cancel" name="cancel" class="cancel">
                                     <input type="submit" value="Save" name="cfsave" class="save">
                             </div>
                         </div>
@@ -658,7 +932,7 @@
                                     <textarea name="pos" rows="10" cols="3"></textarea>
                             </form>
                             <div class="formtext submits">
-                                    <input type="submit" value="Cancel" name="cancel" class="cancel">
+                                    <input type="submit" onclick="teamoff()" value="Cancel" name="cancel" class="cancel">
                                     <input type="submit" value="Save" name="save" class="save">
                             </div>
                         </div>
@@ -668,26 +942,30 @@
                         <div class="form">
                             <div class="formhead">
                                 <button onclick="addteamoff()" class="close"><i class="fa fa-close"></i></button>
-                                <h3>Add a Team Member</h3>
+                                <h3>Add a Team Member (max. 6)</h3>
                                 <p>Your team is one of the most influential factors driving investor interest. If your team’s information is incomplete, you could be limiting your investment potential.</p>
                                 <p class="icsize">Remember to split equity before applying for funding. Divide ownership fairly and easily with our free Co-founder Equity Split tool.</p>
                             </div>
                             <div class="formtext">
                                 <form method="post">
                                     <div class="formtext">
-                                        <label>Name</label><br>
-                                        <input type="text" name="tmname" size="50" required><br><br>
-                                        <label>Phone Number</label><br>
-                                        <input type="number" name="tmphone" size="50" required><br><br>
-                                        <label>Experience and Expertise</label><br>
-                                        <textarea rows="10" name="tmexp" cols="150" required></textarea><br><br>
+                                        <label>First Name</label><br>
+                                        <input type="text" name="tmfname" size="50" required><br><br>
+																				<label>Last Name</label><br>
+                                        <input type="text" name="tmlname" size="50" required><br><br>
+                                        <label>Designation</label><br>
+                                        <input type="text" name="tmdsgn" size="50" required><br><br>
+                                        <label>Experience and Expertise(in yrs)</label><br>
+																				<input type="number" name="tmexp" size="50" required><br><br>
                                         <label>Email</label><br>
                                         <input type="email" name="tmemail" size="50" required><br><br>
+																				<label>LinkedIn</label><br>
+																				<input type="text" name="tmlinkedin" size="50" required><br><br>
                                         <input type="checkbox">Can manage my Company Profile <br><br>
                                         <p class="icsize">Allow this team member to edit the Company Profile. Note: only the Account Owner can apply to investor groups.</p>
                                     </div>
                                     <div class="formtext submits">
-                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
+                                        <input type="submit" onclick="addteamoff()"value="Cancel" name="cancel" class="cancel">
                                         <input type="submit" value="Save" name="tmsave" class="save">
                                     </div>
                                 </form>
@@ -698,7 +976,7 @@
                     <div class="form">
                         <div class="formhead">
                             <button onclick="advoff()" class="close"><i class="fa fa-close"></i></button>
-                            <h3>Add a Company Advisor</h3>
+                            <h3>Add a Company Advisor (max. 3)</h3>
                             <p class="icsize">Please provide the name and email address of your company advisor. Once they have confirmed their role, they'll gain access to your private profile. View our privacy policy</p>
                         </div>
                         <div class="formtext">
@@ -710,7 +988,7 @@
                                     <input type="text" name="caemail" size="50" required><br><br>
                                 </div>
                                 <div class="formtext submits">
-                                    <input type="submit" value="Cancel" name="cancel" class="cancel">
+                                    <input type="submit" onclick="advoff()" value="Cancel" name="cancel" class="cancel">
                                     <input type="submit" value="Save" name="casave" class="save">
                                 </div>
                             </form>
@@ -721,7 +999,7 @@
                         <div class="form">
                             <div class="formhead">
                                 <button onclick="invoff()" class="close"><i class="fa fa-close"></i></button>
-                                <h3>Add a Previous Investor</h3>
+                                <h3>Add a Previous Investor(max. 3)</h3>
                                 <p class="icsize">Please provide the name and email address of a previous investor. Once they have confirmed their role, they'll gain access to your private profile. View our privacy policy</p>
                             </div>
                             <div class="formtext">
@@ -733,7 +1011,7 @@
                                         <input type="text" size="50" name="piemail" required><br><br>
                                     </div>
                                     <div class="formtext submits">
-                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
+                                        <input type="submit" onclick="invoff()" value="Cancel" name="cancel" class="cancel">
                                         <input type="submit" value="Save" name="pisave" class="save">
                                     </div>
                                 </form>

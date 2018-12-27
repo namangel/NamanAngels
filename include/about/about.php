@@ -247,6 +247,9 @@
 
     </style>
 <body>
+      <?php
+      include "../header/sign.php"
+      ?>
     <div class="c1" id="fstp">
         <font class="top"><center>For startup</center></font>
           <p>
@@ -349,5 +352,8 @@
         </div>
     </div>
 </div>
+        <?php
+                include "../footer/footer.php"
+        ?>
 </body>
 </html>

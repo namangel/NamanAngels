@@ -11,17 +11,18 @@ body {
 .container{
     display: grid;
     grid-template-rows: 3fr 4fr 1fr;
-    grid-gap: 30px;
+    grid-gap: 15px;
     background-color: #F4F5FA;
-} 
+}
+
 
 .main{
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column: 1;
-    margin-top: 25px;
-    margin-left: 150px;
-    margin-right: 150px;
+    margin-top: 15px;
+    margin-left: 100px;
+    margin-right: 100px;
     background-color: white;
 }
 
@@ -29,7 +30,7 @@ body {
     display: grid;
     grid-template-rows: 1fr 1fr 2fr;
     grid-column: 2;
-    margin-left: 80px;
+    margin-left: 40px;
     margin-right: 80px;
     margin-top: 10px;
     height: 380px;
@@ -55,14 +56,33 @@ body {
     align-content: center;
     background-color: white;
     margin-left: 100px;
-    margin-right: 80px;
+    margin-right: 50px;
     margin-top: 10px;
     line-height: 2;
-} 
-.sideprof:hover{
-    display:inline-block;
+}
+.sideprof .pencil{
+  display: none;
+  position: absolute;
 }
 
+.sideprof:hover .pencil{
+    display:inline;
+}
+/* .info:hover .pencil{
+  display: inline;
+} */
+.contact .pencil{
+  display: none;
+}
+.contact:hover .pencil{
+  display: inline;
+}
+.social .pencil{
+  display: none;
+}
+.social:hover .pencil{
+  display: inline;
+}
 .info{
     grid-column: 2;
     grid-row: 1;
@@ -91,17 +111,14 @@ body {
     background-color: white;
     line-height: 2;
 }
-
-
 .sideprof img{
     max-height: 240px;
     max-width: 240px;
 }
 .sideprof .upload,.cam{
     text-align: center;
-    padding: 4px;
+    padding:4px;
 }
-
 .upload{
     font-size: 20px;
     line-height: 1.5;

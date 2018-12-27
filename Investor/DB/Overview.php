@@ -18,15 +18,15 @@
     $qu = "SELECT * FROM inv_overview WHERE Username='$u'";
     $results = mysqli_query($db, $qu);
     $row = mysqli_fetch_assoc($results);
-    $img = $row['ProfileImage'];
-    $role = $row['Role'];
-    $partner = $row['Partner'];
-    $invrange = $row['InvRange'];
-    $indOfInt=$row['IndustryOfInterest'];
+    $img = $row['ProfileImage']==""? '--':$row['ProfileImage'];
+    $role = $row['Role']==""? '--':$row['Role'];
+    $partner = $row['Partner']==""? '--':$row['Partner'];
+    $invrange = $row['InvRange']==""? '--':$row['InvRange'];
+    $indOfInt=$row['IndustryOfInterest']==""? '--':$row['IndustryOfInterest'];
     $summary=$row['Summary']==""? 'Describe yourself and the value of your investment.':$row['Summary'];
-	$linkedin=$row['LinkedIn'];
-	$facebook=$row['FBLink'];
-	$twitter=$row['TwitterLink'];
+		$linkedin=$row['LinkedIn']==""? '--':$row['LinkedIn'];
+		$facebook=$row['FBLink']==""? '--':$row['FBLink'];
+		$twitter=$row['TwitterLink']==""? '--':$row['TwitterLink'];
 
 	if(isset($_POST["cbsave"])){
         $cbfname = mysqli_real_escape_string($db, $_POST['cbfname']);
@@ -172,9 +172,11 @@
 	if(isset($_POST['pisave'])){
 		$piname = mysqli_real_escape_string($db, $_POST['piname']);
 		$piyear = mysqli_real_escape_string($db, $_POST['piyear']);
+		$piamount = mysqli_real_escape_string($db, $_POST['piamount']);
 		$pistage = mysqli_real_escape_string($db, $_POST['pistage']);
-
-		$q = "INSERT INTO inv_previnvestment (Username, PIName, PIYear, PIStage) VALUES ('$u', '$piname', '$piyear', '$pistage');";
+		$pistake = mysqli_real_escape_string($db, $_POST['pistake']);
+		$piweb = mysqli_real_escape_string($db, $_POST['piweb']);
+		$q = "INSERT INTO inv_previnvestment (Username, PIName, PIYear,PIAmount, PIStage, PIStake, PIweb) VALUES ('$u', '$piname', '$piyear', '$piamount','$pistage','$pistake','$piweb');";
 		mysqli_query($db, $q);
 
 		header('location: Overview.php');
@@ -194,7 +196,7 @@
     <div class="container">
 
     <div class="main">
-        
+
         <div class="sideprof">
 			<div class="pen">
 				<button class="pencil" onclick="on()"><i class="fa fa-pencil"></i></button>
@@ -204,7 +206,7 @@
                 <div><?= '<img src="data:image/jpeg;base64,'.base64_encode($img).'"/>';?></div><br>
                 <b><?= $fname ?>&nbsp;<?= $lname ?></b><br>
                 <?= $cname ?><br>
-                <?= $role ?><br>
+                Role: <?= $role ?><br>
               <b> Location: </b><?= $city ?>&nbsp;,<?= $country ?><br><br>
             </div>
         </div>
@@ -265,14 +267,14 @@
                                     <option>More than 1,00,00,000</option>
                                 </select>
                             </div>
-                            
+
                             <div class="butn">
                                 <button class="cancel" onclick="off()">Cancel</button> <button class="save" name="cbsave">Save</button>
                             </div>
                         </form>
                     </div>
                 </div>
-        
+
         <div class="mainright">
             <div class="info">
                 <ul class="proflist">
@@ -291,16 +293,16 @@
                 <button class="pencil" onclick="socialon()"><i class="fa fa-pencil"></i></button>
                 <!-- <h3>Social presence</h3> -->
         		<ul class="proflist">
-    			<li class="item"><i class="fa fa-linkedin" style="color: #36a6fc"></i><span class="value"><?=$linkedin?></span></li>
+    			<li class="item"><i class="fa fa-linkedin" style="color: #36a6fc"></i><span class="value">&nbsp;&nbsp;<?=$linkedin?></span></li>
                 <li style="list-style: none; display: inline">
                 </li>
-    			<li class="item"><i class="fa fa-twitter" style="color: #36a6fc"></i><span class="value"><?=$twitter?></span></li>
+    			<li class="item"><i class="fa fa-twitter" style="color: #36a6fc"></i><span class="value">&nbsp;&nbsp;<?=$twitter?></span></li>
                 <li style="list-style: none; display: inline">
                 </li>
-                <li class="item"><i class="fa fa-facebook" style="color: #36a6fc"></i><span class="value"><?=$facebook?></span></li>
+                <li class="item"><i class="fa fa-facebook" style="color: #36a6fc"></i><span class="value">&nbsp;&nbsp;<?=$facebook?></span></li>
                 <li style="list-style: none; display: inline">
                 </li>
-                <li class="item"><i class="fa fa-globe" style="color: #36a6fc"></i><span class="value"><?= $website ?></span></li>
+                <li class="item"><i class="fa fa-globe" style="color: #36a6fc"></i><span class="value">&nbsp;&nbsp;<?= $website ?></span></li>
                 <li style="list-style: none; display: inline">
                 </li>
                 </ul>
@@ -334,10 +336,10 @@
                 <button class="pencil" onclick="contacton()"><i class="fa fa-pencil"></i></button>
                 <!-- <h3>Contact</h3> -->
         		<ul class="proflist">
-				<li class="item"><i class="fa fa-phone" style="color: #36a6fc"></i><span class="value"><?=$phone?></span></li>
+				<li class="item"><i class="fa fa-phone" style="color: #36a6fc"></i><span class="value">&nbsp;&nbsp;<?=$phone?></span></li>
                 <li style="list-style: none; display: inline">
                 </li>
-                <li class="item"><i class="fa fa-envelope-o" style="color: #36a6fc"></i><span class="value"><?= $email?></span></li>
+                <li class="item"><i class="fa fa-envelope-o" style="color: #36a6fc"></i><span class="value">&nbsp;&nbsp;<?= $email?></span></li>
                 <li style="list-style: none; display: inline">
                 </li>
                 </ul>
@@ -366,26 +368,8 @@
                 </form>
             </div>
         </div>
-        
-        </div>
-        
-        <!-- <div class="overview">
-         -->
-        <!-- <div class="sidenav">
-                <div><i class="fa fa-home fa-2x" style="color:#0e3c58"></i>
-                <a href="/NamanAngels/Investor/inv_landing.php"><button class="button1">HOME</button></a>
-                </div>
-                <div><i class="fa fa-user fa-2x" style="color:#0e3c58"></i>
-                    <a href="/NamanAngels/Investor/DB/Overview.php"><button class="button1">  PROFILE</button></a>
-                </div>
 
-                <div><i class="fa fa-users fa-2x" style="color:#0e3c58"></i>
-                        <a href="/NamanAngels/Investor/DB/membership.php"><button class="button1">MEMBERSHIP</button></a>
-                </div>
-                <div><i class="fa fa-search fa-2x" style="color:#0e3c58"></i>
-                        <a href="/NamanAngels/Investor/DB/browse.php"><button class="button1"> BROWSE</button></a>
-                </div>
-        </div> -->
+        </div>
 
         <div class="summary">
         <!-- <div class="nav">
@@ -397,7 +381,7 @@
                 <h3>Investor Description</h3>
     			<?php echo $summary;
 				if($summary == "Describe yourself and the value of your investment."){
-				echo '<img src="../img/Capture.png">';
+				echo '<br><img src="../img/Capture.png" height="150px" width="950px">';
 				}
 				?>
             </div>
@@ -437,15 +421,21 @@
 	    			if (mysqli_num_rows($results) > 0) {
 					echo '<table class="tables">';
 					echo "<tr>";
-    				echo "<th>Name</th>";
-					echo "<th>Year</th>";
+    			echo "<th>StartUp Name</th>";
+					echo "<th>Year of Investment</th>";
+					echo "<th>Amount</th>";
 					echo "<th>Stage</th>";
+					echo "<th>Stake holding (%)</th>";
+					echo "<th>Website</th>";
 					echo "</th>";
 				    while($row = mysqli_fetch_assoc($results)) {
 				        echo '<tr>';
 						echo '<td>'.$row["PIName"].'</td>';
 						echo '<td>'.$row['PIYear'].'</td>';
-						echo '<td>'.$row['PIStage'].'</td>';
+						echo '<td>'.$row['PIAmount'].'</td>';
+						echo '<td>'.$row["PIStage"].'</td>';
+						echo '<td>'.$row['PIStake'].'</td>';
+						echo '<td>'.$row['PIWeb'].'</td>';
 						echo "</tr>";
 				    }
 					echo '</table>';
@@ -506,30 +496,36 @@
                 <div class="formhead">
                     <button onclick="addpioff()" class="close"><i class="fa fa-close"></i></button>
                     <h3>Add a Previous Investment</h3>
-                    <p class="icsize">Please provide the name and email address of a previous investment.</p>
+                    <p class="icsize">Please provide the name and details of previous investment(s).</p>
                 </div>
                 <div class="formtext">
                     <form method="post">
                         <div class="formtext">
-                            <label>Name</label><br>
+                            <label>StartUp Name</label><br>
                             <input type="text" size="50" name="piname" required><br><br>
-                            <label>Year</label><br>
+                            <label>Year of Investment</label><br>
                             <input type="number" min="2000" max="2099" step="1" size="50" name="piyear" required /><br><br>
-    						<label>Stage</label><br>
-	    					<select name="pistage" name="pistage" required>
-		                    <option>Select Stage</option>
-		                    <option>Concept Only</option>
-		                    <option>Product in Development</option>
-		                    <option>Prototype ready</option>
-		                    <option>Full Product Ready</option>
-		                    <option>$500K in TTM Revenue</option>
-		                    <option>$1M in TTM Revenue</option>
-		                    <option>$5M in TTM Revenue</option>
-		                    <option>$10M in TTM Revenue</option>
-		                    <option>$20M in TTM Revenue</option>
-		                    <option>$50M in TTM Revenue</option>
-		                    <option>$50M+ in TTM Revenue</option>
-		                    </select>
+														<label>Amount of Investment</label><br>
+														<input type="number" size="10" name="piamount" required><br><br>
+    												<label>Stage</label><br>
+	    													<select name="pistage" name="pistage" required>
+									                    <option>Select Stage</option>
+									                    <option>Concept Only</option>
+									                    <option>Product in Development</option>
+									                    <option>Prototype ready</option>
+									                    <option>Full Product Ready</option>
+									                    <option>$500K in TTM Revenue</option>
+									                    <option>$1M in TTM Revenue</option>
+									                    <option>$5M in TTM Revenue</option>
+									                    <option>$10M in TTM Revenue</option>
+									                    <option>$20M in TTM Revenue</option>
+									                    <option>$50M in TTM Revenue</option>
+									                    <option>$50M+ in TTM Revenue</option>
+																		</select><br><br>
+														<label>Stake holding(%)</label><br>
+														<input type="number" size="3" name="pistake" required><br><br>
+														<label>Website of startup</label><br>
+														<input type="text" size="50" name="piweb" required><br><br>
                         </div>
                         <div class="formtext submits">
                             <input type="submit" value="Cancel" name="cancel" class="cancel">
@@ -540,7 +536,7 @@
             </div>
         </div>
         <!-- </div> -->
-        <?php require "../../include/footer/footer.php" ?> 
+        <?php require "../../include/footer/footer.php" ?>
     </div>
 
 </body>

@@ -127,6 +127,10 @@
             </select>
         </div>
         <div class="input-group">
+          <label>Address</label>
+          <input type="text" name="address" required>
+        </div>
+        <div class="input-group">
           <label>City</label>
           <input type="text" name="city" required>
         </div>

@@ -2,11 +2,11 @@
 session_start();
 
 // initializing variables
-
 $iname = "";
 $fname = "";
 $lname = "";
 $email = "";
+$address = "";
 $country = "";
 $city = "";
 $state = "";
@@ -116,6 +116,7 @@ if (isset($_POST['reg_st'])) {
   $sfname = mysqli_real_escape_string($db, $_POST['sfname']);
   $email = mysqli_real_escape_string($db, $_POST['email']);
   $type = mysqli_real_escape_string($db, $_POST['type']);
+  $address = mysqli_real_escape_string($db, $_POST['address']);
   $country = mysqli_real_escape_string($db, $_POST['country']);
   $city = mysqli_real_escape_string($db, $_POST['city']);
   $state = mysqli_real_escape_string($db, $_POST['state']);
@@ -126,7 +127,7 @@ if (isset($_POST['reg_st'])) {
   $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
   $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
 
-  if (empty($stname) or empty($ffname) or empty($sfname) or empty($inv) or empty($email) or  empty($type)
+  if (empty($stname) or empty($ffname) or empty($sfname) or empty($inv) or empty($email) or  empty($type) or empty($address)
   or empty($country) or empty($city) or empty($username) or empty($phone) or empty($state) or empty($website) or empty($password_1) or empty($password_2))
   { array_push($errors, "Fill All the Fields"); }
 
@@ -154,14 +155,15 @@ if (isset($_POST['reg_st'])) {
   }
   if (count($errors) == 0) {
     $fpass = sha1($password_1);
-    $query = "INSERT INTO user_st (Stname,Ffname,Sfname,Email,Type,Country,State,City,Website,Inv,Username,Phone,Password)
-    VALUES('$stname','$ffname','$sfname','$email','$type','$country','$state','$city','$website','$inv','$username','$phone','$fpass')";
+    $query = "INSERT INTO user_st (Stname,Ffname,Sfname,Email,Type,Address,Country,State,City,Website,Inv,Username,Phone,Password)
+    VALUES('$stname','$ffname','$sfname','$email','$type','$address','$country','$state','$city','$website','$inv','$username','$phone','$fpass')";
     mysqli_query($db, $query);
   	$_SESSION['username'] = $username;
     $_SESSION['stname'] = $stname;
     $_SESSION['fname'] = $ffname;
     $_SESSION['lname'] = $sfname;
     $_SESSION['email'] = $email;
+    $_SESSION['address'] = $address;
     $_SESSION['country'] = $country;
     $_SESSION['state'] = $state;
     $_SESSION['city'] = $city;
