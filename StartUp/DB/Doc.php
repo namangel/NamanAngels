@@ -110,7 +110,7 @@
 			mysqli_query($db, $q);
 		}
 
-		header('location: .php');
+		header('location: Doc.php');
 	}
 
 	if(isset($_POST["sfsave"])){
@@ -133,7 +133,7 @@
 			$q = "UPDATE st_overview set FBLink='$sffacebook' where Username='$u';";
 			mysqli_query($db, $q);
 		}
-		header('location: StartUp-DB.php');
+		header('location: Doc.php');
 	}
 
 	if(isset($_POST["cfsave"])){
@@ -150,7 +150,7 @@
 			$q = "UPDATE user_st set Email='$cfemail' where Username='$u';";
 			mysqli_query($db, $q);
 		}
-		header('location: StartUp-DB.php');
+		header('location: Doc.php');
 	}
 
 	if(isset($_POST['sumsave'])){
@@ -158,7 +158,7 @@
 		$q = "UPDATE st_overview set Summary='$summaryform' where Username='$u';";
 		mysqli_query($db, $q);
 
-		header('location: StartUp-DB.php');
+		header('location: Doc.php');
 	}
 
 	if(isset($_POST['casave'])){
@@ -175,7 +175,7 @@
 			mysqli_query($db, $q);
 		}
 
-		header('location: StartUp-DB.php');
+		header('location: Doc.php');
 	}
 
 	if(isset($_POST['pisave'])){
@@ -192,7 +192,7 @@
 			mysqli_query($db, $q);
 		}
 
-		header('location: StartUp-DB.php');
+		header('location: Doc.php');
 	}
 
 	if(isset($_POST['olpsave'])){
@@ -203,7 +203,7 @@
 			mysqli_query($db, $q);
 		}
 
-		header('location: StartUp-DB.php');
+		header('location: Doc.php');
 	}
 
 ?>
@@ -307,7 +307,7 @@
                 </div>
 				<div id="overlay">
 					<div class="compbasics">
-						<form class="profform" method="post" action='StartUp-DB.php' enctype="multipart/form-data">
+						<form class="profform" method="post" action='Doc.php' enctype="multipart/form-data">
 						<button class="close" onclick="off()"><i class="fa fa-close"></i></button>
 						<div class="i1">
 							<h2>Company Basics</h2>

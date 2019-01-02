@@ -110,7 +110,7 @@
 			mysqli_query($db, $q);
 		}
 
-		header('location: Overview.php');
+		header('location: Exec.php');
 	}
 
 	if(isset($_POST["sfsave"])){
@@ -133,7 +133,7 @@
 			$q = "UPDATE st_overview set FBLink='$sffacebook' where Username='$u';";
 			mysqli_query($db, $q);
 		}
-		header('location: Overview.php');
+		header('location: Exec.php');
 	}
 
 	if(isset($_POST["cfsave"])){
@@ -150,7 +150,7 @@
 			$q = "UPDATE user_st set Email='$cfemail' where Username='$u';";
 			mysqli_query($db, $q);
 		}
-		header('location: Overview.php');
+		header('location: Exec.php');
 	}
 
 	$qu = "SELECT * FROM st_exec WHERE Username='$u'";
@@ -674,7 +674,7 @@
 				  </div>
 				</div>
 				<div class="nav">
-					<div><a href="Overview.php">Overview</a></div>
+					<div><a href="Exec.php">Overview</a></div>
 					<div><a href="Exec.php" style="color:black;">Executive summary</a></div>
 					<div><a href="Finance.php">Financials</a></div>
 					<div><a href="Doc.php">Documents</a></div>
