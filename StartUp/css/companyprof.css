@@ -95,19 +95,19 @@ float:right;
 width: 100%;
 margin: 10px;
 }
-#overlay,#sumformov,#socialformov,#overly,#product,#cust,#target,#bussi,#segs,#sales,#comp,#adv,#contactform,#profteam,#addteam,#adv,#inv,#olpformov,#backimg {
-position: fixed;
-overflow-y: scroll;
-display: none;
-width: 100%;
-height: 100%;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-background-color:rgba(0,0,0,0.5);;
-z-index: 2;
-cursor: pointer;
+#overlay,#sumformov,#socialformov,#overly,#product,#cust,#target,#bussi,#segs,#sales,#comp,#adv,#contactform,#profteam,#addteam,#adv,#inv,#olpformov,#backimg,#openround,#annualfin{
+    position: fixed;
+    overflow-y: scroll;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color:rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
 }
 .databox{
 border: 1px dashed gray;
@@ -255,4 +255,8 @@ padding-bottom: 12px;
 text-align: left;
 background-color: #7ec5fd;
 color: white;
+}
+
+#equity,#notes{
+    display: none;
 }

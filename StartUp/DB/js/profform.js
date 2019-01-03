@@ -141,3 +141,31 @@ function backimgon() {
 function backimgoff() {
     document.getElementById("backimg").style.display = "none";
 }
+
+function roundon() {
+    document.getElementById("openround").style.display = "block";
+}
+function roundoff() {
+    document.getElementById("openround").style.display = "none";
+}
+
+function valfunc(){
+    var x = document.getElementById("sec").value;
+    if (x== "b" || x=="c")
+    {
+        document.getElementById("equity").style.display = "block";
+        document.getElementById("notes").style.display = "none";
+    }
+    if(x=="d")
+    {
+        document.getElementById("notes").style.display = "block";
+        document.getElementById("equity").style.display = "none";
+    }
+}
+
+function annualon() {
+    document.getElementById("annualfin").style.display = "block";
+}
+function annualoff() {
+    document.getElementById("annualfin").style.display = "none";
+}
