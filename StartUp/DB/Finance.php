@@ -745,7 +745,7 @@
 				<div id="annualfin">
                     <div class="form">
                         <div class="formhead">
-                            <button onclick="roundoff()" class="close"><i class="fa fa-close"></i></button>
+                            <button onclick="annualoff()" class="close"><i class="fa fa-close"></i></button>
                             <h3>Annual Financials</h3>
                             <p>Enter your financials for this year and last year, as well as projections for the following three years. Investors like to compare and evaluate financial performance over this timeframe, so do your best to complete it.</p>
                         </div>
@@ -771,6 +771,7 @@
 								</div>
 								<div class="formtext">
 									<?php echo date("Y")-2; ?>
+									<br>
 									<label>Revenue Driver</label>
 									<br>
 									<input type="number" name="revdriver" size="54">
@@ -786,6 +787,7 @@
 								</div>
 								<div class="formtext">
 									<?php echo date("Y")-1; ?>
+									<br>
 									<label>Revenue Driver</label>
 									<br>
 									<input type="number" name="revdriver" size="54">
@@ -801,6 +803,7 @@
 								</div>
 								<div class="formtext">
 									<?php echo date("Y"); ?>
+									<br>
 									<label>Revenue Driver</label>
 									<br>
 									<input type="number" name="revdriver" size="54">
@@ -816,6 +819,7 @@
 								</div>
 								<div class="formtext">
 									<?php echo date("Y")+1; ?>
+									<br>
 									<label>Revenue Driver</label>
 									<br>
 									<input type="number" name="revdriver" size="54">
@@ -831,6 +835,7 @@
 								</div>
 								<div class="formtext">
 									<?php echo date("Y")+2; ?>
+									<br>
 									<label>Revenue Driver</label>
 									<br>
 									<input type="number" name="revdriver" size="54">
@@ -843,6 +848,22 @@
 									<br>
 									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
 									<br><br><hr>	
+								</div>
+								<div class="formtext">
+									<?php echo date("Y")+3; ?>
+									<br>
+									<label>Revenue Driver</label>
+									<br>
+									<input type="number" name="revdriver" size="54">
+									<br><br>
+									<label>Revenue</label>
+									<br>
+									<i class="fa fa-dollar"><input type="text" name="runrate" placeholder="Numbers Only" size="54"></i>
+									<br><br>
+									<label>Expenditure</label>
+									<br>
+									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
+									<br><br>	
 								</div>
                                 <div class="formtext submits">
                                     <input type="submit" onclick="annualoff()" value="Cancel" name="cancel" class="cancel">
