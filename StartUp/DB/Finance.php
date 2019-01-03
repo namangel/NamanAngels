@@ -643,7 +643,7 @@
 										  Please add any previous funding rounds.
 									</div>
 									<div class="databox">
-										<button class="pencil"><i class="fa fa-pencil"></i></button>
+										<button class="pencil" onclick="annualon()"><i class="fa fa-pencil"></i></button>
 										<h3>Annual Financials (USD)</h3>
 										<div class="p2">
 										</div>
@@ -735,6 +735,117 @@
 								</div>
                                 <div class="formtext submits">
                                     <input type="submit" onclick="roundoff()" value="Cancel" name="cancel" class="cancel">
+                                    <input type="submit" value="Save" name="roundsave" class="save">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+				<div id="annualfin">
+                    <div class="form">
+                        <div class="formhead">
+                            <button onclick="roundoff()" class="close"><i class="fa fa-close"></i></button>
+                            <h3>Annual Financials</h3>
+                            <p>Enter your financials for this year and last year, as well as projections for the following three years. Investors like to compare and evaluate financial performance over this timeframe, so do your best to complete it.</p>
+                        </div>
+                        <div class="formtext">
+                            <form method="post">
+                                <div class="formtext">
+									<label>Annual Revenue Run Rate</label>
+									<br>
+									<i class="fa fa-dollar"><input type="text" name="runrate" placeholder="Numbers Only" size="54"></i>
+									<br><br>
+									<label>Monthly Burn Rate</label>
+									<br>
+									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
+									<br><br>
+									<label>Financial Annotation</label>
+									<br>
+									<input type="text" name="finannotation" size="54">
+									<br><br>
+									<label>Revenue Driver</label>
+									<br>
+									<input type="text" name="revdriver" size="54">
+									<br><br><hr>	
+								</div>
+								<div class="formtext">
+									<?php echo date("Y")-2; ?>
+									<label>Revenue Driver</label>
+									<br>
+									<input type="number" name="revdriver" size="54">
+									<br><br>
+									<label>Revenue</label>
+									<br>
+									<i class="fa fa-dollar"><input type="text" name="runrate" placeholder="Numbers Only" size="54"></i>
+									<br><br>
+									<label>Expenditure</label>
+									<br>
+									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
+									<br><br><hr>	
+								</div>
+								<div class="formtext">
+									<?php echo date("Y")-1; ?>
+									<label>Revenue Driver</label>
+									<br>
+									<input type="number" name="revdriver" size="54">
+									<br><br>
+									<label>Revenue</label>
+									<br>
+									<i class="fa fa-dollar"><input type="text" name="runrate" placeholder="Numbers Only" size="54"></i>
+									<br><br>
+									<label>Expenditure</label>
+									<br>
+									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
+									<br><br><hr>	
+								</div>
+								<div class="formtext">
+									<?php echo date("Y"); ?>
+									<label>Revenue Driver</label>
+									<br>
+									<input type="number" name="revdriver" size="54">
+									<br><br>
+									<label>Revenue</label>
+									<br>
+									<i class="fa fa-dollar"><input type="text" name="runrate" placeholder="Numbers Only" size="54"></i>
+									<br><br>
+									<label>Expenditure</label>
+									<br>
+									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
+									<br><br><hr>	
+								</div>
+								<div class="formtext">
+									<?php echo date("Y")+1; ?>
+									<label>Revenue Driver</label>
+									<br>
+									<input type="number" name="revdriver" size="54">
+									<br><br>
+									<label>Revenue</label>
+									<br>
+									<i class="fa fa-dollar"><input type="text" name="runrate" placeholder="Numbers Only" size="54"></i>
+									<br><br>
+									<label>Expenditure</label>
+									<br>
+									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
+									<br><br><hr>	
+								</div>
+								<div class="formtext">
+									<?php echo date("Y")+2; ?>
+									<label>Revenue Driver</label>
+									<br>
+									<input type="number" name="revdriver" size="54">
+									<br><br>
+									<label>Revenue</label>
+									<br>
+									<i class="fa fa-dollar"><input type="text" name="runrate" placeholder="Numbers Only" size="54"></i>
+									<br><br>
+									<label>Expenditure</label>
+									<br>
+									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
+									<br><br><hr>	
+								</div>
+                                <div class="formtext submits">
+                                    <input type="submit" onclick="annualoff()" value="Cancel" name="cancel" class="cancel">
                                     <input type="submit" value="Save" name="roundsave" class="save">
                                 </div>
                             </form>
