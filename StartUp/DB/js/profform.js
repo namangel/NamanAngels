@@ -141,3 +141,22 @@ function backimgon() {
 function backimgoff() {
     document.getElementById("backimg").style.display = "none";
 }
+
+function roundon() {
+    document.getElementById("openround").style.display = "block";
+}
+function roundoff() {
+    document.getElementById("openround").style.display = "none";
+}
+
+function valfunc(){
+    var x = document.getElementById("sec").value;
+    if (x== "b" || x=="c")
+    {
+        document.getElementById("equity").style.display = "block";
+    }
+    if(x=="d")
+    {
+        document.getElementById("notes").style.display = "block";
+    }
+}

@@ -160,7 +160,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
         <link rel="stylesheet" href="../css/financial.css" type="text/css">
-        <script src="js\profform.js"></script>
+        <script src="js/profform.js"></script>
 				<title>StartUp Profile - NamanAngels</title>
     </head>
     <body>
@@ -556,7 +556,7 @@
                             </div>
                             <div class="i8">
                                 <label for="cbempnum">Number of Employees</label><br>
-                                <input name="cbempnum" type="number" placeholder="<?= $EmpNum?>">
+                                <input name="cbempnum" type="text" placeholder="<?= $EmpNum?>">
                             </div>
                             <div class="i3">
                                 <label for="inc">Incorporation Type</label><br>
@@ -580,13 +580,13 @@
                         </form>
                     </div>
                 </div>
-								<div class="nav">
+				<div class="nav">
 									<div><a href="Overview.php">Overview</a></div>
 									<div><a href="Exec.php">Executive summary</a></div>
 									<div><a href="Finance.php" style="color:black;">Financials</a></div>
 									<div><a href="Doc.php">Documents</a></div>
-								</div>
-								<div id="socialformov">
+				</div>
+				<div id="socialformov">
 											<div class="form">
 												<div class="formhead">
 													<button class="close" onclick="socialoff()"><i class="fa fa-close"></i></button>
@@ -596,13 +596,13 @@
 												<div class="formtext">
 													<form method="post">
 														<div class="socialic">
-															<i class="fa fa-linkedin"></i><input size="30" type="text" name="sflinkedin" placeholder="<?= $LinkedInLink?>">
+															<i class="fa fa-linkedin"></i><input size="55" type="text" name="sflinkedin" placeholder="<?= $LinkedInLink?>">
 														</div>
 														<div class="socialic">
-															<i class="fa fa-twitter"></i><input size="30" type="text" name="sftwitter" placeholder="<?= $TwitterLink?>">
+															<i class="fa fa-twitter"></i><input size="55" type="text" name="sftwitter" placeholder="<?= $TwitterLink?>">
 														</div>
 														<div class="socialic">
-															<i class="fa fa-facebook"></i><input size="30" type="text" name="sffacebook" placeholder="<?= $FBLink?>">
+															<i class="fa fa-facebook"></i><input size="55" type="text" name="sffacebook" placeholder="<?= $FBLink?>">
 														</div><br>
 														<div class="formtext submits">
 															<input class="cancel" name="cancel" type="submit" value="Cancel"> <input class="save" name="sfsave" type="submit" value="Save">
@@ -610,8 +610,8 @@
 													</form>
 												</div>
 											</div>
-								</div>
-								<div id="contactform">
+				</div>
+				<div id="contactform">
 									<form class="form" method="post">
 										<div class="formhead">
 											<button class="close" onclick="contactoff()"><i class="fa fa-close"></i></button>
@@ -629,13 +629,13 @@
 											</div>
 										</div>
 									</form>
-								</div>
-								<div class="summary">
+				</div>
+				<div class="summary">
 									<center><i class="fa fa-lock icsize">Only NamanAngels users who have been granted access can view this content.</i></center>
 									<div class="databox">
 										<h3>Current Funding Round (USD)</h3>
 										  Detail your stage of funding, the capital you're seeking and your pre-money valuation.<br><br>
-										  <button class="btnfund">Open Funding Round</button>
+										  <button class="btnfund" onclick="roundon()">Open Funding Round</button>
 									</div>
 									<div class="databox">
 										<button class="pencil"><i class="fa fa-pencil "></i></button>
@@ -670,7 +670,78 @@
 											  </tr>
 											</table>
 									</div>
+				</div>
+
+				<div id="openround">
+                    <div class="form">
+                        <div class="formhead">
+                            <button onclick="roundoff()" class="close"><i class="fa fa-close"></i></button>
+                            <h3>Start Fundraising</h3>
+                            <p>Open a new round by filling out the following information.</p>
+                        </div>
+                        <div class="formtext">
+                            <form method="post">
+                                <div class="formtext">
+									<label>Round</label>
+									<br>
+									<select name="round">
+                                    <option>Select Round</option>
+                                    <option>Founder</option>
+                                    <option>Friends and Family</option>
+                                    <option>Angel</option>
+                                    <option>Preseries A</option>
+                                    <option>Series A</option>
+									</select>
+									<br><br>
+									<label>Seeking</label>
+									<br>
+									<i class="fa fa-dollar"><input type="text" name="seeking" placeholder="Numbers Only" size="54"></i>
+									<br><br>
+									<label>Security type</label>
+									<br>
+									<select name="security" id="sec" onchange="valfunc()">
+                                    <option value="a">Select Security Type</option>
+                                    <option value="b">Preferred Equity</option>
+                                    <option value="c">Common Equity</option>
+                                    <option value="d">Convertible Notes</option>
+									</select>
+									<br><br>
+									<span id="equity">
+										<hr>
+										<label>Pre-Money Valuation</label>
+										<br>
+										<i class="fa fa-dollar"><input type="text" name="preval" placeholder="Numbers Only" size="54"></i>
+										<br><br>
+									</span>
+									<span id="notes">
+										<hr>
+										<label>Valuation Cap</label>
+										<br>
+										<i class="fa fa-dollar"><input type="text" name="valcap" placeholder="Numbers Only" size="54"></i>
+										<br><br>
+										<label>Conversion Discount</label>
+										<br>
+										<i class="fa fa-percent"><input type="text" name="discount" placeholder="Numbers Only" size="53"></i>
+										<br><br>
+										<label>Interest Rate</label>
+										<br>
+										<i class="fa fa-percent"><input type="text" name="interest" placeholder="Numbers Only" size="53"></i>
+										<br><br>
+										<label>Term Length</label>
+										<br>
+										<input type="text" name="term" placeholder="Months" size="55">
+										<br><br>
+									</span>
 								</div>
+                                <div class="formtext submits">
+                                    <input type="submit" onclick="roundoff()" value="Cancel" name="cancel" class="cancel">
+                                    <input type="submit" value="Save" name="roundsave" class="save">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 			<?php require "../../include/footer/footer.php" ?>
         </div>
