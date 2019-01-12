@@ -31,13 +31,6 @@
 	$InstaLink = $row['Instagram']==""? '--':$row['Instagram'];
 	$YTLink = $row['Youtube']==""? '--':$row['Youtube'];
 
-
-	$q = "SELECT * FROM st_description WHERE StpID = '$id';";
-	$results = mysqli_query($db, $q);
-	$row = mysqli_fetch_assoc($results);
-	$Summary = $row['Summary']==""? 'Tell the world who you are and what makes your company special.':$row['Summary'];
-	$OLP = $row['OLP']==""? 'Write A Short Pitch For Your Company In One Line':$row['OLP'];
-
 	$q = "SELECT * FROM st_uploads WHERE StpID = '$id';";
 	$results = mysqli_query($db, $q);
 	$row = mysqli_fetch_assoc($results);
@@ -45,6 +38,12 @@
 	$PitchExt = $row['PitchExt'];
 	$Logo = $row['Logo'];
     $Backimg = $row['BackImg'];
+
+	$q = "SELECT * FROM st_description WHERE StpID = '$id';";
+	$results = mysqli_query($db, $q);
+	$row = mysqli_fetch_assoc($results);
+	$Summary = $row['Summary']==""? 'Tell the world who you are and what makes your company special.':$row['Summary'];
+	$OLP = $row['OLP']==""? 'Write A Short Pitch For Your Company In One Line':$row['OLP'];
 
 
 
@@ -63,53 +62,53 @@
 
 		if($cbname != "")
 		{
-			$q = "UPDATE user_st set Stname='$cbname' where Username='$u';";
+			$q = "UPDATE st_details set Stname='$cbname' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 
 		if($cbstage != 'Select Stage')
 		{
-			$q = "UPDATE st_overview set Stage='$cbstage' where Username='$u';";
+			$q = "UPDATE st_addetails set Stage='$cbstage' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		if($cbaddress != "")
 		{
-			$q = "UPDATE user_st set Address='$cbaddress' where Username='$u';";
+			$q = "UPDATE st_details set Address='$cbaddress' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		if($cbcity != "")
 		{
-			$q = "UPDATE user_st set City='$cbcity' where Username='$u';";
+			$q = "UPDATE st_details set City='$cbcity' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		if($cbstate != "")
 		{
-			$q = "UPDATE user_st set State='$cbstate' where Username='$u';";
+			$q = "UPDATE st_details set State='$cbstate' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		if($cbcountry != "")
 		{
-			$q = "UPDATE user_st set Country='$cbcountry' where Username='$u';";
+			$q = "UPDATE st_details set Country='$cbcountry' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		if($cbdate != "")
 		{
-			$q = "UPDATE st_overview set DOF='$cbdate' where Username='$u';";
+			$q = "UPDATE st_addetails set DOF='$cbdate' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		if($cbempnum != "")
 		{
-			$q = "UPDATE st_overview set EmpNum='$cbempnum' where Username='$u';";
+			$q = "UPDATE st_addetails set EmpNum='$cbempnum' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		if($cbinc != 'Select Incorporation')
 		{
-			$q = "UPDATE st_overview set IncType='$cbinc' where Username='$u';";
+			$q = "UPDATE st_addetails set IncType='$cbinc' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		if($cbweb != "")
 		{
-			$q = "UPDATE user_st set Website='$cbweb' where Username='$u';";
+			$q = "UPDATE st_details set Website='$cbweb' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 
@@ -118,7 +117,7 @@
 			$image = $_FILES['cblogo']['tmp_name'];
 	        $imgContent = addslashes(file_get_contents($image));
 
-			$q = "UPDATE st_overview set Logo='$imgContent' where Username='$u';";
+			$q = "UPDATE st_uploads set Logo='$imgContent' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 
@@ -133,17 +132,17 @@
 
 		if($sftwitter != "")
 		{
-			$q = "UPDATE st_overview set TwitterLink='$sftwitter' where Username='$u';";
+			$q = "UPDATE st_addetails set Twitter='$sftwitter' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		if($sflinkedin != "")
 		{
-			$q = "UPDATE st_overview set LinkedInLink='$sflinkedin' where Username='$u';";
+			$q = "UPDATE st_addetails set LinkedIn='$sflinkedin' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		if($sffacebook != "")
 		{
-			$q = "UPDATE st_overview set FBLink='$sffacebook' where Username='$u';";
+			$q = "UPDATE st_addetails set Facebook='$sffacebook' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		header('location: Overview.php');
@@ -155,12 +154,12 @@
 
 		if($cfphone != "")
 		{
-			$q = "UPDATE user_st set Phone='$cfphone' where Username='$u';";
+			$q = "UPDATE st_details set Phone='$cfphone' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		if($cfemail != "")
 		{
-			$q = "UPDATE user_st set Email='$cfemail' where Username='$u';";
+			$q = "UPDATE st_details set Email='$cfemail' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		header('location: Overview.php');
@@ -181,8 +180,7 @@
 		// }
 		// else
 		// {
-		//
-		$q = "UPDATE st_overview set Summary='$summaryform' where Username='$u';";
+		$q = "UPDATE st_addetails set Summary='$summaryform' where StpID='$id';";
 		mysqli_query($db, $q);
 		header('location: Overview.php');
 	}
@@ -206,7 +204,7 @@
 					$success=1;
 					if (copy($tmp_name, $path.basename($_FILES['pitchvid']['name']))) {
 						echo '<script> alert("Uploaded!")</script>';
-						$q = "UPDATE st_overview SET PitchName='$name', PitchExt='$fileextension' where Username='$u';";
+						$q = "UPDATE st_uploads SET PitchName='$name', PitchExt='$fileextension' where StpID='$id';";
 						mysqli_query($db, $q);
 					}
 				}
@@ -224,17 +222,16 @@
 		$tmemail = mysqli_real_escape_string($db, $_POST['tmemail']);
 		$tmlinkedin = mysqli_real_escape_string($db, $_POST['tmlinkedin']);
 
-		$q = "INSERT INTO st_teams (Username, TFName, TLName, TDsgn, TExp, TEmail, TLinkedIn) VALUES ('$u','$tmfname', '$tmlname', '$tmdsgn', '$tmexp', '$tmemail', '$tmlinkedin')";
+		$q = "INSERT INTO st_team (StpID, FName, LName, Designation, Experience, Email, LinkedIn) VALUES ('$id','$tmfname', '$tmlname', '$tmdsgn', '$tmexp', '$tmemail', '$tmlinkedin')";
 		mysqli_query($db, $q);
 		header('location: Overview.php');
-
 	}
 
 	if(isset($_POST['casave'])){
 		$caname = mysqli_real_escape_string($db, $_POST['caname']);
 		$caemail = mysqli_real_escape_string($db, $_POST['caemail']);
 
-		$q = "INSERT INTO st_advisors (Username, CAName, CAEmail) VALUES ('$u', '$caname', '$caemail');";
+		$q = "INSERT INTO st_advisors (StpID, Name, Email) VALUES ('$id', '$caname', '$caemail');";
 		mysqli_query($db, $q);
 
 		header('location: Overview.php');
@@ -244,7 +241,7 @@
 		$piname = mysqli_real_escape_string($db, $_POST['piname']);
 		$piemail = mysqli_real_escape_string($db, $_POST['piemail']);
 
-		$q = "INSERT INTO st_previnvestment (Username, PIName, PIEmail) VALUES ('$u', '$piname', '$piemail');";
+		$q = "INSERT INTO st_previnvestment (StpID, Name, Email) VALUES ('$id', '$piname', '$piemail');";
 		mysqli_query($db, $q);
 
 		header('location: Overview.php');
@@ -254,7 +251,7 @@
 		$olpnew = mysqli_real_escape_string($db, $_POST['olpform']);
 		if($olpnew !="")
 		{
-			$q = "UPDATE st_overview set OLP='$olpnew' where Username='$u';";
+			$q = "UPDATE st_addetails set OLP='$olpnew' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 
@@ -267,7 +264,7 @@
 			$image = $_FILES['backimg']['tmp_name'];
 	        $imgContent = addslashes(file_get_contents($image));
 
-			$q = "UPDATE st_overview set BackImage ='$imgContent' where Username='$u';";
+			$q = "UPDATE st_uploads set BackImg ='$imgContent' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
         header('location: Overview.php');
@@ -778,7 +775,7 @@
                         <button onclick="addteamon()" class="add"><i class="fa fa-plus"></i></button>
                         <h4>Team</h4>
 						<?php
-							$q = "SELECT * FROM st_teams where Username='$u';";
+							$q = "SELECT * FROM st_team where StpID = '$id';";
 							$results=mysqli_query($db, $q);
 							if (mysqli_num_rows($results) > 0) {
 								echo '<table class="tables">';
@@ -811,7 +808,7 @@
                         <button onclick="advon()" class="add"><i class="fa fa-plus"></i></button>
                         <h4>Advisors</h4>
 						<?php
-							$q = "SELECT * FROM st_advisors where Username='$u';";
+							$q = "SELECT * FROM st_advisors where StpID = '$id';";
 							$results=mysqli_query($db, $q);
 							if (mysqli_num_rows($results) > 0) {
 								echo '<table class="tables">';
@@ -835,7 +832,7 @@
                         <button onclick="invon()" class="add"><i class="fa fa-plus"></i></button>
                         <h4>Previous Investors</h4>
 						<?php
-							$q = "SELECT * FROM st_previnvestment where Username='$u';";
+							$q = "SELECT * FROM st_previnvestment where StpID = '$id';";
 							$results=mysqli_query($db, $q);
 							if (mysqli_num_rows($results) > 0) {
 								echo '<table class="tables">';
@@ -1104,7 +1101,7 @@
                             </div>
                         </div>
                 </div>
-								<div id="consult">
+				<div id="consult">
                     <div class="form">
                         <div class="formhead">
                             <button onclick="consultoff()" class="close"><i class="fa fa-close"></i></button>
@@ -1113,29 +1110,31 @@
                         </div>
                         <div class="formtext">
                             <form method="post">
-															<label>Subject</label>
-															<div class="formtext"><textarea rows="2" cols="150" name="consult_sub" id="consult_sub" maxlength="250" required></textarea></div>
-															<br><label>Query</label>
-																<div class="formtext"><textarea rows="10" cols="150" name="consult_query" id="consult_query" required></textarea></div>
-																<script>
-																		function check_words(e) {
-																	  var BACKSPACE   = 8;
-																	  var DELETE      = 127;
-																	  var MAX_WORDS   = 500;
-																	  var valid_keys  = [BACKSPACE, DELETE];
-																	  var words       = this.value.split(' ');
+								<label>Subject</label>
+								<div class="formtext"><textarea rows="2" cols="150" name="consult_sub" id="consult_sub" maxlength="250" required></textarea></div>
+								<br><label>Query</label>
+								<div class="formtext">
+									<textarea rows="10" cols="150" name="consult_query" id="consult_query" required></textarea>
+								</div>
+								<script>
+									function check_words(e) {
+									  var BACKSPACE   = 8;
+									  var DELETE      = 127;
+									  var MAX_WORDS   = 500;
+									  var valid_keys  = [BACKSPACE, DELETE];
+									  var words       = this.value.split(' ');
 
-																	  if (words.length >= 500 && valid_keys.indexOf(e.keyCode) == -1) {
-																	      e.preventDefault();
-																	      words.length = 500;
-																	      this.value = words.join(' ');
-																	  }
-																	}
-																	var textarea = document.getElementById('consult_query');
-																	textarea.addEventListener('keydown', check_words);
-																	textarea.addEventListener('keyup', check_words);
-																</script>
-																<div class="formtext submits">
+									  if (words.length >= 500 && valid_keys.indexOf(e.keyCode) == -1) {
+									      e.preventDefault();
+									      words.length = 500;
+									      this.value = words.join(' ');
+									  }
+									}
+									var textarea = document.getElementById('consult_query');
+									textarea.addEventListener('keydown', check_words);
+									textarea.addEventListener('keyup', check_words);
+								</script>
+								<div class="formtext submits">
                                     <input type="submit" onclick="consultoff()"value="Cancel" name="cancel" class="cancel">
                                     <input type="submit" value="Save" name="sumsave" class="save">
                                 </div>
