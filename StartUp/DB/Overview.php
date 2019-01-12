@@ -159,9 +159,22 @@
 
 	if(isset($_POST['sumsave'])){
 		$summaryform = mysqli_real_escape_string($db, $_POST['summaryform']);
+		// $count=str_word_count($summaryform);
+		// if ($count > 5)
+		// {
+		// 	echo "<script type='text/javascript'>";
+		// 	echo "alert('Word limit exceeded')";
+		// 	echo "</script>";
+		// 	echo '<div id="overlayerror" >';
+		// 	echo "Word limit exceeded";
+		// 	echo "</div>";
+		//
+		// }
+		// else
+		// {
+		//
 		$q = "UPDATE st_overview set Summary='$summaryform' where Username='$u';";
 		mysqli_query($db, $q);
-
 		header('location: Overview.php');
 	}
 
@@ -256,7 +269,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="../css/companyprof.css" type="text/css"> 
+        <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
         <script src="js/profform.js"></script>
 		<title>StartUp Profile - NamanAngels</title>
 		<style media="screen">
@@ -265,6 +278,7 @@
 			max-height: 300px;
 			max-width: 100%;
 		}
+		
 		</style>
     </head>
     <body>
@@ -420,7 +434,7 @@
                             <div class="i5">
                                 <label for="cbcountry">Country</label><br>
 									<select name="cbcountry" required placeholder="<?=$Country?>">
-											            <option value="<?= $Country?>"><?= $Country?></option>  
+											            <option value="<?= $Country?>"><?= $Country?></option>
 											            <option value="Afghanisthan">Afghanisthan</option>
 											            <option value="Aland Islands">Aland Islands</option>
 											            <option value="Albania">Albania</option>
@@ -852,12 +866,32 @@
                         <div class="formhead">
                             <button onclick="summoff()" class="close"><i class="fa fa-close"></i></button>
                             <h3>Company Summary</h3>
-                            <p>Add an overview to help investors evaluate your startup. You might like to include your business model, structure and products/services. (upto 2000 chars.)</p>
+                            <p>Add an overview to help investors evaluate your startup. You might like to include your business model, structure and products/services. (upto 500 words)</p>
+
                         </div>
                         <div class="formtext">
                             <form method="post">
-                                <div class="formtext"><textarea rows="10" cols="150" name="summaryform" maxlength="2000" required><?= $Summary?></textarea></div>
-                                <div class="formtext submits">
+                                <!-- <div class="formtext"><textarea rows="10" cols="150" name="summaryform" required><?= $Summary?></textarea></div> -->
+																<div class="formtext"><textarea rows="10" cols="150" name="summaryform" id="summ" required><?= $Summary?></textarea></div>
+																<script>
+																		function check_words(e) {
+																	  var BACKSPACE   = 8;
+																	  var DELETE      = 127;
+																	  var MAX_WORDS   = 500;
+																	  var valid_keys  = [BACKSPACE, DELETE];
+																	  var words       = this.value.split(' ');
+
+																	  if (words.length >= 500 && valid_keys.indexOf(e.keyCode) == -1) {
+																	      e.preventDefault();
+																	      words.length = 500;
+																	      this.value = words.join(' ');
+																	  }
+																	}
+																	var textarea = document.getElementById('summ');
+																	textarea.addEventListener('keydown', check_words);
+																	textarea.addEventListener('keyup', check_words);
+																</script>
+																<div class="formtext submits">
                                     <input type="submit" onclick="summoff()"value="Cancel" name="cancel" class="cancel">
                                     <input type="submit" value="Save" name="sumsave" class="save">
                                 </div>
@@ -870,11 +904,29 @@
                         <div class="formhead">
                             <button onclick="olpoff()" class="close"><i class="fa fa-close"></i></button>
                             <h3>Elevator Pitch</h3>
-                            <p>Add A Short Pitch For Your Company In One Line</p>
+                            <p>Add A Short Pitch For Your Company In One Line (upto 50 words)</p>
                         </div>
                         <div class="formtext">
                             <form method="post">
-                                <div class="formtext"><textarea rows="10" cols="150" name="olpform" required><?= $OLP?></textarea></div>
+                                <div class="formtext"><textarea rows="10" cols="150" name="olpform" id="pitch" required><?= $OLP?></textarea></div>
+																<script>
+																		function check_words(e) {
+																		var BACKSPACE   = 8;
+																		var DELETE      = 127;
+																		var MAX_WORDS   = 50;
+																		var valid_keys  = [BACKSPACE, DELETE];
+																		var words       = this.value.split(' ');
+
+																		if (words.length >= 50 && valid_keys.indexOf(e.keyCode) == -1) {
+																				e.preventDefault();
+																				words.length = 50;
+																				this.value = words.join(' ');
+																		}
+																	}
+																	var textarea = document.getElementById('pitch');
+																	textarea.addEventListener('keydown', check_words);
+																	textarea.addEventListener('keyup', check_words);
+																</script>
                                 <div class="formtext submits">
                                     <input type="submit" onclick="olpoff()" value="Cancel" name="cancel" class="cancel">
                                     <input type="submit" value="Save" name="olpsave" class="save">

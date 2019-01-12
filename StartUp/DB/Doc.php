@@ -380,7 +380,7 @@
 						<div class="i5">
 						  <label for="cbcountry">Country</label><br>
 							<select name="cbcountry" required placeholder="<?= $Country?>">
-							<option value="<?= $Country?>"><?= $Country?></option>  
+							<option value="<?= $Country?>"><?= $Country?></option>
 											            <option value="Afghanisthan">Afghanisthan</option>
 											            <option value="Aland Islands">Aland Islands</option>
 											            <option value="Albania">Albania</option>
@@ -629,7 +629,7 @@
 											            <option value="Western Sahara">Western Sahara</option>
 											            <option value="Yemen">Yemen</option>
 											            <option value="Zambia">Zambia</option>
-											            <option value="Zimbabwe">Zimbabwe</option>								
+											            <option value="Zimbabwe">Zimbabwe</option>
 							</select>
 						</div>
 						<div class="i7">

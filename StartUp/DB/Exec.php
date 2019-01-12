@@ -262,7 +262,7 @@
         <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
         <script src="js\profform.js"></script>
 		<title>StartUp Profile - NamanAngels</title>
-    </head>
+	    </head>
     <body>
 		<?php require '../include/header/stp_db.php'; ?>
 		<?php require '../include/nav/nav.php'; ?>
@@ -416,7 +416,7 @@
 				          <div class="i5">
 				              <label for="cbcountry">Country</label><br>
 									<select name="cbcountry" required placeholder="<?= $Country?>">
-									<option value="<?= $Country?>"><?= $Country?></option>  
+									<option value="<?= $Country?>"><?= $Country?></option>
 											            <option value="Afghanisthan">Afghanisthan</option>
 											            <option value="Aland Islands">Aland Islands</option>
 											            <option value="Albania">Albania</option>
@@ -755,7 +755,7 @@
                             <h3>Background Image</h3>
                         </div>
                         <div class="formtext">
-                            <form method="post" action='Exec.php' enctype="multipart/form-data"> 
+                            <form method="post" action='Exec.php' enctype="multipart/form-data">
                                 <div class="formtext"><input type="file" name="backimg"><br></div>
                                 <div class="formtext submits">
                                     <input type="submit" onclick="backimgoff()" value="Cancel" name="cancel" class="cancel">
@@ -851,12 +851,30 @@
 	                            <div class="formhead">
 	                               <button onClick="custoff()" class="close"><i class="fa fa-close"></i></button>
 			                            <h3>Customer Problem</h3>
-			    						What customer problem does your product and/or service solve?
+			    						What customer problem does your product and/or service solve? (upto 200 words)
 			                        </div>
 	                            <div class="formtext">
 	                                <form method="post">
-	                                    <div class="formtext"><textarea autofocus rows="10" cols="75" name="custform"></textarea></div>
-	                                    <div class="formtext submits">
+	                                    <div class="formtext"><textarea autofocus rows="10" cols="75" name="custform" id="custform"></textarea></div>
+																			<script>
+																					function check_words(e) {
+																					var BACKSPACE   = 8;
+																					var DELETE      = 127;
+																					var MAX_WORDS   = 200;
+																					var valid_keys  = [BACKSPACE, DELETE];
+																					var words       = this.value.split(' ');
+
+																					if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+																							e.preventDefault();
+																							words.length = 200;
+																							this.value = words.join(' ');
+																					}
+																				}
+																				var textarea = document.getElementById('custform');
+																				textarea.addEventListener('keydown', check_words);
+																				textarea.addEventListener('keyup', check_words);
+																			</script>
+																			<div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
 	                                        <input type="submit" value="Save" name="cprobsave" class="save">
 	                                    </div>
@@ -871,12 +889,30 @@
 	                            <div class="formhead">
 	                                <button onClick="productoff()" class="close"><i class="fa fa-close"></i></button>
 	                            <h3>Products & Services</h3>
-								    	Describe the product or service that you will sell and how it solves the customer problem, listing the main value proposition for each product/service.
+								    	Describe the product or service that you will sell and how it solves the customer problem, listing the main value proposition for each product/service. (upto 200 words)
 	                            </div>
 	                            <div class="formtext">
 	                                <form method="post">
-	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="prodser"></textarea></div>
-	                                    <div class="formtext submits">
+	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="prodser" id="prodser"></textarea></div>
+																			<script>
+																					function check_words(e) {
+																					var BACKSPACE   = 8;
+																					var DELETE      = 127;
+																					var MAX_WORDS   = 200;
+																					var valid_keys  = [BACKSPACE, DELETE];
+																					var words       = this.value.split(' ');
+
+																					if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+																							e.preventDefault();
+																							words.length = 200;
+																							this.value = words.join(' ');
+																					}
+																				}
+																				var textarea = document.getElementById('prodser');
+																				textarea.addEventListener('keydown', check_words);
+																				textarea.addEventListener('keyup', check_words);
+																			</script>
+																			<div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
 	                                        <input type="submit" value="Save" name="pssave" class="save">
 	                                    </div>
@@ -891,11 +927,29 @@
 	                            <div class="formhead">
 	                                <button onClick="targetoff()" class="close"><i class="fa fa-close"></i></button>
 	                            <h3>Target Market</h3>
-								Define the important geographic, demographic, and/or psychographic characteristics of the market within which your customer segments exist.
+								Define the important geographic, demographic, and/or psychographic characteristics of the market within which your customer segments exist. (upto 200 words)
 	                            </div>
 	                            <div class="formtext">
 	                                <form method="post">
-	                                    <div class="formtext"><textarea autofocus rows="10" cols="75" name="TarMar"></textarea></div>
+	                                    <div class="formtext"><textarea autofocus rows="10" cols="75" name="TarMar" id="TarMar"></textarea></div>
+																			<script>
+																					function check_words(e) {
+																					var BACKSPACE   = 8;
+																					var DELETE      = 127;
+																					var MAX_WORDS   = 200;
+																					var valid_keys  = [BACKSPACE, DELETE];
+																					var words       = this.value.split(' ');
+
+																					if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+																							e.preventDefault();
+																							words.length = 200;
+																							this.value = words.join(' ');
+																					}
+																				}
+																				var textarea = document.getElementById('TarMar');
+																				textarea.addEventListener('keydown', check_words);
+																				textarea.addEventListener('keyup', check_words);
+																			</script>
 	                                    <div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
 	                                        <input type="submit" value="Save" name="tmsave" class="save">
@@ -911,11 +965,29 @@
 	                            <div class="formhead">
 	                                <button onClick="bussioff()" class="close"><i class="fa fa-close"></i></button>
 	                            <h3>Business Model</h3>
-								What strategy will you employ to build, deliver, and retain company value (e.g., profits)?
+								What strategy will you employ to build, deliver, and retain company value (e.g., profits)? (upto 200 words)
 	                            </div>
 	                            <div class="formtext">
 	                                <form method="post">
-	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="BModel"></textarea></div>
+	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="BModel" id="BModel"></textarea></div>
+																			<script>
+																					function check_words(e) {
+																					var BACKSPACE   = 8;
+																					var DELETE      = 127;
+																					var MAX_WORDS   = 200;
+																					var valid_keys  = [BACKSPACE, DELETE];
+																					var words       = this.value.split(' ');
+
+																					if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+																							e.preventDefault();
+																							words.length = 200;
+																							this.value = words.join(' ');
+																					}
+																				}
+																				var textarea = document.getElementById('BModel');
+																				textarea.addEventListener('keydown', check_words);
+																				textarea.addEventListener('keyup', check_words);
+																			</script>
 	                                    <div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
 	                                        <input type="submit" value="Save" name="bmsave" class="save">
@@ -931,11 +1003,29 @@
 	                            <div class="formhead">
 	                                <button onClick="segsoff()" class="close"><i class="fa fa-close"></i></button>
 	                            <h3>Customer Segments</h3>
-								Outline your targeted customer segments. These are the specific subsets of your target market that you will focus on to gain traction.
+								Outline your targeted customer segments. These are the specific subsets of your target market that you will focus on to gain traction. (upto 200 words)
 	                            </div>
 	                            <div class="formtext">
 	                                <form method="post">
-	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="CSegments"></textarea></div>
+	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="CSegments" id="CSegments"></textarea></div>
+																			<script>
+																					function check_words(e) {
+																					var BACKSPACE   = 8;
+																					var DELETE      = 127;
+																					var MAX_WORDS   = 200;
+																					var valid_keys  = [BACKSPACE, DELETE];
+																					var words       = this.value.split(' ');
+
+																					if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+																							e.preventDefault();
+																							words.length = 200;
+																							this.value = words.join(' ');
+																					}
+																				}
+																				var textarea = document.getElementById('CSegments');
+																				textarea.addEventListener('keydown', check_words);
+																				textarea.addEventListener('keyup', check_words);
+																			</script>
 	                                    <div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
 	                                        <input type="submit" value="Save" name="cssave" class="save">
@@ -951,11 +1041,29 @@
 	                            <div class="formhead">
 	                                <button onClick="salesoff()" class="close"><i class="fa fa-close"></i></button>
 	                            <h3>Sales & Marketing Strategy</h3>
-								What is your customer acquisition and retention strategy? Detail how you will promote, sell and create customer loyalty for your products and services.
+								What is your customer acquisition and retention strategy? Detail how you will promote, sell and create customer loyalty for your products and services. (upto 200 words)
 	                            </div>
 	                            <div class="formtext">
 	                                <form method="post">
-	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="SMStrat"></textarea></div>
+	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="SMStrat" id="SMStrat"></textarea></div>
+																			<script>
+																					function check_words(e) {
+																					var BACKSPACE   = 8;
+																					var DELETE      = 127;
+																					var MAX_WORDS   = 200;
+																					var valid_keys  = [BACKSPACE, DELETE];
+																					var words       = this.value.split(' ');
+
+																					if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+																							e.preventDefault();
+																							words.length = 200;
+																							this.value = words.join(' ');
+																					}
+																				}
+																				var textarea = document.getElementById('SMStrat');
+																				textarea.addEventListener('keydown', check_words);
+																				textarea.addEventListener('keyup', check_words);
+																			</script>
 	                                    <div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
 	                                        <input type="submit" value="Save" name="smssave" class="save">
@@ -971,11 +1079,29 @@
 	                            <div class="formhead">
 	                                <button onClick="compoff()" class="close"><i class="fa fa-close"></i></button>
 	                            <h3>Competitors</h3>
-								Describe the competitive landscape and your competitors' strengths and weaknesses. If direct competitors don't exist, describe the existing alternatives.
+								Describe the competitive landscape and your competitors' strengths and weaknesses. If direct competitors don't exist, describe the existing alternatives. (upto 200 words)
 	                            </div>
 	                            <div class="formtext">
 	                                <form method="post">
-	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="Competitors"></textarea></div>
+	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="Competitors" id="Competitors"></textarea></div>
+																			<script>
+																					function check_words(e) {
+																					var BACKSPACE   = 8;
+																					var DELETE      = 127;
+																					var MAX_WORDS   = 200;
+																					var valid_keys  = [BACKSPACE, DELETE];
+																					var words       = this.value.split(' ');
+
+																					if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+																							e.preventDefault();
+																							words.length = 200;
+																							this.value = words.join(' ');
+																					}
+																				}
+																				var textarea = document.getElementById('Competitors');
+																				textarea.addEventListener('keydown', check_words);
+																				textarea.addEventListener('keyup', check_words);
+																			</script>
 	                                    <div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
 	                                        <input type="submit" value="Save" name="compsave" class="save">
@@ -991,11 +1117,29 @@
 	                            <div class="formhead">
 	                                <button onClick="advoff()" class="close"><i class="fa fa-close"></i></button>
 	                            <h3>Competitive Advantage</h3>
-	    							What is your company's competitive or unfair advantage? This can include patents, first mover advantage, unique expertise, or proprietary processes/technology.
+	    							What is your company's competitive or unfair advantage? This can include patents, first mover advantage, unique expertise, or proprietary processes/technology. (upto 200 words)
 	                            </div>
 	                            <div class="formtext">
 	                                <form method="post">
-	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="CompAdv"></textarea></div>
+	                                    <div class="formtext"><textarea autofocus rows="10" cols="75" name="CompAdv" id="CompAdv"></textarea></div>
+																			<script>
+																					function check_words(e) {
+																					var BACKSPACE   = 8;
+																					var DELETE      = 127;
+																					var MAX_WORDS   = 200;
+																					var valid_keys  = [BACKSPACE, DELETE];
+																					var words       = this.value.split(' ');
+
+																					if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+																							e.preventDefault();
+																							words.length = 200;
+																							this.value = words.join(' ');
+																					}
+																				}
+																				var textarea = document.getElementById('CompAdv');
+																				textarea.addEventListener('keydown', check_words);
+																				textarea.addEventListener('keyup', check_words);
+																			</script>
 	                                    <div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
 	                                        <input type="submit" value="Save" name="cadvsave" class="save">

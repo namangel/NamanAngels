@@ -329,7 +329,7 @@
                             <div class="i5">
                                 <label for="cbcountry">Country</label><br>
 									<select name="cbcountry" required placeholder="<?= $Country?>">
-									<option value="<?= $Country?>"><?= $Country?></option>  
+									<option value="<?= $Country?>"><?= $Country?></option>
 											            <option value="Afghanisthan">Afghanisthan</option>
 											            <option value="Aland Islands">Aland Islands</option>
 											            <option value="Albania">Albania</option>
@@ -578,7 +578,7 @@
 											            <option value="Western Sahara">Western Sahara</option>
 											            <option value="Yemen">Yemen</option>
 											            <option value="Zambia">Zambia</option>
-											            <option value="Zimbabwe">Zimbabwe</option>		        
+											            <option value="Zimbabwe">Zimbabwe</option>
 									</select>
                             </div>
                             <div class="i7">
@@ -815,7 +815,7 @@
 									<label>Revenue Driver</label>
 									<br>
 									<input type="text" name="revdriver" size="54">
-									<br><br><hr>	
+									<br><br><hr>
 								</div>
 								<div class="formtext">
 									<?php echo date("Y")-2; ?>
@@ -831,7 +831,7 @@
 									<label>Expenditure</label>
 									<br>
 									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
-									<br><br><hr>	
+									<br><br><hr>
 								</div>
 								<div class="formtext">
 									<?php echo date("Y")-1; ?>
@@ -847,7 +847,7 @@
 									<label>Expenditure</label>
 									<br>
 									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
-									<br><br><hr>	
+									<br><br><hr>
 								</div>
 								<div class="formtext">
 									<?php echo date("Y"); ?>
@@ -863,7 +863,7 @@
 									<label>Expenditure</label>
 									<br>
 									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
-									<br><br><hr>	
+									<br><br><hr>
 								</div>
 								<div class="formtext">
 									<?php echo date("Y")+1; ?>
@@ -879,7 +879,7 @@
 									<label>Expenditure</label>
 									<br>
 									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
-									<br><br><hr>	
+									<br><br><hr>
 								</div>
 								<div class="formtext">
 									<?php echo date("Y")+2; ?>
@@ -895,7 +895,7 @@
 									<label>Expenditure</label>
 									<br>
 									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
-									<br><br><hr>	
+									<br><br><hr>
 								</div>
 								<div class="formtext">
 									<?php echo date("Y")+3; ?>
@@ -911,7 +911,7 @@
 									<label>Expenditure</label>
 									<br>
 									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
-									<br><br>	
+									<br><br>
 								</div>
                                 <div class="formtext submits">
                                     <input type="submit" onclick="annualoff()" value="Cancel" name="cancel" class="cancel">

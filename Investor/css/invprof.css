@@ -256,8 +256,17 @@ body {
 }
 .databox .pencil{
   margin-top: 10px;
+  display: none;
 }
-
+.databox .add{
+  display: none;
+}
+.databox:hover .add{
+  display: inline;
+}
+.databox:hover .pencil{
+  display: inline;
+}
 .video{
     margin-top:20px;
 }

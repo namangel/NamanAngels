@@ -79,10 +79,21 @@ border: 1px dotted gray;
 }
 .sideprof .upload,.cam{
 text-align: center;
-padding: 4px;
+/* padding: 4px; */
 }
 .sideprof .pen{
 float:right;
+display: none;
+position: absolute;
+}
+.sideprof .pencil{
+display: none;
+}
+.sideprof:hover .pen{
+display: inline;
+}
+.sideprof:hover .pencil{
+display: inline;
 }
 .sideprof ul{
 list-style-type: none;
@@ -95,6 +106,7 @@ float:right;
 width: 100%;
 margin: 10px;
 }
+
 #overlay,#sumformov,#socialformov,#overly,#product,#cust,#target,#bussi,#segs,#sales,#comp,#adv,#contactform,#profteam,#addteam,#adv,#inv,#olpformov,#backimg,#openround,#annualfin{
     position: fixed;
     overflow-y: scroll;
@@ -117,6 +129,16 @@ padding-top: 0px;
 }
 .databox .pencil{
 margin-top: 10px;
+display: none;
+}
+.databox .add{
+  display: none;
+}
+.databox:hover .add{
+  display: inline;
+}
+.databox:hover .pencil{
+  display:inline;
 }
 
 .nav{
