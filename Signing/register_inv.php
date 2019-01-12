@@ -1,5 +1,5 @@
 <?php require('../server.php')
-// $_SESSION["type"]
+$_SESSION["type"]
 ?>
 <html>
 <head>
