@@ -17,7 +17,7 @@
                     <br><br><br><br><br><br><br><br>
                     <p class="quote">"A great business starts from small investment, whereas the small investments start from a big risk."</p>
                 </big></center>
-                <center><button class="button1" onclick="location.href='#'">BECOME OUR MEMBER</button></center>
+                <center><button class="button1" onclick="location.href='../../Signing/direct_member.php'">BECOME OUR MEMBER</button></center>
             </div>
             <div class="two">
                 <div class="im">

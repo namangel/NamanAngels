@@ -164,6 +164,7 @@
 	$ProdSer = $row['ProdSer'];
 	$TarMar = $row['TarMar'];
 	$BModel = $row['BModel'];
+	// $Market = $row['Market'];
 	$CSegments = $row['CSegments'];
 	$SMStrat = $row['SMStrat'];
 	$Competitors = $row['Competitors'];
@@ -262,7 +263,8 @@
         <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
         <script src="js\profform.js"></script>
 		<title>StartUp Profile - NamanAngels</title>
-    </head>
+
+	    </head>
     <body>
 		<?php require '../include/header/stp_db.php'; ?>
 		<?php require '../include/nav/nav.php'; ?>
@@ -796,8 +798,24 @@
 						<button onClick="bussion()" class="pencil"><i class="fa fa-pencil"></i></button>
 						<h3>Business Model</h3>
 						<p>What strategy will you employ to build, deliver, and retain company value (e.g., profits)?</p>
+
+						<div><?php echo $BModel?></div>
+					</div><script>
+					function marketon() {
+					    document.getElementById("market").style.display = "block";
+					}
+
+					function marketoff() {
+					    document.getElementById("market").style.display = "none";
+					}
+					</script>
+					<div class="databox">
+						<button onClick="marketon()" class="pencil"><i class="fa fa-pencil"></i></button>
+						<h3>Market Sizing</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
 						<div><?php echo $BModel?></div>
 					</div>
+
 					<div class="databox">
 						<button onClick="segson()" class="pencil"><i class="fa fa-pencil"></i></button>
 						<h3>Customer Segments</h3>
@@ -821,6 +839,12 @@
 						<h3>Competitive Advantage</h3>
 						<p>What is your company's competitive or unfair advantage? This can include patents, first mover advantage, unique expertise, or proprietary processes/technology.</p>
 						<div><?php echo $CompAdv?></div>
+					</div>
+					<div class="databox">
+						<button onClick="consulton()" class="pencil"><i class="fa fa-pencil"></i></button>
+						<h3>Consultancy</h3>
+						<p>Need help??..contact our consultancy</p>
+
 					</div>
 				</div>
 				<div class="exe">
@@ -851,12 +875,30 @@
 	                            <div class="formhead">
 	                               <button onClick="custoff()" class="close"><i class="fa fa-close"></i></button>
 			                            <h3>Customer Problem</h3>
-			    						What customer problem does your product and/or service solve?
+			    						What customer problem does your product and/or service solve? (upto 200 words)
 			                        </div>
 	                            <div class="formtext">
 	                                <form method="post">
-	                                    <div class="formtext"><textarea autofocus rows="10" cols="75" name="custform"></textarea></div>
-	                                    <div class="formtext submits">
+	                                    <div class="formtext"><textarea autofocus rows="10" cols="75" name="custform" id="custform"></textarea></div>
+																			<script>
+																					function check_words(e) {
+																					var BACKSPACE   = 8;
+																					var DELETE      = 127;
+																					var MAX_WORDS   = 200;
+																					var valid_keys  = [BACKSPACE, DELETE];
+																					var words       = this.value.split(' ');
+
+																					if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+																							e.preventDefault();
+																							words.length = 200;
+																							this.value = words.join(' ');
+																					}
+																				}
+																				var textarea = document.getElementById('custform');
+																				textarea.addEventListener('keydown', check_words);
+																				textarea.addEventListener('keyup', check_words);
+																			</script>
+																			<div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
 	                                        <input type="submit" value="Save" name="cprobsave" class="save">
 	                                    </div>
@@ -871,12 +913,30 @@
 	                            <div class="formhead">
 	                                <button onClick="productoff()" class="close"><i class="fa fa-close"></i></button>
 	                            <h3>Products & Services</h3>
-								    	Describe the product or service that you will sell and how it solves the customer problem, listing the main value proposition for each product/service.
+								    	Describe the product or service that you will sell and how it solves the customer problem, listing the main value proposition for each product/service. (upto 200 words)
 	                            </div>
 	                            <div class="formtext">
 	                                <form method="post">
-	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="prodser"></textarea></div>
-	                                    <div class="formtext submits">
+	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="prodser" id="prodser"></textarea></div>
+																			<script>
+																					function check_words(e) {
+																					var BACKSPACE   = 8;
+																					var DELETE      = 127;
+																					var MAX_WORDS   = 200;
+																					var valid_keys  = [BACKSPACE, DELETE];
+																					var words       = this.value.split(' ');
+
+																					if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+																							e.preventDefault();
+																							words.length = 200;
+																							this.value = words.join(' ');
+																					}
+																				}
+																				var textarea = document.getElementById('prodser');
+																				textarea.addEventListener('keydown', check_words);
+																				textarea.addEventListener('keyup', check_words);
+																			</script>
+																			<div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
 	                                        <input type="submit" value="Save" name="pssave" class="save">
 	                                    </div>
@@ -891,11 +951,29 @@
 	                            <div class="formhead">
 	                                <button onClick="targetoff()" class="close"><i class="fa fa-close"></i></button>
 	                            <h3>Target Market</h3>
-								Define the important geographic, demographic, and/or psychographic characteristics of the market within which your customer segments exist.
+								Define the important geographic, demographic, and/or psychographic characteristics of the market within which your customer segments exist. (upto 200 words)
 	                            </div>
 	                            <div class="formtext">
 	                                <form method="post">
-	                                    <div class="formtext"><textarea autofocus rows="10" cols="75" name="TarMar"></textarea></div>
+	                                    <div class="formtext"><textarea autofocus rows="10" cols="75" name="TarMar" id="TarMar"></textarea></div>
+																			<script>
+																					function check_words(e) {
+																					var BACKSPACE   = 8;
+																					var DELETE      = 127;
+																					var MAX_WORDS   = 200;
+																					var valid_keys  = [BACKSPACE, DELETE];
+																					var words       = this.value.split(' ');
+
+																					if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+																							e.preventDefault();
+																							words.length = 200;
+																							this.value = words.join(' ');
+																					}
+																				}
+																				var textarea = document.getElementById('TarMar');
+																				textarea.addEventListener('keydown', check_words);
+																				textarea.addEventListener('keyup', check_words);
+																			</script>
 	                                    <div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
 	                                        <input type="submit" value="Save" name="tmsave" class="save">
@@ -911,11 +989,31 @@
 	                            <div class="formhead">
 	                                <button onClick="bussioff()" class="close"><i class="fa fa-close"></i></button>
 	                            <h3>Business Model</h3>
-								What strategy will you employ to build, deliver, and retain company value (e.g., profits)?
+								What strategy will you employ to build, deliver, and retain company value (e.g., profits)? (upto 200 words)<br><br>
+								<a href="#" onclick="consulton()"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a>
+
 	                            </div>
 	                            <div class="formtext">
 	                                <form method="post">
-	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="BModel"></textarea></div>
+	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="BModel" id="BModel"></textarea></div>
+																			<script>
+																					function check_words(e) {
+																					var BACKSPACE   = 8;
+																					var DELETE      = 127;
+																					var MAX_WORDS   = 200;
+																					var valid_keys  = [BACKSPACE, DELETE];
+																					var words       = this.value.split(' ');
+
+																					if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+																							e.preventDefault();
+																							words.length = 200;
+																							this.value = words.join(' ');
+																					}
+																				}
+																				var textarea = document.getElementById('BModel');
+																				textarea.addEventListener('keydown', check_words);
+																				textarea.addEventListener('keyup', check_words);
+																			</script>
 	                                    <div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
 	                                        <input type="submit" value="Save" name="bmsave" class="save">
@@ -925,17 +1023,74 @@
 	                        </div>
 	                    </div>
 	                </div>
+									<div id="market">
+										 <div id="manageform">
+												 <div class="form">
+														 <div class="formhead">
+																 <button onClick="marketoff()" class="close"><i class="fa fa-close"></i></button>
+														 <h3>Market sizing</h3>
+														 		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br><br>
+													 	<a href="#" onclick="consulton()"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a>
+														 </div>
+														 <div class="formtext">
+																 <form method="post">
+																		 <div class="formtext"><textarea autofocus rows="10" cols="75"name="BModel" id="BModel"></textarea></div>
+																		 <script>
+																				 function check_words(e) {
+																				 var BACKSPACE   = 8;
+																				 var DELETE      = 127;
+																				 var MAX_WORDS   = 200;
+																				 var valid_keys  = [BACKSPACE, DELETE];
+																				 var words       = this.value.split(' ');
+
+																				 if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+																						 e.preventDefault();
+																						 words.length = 200;
+																						 this.value = words.join(' ');
+																				 }
+																			 }
+																			 var textarea = document.getElementById('BModel');
+																			 textarea.addEventListener('keydown', check_words);
+																			 textarea.addEventListener('keyup', check_words);
+																		 </script>
+																		 <div class="formtext submits">
+																				 <input type="submit" value="Cancel" name="cancel" class="cancel">
+																				 <input type="submit" value="Save" name="msave" class="save">
+																		 </div>
+																 </form>
+														 </div>
+												 </div>
+										 </div>
+								 </div>
 	                <div id="segs">
 	                    <div id="manageform">
 	                        <div class="form">
 	                            <div class="formhead">
 	                                <button onClick="segsoff()" class="close"><i class="fa fa-close"></i></button>
 	                            <h3>Customer Segments</h3>
-								Outline your targeted customer segments. These are the specific subsets of your target market that you will focus on to gain traction.
+								Outline your targeted customer segments. These are the specific subsets of your target market that you will focus on to gain traction. (upto 200 words)
 	                            </div>
 	                            <div class="formtext">
 	                                <form method="post">
-	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="CSegments"></textarea></div>
+	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="CSegments" id="CSegments"></textarea></div>
+																			<script>
+																					function check_words(e) {
+																					var BACKSPACE   = 8;
+																					var DELETE      = 127;
+																					var MAX_WORDS   = 200;
+																					var valid_keys  = [BACKSPACE, DELETE];
+																					var words       = this.value.split(' ');
+
+																					if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+																							e.preventDefault();
+																							words.length = 200;
+																							this.value = words.join(' ');
+																					}
+																				}
+																				var textarea = document.getElementById('CSegments');
+																				textarea.addEventListener('keydown', check_words);
+																				textarea.addEventListener('keyup', check_words);
+																			</script>
 	                                    <div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
 	                                        <input type="submit" value="Save" name="cssave" class="save">
@@ -951,11 +1106,29 @@
 	                            <div class="formhead">
 	                                <button onClick="salesoff()" class="close"><i class="fa fa-close"></i></button>
 	                            <h3>Sales & Marketing Strategy</h3>
-								What is your customer acquisition and retention strategy? Detail how you will promote, sell and create customer loyalty for your products and services.
+								What is your customer acquisition and retention strategy? Detail how you will promote, sell and create customer loyalty for your products and services. (upto 200 words)
 	                            </div>
 	                            <div class="formtext">
 	                                <form method="post">
-	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="SMStrat"></textarea></div>
+	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="SMStrat" id="SMStrat"></textarea></div>
+																			<script>
+																					function check_words(e) {
+																					var BACKSPACE   = 8;
+																					var DELETE      = 127;
+																					var MAX_WORDS   = 200;
+																					var valid_keys  = [BACKSPACE, DELETE];
+																					var words       = this.value.split(' ');
+
+																					if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+																							e.preventDefault();
+																							words.length = 200;
+																							this.value = words.join(' ');
+																					}
+																				}
+																				var textarea = document.getElementById('SMStrat');
+																				textarea.addEventListener('keydown', check_words);
+																				textarea.addEventListener('keyup', check_words);
+																			</script>
 	                                    <div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
 	                                        <input type="submit" value="Save" name="smssave" class="save">
@@ -971,11 +1144,29 @@
 	                            <div class="formhead">
 	                                <button onClick="compoff()" class="close"><i class="fa fa-close"></i></button>
 	                            <h3>Competitors</h3>
-								Describe the competitive landscape and your competitors' strengths and weaknesses. If direct competitors don't exist, describe the existing alternatives.
+								Describe the competitive landscape and your competitors' strengths and weaknesses. If direct competitors don't exist, describe the existing alternatives. (upto 200 words)
 	                            </div>
 	                            <div class="formtext">
 	                                <form method="post">
-	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="Competitors"></textarea></div>
+	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="Competitors" id="Competitors"></textarea></div>
+																			<script>
+																					function check_words(e) {
+																					var BACKSPACE   = 8;
+																					var DELETE      = 127;
+																					var MAX_WORDS   = 200;
+																					var valid_keys  = [BACKSPACE, DELETE];
+																					var words       = this.value.split(' ');
+
+																					if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+																							e.preventDefault();
+																							words.length = 200;
+																							this.value = words.join(' ');
+																					}
+																				}
+																				var textarea = document.getElementById('Competitors');
+																				textarea.addEventListener('keydown', check_words);
+																				textarea.addEventListener('keyup', check_words);
+																			</script>
 	                                    <div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
 	                                        <input type="submit" value="Save" name="compsave" class="save">
@@ -991,11 +1182,29 @@
 	                            <div class="formhead">
 	                                <button onClick="advoff()" class="close"><i class="fa fa-close"></i></button>
 	                            <h3>Competitive Advantage</h3>
-	    							What is your company's competitive or unfair advantage? This can include patents, first mover advantage, unique expertise, or proprietary processes/technology.
+	    							What is your company's competitive or unfair advantage? This can include patents, first mover advantage, unique expertise, or proprietary processes/technology. (upto 200 words)
 	                            </div>
 	                            <div class="formtext">
 	                                <form method="post">
-	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="CompAdv"></textarea></div>
+	                                    <div class="formtext"><textarea autofocus rows="10" cols="75" name="CompAdv" id="CompAdv"></textarea></div>
+																			<script>
+																					function check_words(e) {
+																					var BACKSPACE   = 8;
+																					var DELETE      = 127;
+																					var MAX_WORDS   = 200;
+																					var valid_keys  = [BACKSPACE, DELETE];
+																					var words       = this.value.split(' ');
+
+																					if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+																							e.preventDefault();
+																							words.length = 200;
+																							this.value = words.join(' ');
+																					}
+																				}
+																				var textarea = document.getElementById('CompAdv');
+																				textarea.addEventListener('keydown', check_words);
+																				textarea.addEventListener('keyup', check_words);
+																			</script>
 	                                    <div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
 	                                        <input type="submit" value="Save" name="cadvsave" class="save">
@@ -1006,7 +1215,46 @@
 	                  	</div>
 					</div>
 				</div>
-	        </div>
+				<div id="consult">
+						<div class="form">
+								<div class="formhead">
+										<button onclick="consultoff()" class="close"><i class="fa fa-close"></i></button>
+										<h3>Consult </h3>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim venia</p>
+								</div>
+								<div class="formtext">
+										<form method="post">
+											<label>Subject</label>
+											<div class="formtext"><textarea rows="2" cols="150" name="consult_sub" id="consult_sub" maxlength="250" required></textarea></div>
+											<br><label>Query</label>
+												<div class="formtext"><textarea rows="10" cols="150" name="consult_query" id="consult_query" required></textarea></div>
+												<script>
+														function check_words(e) {
+														var BACKSPACE   = 8;
+														var DELETE      = 127;
+														var MAX_WORDS   = 500;
+														var valid_keys  = [BACKSPACE, DELETE];
+														var words       = this.value.split(' ');
+
+														if (words.length >= 500 && valid_keys.indexOf(e.keyCode) == -1) {
+																e.preventDefault();
+																words.length = 500;
+																this.value = words.join(' ');
+														}
+													}
+													var textarea = document.getElementById('consult_query');
+													textarea.addEventListener('keydown', check_words);
+													textarea.addEventListener('keyup', check_words);
+												</script>
+												<div class="formtext submits">
+														<input type="submit" onclick="consultoff()"value="Cancel" name="cancel" class="cancel">
+														<input type="submit" value="Save" name="sumsave" class="save">
+												</div>
+										</form>
+								</div>
+						</div>
+				</div>
+		</div>
 <?php require "../../include/footer/footer.php" ?>
 	    </div>
 

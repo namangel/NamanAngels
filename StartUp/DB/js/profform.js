@@ -106,6 +106,13 @@ function bussion() {
 function bussioff() {
     document.getElementById("bussi").style.display = "none";
 }
+function marketon() {
+    document.getElementById("market").style.display = "block";
+}
+
+function marketoff() {
+    document.getElementById("market").style.display = "none";
+}
 function segson() {
     document.getElementById("segs").style.display = "block";
 }
@@ -168,4 +175,11 @@ function annualon() {
 }
 function annualoff() {
     document.getElementById("annualfin").style.display = "none";
+}
+function consulton() {
+    document.getElementById("consult").style.display = "block";
+}
+
+function consultoff() {
+    document.getElementById("consult").style.display = "none";
 }

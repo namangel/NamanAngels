@@ -175,6 +175,7 @@
         <link rel="stylesheet" href="../css/financial.css" type="text/css">
         <script src="js/profform.js"></script>
 				<title>StartUp Profile - NamanAngels</title>
+
     </head>
     <body>
 		<?php require '../include/header/stp_db.php'; ?>
@@ -329,7 +330,7 @@
                             <div class="i5">
                                 <label for="cbcountry">Country</label><br>
 									<select name="cbcountry" required placeholder="<?= $Country?>">
-									<option value="<?= $Country?>"><?= $Country?></option>  
+									<option value="<?= $Country?>"><?= $Country?></option>
 											            <option value="Afghanisthan">Afghanisthan</option>
 											            <option value="Aland Islands">Aland Islands</option>
 											            <option value="Albania">Albania</option>
@@ -578,7 +579,7 @@
 											            <option value="Western Sahara">Western Sahara</option>
 											            <option value="Yemen">Yemen</option>
 											            <option value="Zambia">Zambia</option>
-											            <option value="Zimbabwe">Zimbabwe</option>		        
+											            <option value="Zimbabwe">Zimbabwe</option>
 									</select>
                             </div>
                             <div class="i7">
@@ -681,7 +682,9 @@
 								<div class="summary">
 									<center><i class="fa fa-lock icsize">Only NamanAngels users who have been granted access can view this content.</i></center>
 									<div class="databox">
+										<div style="float:right;margin-top:20px;"><a href="#" onclick="consulton()"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>
 										<h3>Current Funding Round (USD)</h3>
+
 										  Detail your stage of funding, the capital you're seeking and your pre-money valuation.<br><br>
 										  <button class="btnfund" onclick="roundon()">Open Funding Round</button>
 									</div>
@@ -718,6 +721,12 @@
 											  </tr>
 											</table>
 									</div>
+									<div class="databox">
+										<button onClick="consulton()" class="pencil"><i class="fa fa-pencil"></i></button>
+										<h3>Consultancy</h3>
+										<p>Need help??..contact our consultancy</p>
+
+									</div>
 				</div>
 
 				<div id="openround">
@@ -725,6 +734,7 @@
                         <div class="formhead">
                             <button onclick="roundoff()" class="close"><i class="fa fa-close"></i></button>
                             <h3>Start Fundraising</h3>
+
                             <p>Open a new round by filling out the following information.</p>
                         </div>
                         <div class="formtext">
@@ -815,7 +825,7 @@
 									<label>Revenue Driver</label>
 									<br>
 									<input type="text" name="revdriver" size="54">
-									<br><br><hr>	
+									<br><br><hr>
 								</div>
 								<div class="formtext">
 									<?php echo date("Y")-2; ?>
@@ -831,7 +841,7 @@
 									<label>Expenditure</label>
 									<br>
 									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
-									<br><br><hr>	
+									<br><br><hr>
 								</div>
 								<div class="formtext">
 									<?php echo date("Y")-1; ?>
@@ -847,7 +857,7 @@
 									<label>Expenditure</label>
 									<br>
 									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
-									<br><br><hr>	
+									<br><br><hr>
 								</div>
 								<div class="formtext">
 									<?php echo date("Y"); ?>
@@ -863,7 +873,7 @@
 									<label>Expenditure</label>
 									<br>
 									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
-									<br><br><hr>	
+									<br><br><hr>
 								</div>
 								<div class="formtext">
 									<?php echo date("Y")+1; ?>
@@ -879,7 +889,7 @@
 									<label>Expenditure</label>
 									<br>
 									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
-									<br><br><hr>	
+									<br><br><hr>
 								</div>
 								<div class="formtext">
 									<?php echo date("Y")+2; ?>
@@ -895,7 +905,7 @@
 									<label>Expenditure</label>
 									<br>
 									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
-									<br><br><hr>	
+									<br><br><hr>
 								</div>
 								<div class="formtext">
 									<?php echo date("Y")+3; ?>
@@ -911,7 +921,7 @@
 									<label>Expenditure</label>
 									<br>
 									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
-									<br><br>	
+									<br><br>
 								</div>
                                 <div class="formtext submits">
                                     <input type="submit" onclick="annualoff()" value="Cancel" name="cancel" class="cancel">
@@ -921,8 +931,47 @@
                         </div>
                     </div>
                 </div>
+								<div id="consult">
+										<div class="form">
+												<div class="formhead">
+														<button onclick="consultoff()" class="close"><i class="fa fa-close"></i></button>
+														<h3>Consult </h3>
+														<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim venia</p>
+												</div>
+												<div class="formtext">
+														<form method="post">
+															<label>Subject</label>
+															<div class="formtext"><textarea rows="2" cols="150" name="consult_sub" id="consult_sub" maxlength="250" required></textarea></div>
+															<br><label>Query</label>
+																<div class="formtext"><textarea rows="10" cols="150" name="consult_query" id="consult_query" required></textarea></div>
+																<script>
+																		function check_words(e) {
+																		var BACKSPACE   = 8;
+																		var DELETE      = 127;
+																		var MAX_WORDS   = 500;
+																		var valid_keys  = [BACKSPACE, DELETE];
+																		var words       = this.value.split(' ');
 
-            </div>
+																		if (words.length >= 500 && valid_keys.indexOf(e.keyCode) == -1) {
+																				e.preventDefault();
+																				words.length = 500;
+																				this.value = words.join(' ');
+																		}
+																	}
+																	var textarea = document.getElementById('consult_query');
+																	textarea.addEventListener('keydown', check_words);
+																	textarea.addEventListener('keyup', check_words);
+																</script>
+																<div class="formtext submits">
+																		<input type="submit" onclick="consultoff()"value="Cancel" name="cancel" class="cancel">
+																		<input type="submit" value="Save" name="sumsave" class="save">
+																</div>
+														</form>
+												</div>
+										</div>
+								</div>
+						</div>
+
 			<?php require "../../include/footer/footer.php" ?>
         </div>
 

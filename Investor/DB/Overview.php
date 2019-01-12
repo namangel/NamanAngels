@@ -189,7 +189,9 @@
         <link rel="stylesheet" href="../css/invprof.css" type="text/css">
         <script src="js/invprofform.js"></script>
 				<title>Investor Profile - NamanAngels</title>
-    </head>
+
+		</head>
+
     <body>
     <?php require '../include/header/inv_db.php'; ?>
     <?php require '../include/nav/nav.php'; ?><br>
@@ -220,7 +222,7 @@
                                 <p>Add or edit required basic information about yourself or firm.</p>
                                 <hr>
                             </div>
-							<div class="i2">
+														<div class="i2">
                                 <label for="cbpic">Profile Image</label><br>
                                 <input name="cbpic" type="file">
                             </div>
@@ -232,7 +234,7 @@
                                 <label for="cblname">Last Name</label><br>
                                 <input name="cblname" type="text" placeholder="<?=$lname?>">
                             </div>
-                            <div class="i2">
+                            <div class="i2" id="i2" >
                                 <label for="cbcomp">Company Name</label><br>
                                 <input name="cbcomp" type="text" placeholder="<?=$cname?>">
                             </div>
@@ -243,7 +245,7 @@
                             <div class="i5">
                                 <label for="cbcountry">Country</label><br>
 												<select name="cbcountry" required placeholder="<?=$country?>">
-											            <option value="<?= $country?>"><?= $country?></option>  
+											            <option value="<?= $country?>"><?= $country?></option>
 											            <option value="Afghanisthan">Afghanisthan</option>
 											            <option value="Aland Islands">Aland Islands</option>
 											            <option value="Albania">Albania</option>

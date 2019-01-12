@@ -226,6 +226,7 @@
         <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
         <script src="js\profform.js"></script>
 				<title>StartUp Profile - NamanAngels</title>
+
     </head>
     <body>
 			<?php require '../include/header/stp_db.php'; ?>
@@ -380,7 +381,7 @@
 						<div class="i5">
 						  <label for="cbcountry">Country</label><br>
 							<select name="cbcountry" required placeholder="<?= $Country?>">
-							<option value="<?= $Country?>"><?= $Country?></option>  
+							<option value="<?= $Country?>"><?= $Country?></option>
 											            <option value="Afghanisthan">Afghanisthan</option>
 											            <option value="Aland Islands">Aland Islands</option>
 											            <option value="Albania">Albania</option>
@@ -629,7 +630,7 @@
 											            <option value="Western Sahara">Western Sahara</option>
 											            <option value="Yemen">Yemen</option>
 											            <option value="Zambia">Zambia</option>
-											            <option value="Zimbabwe">Zimbabwe</option>								
+											            <option value="Zimbabwe">Zimbabwe</option>
 							</select>
 						</div>
 						<div class="i7">
@@ -732,21 +733,69 @@
 				<div class="summary">
 						<div class="databox">
 							<button class="adddoc">Add Document</button>
-	                        <h3>Business Plan</h3>
+													<h3>Business Plan</h3>
+													<div style="float:right;"><a href="#" onclick="consulton()"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>
 	                        <p>What is your long term business plan? Preferred file types: .pdf, .doc, .xls</p>
 						</div>
 						<div class="databox">
 							<button class="adddoc">Add Document</button>
 	                        <h3>Financial Projections</h3>
-	                        <p>Provide an overview of where your financials are headed within the next 5 years. Preferred file types: .pdf, .doc, .xls</p>
+													<div style="float:right;"><a href="#" onclick="consulton()"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>
+	                        <p>Provide an overview of where your financials are headed within the next 5 years.<br> Preferred file types: .pdf, .doc, .xls</p>
 	        	</div>
 						<div class="databox">
 							<button class="adddoc">Add Document</button>
-	                        <h3>Supplemental Documents</h3>
+	                        <h3>Additional Documents</h3>
+													<div style="float:right;"><a href="#" onclick="consulton()"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>
 	                        <p>Upload any documents to support your company.</p>
 						</div>
+						<div class="databox">
+							<button onClick="consulton()" class="pencil"><i class="fa fa-pencil"></i></button>
+							<h3>Consultancy</h3>
+							<p>Need help??..contact our consultancy</p>
+
+						</div>
 				</div>
-    		</div>
+				<div id="consult">
+						<div class="form">
+								<div class="formhead">
+										<button onclick="consultoff()" class="close"><i class="fa fa-close"></i></button>
+										<h3>Consult </h3>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim venia</p>
+								</div>
+								<div class="formtext">
+										<form method="post">
+											<label>Subject</label>
+											<div class="formtext"><textarea rows="2" cols="150" name="consult_sub" id="consult_sub" maxlength="250" required></textarea></div>
+											<br><label>Query</label>
+												<div class="formtext"><textarea rows="10" cols="150" name="consult_query" id="consult_query" required></textarea></div>
+												<script>
+														function check_words(e) {
+														var BACKSPACE   = 8;
+														var DELETE      = 127;
+														var MAX_WORDS   = 500;
+														var valid_keys  = [BACKSPACE, DELETE];
+														var words       = this.value.split(' ');
+
+														if (words.length >= 500 && valid_keys.indexOf(e.keyCode) == -1) {
+																e.preventDefault();
+																words.length = 500;
+																this.value = words.join(' ');
+														}
+													}
+													var textarea = document.getElementById('consult_query');
+													textarea.addEventListener('keydown', check_words);
+													textarea.addEventListener('keyup', check_words);
+												</script>
+												<div class="formtext submits">
+														<input type="submit" onclick="consultoff()"value="Cancel" name="cancel" class="cancel">
+														<input type="submit" value="Save" name="sumsave" class="save">
+												</div>
+										</form>
+								</div>
+						</div>
+				</div>
+		</div>
 				<?php include '../../include/footer/footer.php'; ?>
         </div>
 

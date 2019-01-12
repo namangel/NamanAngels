@@ -1,5 +1,15 @@
 function on() {
-      document.getElementById("overlay").style.display = "block";
+  // var type="Individual";
+  //
+  // if (type=="Institution"){
+  //   document.getElementById("i2_change").style.display="none";
+  // }
+  // else if(type=="Institution")
+  // {
+  //   document.getElementById("i2_change").style.display="block";
+  // }
+        document.getElementById("overlay").style.display = "block";
+
   }
 
   function off() {
