@@ -164,6 +164,7 @@
 	$ProdSer = $row['ProdSer'];
 	$TarMar = $row['TarMar'];
 	$BModel = $row['BModel'];
+	// $Market = $row['Market'];
 	$CSegments = $row['CSegments'];
 	$SMStrat = $row['SMStrat'];
 	$Competitors = $row['Competitors'];
@@ -262,6 +263,7 @@
         <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
         <script src="js\profform.js"></script>
 		<title>StartUp Profile - NamanAngels</title>
+
 	    </head>
     <body>
 		<?php require '../include/header/stp_db.php'; ?>
@@ -796,8 +798,24 @@
 						<button onClick="bussion()" class="pencil"><i class="fa fa-pencil"></i></button>
 						<h3>Business Model</h3>
 						<p>What strategy will you employ to build, deliver, and retain company value (e.g., profits)?</p>
+
+						<div><?php echo $BModel?></div>
+					</div><script>
+					function marketon() {
+					    document.getElementById("market").style.display = "block";
+					}
+
+					function marketoff() {
+					    document.getElementById("market").style.display = "none";
+					}
+					</script>
+					<div class="databox">
+						<button onClick="marketon()" class="pencil"><i class="fa fa-pencil"></i></button>
+						<h3>Market Sizing</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
 						<div><?php echo $BModel?></div>
 					</div>
+
 					<div class="databox">
 						<button onClick="segson()" class="pencil"><i class="fa fa-pencil"></i></button>
 						<h3>Customer Segments</h3>
@@ -821,6 +839,12 @@
 						<h3>Competitive Advantage</h3>
 						<p>What is your company's competitive or unfair advantage? This can include patents, first mover advantage, unique expertise, or proprietary processes/technology.</p>
 						<div><?php echo $CompAdv?></div>
+					</div>
+					<div class="databox">
+						<button onClick="consulton()" class="pencil"><i class="fa fa-pencil"></i></button>
+						<h3>Consultancy</h3>
+						<p>Need help??..contact our consultancy</p>
+
 					</div>
 				</div>
 				<div class="exe">
@@ -965,7 +989,9 @@
 	                            <div class="formhead">
 	                                <button onClick="bussioff()" class="close"><i class="fa fa-close"></i></button>
 	                            <h3>Business Model</h3>
-								What strategy will you employ to build, deliver, and retain company value (e.g., profits)? (upto 200 words)
+								What strategy will you employ to build, deliver, and retain company value (e.g., profits)? (upto 200 words)<br><br>
+								<a href="#" onclick="consulton()"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a>
+
 	                            </div>
 	                            <div class="formtext">
 	                                <form method="post">
@@ -997,6 +1023,45 @@
 	                        </div>
 	                    </div>
 	                </div>
+									<div id="market">
+										 <div id="manageform">
+												 <div class="form">
+														 <div class="formhead">
+																 <button onClick="marketoff()" class="close"><i class="fa fa-close"></i></button>
+														 <h3>Market sizing</h3>
+														 		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br><br>
+													 	<a href="#" onclick="consulton()"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a>
+														 </div>
+														 <div class="formtext">
+																 <form method="post">
+																		 <div class="formtext"><textarea autofocus rows="10" cols="75"name="BModel" id="BModel"></textarea></div>
+																		 <script>
+																				 function check_words(e) {
+																				 var BACKSPACE   = 8;
+																				 var DELETE      = 127;
+																				 var MAX_WORDS   = 200;
+																				 var valid_keys  = [BACKSPACE, DELETE];
+																				 var words       = this.value.split(' ');
+
+																				 if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+																						 e.preventDefault();
+																						 words.length = 200;
+																						 this.value = words.join(' ');
+																				 }
+																			 }
+																			 var textarea = document.getElementById('BModel');
+																			 textarea.addEventListener('keydown', check_words);
+																			 textarea.addEventListener('keyup', check_words);
+																		 </script>
+																		 <div class="formtext submits">
+																				 <input type="submit" value="Cancel" name="cancel" class="cancel">
+																				 <input type="submit" value="Save" name="msave" class="save">
+																		 </div>
+																 </form>
+														 </div>
+												 </div>
+										 </div>
+								 </div>
 	                <div id="segs">
 	                    <div id="manageform">
 	                        <div class="form">
@@ -1150,7 +1215,46 @@
 	                  	</div>
 					</div>
 				</div>
-	        </div>
+				<div id="consult">
+						<div class="form">
+								<div class="formhead">
+										<button onclick="consultoff()" class="close"><i class="fa fa-close"></i></button>
+										<h3>Consult </h3>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim venia</p>
+								</div>
+								<div class="formtext">
+										<form method="post">
+											<label>Subject</label>
+											<div class="formtext"><textarea rows="2" cols="150" name="consult_sub" id="consult_sub" maxlength="250" required></textarea></div>
+											<br><label>Query</label>
+												<div class="formtext"><textarea rows="10" cols="150" name="consult_query" id="consult_query" required></textarea></div>
+												<script>
+														function check_words(e) {
+														var BACKSPACE   = 8;
+														var DELETE      = 127;
+														var MAX_WORDS   = 500;
+														var valid_keys  = [BACKSPACE, DELETE];
+														var words       = this.value.split(' ');
+
+														if (words.length >= 500 && valid_keys.indexOf(e.keyCode) == -1) {
+																e.preventDefault();
+																words.length = 500;
+																this.value = words.join(' ');
+														}
+													}
+													var textarea = document.getElementById('consult_query');
+													textarea.addEventListener('keydown', check_words);
+													textarea.addEventListener('keyup', check_words);
+												</script>
+												<div class="formtext submits">
+														<input type="submit" onclick="consultoff()"value="Cancel" name="cancel" class="cancel">
+														<input type="submit" value="Save" name="sumsave" class="save">
+												</div>
+										</form>
+								</div>
+						</div>
+				</div>
+		</div>
 <?php require "../../include/footer/footer.php" ?>
 	    </div>
 

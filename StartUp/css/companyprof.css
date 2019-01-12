@@ -107,7 +107,7 @@ width: 100%;
 margin: 10px;
 }
 
-#overlay,#sumformov,#socialformov,#overly,#product,#cust,#target,#bussi,#segs,#sales,#comp,#adv,#contactform,#profteam,#addteam,#adv,#inv,#olpformov,#backimg,#openround,#annualfin{
+#overlay,#sumformov,#socialformov,#overly,#product,#cust,#target,#bussi,#market,#segs,#sales,#comp,#adv,#contactform,#profteam,#addteam,#adv,#inv,#olpformov,#backimg,#openround,#annualfin,#consult{
     position: fixed;
     overflow-y: scroll;
     display: none;
@@ -121,6 +121,14 @@ margin: 10px;
     z-index: 2;
     cursor: pointer;
 }
+a{
+  text-decoration: none;
+  color:#0e3c58;
+}
+a:hover{
+  opacity: 0.8;
+}
+
 .databox{
 border: 1px dashed gray;
 margin:10px;
