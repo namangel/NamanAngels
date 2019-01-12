@@ -5,7 +5,7 @@
     <div class="item2">
         <nav id="mainNav" class="stroke">
         <ul>
-            <li><a href="/NamanAngels/Investor/inv_landing.php">HOME</a></li>
+            <li><a href="/NamanAngels/Investor/index.php">HOME</a></li>
             <li><a href="/NamanAngels/Investor/DB/Overview.php">PROFILE</a></li>
             <li><a href="/NamanAngels/Investor/DB/membership.php">MEMBERSHIP</a></li>
             <li><a href="/NamanAngels/Investor/DB/browse.php">BROWSE</a></li>

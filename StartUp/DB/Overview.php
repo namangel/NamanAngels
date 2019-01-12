@@ -1,41 +1,50 @@
 <?php
 	require '../../server.php';
 	// $_SESSION['username'] = 'xyz123';//predefine -- nikalo mujhe
-	$u = $_SESSION['username'];
-	$qu = "SELECT * FROM user_st WHERE Username='$u'";
+	$id = $_SESSION['StpID'];
+	$qu = "SELECT * FROM st_details WHERE StpID = '$id'";
 	$results = mysqli_query($db, $qu);
 	$row = mysqli_fetch_assoc($results);
-	$ID = $row['ID'];
 	$Stname = $row['Stname'];
 	$Ffname = $row['Ffname'];
 	$Sfname = $row['Sfname'];
 	$Email = $row['Email'];
+	$Phone = $row['Phone'];
 	$Type = $row['Type'];
 	$Address = $row['Address'];
-	$Country = $row['Country'];
-	$State = $row['State'];
 	$City = $row['City'];
+	$State = $row['State'];
+	$Country = $row['Country'];
 	$Website = $row['Website'];
-	$Inv = $row['Inv'];
-	$Phone = $row['Phone'];
-	$Password = $row['Password'];
+	$Inv = $row['Investment'];
 
-	$q = "SELECT * FROM st_overview WHERE Username='$u';";
+	$q = "SELECT * FROM st_addetails WHERE StpID = '$id';";
 	$results = mysqli_query($db, $q);
 	$row = mysqli_fetch_assoc($results);
 	$Stage = $row['Stage'] == "" ? '--' : $row['Stage'];
 	$DOF = $row['DOF'] == "" ? '--' : $row['DOF'];
 	$EmpNum = $row['EmpNum']==""? '--':$row['EmpNum'];
 	$IncType = $row['IncType']==""? '--':$row['IncType'];
-	$LinkedInLink = $row['LinkedInLink']==""? '--':$row['LinkedInLink'];
-	$TwitterLink = $row['TwitterLink']==""? '--':$row['TwitterLink'];
-	$FBLink = $row['FBLink']==""? '--':$row['FBLink'];
+	$LinkedInLink = $row['LinkedIn']==""? '--':$row['LinkedIn'];
+	$TwitterLink = $row['Twitter']==""? '--':$row['Twitter'];
+	$FBLink = $row['Facebook']==""? '--':$row['Facebook'];
+	$InstaLink = $row['Instagram']==""? '--':$row['Instagram'];
+	$YTLink = $row['Youtube']==""? '--':$row['Youtube'];
+
+
+	$q = "SELECT * FROM st_description WHERE StpID = '$id';";
+	$results = mysqli_query($db, $q);
+	$row = mysqli_fetch_assoc($results);
 	$Summary = $row['Summary']==""? 'Tell the world who you are and what makes your company special.':$row['Summary'];
+	$OLP = $row['OLP']==""? 'Write A Short Pitch For Your Company In One Line':$row['OLP'];
+
+	$q = "SELECT * FROM st_uploads WHERE StpID = '$id';";
+	$results = mysqli_query($db, $q);
+	$row = mysqli_fetch_assoc($results);
 	$PitchName = $row['PitchName'];
 	$PitchExt = $row['PitchExt'];
-	$OLP = $row['OLP']==""? 'Write A Short Pitch For Your Company In One Line':$row['OLP'];
-    $Logo = $row['Logo'];
-    $Backimg = $row['BackImage'];
+	$Logo = $row['Logo'];
+    $Backimg = $row['BackImg'];
 
 
 
@@ -256,7 +265,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="../css/companyprof.css" type="text/css"> 
+        <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
         <script src="js/profform.js"></script>
 		<title>StartUp Profile - NamanAngels</title>
 		<style media="screen">
@@ -420,7 +429,7 @@
                             <div class="i5">
                                 <label for="cbcountry">Country</label><br>
 									<select name="cbcountry" required placeholder="<?=$Country?>">
-											            <option value="<?= $Country?>"><?= $Country?></option>  
+											            <option value="<?= $Country?>"><?= $Country?></option>
 											            <option value="Afghanisthan">Afghanisthan</option>
 											            <option value="Aland Islands">Aland Islands</option>
 											            <option value="Albania">Albania</option>

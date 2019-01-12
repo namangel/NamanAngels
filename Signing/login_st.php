@@ -15,7 +15,6 @@
         </div>
         <div class="logform">
             <form method="post" action="login_st.php">
-                <?php include('errors.php'); ?>
                 <div class="input-group">
                     <label>Username</label>
                     <input type="text" name="username" autofocus>
@@ -42,4 +41,3 @@
 
 </body>
 </html>
-

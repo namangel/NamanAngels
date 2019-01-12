@@ -1,7 +1,7 @@
 <?php
 	require '../../server.php';
 	// $_SESSION['username'] = 'xyz123';//predefine -- nikalo mujhe
-	$u = $_SESSION['username'];
+	$u = $_SESSION['StpID'];
 
 	$qu = "SELECT * FROM user_st WHERE Username='$u'";
 	$results = mysqli_query($db, $qu);
@@ -416,7 +416,7 @@
 				          <div class="i5">
 				              <label for="cbcountry">Country</label><br>
 									<select name="cbcountry" required placeholder="<?= $Country?>">
-									<option value="<?= $Country?>"><?= $Country?></option>  
+									<option value="<?= $Country?>"><?= $Country?></option>
 											            <option value="Afghanisthan">Afghanisthan</option>
 											            <option value="Aland Islands">Aland Islands</option>
 											            <option value="Albania">Albania</option>
@@ -755,7 +755,7 @@
                             <h3>Background Image</h3>
                         </div>
                         <div class="formtext">
-                            <form method="post" action='Exec.php' enctype="multipart/form-data"> 
+                            <form method="post" action='Exec.php' enctype="multipart/form-data">
                                 <div class="formtext"><input type="file" name="backimg"><br></div>
                                 <div class="formtext submits">
                                     <input type="submit" onclick="backimgoff()" value="Cancel" name="cancel" class="cancel">

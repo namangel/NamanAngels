@@ -13,7 +13,6 @@
   </div>
 
   <form method="post" action="register_st.php">
-      <?php include('errors.php'); ?>
     <div class="content">
       	<div class="input-group">
       	  <label>Startup Firm Name</label>
