@@ -226,7 +226,7 @@
         <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
         <script src="js\profform.js"></script>
 				<title>StartUp Profile - NamanAngels</title>
-			
+
     </head>
     <body>
 			<?php require '../include/header/stp_db.php'; ?>
@@ -796,7 +796,6 @@
 						</div>
 				</div>
 		</div>
-    		</div>
 				<?php include '../../include/footer/footer.php'; ?>
         </div>
 
