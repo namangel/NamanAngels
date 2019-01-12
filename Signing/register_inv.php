@@ -1,5 +1,5 @@
 <?php require('../server.php')
-$_SESSION["type"]
+// $_SESSION["type"]
 ?>
 <html>
 <head>
@@ -46,9 +46,9 @@ function show(){
       <option value="Institution">Institution</option>
     </select>
   </form>
-    <?php
+    <!-- <?php
     $_SESSION["type"]=$_POST['type'];
-    ?>
+    ?> -->
 </div>
 </center>
 <div class="content" id="individual" style="display:none">
