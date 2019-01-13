@@ -106,12 +106,30 @@
 		}
 
 		$check = getimagesize($_FILES["cblogo"]["tmp_name"]);
-	    if($check !== false){
-			$image = $_FILES['cblogo']['tmp_name'];
-	        $imgContent = addslashes(file_get_contents($image));
+	    if($check != false){
+			$file_name = $_FILES['cblogo']['name'];
+			$file_size = $_FILES['cblogo']['size'];
+			$file_tmp = $_FILES['cblogo']['tmp_name'];
+			$file_type = $_FILES['cblogo']['type'];
+			$file_ext=strtolower(end(explode('.',$_FILES['cblogo']['name'])));
 
-			$q = "UPDATE st_addetails set Logo='$imgContent' where StpID='$id';;";
-			mysqli_query($db, $q);
+			$extensions= array("jpeg","jpg","png");
+
+			if(in_array($file_ext,$extensions)=== false){
+				echo "<script>alert('Extension not allowed, please choose a JPEG or PNG file.')</script>";
+			}
+			else{
+				if($file_size > 5242880) {
+					echo "<script>alert('File size must be less than 5 MB')</script>";
+				}
+				else{
+					$upload = "/NamanAngels/Uploads/".$file_name;
+					move_uploaded_file($file_tmp,$upload);
+					$q = "UPDATE st_uploads set Logo='$upload' where StpID='$id';";
+					mysqli_query($db, $q);
+					echo "<script>alert('Successfully Uploaded')</script>";
+				}
+			}
 		}
 
 		header('location: Doc.php');
@@ -158,16 +176,32 @@
 	}
 
 	if(isset($_POST['BIsave'])){
-        $check = getimagesize($_FILES["backimg"]["tmp_name"]);
-	    if($check != false){
-			$image = $_FILES['backimg']['tmp_name'];
-	        $imgContent = addslashes(file_get_contents($image));
 
-			$q = "UPDATE st_addetails set BackImage ='$imgContent' where StpID='$id';;";
-			mysqli_query($db, $q);
+		$file_name = $_FILES['backimg']['name'];
+		$file_size = $_FILES['backimg']['size'];
+		$file_tmp = $_FILES['backimg']['tmp_name'];
+		$file_type = $_FILES['backimg']['type'];
+		$file_ext=strtolower(end(explode('.',$_FILES['backimg']['name'])));
+
+		$extensions= array("jpeg","jpg","png");
+
+		if(in_array($file_ext,$extensions)=== false){
+			echo "<script>alert('Extension not allowed, please choose a JPEG or PNG file.')</script>";
 		}
-        header('location: Doc.php');
-    }
+		else{
+			if($file_size > 5242880) {
+				echo "<script>alert('File size must be less than 5 MB')</script>";
+			}
+			else{
+				$upload = "/NamanAngels/Uploads/".$file_name;
+				move_uploaded_file($file_tmp,$upload);
+				$q = "UPDATE st_uploads set BackImg='$upload' where StpID='$id';";
+				mysqli_query($db, $q);
+				echo "<script>alert('Successfully Uploaded')</script>";
+			}
+		}
+		header('location:Doc.php');
+	}
 
 ?>
 <html>
@@ -187,7 +221,7 @@
 				<div><button class="back-button" onclick="backimgon()" ><i class="fa fa-camera"></i>&nbsp;Upload Background</button></div>
 				<?php
 						if($Backimg != ""){
-							echo '<img src="data:image/jpeg;base64,'.base64_encode($Backimg).'"/>';
+							echo "<img src=".$Backimg." />";
 						}
 						else{
 							echo '<div class="back">';
@@ -202,7 +236,7 @@
 						<br>
 					</div>
                     <div class="upload">
-                        <div><?= '<img src="data:image/jpeg;base64,'.base64_encode($Logo).'"/>';?></div>
+						<div><?= "<img src=".$Logo." />";?></div>
                     </div>
                     <ul class="proflist">
                         <li class="item">Name <span class="value"><?= $Stname?></span></li>
