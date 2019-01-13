@@ -249,11 +249,11 @@
 						<p>What is your company's competitive or unfair advantage? This can include patents, first mover advantage, unique expertise, or proprietary processes/technology.</p>
 						<div><?php echo $CompAdv?></div>
 					</div>
-					<div class="databox">
+					<!-- <div class="databox">
 						<h3>Consultancy</h3>
 						<p>Need help??..contact our consultancy</p>
 
-					</div>
+					</div> -->
 				</div>
 				</div>
 <?php require "../../include/footer/footer.php" ?>

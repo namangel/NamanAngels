@@ -727,6 +727,7 @@
                     <div><a href="Exec.php">Executive summary</a></div>
                     <div><a href="Finance.php">Financials</a></div>
                     <div><a href="Doc.php">Documents</a></div>
+					<div><a href="Consult.php" target="_blank">Consultancy</a></div>
                 </div>
                 <div class="summary">
                     <div class="databox">
@@ -746,7 +747,7 @@
                     </div>
                     <div class="databox" style="padding:10px;">
 						<h3>Pitch</h3>
-						<div style="float:right"><a href="#" onclick="consulton()"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>
+						<div style="float:right"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>
 						<?php
 							if($PitchName == ""){
 		                        echo '<label>Increase the impact of your profile by uploading a short pitch</label>';
@@ -852,12 +853,12 @@
 							}
 						?>
                     </div>
-										<div class="databox">
-											<button onClick="consulton()" class="pencil"><i class="fa fa-pencil"></i></button>
-											<h3>Consultancy</h3>
-											<p>Need help??..contact our consultancy</p>
+					<!-- <div class="databox">
+						<button onClick="consulton()" class="pencil"><i class="fa fa-pencil"></i></button>
+						<h3>Consultancy</h3>
+						<p>Need help??..contact our consultancy</p>
 
-										</div>
+					</div> -->
                 </div>
                 <div id="backimg">
                     <div class="form">
@@ -882,31 +883,31 @@
                             <button onclick="summoff()" class="close"><i class="fa fa-close"></i></button>
                             <h3>Company Summary</h3>
                             <p>Add an overview to help investors evaluate your startup. You might like to include your business model, structure and products/services. (upto 500 words)</p>
-														<a href="#" onclick="consulton()"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a>
+								<a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a>
                         </div>
                         <div class="formtext">
                             <form method="post">
                                 <!-- <div class="formtext"><textarea rows="10" cols="150" name="summaryform" required><?= $Summary?></textarea></div> -->
-																<div class="formtext"><textarea rows="10" cols="150" name="summaryform" id="summ" required><?= $Summary?></textarea></div>
-																<script>
-																		function check_words(e) {
-																	  var BACKSPACE   = 8;
-																	  var DELETE      = 127;
-																	  var MAX_WORDS   = 500;
-																	  var valid_keys  = [BACKSPACE, DELETE];
-																	  var words       = this.value.split(' ');
+								<div class="formtext"><textarea rows="10" cols="150" name="summaryform" id="summ" required><?= $Summary?></textarea></div>
+								<script>
+										function check_words(e) {
+										var BACKSPACE   = 8;
+										var DELETE      = 127;
+										var MAX_WORDS   = 500;
+										var valid_keys  = [BACKSPACE, DELETE];
+										var words       = this.value.split(' ');
 
-																	  if (words.length >= 500 && valid_keys.indexOf(e.keyCode) == -1) {
-																	      e.preventDefault();
-																	      words.length = 500;
-																	      this.value = words.join(' ');
-																	  }
-																	}
-																	var textarea = document.getElementById('summ');
-																	textarea.addEventListener('keydown', check_words);
-																	textarea.addEventListener('keyup', check_words);
-																</script>
-																<div class="formtext submits">
+										if (words.length >= 500 && valid_keys.indexOf(e.keyCode) == -1) {
+											e.preventDefault();
+											words.length = 500;
+											this.value = words.join(' ');
+										}
+									}
+									var textarea = document.getElementById('summ');
+									textarea.addEventListener('keydown', check_words);
+									textarea.addEventListener('keyup', check_words);
+								</script>
+								<div class="formtext submits">
                                     <input type="submit" onclick="summoff()"value="Cancel" name="cancel" class="cancel">
                                     <input type="submit" value="Save" name="sumsave" class="save">
                                 </div>
@@ -924,24 +925,24 @@
                         <div class="formtext">
                             <form method="post">
                                 <div class="formtext"><textarea rows="10" cols="150" name="olpform" id="pitch" required><?= $OLP?></textarea></div>
-																<script>
-																		function check_words(e) {
-																		var BACKSPACE   = 8;
-																		var DELETE      = 127;
-																		var MAX_WORDS   = 50;
-																		var valid_keys  = [BACKSPACE, DELETE];
-																		var words       = this.value.split(' ');
+									<script>
+											function check_words(e) {
+											var BACKSPACE   = 8;
+											var DELETE      = 127;
+											var MAX_WORDS   = 50;
+											var valid_keys  = [BACKSPACE, DELETE];
+											var words       = this.value.split(' ');
 
-																		if (words.length >= 50 && valid_keys.indexOf(e.keyCode) == -1) {
-																				e.preventDefault();
-																				words.length = 50;
-																				this.value = words.join(' ');
-																		}
-																	}
-																	var textarea = document.getElementById('pitch');
-																	textarea.addEventListener('keydown', check_words);
-																	textarea.addEventListener('keyup', check_words);
-																</script>
+											if (words.length >= 50 && valid_keys.indexOf(e.keyCode) == -1) {
+													e.preventDefault();
+													words.length = 50;
+													this.value = words.join(' ');
+											}
+										}
+										var textarea = document.getElementById('pitch');
+										textarea.addEventListener('keydown', check_words);
+										textarea.addEventListener('keyup', check_words);
+									</script>
                                 <div class="formtext submits">
                                     <input type="submit" onclick="olpoff()" value="Cancel" name="cancel" class="cancel">
                                     <input type="submit" value="Save" name="olpsave" class="save">

@@ -617,7 +617,8 @@
                     <div><a href="index.php">Overview</a></div>
                     <div><a href="Exec.php">Executive summary</a></div>
                     <div><a href="Finance.php">Financials</a></div>
-                    <div><a href="Doc.php" style="color:black;">Documents</a></div>
+					<div><a href="Doc.php" style="color:black;">Documents</a></div>
+					<div><a href="Consult.php" target="_blank">Consultancy</a></div>
                 </div>
                 <div id="socialformov">
                     <div class="form">
@@ -684,27 +685,27 @@
 						<div class="databox">
 							<button class="adddoc">Add Document</button>
 													<h3>Business Plan</h3>
-													<div style="float:right;"><a href="#" onclick="consulton()"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>
+													<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>
 	                        <p>What is your long term business plan? Preferred file types: .pdf, .doc, .xls</p>
 						</div>
 						<div class="databox">
 							<button class="adddoc">Add Document</button>
 	                        <h3>Financial Projections</h3>
-													<div style="float:right;"><a href="#" onclick="consulton()"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>
+													<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>
 	                        <p>Provide an overview of where your financials are headed within the next 5 years.<br> Preferred file types: .pdf, .doc, .xls</p>
 	        	</div>
 						<div class="databox">
 							<button class="adddoc">Add Document</button>
 	                        <h3>Additional Documents</h3>
-													<div style="float:right;"><a href="#" onclick="consulton()"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>
+													<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>
 	                        <p>Upload any documents to support your company.</p>
 						</div>
-						<div class="databox">
+						<!-- <div class="databox">
 							<button onClick="consulton()" class="pencil"><i class="fa fa-pencil"></i></button>
 							<h3>Consultancy</h3>
 							<p>Need help??..contact our consultancy</p>
 
-						</div>
+						</div> -->
 				</div>
 				<div id="consult">
 						<div class="form">

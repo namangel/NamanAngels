@@ -309,19 +309,19 @@
                             <div class="i4">
                                 <label for="stage">Company Stage</label><br>
                                 <select name="cbstage" placeholder="<?= $Stage?>">
-																	<option>Select Stage</option>
-																	<option>Concept Only</option>
-																	<option>Product in Development</option>
-																	<option>Prototype ready</option>
-																	<option>Full Product Ready</option>
-																	<option>Early Revenue Stage</option>
-																	<option>Growth Stage</option>
+									<option>Select Stage</option>
+									<option>Concept Only</option>
+									<option>Product in Development</option>
+									<option>Prototype ready</option>
+									<option>Full Product Ready</option>
+									<option>Early Revenue Stage</option>
+									<option>Growth Stage</option>
                                 </select>
                             </div>
-														<div class="i5">
-																<label for="cbaddress">Address</label><br>
-																<input name="cbaddress" type="text" placeholder="<?= $Address?>">
-														</div>
+								<div class="i5">
+										<label for="cbaddress">Address</label><br>
+										<input name="cbaddress" type="text" placeholder="<?= $Address?>">
+								</div>
                             <div class="i5">
                                 <label for="cbcity">City</label><br>
                                 <input name="cbcity" type="text" placeholder="<?= $City?>">
@@ -616,56 +616,57 @@
                     </div>
                 </div>
 				<div class="nav">
-									<div><a href="index.php">Overview</a></div>
-									<div><a href="Exec.php">Executive summary</a></div>
-									<div><a href="Finance.php" style="color:black;">Financials</a></div>
-									<div><a href="Doc.php">Documents</a></div>
+					<div><a href="index.php">Overview</a></div>
+					<div><a href="Exec.php">Executive summary</a></div>
+					<div><a href="Finance.php" style="color:black;">Financials</a></div>
+					<div><a href="Doc.php">Documents</a></div>
+					<div><a href="Consult.php" target="_blank">Consultancy</a></div>
 				</div>
 				<div id="socialformov">
-											<div class="form">
-												<div class="formhead">
-													<button class="close" onclick="socialoff()"><i class="fa fa-close"></i></button>
-													<h3>Social Presence</h3>
-													<p>Add your company's social media links.</p>
-												</div>
-												<div class="formtext">
-													<form method="post">
-														<div class="socialic">
-															<i class="fa fa-linkedin"></i><input size="55" type="text" name="sflinkedin" placeholder="<?= $LinkedInLink?>">
-														</div>
-														<div class="socialic">
-															<i class="fa fa-twitter"></i><input size="55" type="text" name="sftwitter" placeholder="<?= $TwitterLink?>">
-														</div>
-														<div class="socialic">
-															<i class="fa fa-facebook"></i><input size="55" type="text" name="sffacebook" placeholder="<?= $FBLink?>">
-														</div><br>
-														<div class="formtext submits">
-															<input class="cancel" name="cancel" type="submit" value="Cancel"> <input class="save" name="sfsave" type="submit" value="Save">
-														</div>
-													</form>
-												</div>
-											</div>
+					<div class="form">
+						<div class="formhead">
+							<button class="close" onclick="socialoff()"><i class="fa fa-close"></i></button>
+							<h3>Social Presence</h3>
+							<p>Add your company's social media links.</p>
+						</div>
+						<div class="formtext">
+							<form method="post">
+								<div class="socialic">
+									<i class="fa fa-linkedin"></i><input size="55" type="text" name="sflinkedin" placeholder="<?= $LinkedInLink?>">
+								</div>
+								<div class="socialic">
+									<i class="fa fa-twitter"></i><input size="55" type="text" name="sftwitter" placeholder="<?= $TwitterLink?>">
+								</div>
+								<div class="socialic">
+									<i class="fa fa-facebook"></i><input size="55" type="text" name="sffacebook" placeholder="<?= $FBLink?>">
+								</div><br>
+								<div class="formtext submits">
+									<input class="cancel" name="cancel" type="submit" value="Cancel"> <input class="save" name="sfsave" type="submit" value="Save">
+								</div>
+							</form>
+						</div>
+					</div>
 				</div>
 				<div id="contactform">
-									<form class="form" method="post">
-										<div class="formhead">
-											<button class="close" onclick="contactoff()"><i class="fa fa-close"></i></button>
-											<h3>Contact Information</h3>
-											<p>Provide contact information for your company.</p>
-										</div>
-										<div class="formtext">
-											<label for="cfphone">Phone Number</label><br>
-											<input name="cfphone" size="40" type="text" placeholder="<?= $Phone?>"><br>
-											<label for="cfemail">Email</label><br>
-											<input name="cfemail" size="40" type="email" placeholder="<?= $Email?>"><br>
-											<br>
-											<div class="formtext submits">
-												<input class="cancel" name="cancel" type="submit" value="Cancel"> <input class="save" name="cfsave" type="submit" value="Save">
-											</div>
-										</div>
-									</form>
-								</div>
-								<div id="backimg">
+					<form class="form" method="post">
+						<div class="formhead">
+							<button class="close" onclick="contactoff()"><i class="fa fa-close"></i></button>
+							<h3>Contact Information</h3>
+							<p>Provide contact information for your company.</p>
+						</div>
+						<div class="formtext">
+							<label for="cfphone">Phone Number</label><br>
+							<input name="cfphone" size="40" type="text" placeholder="<?= $Phone?>"><br>
+							<label for="cfemail">Email</label><br>
+							<input name="cfemail" size="40" type="email" placeholder="<?= $Email?>"><br>
+							<br>
+							<div class="formtext submits">
+								<input class="cancel" name="cancel" type="submit" value="Cancel"> <input class="save" name="cfsave" type="submit" value="Save">
+							</div>
+						</div>
+					</form>
+				</div>
+				<div id="backimg">
                     <div class="form">
                         <div class="formhead">
                             <button onclick="backimgoff()" class="close"><i class="fa fa-close"></i></button>
@@ -682,54 +683,54 @@
                         </div>
                     </div>
                 </div>
-								<div class="summary">
-									<center><i class="fa fa-lock icsize">Only NamanAngels users who have been granted access can view this content.</i></center>
-									<div class="databox">
-										<div style="float:right;margin-top:20px;"><a href="#" onclick="consulton()"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>
-										<h3>Current Funding Round (USD)</h3>
+				<div class="summary">
+					<center><i class="fa fa-lock icsize">Only NamanAngels users who have been granted access can view this content.</i></center>
+					<div class="databox">
+						<div style="float:right;margin-top:20px;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>
+						<h3>Current Funding Round (USD)</h3>
 
-										  Detail your stage of funding, the capital you're seeking and your pre-money valuation.<br><br>
-										  <button class="btnfund" onclick="roundon()">Open Funding Round</button>
-									</div>
-									<div class="databox">
-										<button class="pencil"><i class="fa fa-pencil "></i></button>
-										<h3>Funding History (USD)</h3><br>
-										  Please add any previous funding rounds.
-									</div>
-									<div class="databox">
-										<button class="pencil" onclick="annualon()"><i class="fa fa-pencil"></i></button>
-										<h3>Annual Financials (USD)</h3>
-										<div class="p2">
-										</div>
-										<p>Enter your financials for this year and last year, as well as projections for the following three years.</p>
-										<p>Investors like to compare and evaluate financial performance over this timeframe, so do your best to complete it.</p>
-									</div>
-									<div class="databox">
-										<pre>Annual Revenue Run Rate --                        Monthly Burn Rate --<pre>
-											<table>
-											  <tr>
-												<td>         </td>
-											  </tr>
-											  <tr>
-												<td>Revenue Driver</td>
-											  </tr>
-											  <tr>
-												<td>Revenue $</td>
-											  </tr>
-											  <tr>
-												<td>Expenditure $</td>
-											  </tr>
-											  <tr>
-												<td>Profit (Loss) $</td>
-											  </tr>
-											</table>
-									</div>
-									<div class="databox">
-										<button onClick="consulton()" class="pencil"><i class="fa fa-pencil"></i></button>
-										<h3>Consultancy</h3>
-										<p>Need help??..contact our consultancy</p>
+							Detail your stage of funding, the capital you're seeking and your pre-money valuation.<br><br>
+							<button class="btnfund" onclick="roundon()">Open Funding Round</button>
+					</div>
+					<div class="databox">
+						<button class="pencil"><i class="fa fa-pencil "></i></button>
+						<h3>Funding History (USD)</h3><br>
+							Please add any previous funding rounds.
+					</div>
+					<div class="databox">
+						<button class="pencil" onclick="annualon()"><i class="fa fa-pencil"></i></button>
+						<h3>Annual Financials (USD)</h3>
+						<div class="p2">
+						</div>
+						<p>Enter your financials for this year and last year, as well as projections for the following three years.</p>
+						<p>Investors like to compare and evaluate financial performance over this timeframe, so do your best to complete it.</p>
+					</div>
+					<div class="databox">
+						<pre>Annual Revenue Run Rate --                        Monthly Burn Rate --<pre>
+							<table>
+								<tr>
+								<td>         </td>
+								</tr>
+								<tr>
+								<td>Revenue Driver</td>
+								</tr>
+								<tr>
+								<td>Revenue $</td>
+								</tr>
+								<tr>
+								<td>Expenditure $</td>
+								</tr>
+								<tr>
+								<td>Profit (Loss) $</td>
+								</tr>
+							</table>
+					</div>
+					<!-- <div class="databox">
+						<button onClick="consulton()" class="pencil"><i class="fa fa-pencil"></i></button>
+						<h3>Consultancy</h3>
+						<p>Need help??..contact our consultancy</p>
 
-									</div>
+					</div> -->
 				</div>
 
 				<div id="openround">
