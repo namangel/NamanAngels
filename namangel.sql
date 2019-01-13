@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jan 12, 2019 at 03:34 PM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.10
+-- Host: 127.0.0.1
+-- Generation Time: Jan 13, 2019 at 02:00 AM
+-- Server version: 10.1.33-MariaDB
+-- PHP Version: 7.2.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -174,7 +174,7 @@ CREATE TABLE `st_addetails` (
 --
 
 INSERT INTO `st_addetails` (`StpID`, `Stage`, `DOF`, `EmpNum`, `IncType`, `LinkedIn`, `Twitter`, `Facebook`, `Instagram`, `Youtube`) VALUES
-(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(1, 'Prototype ready', '2014-12-12', '12', 'LLP', 'spacex/linkedin', 'spacex/twitter', 'spacex/fb', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -186,8 +186,15 @@ CREATE TABLE `st_advisors` (
   `ID` int(50) NOT NULL,
   `StpID` int(20) NOT NULL,
   `Name` varchar(200) NOT NULL,
-  `Email` int(200) NOT NULL
+  `Email` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `st_advisors`
+--
+
+INSERT INTO `st_advisors` (`ID`, `StpID`, `Name`, `Email`) VALUES
+(1, 1, 'Nick Fury', 'nick@shield.com');
 
 -- --------------------------------------------------------
 
@@ -203,6 +210,7 @@ CREATE TABLE `st_description` (
   `ProductService` varchar(500) DEFAULT NULL,
   `TargetMarket` varchar(500) DEFAULT NULL,
   `BusinessModel` varchar(500) DEFAULT NULL,
+  `MarketSizing` varchar(500) DEFAULT NULL,
   `CustomerSegments` varchar(500) DEFAULT NULL,
   `SaleMarketStrat` varchar(500) DEFAULT NULL,
   `Competitors` varchar(500) DEFAULT NULL,
@@ -213,8 +221,8 @@ CREATE TABLE `st_description` (
 -- Dumping data for table `st_description`
 --
 
-INSERT INTO `st_description` (`StpID`, `Summary`, `OLP`, `CustomerProblem`, `ProductService`, `TargetMarket`, `BusinessModel`, `CustomerSegments`, `SaleMarketStrat`, `Competitors`, `CompAdvantage`) VALUES
-(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `st_description` (`StpID`, `Summary`, `OLP`, `CustomerProblem`, `ProductService`, `TargetMarket`, `BusinessModel`, `MarketSizing`, `CustomerSegments`, `SaleMarketStrat`, `Competitors`, `CompAdvantage`) VALUES
+(1, 'Space X is an awesome project', 'Lets go to Mars', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -258,6 +266,13 @@ CREATE TABLE `st_previnvestment` (
   `Email` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `st_previnvestment`
+--
+
+INSERT INTO `st_previnvestment` (`ID`, `StpID`, `Name`, `Email`) VALUES
+(0, 1, 'ABC', 'abc12@123.com');
+
 -- --------------------------------------------------------
 
 --
@@ -274,6 +289,13 @@ CREATE TABLE `st_team` (
   `Email` varchar(200) NOT NULL,
   `LinkedIn` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `st_team`
+--
+
+INSERT INTO `st_team` (`ID`, `StpID`, `FName`, `LName`, `Designation`, `Experience`, `Email`, `LinkedIn`) VALUES
+(1, 1, 'Tony', 'Stark', 'Cap', '5', 'tony@stark.com', 'tony/in');
 
 -- --------------------------------------------------------
 
@@ -294,7 +316,7 @@ CREATE TABLE `st_uploads` (
 --
 
 INSERT INTO `st_uploads` (`StpID`, `Logo`, `BackImg`, `PitchName`, `PitchExt`) VALUES
-(1, NULL, NULL, NULL, NULL);
+(1, '‰PNG\r\n\Z\n\0\0\0\rIHDR\0\0\0È\0\0\0È\0\0\0­X®ž\0\0\0sRGB\0®Îé\0\0\0gAMA\0\0±üa\0\0¹IDATx^íO¬ÕÇ¯]¶ÐºAI±uQc]@¬&>ãŸ‰>¶òGW”<S\ZB4Ê‚°x\r1jÔøBYñ×ey˜¸‰ÏDK \r‚&¸ ÂƒnZE·ö~î›Sî½ofîü93sþ|?	¹s_+¼{g>ç÷çœ9sÃ/}zBˆT~•¼\n!R Bä ', '‰PNG\r\n\Z\n\0\0\0\rIHDR\0\0,\0\0,\0\0\0y}Žu\0\0\0sBIT|dˆ\0\0 \0IDATxœì½w|×u÷ý;÷ÎlÁ¢\0AØÅN±‰IQ©JJ²lKrW\'í<¶ûu\\’øIüÚñ“8‰SÞÇ=’e‘²å¸;²%YÅê¢\Z%ö\0ÑûÖ™{Þ?fw±($±À.¶à~?Zír¶]ìÌüæœsÏ=Ðh4\ZF£Ñh4\ZF£Ñh4\ZF£Ñh4\ZF£Ñ', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -457,13 +479,13 @@ ALTER TABLE `requests`
 -- AUTO_INCREMENT for table `st_advisors`
 --
 ALTER TABLE `st_advisors`
-  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `st_team`
 --
 ALTER TABLE `st_team`
-  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `userinv`
