@@ -2,14 +2,18 @@
   
   require '../../server.php';
 
-  $u = $_SESSION['username'];
-  $qu = "SELECT * FROM user_inv WHERE Username='$u'";
+  $u = $_SESSION['InvID'];
+  $qu = "SELECT * FROM inv_details WHERE InvID='$u'";
 	$results = mysqli_query($db, $qu);
 	$row = mysqli_fetch_assoc($results);
-	$Stname = $row['Cname'];
-	$Ffname = $row['Fname'];
-	$Sfname = $row['Lname'];
-	$Email = $row['Email'];
+	$Stname = $row['CName'];
+	$Ffname = $row['FName'];
+	$Sfname = $row['LName'];
+  $Email = $row['Email'];
+
+  $qu = "SELECT * FROM userinv WHERE InvID='$u'";
+  $results = mysqli_query($db, $qu);
+	$row = mysqli_fetch_assoc($results);
 	$Password = $row['Password'];
 
   if(isset($_POST["contactset"]))
@@ -20,22 +24,22 @@
     $phone = mysqli_real_escape_string($db, $_POST['phone']);
 		if($fname != NULL)
 		{
-			$q = "UPDATE user_inv set Fname='$fname' where Username='$u';";
+			$q = "UPDATE inv_details set FName='$fname' where InvID='$u';";
 			mysqli_query($db, $q);
     }
     if($lname != NULL)
 		{
-			$q = "UPDATE user_inv set Lname='$lname' where Username='$u';";
+			$q = "UPDATE inv_details set LName='$lname' where InvID='$u';";
 			mysqli_query($db, $q);
     }
     if($email != NULL)
 		{
-			$q = "UPDATE user_inv set Email='$email' where Username='$u';";
+			$q = "UPDATE inv_details set Email='$email' where InvID='$u';";
 			mysqli_query($db, $q);
     }
     if($phone != NULL)
 		{
-			$q = "UPDATE user_inv set Phone='$phone' where Username='$u';";
+			$q = "UPDATE inv_details set Phone='$phone' where InvID='$u';";
 			mysqli_query($db, $q);
 		}
 		header('location: contact.php');

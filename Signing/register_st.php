@@ -4,60 +4,6 @@
   <title>Register Start Up</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="css/register.css">
-	<style>
-        .input-group{
-            display: inline-block;
-            
-        }
-
-        .input-group label, .input-group input, .input-group select{
-        margin: 10px 0px 10px 0px;
-        display: inline-block;
-        width: 40%;
-        padding: 10px;
-        font-size: 16px;
-        text-align: left;
-        }
-
-		.input-group {
-		position: relative;
-        display: inline-block;
-        width:48%;
-		}
-
-		.input-group .tooltiptext {
-		visibility: hidden;
-		width: 275px;
-		background-color: #555;
-		color: #fff;
-		text-align: center;
-		border-radius: 6px;
-		padding: 5px 0;
-		position: absolute;
-		z-index: 1;
-		bottom: 125%;
-		left: 60%;
-		margin-left: -60px;
-		opacity: 0;
-		transition: opacity 0.3s;
-		}
-
-		.input-group .tooltiptext::after {
-		content: "";
-		position: absolute;
-		top: 100%;
-		left: 50%;
-		margin-left: -5px;
-		border-width: 5px;
-		border-style: solid;
-		border-color: #555 transparent transparent transparent;
-		}
-
-		.input-group:hover .tooltiptext {
-		visibility: visible;
-		opacity: 1;
-		}
-	</style>
 </head>
 <body>
 <?php require 'include/header/sign.php'; ?>

@@ -27,60 +27,6 @@ function show(){
   }
 }
 </script>
-<style>
-  .input-group{
-    display: inline-block;
-        
-    }
-
-    .input-group label, .input-group input, .input-group select{
-    margin: 10px 0px 10px 0px;
-    display: inline-block;
-    width: 40%;
-    padding: 10px;
-    font-size: 16px;
-    text-align: left;
-    }
-
-		.input-group {
-		position: relative;
-        display: inline-block;
-        width:48%;
-		}
-
-		.input-group .tooltiptext {
-		visibility: hidden;
-		width: 275px;
-		background-color: #555;
-		color: #fff;
-		text-align: center;
-		border-radius: 6px;
-		padding: 5px 0;
-		position: absolute;
-		z-index: 1;
-		bottom: 125%;
-		left: 60%;
-		margin-left: -60px;
-		opacity: 0;
-		transition: opacity 0.3s;
-		}
-
-		.input-group .tooltiptext::after {
-		content: "";
-		position: absolute;
-		top: 100%;
-		left: 50%;
-		margin-left: -5px;
-		border-width: 5px;
-		border-style: solid;
-		border-color: #555 transparent transparent transparent;
-		}
-
-		.input-group:hover .tooltiptext {
-		visibility: visible;
-		opacity: 1;
-		}
-</style>
 </head>
 
 <body>
@@ -108,24 +54,24 @@ function show(){
 <div class="content" id="individual" style="display:none">
   <div class="input-group">
     <label>First Name</label>
-    <input type="text" name="fname" value="<?php echo $fname; ?>" required>
+    <input type="text" name="fname" required>
   </div>
   <div class="input-group">
     <label>Last Name</label>
-    <input type="text" name="lname" value="<?php echo $lname; ?>"required>
+    <input type="text" name="lname" required>
   </div>
 <div class="input-group">
     <label>Email</label>
-    <input type="email" name="email" value="<?php echo $email; ?>"required>
+    <input type="email" name="email"required>
   </div>
 
 <div class="input-group">
   <label>City</label>
-  <input type="text" name="city" value="<?php echo $city; ?>" required>
+  <input type="text" name="city" required>
 </div>
 <div class="input-group">
   <label>State</label>
-  <input type="text" name="state" value="<?php echo $state; ?>"required>
+  <input type="text" name="state" required>
 </div>
 <div class="input-group">
     <label>Country</label>
@@ -384,21 +330,21 @@ function show(){
   </div>
 <div class="input-group">
   <label>Average No. Of Invested Companies Per Year</label>
-  <input type="text" name="average" value="<?php echo $average; ?>"required>
+  <input type="text" name="average" required>
 </div>
 <!-- <div class="input-group">
     <label>Website</label>
-    <input type="text" name="website" value="<?php echo $website; ?>"required>
+    <input type="text" name="website"required>
 </div> -->
 <div class="input-group">
   <label>Phone</label>
-  <input type="number" name="phone" value="" required>
+  <input type="number" name="phone" required>
 </div>
 
 <br><br><hr style="width:50%">
 <div class="input-group">
   <label>Username</label>
-  <input type="text" name="username" value=""required>
+  <input type="text" name="username" required>
 </div>
 
 <div class="input-group">
@@ -417,7 +363,7 @@ function show(){
     <div class="content" id="institution"style="display:none">
       <div class="input-group">
         <label>Company Name</label>
-        <input type="text" name="iname" value="<?php echo $iname;?>" autofocus required>
+        <input type="text" name="iname" autofocus required>
       </div>
     <div class="input-group">
         <label>Email</label>

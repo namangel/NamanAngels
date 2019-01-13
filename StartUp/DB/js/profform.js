@@ -176,10 +176,4 @@ function annualon() {
 function annualoff() {
     document.getElementById("annualfin").style.display = "none";
 }
-function consulton() {
-    document.getElementById("consult").style.display = "block";
-}
 
-function consultoff() {
-    document.getElementById("consult").style.display = "none";
-}

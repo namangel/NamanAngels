@@ -1,12 +1,12 @@
 <?php
 	require '../../server.php';
-	$u = $_SESSION['username'];
-	$qu = "SELECT * FROM user_inv WHERE Username='$u'";
+	$u = $_SESSION['InvID'];
+	$qu = "SELECT * FROM inv_details WHERE InvID='$u'";
   	$results = mysqli_query($db, $qu);
 	$row = mysqli_fetch_assoc($results);
-	$fname = $row['Fname'];
-    $lname = $row['Lname'];
-    $cname = $row['Cname'];
+	$fname = $row['FName'];
+    $lname = $row['LName'];
+    $cname = $row['CName'];
     $web = $row['Website'];
     $city = $row['City'];
     $state = $row['State'];
@@ -15,18 +15,23 @@
     $email = $row['Email'];
     $website = $row['Website'];
 
-    $qu = "SELECT * FROM inv_overview WHERE Username='$u'";
+    $qu = "SELECT * FROM inv_addetails WHERE InvID='$u'";
     $results = mysqli_query($db, $qu);
-    $row = mysqli_fetch_assoc($results);
-    $img = $row['ProfileImage']==""? '--':$row['ProfileImage'];
-    $role = $row['Role']==""? '--':$row['Role'];
-    $partner = $row['Partner']==""? '--':$row['Partner'];
-    $invrange = $row['InvRange']==""? '--':$row['InvRange'];
-    $indOfInt=$row['IndustryOfInterest']==""? '--':$row['IndustryOfInterest'];
+	$row = mysqli_fetch_assoc($results);
+	$indOfInt=$row['IOI']==""? '--':$row['IOI'];
+	$facebook=$row['Facebook']==""? '--':$row['Facebook'];
+	$twitter=$row['Twitter']==""? '--':$row['Twitter'];
+	$linkedin=$row['LinkedIn']==""? '--':$row['LinkedIn'];
+	$instagram=$row['Instagram']==""? '--':$row['Instagram'];
+	$role = $row['Role']==""? '--':$row['Role'];
+	$partner = $row['Partner']==""? '--':$row['Partner'];
+	$invrange = $row['InvRange']==""? '--':$row['InvRange'];
     $summary=$row['Summary']==""? 'Describe yourself and the value of your investment.':$row['Summary'];
-		$linkedin=$row['LinkedIn']==""? '--':$row['LinkedIn'];
-		$facebook=$row['FBLink']==""? '--':$row['FBLink'];
-		$twitter=$row['TwitterLink']==""? '--':$row['TwitterLink'];
+	
+	$q = "SELECT * FROM inv_uploads WHERE InvID='$u'";
+    $results = mysqli_query($db, $q);
+	$row = mysqli_fetch_assoc($results);
+	$img = $row['ProfilePic']==""? '--':$row['ProfilePic'];
 
 	if(isset($_POST["cbsave"])){
         $cbfname = mysqli_real_escape_string($db, $_POST['cbfname']);
@@ -43,67 +48,93 @@
 
 		if($cbfname != "")
 		{
-			$q = "UPDATE user_inv set FName ='$cbfname' where Username='$u';";
+			$q = "UPDATE inv_details set FName ='$cbfname' where InvID='$u';";
 			mysqli_query($db, $q);
         }
 
         if($cblname != "")
 		{
-			$q = "UPDATE user_inv set LName ='$cbfname' where Username='$u';";
+			$q = "UPDATE inv_details set LName ='$cbfname' where InvID='$u';";
 			mysqli_query($db, $q);
 		}
 
 		if($cbcomp != "")
 		{
-			$q = "UPDATE user_inv set Stage='$cbcomp' where Username='$u';";
+			$q = "UPDATE inv_details set CName='$cbcomp' where InvID='$u';";
 			mysqli_query($db, $q);
 		}
 
 		if($cbcity != "")
 		{
-			$q = "UPDATE user_inv set City='$cbcity' where Username='$u';";
+			$q = "UPDATE inv_details set City='$cbcity' where InvID='$u';";
+			mysqli_query($db, $q);
+		}
+		if($cbstate != "")
+		{
+			$q = "UPDATE inv_details set State='$cbstate' where InvID='$u';";
 			mysqli_query($db, $q);
 		}
 		if($cbcountry != "")
 		{
-			$q = "UPDATE user_inv set Country='$cbcountry' where Username='$u';";
+			$q = "UPDATE inv_details set Country='$cbcountry' where InvID='$u';";
 			mysqli_query($db, $q);
 		}
 		if($cbrole != "")
 		{
-			$q = "UPDATE inv_overview set Role ='$cbrole' where Username='$u';";
+			$q = "UPDATE inv_addetails set Role ='$cbrole' where InvID='$u';";
 			mysqli_query($db, $q);
 		}
 		if($cbpartner != "")
 		{
-			$q = "UPDATE inv_overview set Partner ='$cbpartner' where Username='$u';";
+			$q = "UPDATE inv_addetails set Partner ='$cbpartner' where InvID='$u';";
 			mysqli_query($db, $q);
         }
         if($cbioi != "")
 		{
-			$q = "UPDATE inv_overview set IndustryOfInterest ='$cbioi' where Username='$u';";
+			$q = "UPDATE inv_addetails set IOI ='$cbioi' where InvID='$u';";
 			mysqli_query($db, $q);
 		}
 		if($cbrange != 'Select Investment')
 		{
-			$q = "UPDATE inv_overview set InvRange='$cbrange' where Username='$u';";
+			$q = "UPDATE inv_addetails set InvRange='$cbrange' where InvID='$u';";
 			mysqli_query($db, $q);
         }
 		if($cbweb != "")
 		{
-			$q = "UPDATE user_inv set Website='$cbweb' where Username='$u';";
+			$q = "UPDATE inv_details set Website='$cbweb' where InvID='$u';";
 			mysqli_query($db, $q);
 		}
-
 		$check = getimagesize($_FILES["cbpic"]["tmp_name"]);
-	    if($check !== false){
-			$image = $_FILES['cbpic']['tmp_name'];
-	        $imgContent = addslashes(file_get_contents($image));
+		if($check != false)
+		{
+			$file_name = $_FILES['cbpic']['name'];
+			$file_size = $_FILES['cbpic']['size'];
+			$file_tmp = $_FILES['cblpic']['tmp_name'];
+			$file_type = $_FILES['cbpic']['type'];
+			$file_ext=strtolower(end(explode('.',$_FILES['cbpic']['name'])));
 
-			$q = "UPDATE inv_overview set ProfileImage='$imgContent' where Username='$u';";
-			mysqli_query($db, $q);
+			$extensions= array("jpeg","jpg","png");
+
+			if(in_array($file_ext,$extensions)=== false)
+			{
+				echo "<script>alert('Extension not allowed, please choose a JPEG or PNG file.')</script>";
+			}
+			else
+			{
+				if($file_size > 5242880)
+				{
+					echo "<script>alert('File size must be less than 5 MB')</script>";
+				}
+				else
+				{
+					$upload = "/NamanAngels/Uploads/".$file_name;
+					move_uploaded_file($file_tmp,$upload);
+					$q = "UPDATE inv_uploads set ProfilePic='$upload' where InvID='$u';";
+					mysqli_query($db, $q);
+					echo "<script>alert('Successfully Uploaded')</script>";
+				}
+			}
 		}
-
 		header('location: Overview.php');
 	}
 
@@ -112,20 +143,26 @@
 		$sllinkin = mysqli_real_escape_string($db, $_POST['sflinkedin']);
 		$sltwit = mysqli_real_escape_string($db, $_POST['sftwitter']);
 		$slfb = mysqli_real_escape_string($db, $_POST['sffacebook']);
+		$slinst = mysqli_real_escape_string($db, $_POST['sfinstagram']);
 
 		if($sllinkin != NULL)
 		{
-			$q = "UPDATE inv_overview set LinkedIn='$sllinkin' where Username='$u'";
+			$q = "UPDATE inv_addetails set LinkedIn='$sllinkin' where InvID='$u'";
 			mysqli_query($db, $q);
         }
 		if($sltwit != NULL)
 		{
-			$q = "UPDATE inv_overview set TwitterLink='$sltwit' where Username='$u'";
+			$q = "UPDATE inv_addetails set Twitter='$sltwit' where InvID='$u'";
 			mysqli_query($db, $q);
         }
 		if($slfb != NULL)
 		{
-			$q = "UPDATE inv_overview set FBLink='$slfb' where Username='$u'";
+			$q = "UPDATE inv_addetails set Facebook='$slfb' where InvID='$u'";
+			mysqli_query($db, $q);
+		}
+		if($slinst != NULL)
+		{
+			$q = "UPDATE inv_addetails set Instagram='$slinst' where InvID='$u'";
 			mysqli_query($db, $q);
         }
 		header('location: Overview.php');
@@ -138,12 +175,12 @@
 
 		if($cfemail != NULL)
 		{
-			$q = "UPDATE user_inv set Email='$cfemail' where Username='$u'";
+			$q = "UPDATE inv_details set Email='$cfemail' where InvID='$u'";
 			mysqli_query($db, $q);
 		}
 		if($updphone != NULL)
 		{
-			$q = "UPDATE user_inv set Phone='$cfphone' where Username='$u'";
+			$q = "UPDATE inv_details set Phone='$cfphone' where InvID='$u'";
 			mysqli_query($db, $q);
 		}
 
@@ -153,7 +190,7 @@
     if(isset($_POST["sumsave"]))
 	{
         $summ = mysqli_real_escape_string($db, $_POST['summaryform']);
-			$q = "UPDATE inv_overview set Summary='$summ' where Username='$u'";
+			$q = "UPDATE inv_addetails set Summary='$summ' where InvID='$u'";
 			mysqli_query($db, $q);
 		header('location: Overview.php');
     }
@@ -163,7 +200,7 @@
 		$tmdesig = mysqli_real_escape_string($db, $_POST['tmdesig']);
 		$tmexp = mysqli_real_escape_string($db, $_POST['tmexp']);
 
-		$q = "INSERT INTO inv_group (Username, GrpName, GrpDesignation, GrpExperience) VALUES ('$u','$tmname', '$tmdesig', '$tmexp')";
+		$q = "INSERT INTO inv_group (InvID, Name, Designation, Experience) VALUES ('$u','$tmname', '$tmdesig', '$tmexp')";
 		mysqli_query($db, $q);
 		header('location: Overview.php');
 
@@ -176,7 +213,7 @@
 		$pistage = mysqli_real_escape_string($db, $_POST['pistage']);
 		$pistake = mysqli_real_escape_string($db, $_POST['pistake']);
 		$piweb = mysqli_real_escape_string($db, $_POST['piweb']);
-		$q = "INSERT INTO inv_previnvestment (Username, PIName, PIYear,PIAmount, PIStage, PIStake, PIweb) VALUES ('$u', '$piname', '$piyear', '$piamount','$pistage','$pistake','$piweb');";
+		$q = "INSERT INTO inv_previnvestment (InvID, Name, Year,Amount, Stage, Stake, Website) VALUES ('$u', '$piname', '$piyear', '$piamount','$pistage','$pistake','$piweb');";
 		mysqli_query($db, $q);
 
 		header('location: Overview.php');
@@ -189,6 +226,53 @@
         <link rel="stylesheet" href="../css/invprof.css" type="text/css">
         <script src="js/invprofform.js"></script>
 				<title>Investor Profile - NamanAngels</title>
+		<style>
+			.tooltip label, .tooltip input, .tooltip select{
+				display: inline-block;
+				width: 100%;
+				padding: 10px;
+				text-align: left;
+				}
+
+				.tooltip {
+				position: relative;
+				display: inline-block;
+				width:48%;
+				}
+
+				.tooltip .tooltiptext {
+				visibility: hidden;
+				width: 275px;
+				background-color: #555;
+				color: #fff;
+				text-align: center;
+				border-radius: 6px;
+				padding: 5px 0;
+				position: absolute;
+				z-index: ;
+				bottom: 50%;
+				left: 70%;
+				margin-left: -50px;
+				opacity: 0;
+				transition: opacity 0.3s;
+				}
+
+				.tooltip .tooltiptext::after {
+				content: "";
+				position: absolute;
+				top: 100%;
+				left: 20%;
+				margin-left: -5px;
+				border-width: 5px;
+				border-style: solid;
+				border-color: #555 transparent transparent transparent;
+				}
+
+				.tooltip:hover .tooltiptext {
+				visibility: visible;
+				opacity: 1;
+				}
+		</style>
 
 		</head>
 
@@ -205,11 +289,11 @@
 				<br>
 			</div>
             <div class="upload">
-                <div><?= '<img src="data:image/jpeg;base64,'.base64_encode($img).'"/>';?></div><br>
+				<div><?= "<img src=".$img." />";?></div><br><br>
                 <b><?= $fname ?>&nbsp;<?= $lname ?></b><br>
                 <?= $cname ?><br>
                 Role: <?= $role ?><br>
-              <b> Location: </b><?= $city ?>&nbsp;,<?= $country ?><br><br>
+              <b> Location: </b><?= $city ?>&nbsp;,<?= $state ?>&nbsp;,<?= $country ?><br><br>
             </div>
         </div>
 
@@ -222,9 +306,9 @@
                                 <p>Add or edit required basic information about yourself or firm.</p>
                                 <hr>
                             </div>
-														<div class="i2">
+								<div class="i2 tooltip">
                                 <label for="cbpic">Profile Image</label><br>
-                                <input name="cbpic" type="file">
+                                <input name="cbpic" type="file"><span class="tooltiptext">Choose file of type .jpeg, .png, .jpg of size less than 5MB!</span>
                             </div>
                             <div class="i2">
                                 <label for="cbfname">First Name</label><br>
@@ -241,6 +325,10 @@
                             <div class="i5">
                                 <label for="cbcity">City</label><br>
                                 <input name="cbcity" type="text"placeholder="<?=$city?>">
+							</div>
+							<div class="i5">
+                                <label for="cbstate">State</label><br>
+                                <input name="cbstate" type="text"placeholder="<?=$state?>">
                             </div>
                             <div class="i5">
                                 <label for="cbcountry">Country</label><br>
@@ -554,6 +642,9 @@
                 </li>
                 <li class="item"><i class="fa fa-facebook" style="color: #36a6fc"></i><span class="value">&nbsp;&nbsp;<?=$facebook?></span></li>
                 <li style="list-style: none; display: inline">
+				</li>
+				<li class="item"><i class="fa fa-instagram" style="color: #36a6fc"></i><span class="value">&nbsp;&nbsp;<?=$instagram?></span></li>
+                <li style="list-style: none; display: inline">
                 </li>
                 <li class="item"><i class="fa fa-globe" style="color: #36a6fc"></i><span class="value">&nbsp;&nbsp;<?= $website ?></span></li>
                 <li style="list-style: none; display: inline">
@@ -571,7 +662,8 @@
                             <form method="post">
                                 <div class="socialic"><i class="fa fa-linkedin"><input type="text" name="sflinkedin" size="30" placeholder="<?=$linkedin?>"></i></div><br>
                                 <div class="socialic"><i class="fa fa-twitter"><input type="text" name="sftwitter" size="30" placeholder="<?=$twitter?>"></i></div><br>
-                                <div class="socialic"><i class="fa fa-facebook"> <input type="text" name="sffacebook" size="30" placeholder="<?=$facebook?>"></i></div><br>
+								<div class="socialic"><i class="fa fa-facebook"> <input type="text" name="sffacebook" size="30" placeholder="<?=$facebook?>"></i></div><br>
+								<div class="socialic"><i class="fa fa-instagram"> <input type="text" name="sfinstagram" size="30" placeholder="<?=$instagram?>"></i></div><br>
                                 <div class="i9">
                                 <label for="cbweb">Website</label><br>
                                 <input name="cbweb" type="text" placeholder="<?=$website?>">
@@ -642,7 +734,7 @@
                 <button onclick="addgrpon()" class="add"><i class="fa fa-plus"></i></button>
                 <h4>Group</h4>
 	    		<?php
-			    	$q = "SELECT * FROM inv_group where Username='$u';";
+			    	$q = "SELECT * FROM inv_group where InvID='$u';";
 		    		$results=mysqli_query($db, $q);
 					if (mysqli_num_rows($results) > 0) {
 					echo '<table class="tables">';
@@ -653,9 +745,9 @@
 					echo "</th>";
 				    while($row = mysqli_fetch_assoc($results)) {
 				        echo '<tr>';
-						echo '<td>'.$row["GrpName"].'</td>';
-						echo '<td>'.$row['GrpDesignation'].'</td>';
-						echo '<td>'.$row['GrpExperience'].'</td>';
+						echo '<td>'.$row["Name"].'</td>';
+						echo '<td>'.$row['Designation'].'</td>';
+						echo '<td>'.$row['Experience'].'</td>';
 						echo "</tr>";
 				    }
 					echo '</table>';
@@ -669,7 +761,7 @@
                 <button onclick="addpion()" class="add"><i class="fa fa-plus"></i></button>
                 <h4>Previous Investment</h4>
     			<?php
-    				$q = "SELECT * FROM inv_previnvestment where Username='$u';";
+    				$q = "SELECT * FROM inv_previnvestment where InvID='$u';";
 					$results=mysqli_query($db, $q);
 	    			if (mysqli_num_rows($results) > 0) {
 					echo '<table class="tables">';
@@ -683,12 +775,12 @@
 					echo "</th>";
 				    while($row = mysqli_fetch_assoc($results)) {
 				        echo '<tr>';
-						echo '<td>'.$row["PIName"].'</td>';
-						echo '<td>'.$row['PIYear'].'</td>';
-						echo '<td>'.$row['PIAmount'].'</td>';
-						echo '<td>'.$row["PIStage"].'</td>';
-						echo '<td>'.$row['PIStake'].'</td>';
-						echo '<td>'.$row['PIWeb'].'</td>';
+						echo '<td>'.$row["Name"].'</td>';
+						echo '<td>'.$row['Year'].'</td>';
+						echo '<td>'.$row['Amount'].'</td>';
+						echo '<td>'.$row["Stage"].'</td>';
+						echo '<td>'.$row['Stake'].'</td>';
+						echo '<td>'.$row['Website'].'</td>';
 						echo "</tr>";
 				    }
 					echo '</table>';

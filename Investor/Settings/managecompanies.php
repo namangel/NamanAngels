@@ -1,24 +1,47 @@
 <?php 
     require '../../server.php';
 
-    $u = $_SESSION['username'];
+    $u = $_SESSION['InvID'];
     
     if(isset($_POST["upload"]))
 	{
         $cname = mysqli_real_escape_string($db, $_POST['cname']);
         if($cname != NULL)
 		{
-			$q = "UPDATE user_inv set Cname='$cname' where Username='$u';";
+			$q = "UPDATE inv_details set CName='$cname' where InvID='$u';";
 			mysqli_query($db, $q);
         }
-        $check = getimagesize($_FILES["myimage"]["tmp_name"]);
-        if($check !== false){
-            $image = $_FILES['myimage']['tmp_name'];
-            $imgContent = addslashes(file_get_contents($image));
+        $check = getimagesize($_FILES["cbpic"]["tmp_name"]);
+		if($check != false)
+		{
+			$file_name = $_FILES['cbpic']['name'];
+			$file_size = $_FILES['cbpic']['size'];
+			$file_tmp = $_FILES['cblpic']['tmp_name'];
+			$file_type = $_FILES['cbpic']['type'];
+			$file_ext=strtolower(end(explode('.',$_FILES['cbpic']['name'])));
 
-            $q = "UPDATE inv_overview set ProfileImage='$imgContent' where Username='$u';";
-            mysqli_query($db, $q);
-        }
+			$extensions= array("jpeg","jpg","png");
+
+			if(in_array($file_ext,$extensions)=== false)
+			{
+				echo "<script>alert('Extension not allowed, please choose a JPEG or PNG file.')</script>";
+			}
+			else
+			{
+				if($file_size > 5242880)
+				{
+					echo "<script>alert('File size must be less than 5 MB')</script>";
+				}
+				else
+				{
+					$upload = "/NamanAngels/Uploads/".$file_name;
+					move_uploaded_file($file_tmp,$upload);
+					$q = "UPDATE inv_uploads set ProfilePic='$upload' where InvID='$u';";
+					mysqli_query($db, $q);
+					echo "<script>alert('Successfully Uploaded')</script>";
+				}
+			}
+		}
     }
 ?>
 

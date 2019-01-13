@@ -1,8 +1,8 @@
 <?php
     require '../../server.php';
-
-    $u = $_SESSION['username'];
-    $qu = "SELECT * FROM user_inv WHERE Username='$u'";
+    
+    $u = $_SESSION['InvID'];
+    $qu = "SELECT * FROM userinv WHERE InvID='$u'";
     $results = mysqli_query($db, $qu);
     $row = mysqli_fetch_assoc($results);
     $Password = $row['Password'];
@@ -25,7 +25,7 @@
         }
         if (count($errors) == 0){
             $pw=sha1($pw_1);
-            $q = "UPDATE user_inv set Password='$pw' where Username='$u';";
+            $q = "UPDATE userinv set Password='$pw' where InvID='$u';";
 			mysqli_query($db, $q);
             echo "<script>alert('Password Changed Successfully')</script>";
         }

@@ -330,9 +330,10 @@
 							<p>Add your company name, elevator pitch, and other basic information about your company.</p>
 							<hr>
 						</div>
-						<div class="i2">
+						<div class="i2 tooltip">
 							<label for="cblogo">Company Logo</label><br>
 							<input name="cblogo" type="file">
+							<span class="tooltiptext">Choose file of type .jpeg, .png, .jpg and size less than 5MB!</span>
 						</div>
 						<div class="i2">
 							<label for="name">Company Name</label><br>
@@ -706,7 +707,7 @@
                         </div>
                         <div class="formtext">
                             <form method="post" action='Doc.php' enctype="multipart/form-data">
-                                <div class="formtext"><input type="file" name="backimg"><br></div>
+                                <div class="formtext"><input type="file" name="backimg"><br><br>Choose file of type .jpeg, .png, .jpg and size less than 5MB!</div>
                                 <div class="formtext submits">
                                     <input type="submit" onclick="backimgoff()" value="Cancel" name="cancel" class="cancel">
                                     <input type="submit" value="Save" name="BIsave" class="save">
@@ -733,51 +734,6 @@
 	                        <h3>Additional Documents</h3>
 													<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>
 	                        <p>Upload any documents to support your company.</p>
-						</div>
-						<!-- <div class="databox">
-							<button onClick="consulton()" class="pencil"><i class="fa fa-pencil"></i></button>
-							<h3>Consultancy</h3>
-							<p>Need help??..contact our consultancy</p>
-
-						</div> -->
-				</div>
-				<div id="consult">
-						<div class="form">
-								<div class="formhead">
-										<button onclick="consultoff()" class="close"><i class="fa fa-close"></i></button>
-										<h3>Consult </h3>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim venia</p>
-								</div>
-								<div class="formtext">
-										<form method="post">
-											<label>Subject</label>
-											<div class="formtext"><textarea rows="2" cols="150" name="consult_sub" id="consult_sub" maxlength="250" required></textarea></div>
-											<br><label>Query</label>
-												<div class="formtext"><textarea rows="10" cols="150" name="consult_query" id="consult_query" required></textarea></div>
-												<script>
-														function check_words(e) {
-														var BACKSPACE   = 8;
-														var DELETE      = 127;
-														var MAX_WORDS   = 500;
-														var valid_keys  = [BACKSPACE, DELETE];
-														var words       = this.value.split(' ');
-
-														if (words.length >= 500 && valid_keys.indexOf(e.keyCode) == -1) {
-																e.preventDefault();
-																words.length = 500;
-																this.value = words.join(' ');
-														}
-													}
-													var textarea = document.getElementById('consult_query');
-													textarea.addEventListener('keydown', check_words);
-													textarea.addEventListener('keyup', check_words);
-												</script>
-												<div class="formtext submits">
-														<input type="submit" onclick="consultoff()"value="Cancel" name="cancel" class="cancel">
-														<input type="submit" value="Save" name="sumsave" class="save">
-												</div>
-										</form>
-								</div>
 						</div>
 				</div>
 		</div>

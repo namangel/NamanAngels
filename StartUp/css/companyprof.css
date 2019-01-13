@@ -107,7 +107,7 @@ width: 100%;
 margin: 10px;
 }
 
-#overlay,#sumformov,#socialformov,#overly,#product,#cust,#target,#bussi,#market,#segs,#sales,#comp,#adv,#contactform,#profteam,#addteam,#adv,#inv,#olpformov,#backimg,#openround,#annualfin,#consult{
+#overlay,#sumformov,#socialformov,#overly,#product,#cust,#target,#bussi,#market,#segs,#sales,#comp,#adv,#contactform,#profteam,#addteam,#adv,#inv,#olpformov,#backimg,#openround,#annualfin{
     position: fixed;
     overflow-y: scroll;
     display: none;
@@ -290,3 +290,49 @@ color: white;
 #equity,#notes{
     display: none;
 }
+
+.tooltip label, .tooltip input, .tooltip select{
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  }
+
+  .tooltip {
+  position: relative;
+  display: inline-block;
+  width:48%;
+  }
+
+  .tooltip .tooltiptext {
+  visibility: hidden;
+  width: 275px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: ;
+  bottom: 50%;
+  left: 70%;
+  margin-left: -50px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  }
+
+  .tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 20%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+  }
+
+  .tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+  }

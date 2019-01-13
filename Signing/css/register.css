@@ -19,8 +19,9 @@ body {
   text-align: center;
 }
 .input-group{
-    display: inline-block;
-    width:48%;
+  position: relative;
+  display: inline-block;
+  width:48%;
 }
 
 .input-group label, .input-group input, .input-group select{
@@ -31,6 +32,40 @@ body {
   font-size: 16px;
   text-align: left;
 }
+
+
+.input-group .tooltiptext {
+  visibility: hidden;
+  width: 275px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 60%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  }
+
+  .input-group .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+  }
+
+  .input-group:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+  }
 .contbot{
     display: block;
     text-align: right;

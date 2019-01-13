@@ -419,9 +419,11 @@
 				              <p>Add your company name, elevator pitch, and other basic information about your company.</p>
 				              <hr>
 				          </div>
-				          <div class="i2">
+				          <div class="i2 tooltip">
 				              <label for="cblogo">Company Logo</label><br>
-				              <input name="cblogo" type="file">
+				              <input name="cblogo" type="file"><div class="i2">
+							<span class="tooltiptext">Choose file of type .jpeg, .png, .jpg and size less than 5MB!</span>
+						</div>
 				          </div>
 				          <div class="i2">
 				              <label for="name">Company Name</label><br>
@@ -430,19 +432,19 @@
 				          <div class="i4">
 				              <label for="stage">Company Stage</label><br>
 				              <select name="cbstage" placeholder="<?= $Stage?>">
-												<option>Select Stage</option>
-												<option>Concept Only</option>
-												<option>Product in Development</option>
-												<option>Prototype ready</option>
-												<option>Full Product Ready</option>
-												<option>Early Revenue Stage</option>
-												<option>Growth Stage</option>
+								<option>Select Stage</option>
+								<option>Concept Only</option>
+								<option>Product in Development</option>
+								<option>Prototype ready</option>
+								<option>Full Product Ready</option>
+								<option>Early Revenue Stage</option>
+								<option>Growth Stage</option>
 				              </select>
 				          </div>
-									<div class="i5">
-											<label for="cbaddress">Address</label><br>
-											<input name="cbaddress" type="text" placeholder="<?= $Address?>">
-									</div>
+						<div class="i5">
+								<label for="cbaddress">Address</label><br>
+								<input name="cbaddress" type="text" placeholder="<?= $Address?>">
+						</div>
 				          <div class="i5">
 				              <label for="cbcity">City</label><br>
 				              <input name="cbcity" type="text" placeholder="<?= $City?>">
@@ -718,12 +720,12 @@
 				              <label for="inc">Incorporation Type</label><br>
 				              <select name="cbinc" placeholder="<?= $IncType?>">
 				                  <option><?= $IncType?></option>
-													<option>Not Incorporated</option>
-													<option>Proprietorship</option>
-													<option>Partnership</option>
-													<option>LLP</option>
-													<option>Pvt Ltd</option>
-													<option>Other</option>
+									<option>Not Incorporated</option>
+									<option>Proprietorship</option>
+									<option>Partnership</option>
+									<option>LLP</option>
+									<option>Pvt Ltd</option>
+									<option>Other</option>
 				              </select>
 				          </div>
 				          <div class="i9">
@@ -795,7 +797,7 @@
                         </div>
                         <div class="formtext">
                             <form method="post" action='Exec.php' enctype="multipart/form-data">
-                                <div class="formtext"><input type="file" name="backimg"><br></div>
+                                <div class="formtext"><input type="file" name="backimg"><br><br>Choose file of type .jpeg, .png, .jpg and size less than 5MB!</div>
                                 <div class="formtext submits">
                                     <input type="submit" onclick="backimgoff()" value="Cancel" name="cancel" class="cancel">
                                     <input type="submit" value="Save" name="BIsave" class="save">
@@ -880,12 +882,6 @@
 						<p>What is your company's competitive or unfair advantage? This can include patents, first mover advantage, unique expertise, or proprietary processes/technology.</p>
 						<div><?php echo $CompAdv?></div>
 					</div>
-					<!-- <div class="databox">
-						<button onClick="consulton()" class="pencil"><i class="fa fa-pencil"></i></button>
-						<h3>Consultancy</h3>
-						<p>Need help??..contact our consultancy</p>
-
-					</div> -->
 				</div>
 				<div class="exe">
 	                <div id="overly">
@@ -920,24 +916,24 @@
 	                            <div class="formtext">
 	                                <form method="post">
 	                                    <div class="formtext"><textarea autofocus rows="10" cols="75" name="custform" id="custform"></textarea></div>
-											<script>
-													function check_words(e) {
-													var BACKSPACE   = 8;
-													var DELETE      = 127;
-													var MAX_WORDS   = 200;
-													var valid_keys  = [BACKSPACE, DELETE];
-													var words       = this.value.split(' ');
+										<script>
+											function check_words(e) {
+											var BACKSPACE   = 8;
+											var DELETE      = 127;
+											var MAX_WORDS   = 200;
+											var valid_keys  = [BACKSPACE, DELETE];
+											var words       = this.value.split(' ');
 
-													if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
-															e.preventDefault();
-															words.length = 200;
-															this.value = words.join(' ');
-													}
-												}
-												var textarea = document.getElementById('custform');
-												textarea.addEventListener('keydown', check_words);
-												textarea.addEventListener('keyup', check_words);
-											</script>
+											if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+													e.preventDefault();
+													words.length = 200;
+													this.value = words.join(' ');
+											}
+										}
+										var textarea = document.getElementById('custform');
+										textarea.addEventListener('keydown', check_words);
+										textarea.addEventListener('keyup', check_words);
+										</script>
 											<div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
 	                                        <input type="submit" value="Save" name="cprobsave" class="save">
@@ -959,22 +955,22 @@
 	                                <form method="post">
 	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="prodser" id="prodser"></textarea></div>
 											<script>
-													function check_words(e) {
-													var BACKSPACE   = 8;
-													var DELETE      = 127;
-													var MAX_WORDS   = 200;
-													var valid_keys  = [BACKSPACE, DELETE];
-													var words       = this.value.split(' ');
+												function check_words(e) {
+												var BACKSPACE   = 8;
+												var DELETE      = 127;
+												var MAX_WORDS   = 200;
+												var valid_keys  = [BACKSPACE, DELETE];
+												var words       = this.value.split(' ');
 
-													if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
-															e.preventDefault();
-															words.length = 200;
-															this.value = words.join(' ');
-													}
+												if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+														e.preventDefault();
+														words.length = 200;
+														this.value = words.join(' ');
 												}
-												var textarea = document.getElementById('prodser');
-												textarea.addEventListener('keydown', check_words);
-												textarea.addEventListener('keyup', check_words);
+											}
+											var textarea = document.getElementById('prodser');
+											textarea.addEventListener('keydown', check_words);
+											textarea.addEventListener('keyup', check_words);
 											</script>
 											<div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
@@ -997,22 +993,22 @@
 	                                <form method="post">
 	                                    <div class="formtext"><textarea autofocus rows="10" cols="75" name="TarMar" id="TarMar"></textarea></div>
 											<script>
-													function check_words(e) {
-													var BACKSPACE   = 8;
-													var DELETE      = 127;
-													var MAX_WORDS   = 200;
-													var valid_keys  = [BACKSPACE, DELETE];
-													var words       = this.value.split(' ');
+											function check_words(e) {
+											var BACKSPACE   = 8;
+											var DELETE      = 127;
+											var MAX_WORDS   = 200;
+											var valid_keys  = [BACKSPACE, DELETE];
+											var words       = this.value.split(' ');
 
-													if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
-															e.preventDefault();
-															words.length = 200;
-															this.value = words.join(' ');
-													}
-												}
-												var textarea = document.getElementById('TarMar');
-												textarea.addEventListener('keydown', check_words);
-												textarea.addEventListener('keyup', check_words);
+											if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+													e.preventDefault();
+													words.length = 200;
+													this.value = words.join(' ');
+											}
+										}
+										var textarea = document.getElementById('TarMar');
+										textarea.addEventListener('keydown', check_words);
+										textarea.addEventListener('keyup', check_words);
 											</script>
 	                                    <div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
@@ -1037,22 +1033,22 @@
 	                                <form method="post">
 	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="BModel" id="BModel"></textarea></div>
 											<script>
-													function check_words(e) {
-													var BACKSPACE   = 8;
-													var DELETE      = 127;
-													var MAX_WORDS   = 200;
-													var valid_keys  = [BACKSPACE, DELETE];
-													var words       = this.value.split(' ');
+											function check_words(e) {
+											var BACKSPACE   = 8;
+											var DELETE      = 127;
+											var MAX_WORDS   = 200;
+											var valid_keys  = [BACKSPACE, DELETE];
+											var words       = this.value.split(' ');
 
-													if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
-															e.preventDefault();
-															words.length = 200;
-															this.value = words.join(' ');
-													}
-												}
-												var textarea = document.getElementById('BModel');
-												textarea.addEventListener('keydown', check_words);
-												textarea.addEventListener('keyup', check_words);
+											if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+													e.preventDefault();
+													words.length = 200;
+													this.value = words.join(' ');
+											}
+										}
+										var textarea = document.getElementById('BModel');
+										textarea.addEventListener('keydown', check_words);
+										textarea.addEventListener('keyup', check_words);
 											</script>
 	                                    <div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
@@ -1076,26 +1072,26 @@
 									<form method="post">
 									<div class="formtext"><textarea autofocus rows="10" cols="75"name="BModel" id="BModel"></textarea></div>
 									<script>
-											function check_words(e) {
-											var BACKSPACE   = 8;
-											var DELETE      = 127;
-											var MAX_WORDS   = 200;
-											var valid_keys  = [BACKSPACE, DELETE];
-											var words       = this.value.split(' ');
+										function check_words(e) {
+										var BACKSPACE   = 8;
+										var DELETE      = 127;
+										var MAX_WORDS   = 200;
+										var valid_keys  = [BACKSPACE, DELETE];
+										var words       = this.value.split(' ');
 
-											if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
-													e.preventDefault();
-													words.length = 200;
-													this.value = words.join(' ');
-											}
+										if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+												e.preventDefault();
+												words.length = 200;
+												this.value = words.join(' ');
 										}
-										var textarea = document.getElementById('BModel');
-										textarea.addEventListener('keydown', check_words);
-										textarea.addEventListener('keyup', check_words);
+									}
+									var textarea = document.getElementById('BModel');
+									textarea.addEventListener('keydown', check_words);
+									textarea.addEventListener('keyup', check_words);
 									</script>
 									<div class="formtext submits">
-											<input type="submit" value="Cancel" name="cancel" class="cancel">
-											<input type="submit" value="Save" name="msave" class="save">
+										<input type="submit" value="Cancel" name="cancel" class="cancel">
+										<input type="submit" value="Save" name="msave" class="save">
 									</div>
 									</form>
 								</div>
@@ -1114,22 +1110,22 @@
 	                                <form method="post">
 	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="CSegments" id="CSegments"></textarea></div>
 											<script>
-													function check_words(e) {
-													var BACKSPACE   = 8;
-													var DELETE      = 127;
-													var MAX_WORDS   = 200;
-													var valid_keys  = [BACKSPACE, DELETE];
-													var words       = this.value.split(' ');
+											function check_words(e) {
+											var BACKSPACE   = 8;
+											var DELETE      = 127;
+											var MAX_WORDS   = 200;
+											var valid_keys  = [BACKSPACE, DELETE];
+											var words       = this.value.split(' ');
 
-													if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
-															e.preventDefault();
-															words.length = 200;
-															this.value = words.join(' ');
-													}
-												}
-												var textarea = document.getElementById('CSegments');
-												textarea.addEventListener('keydown', check_words);
-												textarea.addEventListener('keyup', check_words);
+											if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+													e.preventDefault();
+													words.length = 200;
+													this.value = words.join(' ');
+											}
+										}
+										var textarea = document.getElementById('CSegments');
+										textarea.addEventListener('keydown', check_words);
+										textarea.addEventListener('keyup', check_words);
 											</script>
 	                                    <div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
@@ -1152,22 +1148,22 @@
 	                                <form method="post">
 	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="SMStrat" id="SMStrat"></textarea></div>
 											<script>
-													function check_words(e) {
-													var BACKSPACE   = 8;
-													var DELETE      = 127;
-													var MAX_WORDS   = 200;
-													var valid_keys  = [BACKSPACE, DELETE];
-													var words       = this.value.split(' ');
+											function check_words(e) {
+											var BACKSPACE   = 8;
+											var DELETE      = 127;
+											var MAX_WORDS   = 200;
+											var valid_keys  = [BACKSPACE, DELETE];
+											var words       = this.value.split(' ');
 
-													if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
-															e.preventDefault();
-															words.length = 200;
-															this.value = words.join(' ');
-													}
-												}
-												var textarea = document.getElementById('SMStrat');
-												textarea.addEventListener('keydown', check_words);
-												textarea.addEventListener('keyup', check_words);
+											if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+													e.preventDefault();
+													words.length = 200;
+													this.value = words.join(' ');
+											}
+										}
+										var textarea = document.getElementById('SMStrat');
+										textarea.addEventListener('keydown', check_words);
+										textarea.addEventListener('keyup', check_words);
 											</script>
 	                                    <div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
@@ -1190,22 +1186,22 @@
 	                                <form method="post">
 	                                    <div class="formtext"><textarea autofocus rows="10" cols="75"name="Competitors" id="Competitors"></textarea></div>
 											<script>
-													function check_words(e) {
-													var BACKSPACE   = 8;
-													var DELETE      = 127;
-													var MAX_WORDS   = 200;
-													var valid_keys  = [BACKSPACE, DELETE];
-													var words       = this.value.split(' ');
+											function check_words(e) {
+											var BACKSPACE   = 8;
+											var DELETE      = 127;
+											var MAX_WORDS   = 200;
+											var valid_keys  = [BACKSPACE, DELETE];
+											var words       = this.value.split(' ');
 
-													if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
-															e.preventDefault();
-															words.length = 200;
-															this.value = words.join(' ');
-													}
-												}
-												var textarea = document.getElementById('Competitors');
-												textarea.addEventListener('keydown', check_words);
-												textarea.addEventListener('keyup', check_words);
+											if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+													e.preventDefault();
+													words.length = 200;
+													this.value = words.join(' ');
+											}
+										}
+										var textarea = document.getElementById('Competitors');
+										textarea.addEventListener('keydown', check_words);
+										textarea.addEventListener('keyup', check_words);
 											</script>
 	                                    <div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
@@ -1228,23 +1224,23 @@
 	                                <form method="post">
 	                                    <div class="formtext"><textarea autofocus rows="10" cols="75" name="CompAdv" id="CompAdv"></textarea></div>
 											<script>
-													function check_words(e) {
-													var BACKSPACE   = 8;
-													var DELETE      = 127;
-													var MAX_WORDS   = 200;
-													var valid_keys  = [BACKSPACE, DELETE];
-													var words       = this.value.split(' ');
+											function check_words(e) {
+											var BACKSPACE   = 8;
+											var DELETE      = 127;
+											var MAX_WORDS   = 200;
+											var valid_keys  = [BACKSPACE, DELETE];
+											var words       = this.value.split(' ');
 
-													if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
-															e.preventDefault();
-															words.length = 200;
-															this.value = words.join(' ');
-													}
-												}
-												var textarea = document.getElementById('CompAdv');
-												textarea.addEventListener('keydown', check_words);
-												textarea.addEventListener('keyup', check_words);
-											</script>
+											if (words.length >= 200 && valid_keys.indexOf(e.keyCode) == -1) {
+													e.preventDefault();
+													words.length = 200;
+													this.value = words.join(' ');
+											}
+										}
+										var textarea = document.getElementById('CompAdv');
+										textarea.addEventListener('keydown', check_words);
+										textarea.addEventListener('keyup', check_words);
+										</script>
 	                                    <div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
 	                                        <input type="submit" value="Save" name="cadvsave" class="save">
@@ -1254,45 +1250,6 @@
 	                        </div>
 	                  	</div>
 					</div>
-				</div>
-				<div id="consult">
-						<div class="form">
-								<div class="formhead">
-										<button onclick="consultoff()" class="close"><i class="fa fa-close"></i></button>
-										<h3>Consult </h3>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim venia</p>
-								</div>
-								<div class="formtext">
-										<form method="post">
-											<label>Subject</label>
-											<div class="formtext"><textarea rows="2" cols="150" name="consult_sub" id="consult_sub" maxlength="250" required></textarea></div>
-											<br><label>Query</label>
-												<div class="formtext"><textarea rows="10" cols="150" name="consult_query" id="consult_query" required></textarea></div>
-												<script>
-														function check_words(e) {
-														var BACKSPACE   = 8;
-														var DELETE      = 127;
-														var MAX_WORDS   = 500;
-														var valid_keys  = [BACKSPACE, DELETE];
-														var words       = this.value.split(' ');
-
-														if (words.length >= 500 && valid_keys.indexOf(e.keyCode) == -1) {
-																e.preventDefault();
-																words.length = 500;
-																this.value = words.join(' ');
-														}
-													}
-													var textarea = document.getElementById('consult_query');
-													textarea.addEventListener('keydown', check_words);
-													textarea.addEventListener('keyup', check_words);
-												</script>
-												<div class="formtext submits">
-														<input type="submit" onclick="consultoff()"value="Cancel" name="cancel" class="cancel">
-														<input type="submit" value="Save" name="sumsave" class="save">
-												</div>
-										</form>
-								</div>
-						</div>
 				</div>
 		</div>
 <?php require "../../include/footer/footer.php" ?>
