@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 13, 2019 at 02:00 AM
--- Server version: 10.1.33-MariaDB
--- PHP Version: 7.2.6
+-- Host: localhost
+-- Generation Time: Jan 13, 2019 at 08:41 AM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -316,7 +316,7 @@ CREATE TABLE `st_uploads` (
 --
 
 INSERT INTO `st_uploads` (`StpID`, `Logo`, `BackImg`, `PitchName`, `PitchExt`) VALUES
-(1, '‰PNG\r\n\Z\n\0\0\0\rIHDR\0\0\0È\0\0\0È\0\0\0­X®ž\0\0\0sRGB\0®Îé\0\0\0gAMA\0\0±üa\0\0¹IDATx^íO¬ÕÇ¯]¶ÐºAI±uQc]@¬&>ãŸ‰>¶òGW”<S\ZB4Ê‚°x\r1jÔøBYñ×ey˜¸‰ÏDK \r‚&¸ ÂƒnZE·ö~î›Sî½ofîü93sþ|?	¹s_+¼{g>ç÷çœ9sÃ/}zBˆT~•¼\n!R Bä ', '‰PNG\r\n\Z\n\0\0\0\rIHDR\0\0,\0\0,\0\0\0y}Žu\0\0\0sBIT|dˆ\0\0 \0IDATxœì½w|×u÷ý;÷ÎlÁ¢\0AØÅN±‰IQ©JJ²lKrW\'í<¶ûu\\’øIüÚñ“8‰SÞÇ=’e‘²å¸;²%YÅê¢\Z%ö\0ÑûÖ™{Þ?fw±($±À.¶à~?Zír¶]ìÌüæœsÏ=Ðh4\ZF£Ñh4\ZF£Ñh4\ZF£Ñh4\ZF£Ñ', NULL, NULL);
+(1, '/NamanAngels/Uploads/ProfilePic.png', '/NamanAngels/Uploads/download.jpg', 'VID-20181209-WA0003.mp4', 'mp4');
 
 -- --------------------------------------------------------
 
