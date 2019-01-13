@@ -317,6 +317,9 @@
 			max-height: 300px;
 			max-width: 100%;
 		}
+		#consult{
+			display: none;
+		}
 		</style>
 
     </head>
