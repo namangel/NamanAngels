@@ -9,7 +9,7 @@
       <center><img src="/NamanAngels/img/headerlogo1.png" style="height:50px;width:135px; margin: 5px;"></center>
    </div>
    <div class="topback">
-        <a href="../DB/Overview.php">BACK</a>
+        <a href="../DB/index.php">BACK</a>
    </div>
   </div>
 </body>

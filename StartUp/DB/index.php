@@ -1,6 +1,6 @@
 <?php
 	require '../../server.php';
-	// $_SESSION['username'] = 'xyz123';//predefine -- nikalo mujhe
+
 	$id = $_SESSION['StpID'];
 	$qu = "SELECT * FROM st_details WHERE StpID = '$id'";
 	$results = mysqli_query($db, $qu);
@@ -122,7 +122,7 @@
 		}
 
 
-		header('location: Overview.php');
+		header('location:index.php');
 	}
 
 	if(isset($_POST["sfsave"])){
@@ -145,7 +145,7 @@
 			$q = "UPDATE st_addetails set Facebook='$sffacebook' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
-		header('location: Overview.php');
+		header('location:index.php');
 	}
 
 	if(isset($_POST["cfsave"])){
@@ -162,7 +162,7 @@
 			$q = "UPDATE st_details set Email='$cfemail' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
-		header('location: Overview.php');
+		header('location:index.php');
 	}
 
 	if(isset($_POST['sumsave'])){
@@ -180,9 +180,9 @@
 		// }
 		// else
 		// {
-		$q = "UPDATE st_addetails set Summary='$summaryform' where StpID='$id';";
+		$q = "UPDATE st_description set Summary='$summaryform' where StpID='$id';";
 		mysqli_query($db, $q);
-		header('location: Overview.php');
+		header('location:index.php');
 	}
 
 	if(isset($_POST['pitchsub'])){
@@ -210,7 +210,7 @@
 				}
 			}
 		}
-		header('location: Overview.php');
+		header('location:index.php');
 	}
 
 	if(isset($_POST['tmsave'])){
@@ -224,7 +224,7 @@
 
 		$q = "INSERT INTO st_team (StpID, FName, LName, Designation, Experience, Email, LinkedIn) VALUES ('$id','$tmfname', '$tmlname', '$tmdsgn', '$tmexp', '$tmemail', '$tmlinkedin')";
 		mysqli_query($db, $q);
-		header('location: Overview.php');
+		header('location:index.php');
 	}
 
 	if(isset($_POST['casave'])){
@@ -234,7 +234,7 @@
 		$q = "INSERT INTO st_advisors (StpID, Name, Email) VALUES ('$id', '$caname', '$caemail');";
 		mysqli_query($db, $q);
 
-		header('location: Overview.php');
+		header('location:index.php');
 	}
 
 	if(isset($_POST['pisave'])){
@@ -244,18 +244,18 @@
 		$q = "INSERT INTO st_previnvestment (StpID, Name, Email) VALUES ('$id', '$piname', '$piemail');";
 		mysqli_query($db, $q);
 
-		header('location: Overview.php');
+		header('location:index.php');
 	}
 
 	if(isset($_POST['olpsave'])){
 		$olpnew = mysqli_real_escape_string($db, $_POST['olpform']);
 		if($olpnew !="")
 		{
-			$q = "UPDATE st_addetails set OLP='$olpnew' where StpID='$id';";
+			$q = "UPDATE st_description set OLP='$olpnew' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 
-		header('location: Overview.php');
+		header('location:index.php');
     }
 
     if(isset($_POST['BIsave'])){
@@ -267,7 +267,7 @@
 			$q = "UPDATE st_uploads set BackImg ='$imgContent' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
-        header('location: Overview.php');
+        header('location:index.php');
     }
 
 
@@ -311,7 +311,7 @@
 						<br>
 					</div>
                     <div class="upload">
-                        <div><?= '<img src="data:image/jpeg;base64,'.base64_encode($Logo).'"/>';?></div>
+                        <div><?= '<img src="data:image/jpeg;charset=utf-8;base64,'.base64_encode($Logo).'"/>';?></div>
                     </div>
                     <ul class="proflist">
                         <li class="item">Name <span class="value"><?= $Stname?></span></li>
@@ -398,7 +398,7 @@
                 </div>
                 <div id="overlay">
                     <div class="compbasics">
-                        <form class="profform" method="post" action='Overview.php' enctype="multipart/form-data">
+                        <form class="profform" method="post" action='index.php' enctype="multipart/form-data">
                             <button class="close" onclick="off()"><i class="fa fa-close"></i></button>
                             <div class="i1">
                                 <h2>Company Basics</h2>
@@ -723,7 +723,7 @@
                     </div>
                 </div>
                 <div class="nav">
-                    <div><a href="Overview.php" style="color:black;">Overview</a></div>
+                    <div><a href="index.php" style="color:black;">Overview</a></div>
                     <div><a href="Exec.php">Executive summary</a></div>
                     <div><a href="Finance.php">Financials</a></div>
                     <div><a href="Doc.php">Documents</a></div>
@@ -751,7 +751,7 @@
 							if($PitchName == ""){
 		                        echo '<label>Increase the impact of your profile by uploading a short pitch</label>';
 		                        echo '<br>';
-								echo '<form class="pitch" action="Overview.php" method="post" enctype="multipart/form-data">';
+								echo '<form class="pitch" action="index.php" method="post" enctype="multipart/form-data">';
 									echo '<input type="file" name="pitchvid">';
 									echo '<input type="submit" name="pitchsub" value="Upload">';
 									// echo '<div float=right><a href="#"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
@@ -761,7 +761,7 @@
 								$videos_field=$PitchName;
 								$video_show= "../../Uploads/$videos_field";
 
-								echo '<form class="pitch" action="Overview.php" method="post" enctype="multipart/form-data">';
+								echo '<form class="pitch" action="index.php" method="post" enctype="multipart/form-data">';
 									echo '<input type="file" name="pitchvid">';
 									echo '<input type="submit" name="pitchsub" value="Upload">';
 									// echo '<div float=right align=right><a href="#"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
@@ -789,11 +789,11 @@
 								echo "</th>";
 							    while($row = mysqli_fetch_assoc($results)) {
 							        echo '<tr>';
-									echo '<td>'.$row["TFName"].'&nbsp;'.$row["TLName"].'</td>';
-									echo '<td>'.$row["TDsgn"].'</td>';
-									echo '<td>'.$row['TExp'].'</td>';
-									echo '<td>'.$row['TEmail'].'</td>';
-									echo '<td>'.$row['TLinkedIn'].'</td>';
+									echo '<td>'.$row["FName"].'&nbsp;'.$row["LName"].'</td>';
+									echo '<td>'.$row["Designation"].'</td>';
+									echo '<td>'.$row['Experience'].'</td>';
+									echo '<td>'.$row['Email'].'</td>';
+									echo '<td>'.$row['LinkedIn'].'</td>';
 
 									echo "</tr>";
 							    }
@@ -818,8 +818,8 @@
 								echo "</th>";
 							    while($row = mysqli_fetch_assoc($results)) {
 							        echo '<tr>';
-									echo '<td>'.$row["CAName"].'</td>';
-									echo '<td>'.$row['CAEmail'].'</td>';
+									echo '<td>'.$row["Name"].'</td>';
+									echo '<td>'.$row['Email'].'</td>';
 									echo "</tr>";
 							    }
 								echo '</table>';
@@ -842,8 +842,8 @@
 								echo "</th>";
 							    while($row = mysqli_fetch_assoc($results)) {
 							        echo '<tr>';
-									echo '<td>'.$row["PIName"].'</td>';
-									echo '<td>'.$row['PIEmail'].'</td>';
+									echo '<td>'.$row["Name"].'</td>';
+									echo '<td>'.$row['Email'].'</td>';
 									echo "</tr>";
 							    }
 								echo '</table>';
@@ -866,7 +866,7 @@
                             <h3>Background Image</h3>
                         </div>
                         <div class="formtext">
-                            <form method="post" action='Overview.php' enctype="multipart/form-data">
+                            <form method="post" action='index.php' enctype="multipart/form-data">
                                 <div class="formtext"><input type="file" name="backimg"><br></div>
                                 <div class="formtext submits">
                                     <input type="submit" onclick="backimgoff()" value="Cancel" name="cancel" class="cancel">

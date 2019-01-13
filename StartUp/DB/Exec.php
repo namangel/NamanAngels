@@ -1,6 +1,6 @@
 <?php
 	require '../../server.php';
-	// $_SESSION['username'] = 'xyz123';//predefine -- nikalo mujhe
+
 	$id = $_SESSION['StpID'];
 	$qu = "SELECT * FROM st_details WHERE StpID = '$id'";
 	$results = mysqli_query($db, $qu);
@@ -37,7 +37,7 @@
 	$PitchName = $row['PitchName'];
 	$PitchExt = $row['PitchExt'];
 	$Logo = $row['Logo'];
-    $Backimg = $row['BackImg'];
+  $Backimg = $row['BackImg'];
 
 
 	if(isset($_POST["cbsave"])){
@@ -55,53 +55,53 @@
 
 		if($cbname != "")
 		{
-			$q = "UPDATE user_st set Stname='$cbname' where Username='$u';";
+			$q = "UPDATE st_details set Stname='$cbname' WHERE StpID = '$id';";
 			mysqli_query($db, $q);
 		}
 
 		if($cbstage != 'Select Stage')
 		{
-			$q = "UPDATE st_overview set Stage='$cbstage' where Username='$u';";
+			$q = "UPDATE st_addetails set Stage='$cbstage' WHERE StpID = '$id';";
 			mysqli_query($db, $q);
 		}
 		if($cbaddress != "")
 		{
-			$q = "UPDATE user_st set Address='$cbaddress' where Username='$u';";
+			$q = "UPDATE st_details set Address='$cbaddress' WHERE StpID = '$id';";
 			mysqli_query($db, $q);
 		}
 		if($cbcity != "")
 		{
-			$q = "UPDATE user_st set City='$cbcity' where Username='$u';";
+			$q = "UPDATE st_details set City='$cbcity' WHERE StpID = '$id';";
 			mysqli_query($db, $q);
 		}
 		if($cbstate != "")
 		{
-			$q = "UPDATE user_st set State='$cbstate' where Username='$u';";
+			$q = "UPDATE st_details set State='$cbstate' WHERE StpID = '$id';";
 			mysqli_query($db, $q);
 		}
 		if($cbcountry != "")
 		{
-			$q = "UPDATE user_st set Country='$cbcountry' where Username='$u';";
+			$q = "UPDATE st_details set Country='$cbcountry' WHERE StpID = '$id';";
 			mysqli_query($db, $q);
 		}
 		if($cbdate != "")
 		{
-			$q = "UPDATE st_overview set DOF='$cbdate' where Username='$u';";
+			$q = "UPDATE st_addetails set DOF='$cbdate' WHERE StpID = '$id';";
 			mysqli_query($db, $q);
 		}
 		if($cbempnum != "")
 		{
-			$q = "UPDATE st_overview set EmpNum='$cbempnum' where Username='$u';";
+			$q = "UPDATE st_addetails set EmpNum='$cbempnum' WHERE StpID = '$id';";
 			mysqli_query($db, $q);
 		}
 		if($cbinc != 'Select Incorporation')
 		{
-			$q = "UPDATE st_overview set IncType='$cbinc' where Username='$u';";
+			$q = "UPDATE st_addetails set IncType='$cbinc' WHERE StpID = '$id';";
 			mysqli_query($db, $q);
 		}
 		if($cbweb != "")
 		{
-			$q = "UPDATE user_st set Website='$cbweb' where Username='$u';";
+			$q = "UPDATE st_details set Website='$cbweb' WHERE StpID = '$id';";
 			mysqli_query($db, $q);
 		}
 
@@ -110,7 +110,7 @@
 			$image = $_FILES['cblogo']['tmp_name'];
 	        $imgContent = addslashes(file_get_contents($image));
 
-			$q = "UPDATE st_overview set Logo='$imgContent' where Username='$u';";
+			$q = "UPDATE st_addetails set Logo='$imgContent' WHERE StpID = '$id';";
 			mysqli_query($db, $q);
 		}
 
@@ -124,17 +124,17 @@
 
 		if($sftwitter != "")
 		{
-			$q = "UPDATE st_overview set TwitterLink='$sftwitter' where Username='$u';";
+			$q = "UPDATE st_addetails set TwitterLink='$sftwitter' WHERE StpID = '$id';";
 			mysqli_query($db, $q);
 		}
 		if($sflinkedin != "")
 		{
-			$q = "UPDATE st_overview set LinkedInLink='$sflinkedin' where Username='$u';";
+			$q = "UPDATE st_addetails set LinkedInLink='$sflinkedin' WHERE StpID = '$id';";
 			mysqli_query($db, $q);
 		}
 		if($sffacebook != "")
 		{
-			$q = "UPDATE st_overview set FBLink='$sffacebook' where Username='$u';";
+			$q = "UPDATE st_addetails set FBLink='$sffacebook' WHERE StpID = '$id';";
 			mysqli_query($db, $q);
 		}
 		header('location: Exec.php');
@@ -146,46 +146,45 @@
 
 		if($cfphone != "")
 		{
-			$q = "UPDATE user_st set Phone='$cfphone' where Username='$u';";
+			$q = "UPDATE st_details set Phone='$cfphone' WHERE StpID = '$id';";
 			mysqli_query($db, $q);
 		}
 		if($cfemail != "")
 		{
-			$q = "UPDATE user_st set Email='$cfemail' where Username='$u';";
+			$q = "UPDATE st_details set Email='$cfemail' WHERE StpID = '$id';";
 			mysqli_query($db, $q);
 		}
 		header('location: Exec.php');
 	}
 
-	$qu = "SELECT * FROM st_exec WHERE Username='$u'";
+	$qu = "SELECT * FROM st_description WHERE StpID = '$id';";
 	$results = mysqli_query($db, $qu);
 	$row = mysqli_fetch_assoc($results);
 
-	$Username = $row['Username'];
-	$MTeam = $row['MTeam'];
-	$CProb = $row['CProb'];
-	$ProdSer = $row['ProdSer'];
-	$TarMar = $row['TarMar'];
-	$BModel = $row['BModel'];
+	// $MTeam = $row['MTeam'];
+	$CProb = $row['CustomerProblem'];
+	$ProdSer = $row['ProductService'];
+	$TarMar = $row['TargetMarket'];
+	$BModel = $row['BusinessModel'];
 	// $Market = $row['Market'];
-	$CSegments = $row['CSegments'];
-	$SMStrat = $row['SMStrat'];
+	$CSegments = $row['CustomerSegments'];
+	$SMStrat = $row['SaleMarketStrat'];
 	$Competitors = $row['Competitors'];
-	$CompAdv = $row['CompAdv'];
+	$CompAdv = $row['CompAdvantage'];
 
 
-	if(isset($_POST["mtsave"])){
-		$MTeam = mysqli_real_escape_string($db, $_POST['manageform']);
-
-		$q = "UPDATE st_exec SET MTeam='$MTeam' WHERE Username='$u';";
-		mysqli_query($db, $q);
-
-		header('location: Exec.php');
-	}
+	// if(isset($_POST["mtsave"])){
+	// 	$MTeam = mysqli_real_escape_string($db, $_POST['manageform']);
+	//
+	// 	$q = "UPDATE st_description SET MTeam='$MTeam' WHERE StpID = '$id';";
+	// 	mysqli_query($db, $q);
+	//
+	// 	header('location: Exec.php');
+	// }
 	if(isset($_POST["cprobsave"])){
 		$CProb = mysqli_real_escape_string($db, $_POST['custform']);
 
-		$q = "UPDATE st_exec SET CProb='$CProb' WHERE Username='$u';";
+		$q = "UPDATE st_description SET CustomerProblem='$CProb' WHERE StpID = '$id';";
 		mysqli_query($db, $q);
 
 		header('location: Exec.php');
@@ -193,7 +192,7 @@
 	if(isset($_POST["pssave"])){
 		$ProdSer = mysqli_real_escape_string($db, $_POST['prodser']);
 
-		$q = "UPDATE st_exec SET ProdSer='$ProdSer' WHERE Username='$u';";
+		$q = "UPDATE st_description SET ProductService='$ProdSer' WHERE StpID = '$id';";
 		mysqli_query($db, $q);
 
 		header('location: Exec.php');
@@ -201,7 +200,7 @@
 	if(isset($_POST["tmsave"])){
 		$TarMar = mysqli_real_escape_string($db, $_POST['TarMar']);
 
-		$q = "UPDATE st_exec SET TarMar='$TarMar' WHERE Username='$u';";
+		$q = "UPDATE st_description SET TargetMarket='$TarMar' WHERE StpID = '$id';";
 		mysqli_query($db, $q);
 
 		header('location: Exec.php');
@@ -209,7 +208,7 @@
 	if(isset($_POST["bmsave"])){
 		$BModel = mysqli_real_escape_string($db, $_POST['BModel']);
 
-		$q = "UPDATE st_exec SET BModel='$BModel' WHERE Username='$u';";
+		$q = "UPDATE st_description SET BusinessModel='$BModel' WHERE StpID = '$id';";
 		mysqli_query($db, $q);
 
 		header('location: Exec.php');
@@ -217,7 +216,7 @@
 	if(isset($_POST["cssave"])){
 		$CSegments = mysqli_real_escape_string($db, $_POST['CSegments']);
 
-		$q = "UPDATE st_exec SET CSegments='$CSegments' WHERE Username='$u';";
+		$q = "UPDATE st_description SET CustomerSegments='$CSegments' WHERE StpID = '$id';";
 		mysqli_query($db, $q);
 
 		header('location: Exec.php');
@@ -226,7 +225,7 @@
 	if(isset($_POST["smssave"])){
 		$SMStrat = mysqli_real_escape_string($db, $_POST['SMStrat']);
 
-		$q = "UPDATE st_exec SET SMStrat='$SMStrat' WHERE Username='$u';";
+		$q = "UPDATE st_description SET SaleMarketStrat='$SMStrat' WHERE StpID = '$id';";
 		mysqli_query($db, $q);
 
 		header('location: Exec.php');
@@ -234,7 +233,7 @@
 	if(isset($_POST["compsave"])){
 		$Competitors = mysqli_real_escape_string($db, $_POST['Competitors']);
 
-		$q = "UPDATE st_exec SET Competitors='$Competitors' WHERE Username='$u';";
+		$q = "UPDATE st_description SET Competitors='$Competitors' WHERE StpID = '$id';";
 		mysqli_query($db, $q);
 
 		header('location: Exec.php');
@@ -242,7 +241,7 @@
 	if(isset($_POST["cadvsave"])){
 		$CompAdv = mysqli_real_escape_string($db, $_POST['CompAdv']);
 
-		$q = "UPDATE st_exec SET CompAdv='$CompAdv' WHERE Username='$u';";
+		$q = "UPDATE st_description SET CompAdvantage='$CompAdv' WHERE StpID = '$id';";
 		mysqli_query($db, $q);
 
 		header('location: Exec.php');
@@ -254,7 +253,7 @@
 			$image = $_FILES['backimg']['tmp_name'];
 	        $imgContent = addslashes(file_get_contents($image));
 
-			$q = "UPDATE st_overview set BackImage ='$imgContent' where Username='$u';";
+			$q = "UPDATE st_addetails set BackImage ='$imgContent' WHERE StpID = '$id';";
 			mysqli_query($db, $q);
 		}
         header('location: Exec.php');
@@ -704,7 +703,7 @@
 				  </div>
 				</div>
 				<div class="nav">
-					<div><a href="Overview.php">Overview</a></div>
+					<div><a href="index.php">Overview</a></div>
 					<div><a href="Exec.php" style="color:black;">Executive summary</a></div>
 					<div><a href="Finance.php">Financials</a></div>
 					<div><a href="Doc.php">Documents</a></div>
@@ -775,7 +774,9 @@
 						<button onClick="ovon()" class="pencil"><i class="fa fa-pencil"></i></button>
 						<h3>Management Team</h3>
 						<p>Who are the members of your management team and how will their experience aid in your success?</p>
-						<div><?php echo $MTeam ?></div>
+						<div>
+							<!-- //MTeam -->
+						</div>
 					</div>
 					<div class="databox">
 						<button onClick="custon()" class="pencil"><i class="fa fa-pencil"></i></button>
@@ -812,10 +813,11 @@
 					    document.getElementById("market").style.display = "none";
 					}
 					</script>
+
 					<div class="databox">
 						<button onClick="marketon()" class="pencil"><i class="fa fa-pencil"></i></button>
 						<h3>Market Sizing</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+						<p>Estimate and realize the potential of you Market.</p>
 						<div><?php echo $BModel?></div>
 					</div>
 
@@ -1032,7 +1034,7 @@
 														 <div class="formhead">
 																 <button onClick="marketoff()" class="close"><i class="fa fa-close"></i></button>
 														 <h3>Market sizing</h3>
-														 		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br><br>
+														 	Estimate and realize the potential of you Market.<br><br>
 													 	<a href="#" onclick="consulton()"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a>
 														 </div>
 														 <div class="formtext">

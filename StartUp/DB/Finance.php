@@ -1,40 +1,43 @@
 <?php
 	require '../../server.php';
-	// $_SESSION['username'] = 'xyz123';//predefine -- nikalo mujhe
-	$u = $_SESSION['username'];
 
-	$qu = "SELECT * FROM user_st WHERE Username='$u'";
+	$id = $_SESSION['StpID'];
+	$qu = "SELECT * FROM st_details WHERE StpID = '$id'";
 	$results = mysqli_query($db, $qu);
 	$row = mysqli_fetch_assoc($results);
-	$ID = $row['ID'];
 	$Stname = $row['Stname'];
 	$Ffname = $row['Ffname'];
 	$Sfname = $row['Sfname'];
 	$Email = $row['Email'];
+	$Phone = $row['Phone'];
 	$Type = $row['Type'];
 	$Address = $row['Address'];
-	$Country = $row['Country'];
-	$State = $row['State'];
 	$City = $row['City'];
+	$State = $row['State'];
+	$Country = $row['Country'];
 	$Website = $row['Website'];
-	$Inv = $row['Inv'];
-	$Phone = $row['Phone'];
-	$Password = $row['Password'];
+	$Inv = $row['Investment'];
 
-	$q = "SELECT * FROM st_overview WHERE Username='$u';";
+	$q = "SELECT * FROM st_addetails WHERE StpID = '$id';";
 	$results = mysqli_query($db, $q);
 	$row = mysqli_fetch_assoc($results);
 	$Stage = $row['Stage'] == "" ? '--' : $row['Stage'];
 	$DOF = $row['DOF'] == "" ? '--' : $row['DOF'];
 	$EmpNum = $row['EmpNum']==""? '--':$row['EmpNum'];
 	$IncType = $row['IncType']==""? '--':$row['IncType'];
-	$LinkedInLink = $row['LinkedInLink']==""? '--':$row['LinkedInLink'];
-	$TwitterLink = $row['TwitterLink']==""? '--':$row['TwitterLink'];
-	$FBLink = $row['FBLink']==""? '--':$row['FBLink'];
-	$Summary = $row['Summary']==""? 'Tell the world who you are and what makes your company special.':$row['Summary'];
-	$OLP = $row['OLP']==""? '--':$row['OLP'];
+	$LinkedInLink = $row['LinkedIn']==""? '--':$row['LinkedIn'];
+	$TwitterLink = $row['Twitter']==""? '--':$row['Twitter'];
+	$FBLink = $row['Facebook']==""? '--':$row['Facebook'];
+	$InstaLink = $row['Instagram']==""? '--':$row['Instagram'];
+	$YTLink = $row['Youtube']==""? '--':$row['Youtube'];
+
+	$q = "SELECT * FROM st_uploads WHERE StpID = '$id';";
+	$results = mysqli_query($db, $q);
+	$row = mysqli_fetch_assoc($results);
+	$PitchName = $row['PitchName'];
+	$PitchExt = $row['PitchExt'];
 	$Logo = $row['Logo'];
-	$Backimg = $row['BackImage'];
+  $Backimg = $row['BackImg'];
 
 
 	if(isset($_POST["cbsave"])){
@@ -52,53 +55,53 @@
 
 		if($cbname != "")
 		{
-			$q = "UPDATE user_st set Stname='$cbname' where Username='$u';";
+			$q = "UPDATE st_details set Stname='$cbname' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 
 		if($cbstage != 'Select Stage')
 		{
-			$q = "UPDATE st_overview set Stage='$cbstage' where Username='$u';";
+			$q = "UPDATE st_addetails set Stage='$cbstage' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		if($cbaddress != "")
 		{
-			$q = "UPDATE user_st set Address='$cbaddress' where Username='$u';";
+			$q = "UPDATE st_details set Address='$cbaddress' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		if($cbcity != "")
 		{
-			$q = "UPDATE user_st set City='$cbcity' where Username='$u';";
+			$q = "UPDATE st_details set City='$cbcity' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		if($cbstate != "")
 		{
-			$q = "UPDATE user_st set State='$cbstate' where Username='$u';";
+			$q = "UPDATE st_details set State='$cbstate' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		if($cbcountry != "")
 		{
-			$q = "UPDATE user_st set Country='$cbcountry' where Username='$u';";
+			$q = "UPDATE st_details set Country='$cbcountry' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		if($cbdate != "")
 		{
-			$q = "UPDATE st_overview set DOF='$cbdate' where Username='$u';";
+			$q = "UPDATE st_addetails set DOF='$cbdate' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		if($cbempnum != "")
 		{
-			$q = "UPDATE st_overview set EmpNum='$cbempnum' where Username='$u';";
+			$q = "UPDATE st_addetails set EmpNum='$cbempnum' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		if($cbinc != 'Select Incorporation')
 		{
-			$q = "UPDATE st_overview set IncType='$cbinc' where Username='$u';";
+			$q = "UPDATE st_addetails set IncType='$cbinc' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		if($cbweb != "")
 		{
-			$q = "UPDATE user_st set Website='$cbweb' where Username='$u';";
+			$q = "UPDATE st_details set Website='$cbweb' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 
@@ -107,7 +110,7 @@
 			$image = $_FILES['cblogo']['tmp_name'];
 	        $imgContent = addslashes(file_get_contents($image));
 
-			$q = "UPDATE st_overview set Logo='$imgContent' where Username='$u';";
+			$q = "UPDATE st_addetails set Logo='$imgContent' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 
@@ -121,17 +124,17 @@
 
 		if($sftwitter != "")
 		{
-			$q = "UPDATE st_overview set TwitterLink='$sftwitter' where Username='$u';";
+			$q = "UPDATE st_addetails set TwitterLink='$sftwitter' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		if($sflinkedin != "")
 		{
-			$q = "UPDATE st_overview set LinkedInLink='$sflinkedin' where Username='$u';";
+			$q = "UPDATE st_addetails set LinkedInLink='$sflinkedin' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		if($sffacebook != "")
 		{
-			$q = "UPDATE st_overview set FBLink='$sffacebook' where Username='$u';";
+			$q = "UPDATE st_addetails set FBLink='$sffacebook' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		header('location: Finance.php');
@@ -143,12 +146,12 @@
 
 		if($cfphone != "")
 		{
-			$q = "UPDATE user_st set Phone='$cfphone' where Username='$u';";
+			$q = "UPDATE st_details set Phone='$cfphone' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		if($cfemail != "")
 		{
-			$q = "UPDATE user_st set Email='$cfemail' where Username='$u';";
+			$q = "UPDATE st_details set Email='$cfemail' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		header('location: Finance.php');
@@ -160,7 +163,7 @@
 			$image = $_FILES['backimg']['tmp_name'];
 	        $imgContent = addslashes(file_get_contents($image));
 
-			$q = "UPDATE st_overview set BackImage ='$imgContent' where Username='$u';";
+			$q = "UPDATE st_addetails set BackImage ='$imgContent' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
         header('location: Finance.php');
@@ -613,7 +616,7 @@
                     </div>
                 </div>
 				<div class="nav">
-									<div><a href="Overview.php">Overview</a></div>
+									<div><a href="index.php">Overview</a></div>
 									<div><a href="Exec.php">Executive summary</a></div>
 									<div><a href="Finance.php" style="color:black;">Financials</a></div>
 									<div><a href="Doc.php">Documents</a></div>

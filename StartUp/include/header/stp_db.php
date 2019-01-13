@@ -13,7 +13,7 @@
       <div class="dropdown">
           <button class="dropbtn">Entrepreneur</button>
           <div class="dropdown-content">
-              <a href="../Profile/Overview.php">Profile</a>
+              <a href="../Profile/index.php">Profile</a>
               <a href="../Settings/contact.php">Account settings</a>
               <a href="../../index.php">Sign out</a>
           </div>
