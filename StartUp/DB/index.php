@@ -331,14 +331,14 @@
             	<div class="backimg">
 					<div><button class="back-button" onclick="backimgon()" ><i class="fa fa-camera"></i>&nbsp;Upload Background</button></div>
 					<?php
-							if($Backimg != ""){
-								echo "<img src=".$Backimg." />";
-							}
-							else{
-								echo '<div class="back">';
-								echo 'Upload a background image!!';
-								echo '</div>';
-							}
+						if($Backimg != ""){
+							echo "<img src=".$Backimg." />";
+						}
+						else{
+							echo '<div class="back">';
+							echo 'Upload a background image!!';
+							echo '</div>';
+						}
 					?>
                 </div>
                 <div class="sideprof">
@@ -926,18 +926,18 @@
                                 <!-- <div class="formtext"><textarea rows="10" cols="150" name="summaryform" required><?= $Summary?></textarea></div> -->
 								<div class="formtext"><textarea rows="10" cols="150" name="summaryform" id="summ" required><?= $Summary?></textarea></div>
 								<script>
-								function check_words(e) {
-									  var BACKSPACE   = 8;
-									  var DELETE      = 127;
-									  var MAX_WORDS   = 500;
-									  var valid_keys  = [BACKSPACE, DELETE];
-									  var words       = this.value.split(' ');
+									function check_words(e) {
+										var BACKSPACE   = 8;
+										var DELETE      = 127;
+										var MAX_WORDS   = 500;
+										var valid_keys  = [BACKSPACE, DELETE];
+										var words       = this.value.split(' ');
 
-									  if (words.length >= 500 && valid_keys.indexOf(e.keyCode) == -1) {
-									      e.preventDefault();
-									      words.length = 500;
-									      this.value = words.join(' ');
-									  }
+										if (words.length >= 500 && valid_keys.indexOf(e.keyCode) == -1) {
+											e.preventDefault();
+											words.length = 500;
+											this.value = words.join(' ');
+										}
 									}
 									var textarea = document.getElementById('summ');
 									textarea.addEventListener('keydown', check_words);

@@ -35,6 +35,7 @@ if (isset($_POST['reg_inv'])) {
         $result = mysqli_query($db, $user_query);
         $user = mysqli_fetch_assoc($result);
         $userid = $user['InvID'];
+        $_SESSION['InvID'] = $user['InvID'];
 
         $query = "INSERT INTO inv_details (InvID,CName,FName,LName,Email,Phone,Website,City,State,Country,AvgInvestment)
         VALUES('$userid', '$iname', '$fname', '$lname', '$email', '$phone', '$website', '$city', '$state', '$country', '$avg')";
@@ -103,6 +104,7 @@ if (isset($_POST['reg_st'])) {
         $result = mysqli_query($db, $user_query);
         $user = mysqli_fetch_assoc($result);
         $userid = $user['StpID'];
+        $_SESSION['StpID'] = $user['StpID'];
 
         $query = "INSERT INTO st_details (StpID, Stname,Ffname,Sfname,Email,Phone,Type,Address,Country,State,City,Website,Investment)
         VALUES('$userid','$stname','$ffname','$sfname','$email','$phone','$type','$address','$country','$state','$city','$website','$inv')";

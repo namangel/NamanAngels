@@ -1,10 +1,5 @@
 <?php
     require('../../server.php');
-    if(isset($_POST['submit'])){
-        $_SESSION['search'] =  $_POST['searchkey'];
-        $_SESSION['searchby']="company";
-        header('location: browse.php');
-    }
     if(isset($_POST['indsubmit'])){
         $_SESSION['search'] = mysqli_real_escape_string($db, $_POST['indsearchkey']);
         $_SESSION['searchby']="industry";
@@ -15,8 +10,103 @@
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../css/browse.css">
+  <!-- <link rel="stylesheet" href="../css/browse.css"> -->
   <title>Find Your StartUp - NamanAngels</title>
+  <style>
+  body{
+      margin: 0px;
+      padding: 0px;
+  }
+  .browsesearch{
+      display: block;
+      width: 100%;
+      height: 80%;
+      text-align: center;
+      padding-top: 100px;
+  }
+  .bsearch{
+      display: inline-block;
+      height: 50px;
+      width: 100%;
+      margin:0px;
+      padding: 20px;
+  }
+  .searchform select{
+      width: 50%;
+      height: 50px;
+      font-size: 20px;
+      border: none;
+      border-radius: 20px;
+      padding: 10px;
+  }
+  .searchform input[type=submit] {
+      background-color: #0693cd;
+      border: 0;
+      border-radius: 5px;
+      cursor: pointer;
+      color: #fff;
+      font-size:16px;
+      font-weight: bold;
+      padding: 10px;
+      width: 180px
+   }
+  .output{
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-auto-rows: auto;
+      grid-gap: 20px;
+      text-align: center;
+      margin-left: 150px;
+      margin-right: 150px;
+      margin-top: 50px;
+  }
+
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: auto;
+    width: 80%;
+    text-align: center;
+    font-family: arial;
+  }
+
+  .card img{
+      padding: 50px;
+  }
+  .title {
+    color: grey;
+    font-size: 18px;
+  }
+
+  .contactme {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+
+  .detail1 {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+  }
+
+  .contactme:hover, .detail1:hover {
+    opacity: 0.7;
+  }
+
+  .pages{
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+  }
+
+  </style>
 </head>
 
 <body>
@@ -25,12 +115,6 @@
     <?php require "../include/nav/nav.php"?>
     <div class="browsesearch">
         <div class="bsearch">
-            <form class="searchform" action="browse.php" method="post">
-                <input type="text" name="searchkey" placeholder="Enter Your Search Keyword">
-                <input type="submit" name="submit" value="Search">
-            </form>
-        </div>
-        <!-- <div class="bsearch">
             <form class="searchform" action="browse.php" method="post">
                 <select  name="indsearchkey">
                     <option value="">Select Industry</option>
@@ -126,7 +210,7 @@
                   </select>
                 <input type="submit" name="indsubmit" value="Search">
             </form>
-        </div> -->
+        </div>
         <div class='output'>
             <?php
             if (isset($_GET['pageno'])) {
@@ -134,7 +218,7 @@
             } else {
                 $pageno = 1;
             }
-            $sname="";
+            $sname="Technology";
             $no_of_records_per_page = 10;
             $offset = ($pageno - 1) * $no_of_records_per_page;
 
@@ -143,27 +227,25 @@
             }
 
 
-            $total_pages_sql = "SELECT COUNT(*) FROM st_overview where Username IN (Select Username from user_st where Type='$sname')";
+            $total_pages_sql = "SELECT COUNT(*) FROM st_details where StpID IN (Select StpID from userstp where Type='$sname')";
 
             $result = mysqli_query($db,$total_pages_sql);
             $total_rows = mysqli_fetch_array($result)[0];
             $total_pages = ceil($total_rows / $no_of_records_per_page);
             $total_pages = ($total_pages < 1? 1:$total_pages);
 
-            $sql = "SELECT * FROM st_overview where Username IN (Select Username from user_st where Stname Like '%{$sname}%') LIMIT $offset, $no_of_records_per_page";
+            $sql = "SELECT * FROM st_details where StpID IN (Select StpID from st_details where Type Like '%{$sname}%') LIMIT $offset, $no_of_records_per_page";
             $res_data = mysqli_query($db,$sql);
             while($row = mysqli_fetch_array($res_data)){
-                echo '<div class="browse">';
-                    echo '<div><img src="data:image/jpeg;base64,'.base64_encode($row['Logo']).'"/></div>';
-                    echo "<div class='info'>";
-                        echo '<b>'.$row['Stname'].'</b>';
-                        echo "<br>";
-                        echo $row['OLP'];
-                    echo "</div>";
-                    echo "<div class='invest'>";
-                        echo "<a href='../Profile/Overview.php?searchquery=".$row['Username']."' target='_blank'><button type='submit' name='subinv' class='submitinv' value='View Profile' action='index.php'>View Profile</button></a>";
-                    echo "</div>";
-                echo "</div>";
+
+                echo '<div class="card">';
+                    echo '<img src="/NamanAngels/Uploads/ProfilePic.png" alt="John" style="width:100%">';
+                    echo '<h1>StartUp Name</h1>';
+                    echo '<p class="title">Industry Type</p>';
+                    echo '<p>One Line Pitch</p>';
+                    echo '<p>Founder Name</p>';
+                    echo '<p><button class="contactme">Contact</button></p>';
+                echo '</div>';
             }
             ?>
         </div>

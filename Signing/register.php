@@ -24,7 +24,7 @@
 			<br>
 			<button class="buttonst" onclick="location.href='register_st.php'">I'm A Start-up</button>
 			<br>
-			<button class="buttoninv" onclick="location.href='register_inv.php'">Im An Investor</button>
+			<button class="buttoninv" onclick="location.href='register_inv.php'">I'm An Investor</button>
 
 			<br><br>
 			<hr style="align:center;size:10px;width:30%">
