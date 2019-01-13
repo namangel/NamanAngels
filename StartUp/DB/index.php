@@ -114,13 +114,30 @@
 
 		$check = getimagesize($_FILES["cblogo"]["tmp_name"]);
 	    if($check != false){
-			$image = $_FILES['cblogo']['tmp_name'];
-	        $imgContent = addslashes(file_get_contents($image));
+			$file_name = $_FILES['cblogo']['name'];
+			$file_size = $_FILES['cblogo']['size'];
+			$file_tmp = $_FILES['cblogo']['tmp_name'];
+			$file_type = $_FILES['cblogo']['type'];
+			$file_ext=strtolower(end(explode('.',$_FILES['cblogo']['name'])));
 
-			$q = "UPDATE st_uploads set Logo='$imgContent' where StpID='$id';";
-			mysqli_query($db, $q);
+			$extensions= array("jpeg","jpg","png");
+
+			if(in_array($file_ext,$extensions)=== false){
+				echo "<script>alert('Extension not allowed, please choose a JPEG or PNG file.')</script>";
+			}
+			else{
+				if($file_size > 5242880) {
+					echo "<script>alert('File size must be less than 5 MB')</script>";
+				}
+				else{
+					$upload = "/NamanAngels/Uploads/".$file_name;
+					move_uploaded_file($file_tmp,$upload);
+					$q = "UPDATE st_uploads set Logo='$upload' where StpID='$id';";
+					mysqli_query($db, $q);
+					echo "<script>alert('Successfully Uploaded')</script>";
+				}
+			}
 		}
-
 
 		header('location:index.php');
 	}
@@ -259,16 +276,32 @@
     }
 
     if(isset($_POST['BIsave'])){
-        $check = getimagesize($_FILES["backimg"]["tmp_name"]);
-	    if($check != false){
-			$image = $_FILES['backimg']['tmp_name'];
-	        $imgContent = addslashes(file_get_contents($image));
 
-			$q = "UPDATE st_uploads set BackImg ='$imgContent' where StpID='$id';";
-			mysqli_query($db, $q);
+		$file_name = $_FILES['backimg']['name'];
+		$file_size = $_FILES['backimg']['size'];
+		$file_tmp = $_FILES['backimg']['tmp_name'];
+		$file_type = $_FILES['backimg']['type'];
+		$file_ext=strtolower(end(explode('.',$_FILES['backimg']['name'])));
+
+		$extensions= array("jpeg","jpg","png");
+
+		if(in_array($file_ext,$extensions)=== false){
+			echo "<script>alert('Extension not allowed, please choose a JPEG or PNG file.')</script>";
 		}
-        header('location:index.php');
-    }
+		else{
+			if($file_size > 5242880) {
+				echo "<script>alert('File size must be less than 5 MB')</script>";
+			}
+			else{
+				$upload = "/NamanAngels/Uploads/".$file_name;
+				move_uploaded_file($file_tmp,$upload);
+				$q = "UPDATE st_uploads set BackImg='$upload' where StpID='$id';";
+				mysqli_query($db, $q);
+				echo "<script>alert('Successfully Uploaded')</script>";
+			}
+		}
+		header('location:index.php');
+	}
 
 
 ?>
@@ -293,17 +326,17 @@
         <div class="container">
             <div class="main">
             	<div class="backimg">
-				<div><button class="back-button" onclick="backimgon()" ><i class="fa fa-camera"></i>&nbsp;Upload Background</button></div>
-				<?php
-						if($Backimg != ""){
-							echo '<img src="data:image/jpeg;base64,'.base64_encode($Backimg).'"/>';
-						}
-						else{
-							echo '<div class="back">';
-							echo 'Upload a background image!!';
-							echo '</div>';
-						}
-				?>
+					<div><button class="back-button" onclick="backimgon()" ><i class="fa fa-camera"></i>&nbsp;Upload Background</button></div>
+					<?php
+							if($Backimg != ""){
+								echo "<img src=".$Backimg." />";
+							}
+							else{
+								echo '<div class="back">';
+								echo 'Upload a background image!!';
+								echo '</div>';
+							}
+					?>
                 </div>
                 <div class="sideprof">
 					<div class="pen">
@@ -311,7 +344,7 @@
 						<br>
 					</div>
                     <div class="upload">
-                        <div><?= '<img src="data:image/jpeg;charset=utf-8;base64,'.base64_encode($Logo).'"/>';?></div>
+                        <div><?= "<img src=".$Logo." />";?></div>
                     </div>
                     <ul class="proflist">
                         <li class="item">Name <span class="value"><?= $Stname?></span></li>
@@ -887,28 +920,28 @@
                         <div class="formtext">
                             <form method="post">
                                 <!-- <div class="formtext"><textarea rows="10" cols="150" name="summaryform" required><?= $Summary?></textarea></div> -->
-																<div class="formtext"><textarea rows="10" cols="150" name="summaryform" id="summ" required><?= $Summary?></textarea></div>
-																<script>
-																		function check_words(e) {
-																	  var BACKSPACE   = 8;
-																	  var DELETE      = 127;
-																	  var MAX_WORDS   = 500;
-																	  var valid_keys  = [BACKSPACE, DELETE];
-																	  var words       = this.value.split(' ');
+								<div class="formtext"><textarea rows="10" cols="150" name="summaryform" id="summ" required><?= $Summary?></textarea></div>
+								<script>
+								function check_words(e) {
+									  var BACKSPACE   = 8;
+									  var DELETE      = 127;
+									  var MAX_WORDS   = 500;
+									  var valid_keys  = [BACKSPACE, DELETE];
+									  var words       = this.value.split(' ');
 
-																	  if (words.length >= 500 && valid_keys.indexOf(e.keyCode) == -1) {
-																	      e.preventDefault();
-																	      words.length = 500;
-																	      this.value = words.join(' ');
-																	  }
-																	}
-																	var textarea = document.getElementById('summ');
-																	textarea.addEventListener('keydown', check_words);
-																	textarea.addEventListener('keyup', check_words);
-																</script>
-																<div class="formtext submits">
-                                    <input type="submit" onclick="summoff()"value="Cancel" name="cancel" class="cancel">
-                                    <input type="submit" value="Save" name="sumsave" class="save">
+									  if (words.length >= 500 && valid_keys.indexOf(e.keyCode) == -1) {
+									      e.preventDefault();
+									      words.length = 500;
+									      this.value = words.join(' ');
+									  }
+									}
+									var textarea = document.getElementById('summ');
+									textarea.addEventListener('keydown', check_words);
+									textarea.addEventListener('keyup', check_words);
+								</script>
+								<div class="formtext submits">
+	                                <input type="submit" onclick="summoff()"value="Cancel" name="cancel" class="cancel">
+	                                <input type="submit" value="Save" name="sumsave" class="save">
                                 </div>
                             </form>
                         </div>
