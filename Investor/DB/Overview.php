@@ -27,7 +27,7 @@
 	$partner = $row['Partner']==""? '--':$row['Partner'];
 	$invrange = $row['InvRange']==""? '--':$row['InvRange'];
     $summary=$row['Summary']==""? 'Describe yourself and the value of your investment.':$row['Summary'];
-	
+
 	$q = "SELECT * FROM inv_uploads WHERE InvID='$u'";
     $results = mysqli_query($db, $q);
 	$row = mysqli_fetch_assoc($results);
@@ -226,54 +226,6 @@
         <link rel="stylesheet" href="../css/invprof.css" type="text/css">
         <script src="js/invprofform.js"></script>
 				<title>Investor Profile - NamanAngels</title>
-		<style>
-			.tooltip label, .tooltip input, .tooltip select{
-				display: inline-block;
-				width: 100%;
-				padding: 10px;
-				text-align: left;
-				}
-
-				.tooltip {
-				position: relative;
-				display: inline-block;
-				width:48%;
-				}
-
-				.tooltip .tooltiptext {
-				visibility: hidden;
-				width: 275px;
-				background-color: #555;
-				color: #fff;
-				text-align: center;
-				border-radius: 6px;
-				padding: 5px 0;
-				position: absolute;
-				z-index: ;
-				bottom: 50%;
-				left: 70%;
-				margin-left: -50px;
-				opacity: 0;
-				transition: opacity 0.3s;
-				}
-
-				.tooltip .tooltiptext::after {
-				content: "";
-				position: absolute;
-				top: 100%;
-				left: 20%;
-				margin-left: -5px;
-				border-width: 5px;
-				border-style: solid;
-				border-color: #555 transparent transparent transparent;
-				}
-
-				.tooltip:hover .tooltiptext {
-				visibility: visible;
-				opacity: 1;
-				}
-		</style>
-
 		</head>
 
     <body>
