@@ -15,7 +15,7 @@
 			<center>
 			<img src="../img/logo2.png" height="200"><br>
 		</center>
-		Join the Naman's Platform for Startup Investing
+		Join Naman's Platform for Startup Investing
 		<hr style="align:center;size:10px;width:30%">
 		</div>
 
