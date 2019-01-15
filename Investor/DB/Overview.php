@@ -678,7 +678,7 @@
                 <h3>Investor Description</h3>
     			<?php echo $summary;
 				if($summary == "Describe yourself and the value of your investment."){
-				echo '<br><img src="../img/Capture.png" height="150px" width="950px">';
+				echo '<br><img src="../img/Paragraph.png" height="150px" width="950px">';
 				}
 				?>
             </div>
@@ -704,7 +704,7 @@
 				    }
 					echo '</table>';
 					} else {
-					echo '<img src="../img/prof.png">';
+					echo '<img src="../img/Contact.png">';
 					}
 				?>
             </div>
@@ -737,7 +737,7 @@
 				    }
 					echo '</table>';
 					} else {
-					echo '<img src="../img/prof.png">';
+					echo '<img src="../img/Contact.png">';
 					}
 				?>
             </div>

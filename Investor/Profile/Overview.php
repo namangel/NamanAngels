@@ -174,7 +174,7 @@
                         <h3>Company Summary</h3>
 						<?php echo $Summary;
 							if($Summary == "Tell the world who you are and what makes your company special."){
-								echo '<img src="../img/Capture.png">';
+								echo '<img src="../img/Paragraph.png">';
 							}
 						?>
                     </div>
@@ -215,7 +215,7 @@
 							    }
 								echo '</table>';
 							} else {
-								echo '<img src="../img/prof.png">';
+								echo '<img src="../img/Contact.png">';
 							}
 						?>
 
@@ -239,7 +239,7 @@
 							    }
 								echo '</table>';
 							} else {
-								echo '<img src="../img/prof.png">';
+								echo '<img src="../img/Contact.png">';
 							}
 						?>
                     </div>
@@ -262,7 +262,7 @@
 							    }
 								echo '</table>';
 							} else {
-								echo '<img src="../img/prof.png">';
+								echo '<img src="../img/Contact.png">';
 							}
 						?>
                     </div>

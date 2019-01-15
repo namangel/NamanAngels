@@ -21,25 +21,25 @@
             </div>
             <div class="two">
                 <div class="im">
-                    <img src="../../img/internet.png" alt="Web Services" style="width:60% ; margin-top:15px;">
+                    <img src="../../img/Internet.png" alt="Web Services" style="width:60% ; margin-top:15px;">
                     <p><b style="font-size:1.5vw;">Internet/Web Services</b></p>
                 </div>
                 <div class="im">
-                    <img src="../../img/food.png" alt="Food and Drink" style="width:67% ; margin-top:15px;">
+                    <img src="../../img/Food.png" alt="Food and Drink" style="width:67% ; margin-top:15px;">
                     <p><b style="font-size:1.5vw;">Food and Drink</b></p>
                 </div>
             </div>
             <div class="three"  style="margin-top:10px;">
                 <div class="im">
-                    <img src="../../img/media-1.png" alt="Media" style="width:65% ; margin-top:15px;">
+                    <img src="../../img/Media.png" alt="Media" style="width:65% ; margin-top:15px;">
                     <p><b style="font-size:1.5vw;">Media</b></p>
                 </div>
                 <div class="im">
-                    <img src="../../img/education.png" alt="Education" style="width:65% ; margin-top:15px;">
+                    <img src="../../img/Education.png" alt="Education" style="width:65% ; margin-top:15px;">
                     <p><b style="font-size:1.5vw;">Education</b></p>
                 </div>
                 <div class="im" style="margin-bottom:20px;">
-                    <img src="../../img/software.png" alt="Software" style="width:65% ; margin-top:15px;">
+                    <img src="../../img/Software.png" alt="Software" style="width:65% ; margin-top:15px;">
                     <p><b style="font-size:1.5vw;">Software</b></p>
                 </div>
             </div>

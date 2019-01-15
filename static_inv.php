@@ -80,7 +80,7 @@
   <div class="imggrid" height="400px" id="func">
     <br><br><br><br><br><br><br>
     <center>
-      <img src="img/rel1.png">
+      <img src="img/Relation.png">
     </center>
   </div>
 
@@ -151,7 +151,7 @@
       <div class="obj">
         <br>
         <center>
-        <img src="img/easy.png"class="imgs"></img><br><br>
+        <img src="img/Easy.png"class="imgs"></img><br><br>
         <b><font style="font-size:24px;font-family:Arial;">EASY TO USE<br>
         </font></b><br>
         <font>Naman's funding platform is designed to work with your
@@ -164,7 +164,7 @@
       <div class="obj">
         <br>
         <center>
-        <img src="img/support.png" class="imgs"></img><br><br>
+        <img src="img/Support.png" class="imgs"></img><br><br>
         <b><font style="font-size:24px;font-family:Arial;">TOTAL SUPPORT<br>
         </font></b><br>
         <font>With dedicated customer support and help guides

@@ -5,11 +5,8 @@
 <body>
   <div class="topnav">
     <div class="toplogo1">
-       <center><img src="/NamanAngels/img/headerlogo1.png" style="height:50px;width:135px; margin: 5px;"></center>
+       <center><img src="/NamanAngels/img/HeaderLogo.png" style="height:50px;width:135px; margin: 5px;"></center>
     </div>
-    <!-- <div class="topfor">
-      <center>Name</center>
-    </div> -->
       <div class="dropdown">
           <button class="dropbtn">Entrepreneur</button>
           <div class="dropdown-content">

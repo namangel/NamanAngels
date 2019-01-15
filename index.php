@@ -12,7 +12,7 @@
 
             <div class="item2">
                 <center>
-                    <img src="img/logo2.png" style="height: 280px; ">
+                    <img src="img/Logo.png" style="height: 280px; ">
                     <p style="font-size:2vw;"><font style="color:#7f8c8d;">Naman connects startups with the largest collection of investors across India.</font></p>
                 </center>
             </div>
@@ -22,7 +22,7 @@
             <div class="item3 container">
                 <center>
                     <b><p class="cs2" >FOR STARTUPS</p></b>
-                    <img src="img/idea1.png" height="120" width="120"><br>
+                    <img src="img/Idea-man.png" height="120" width="120"><br>
                     <div class="overlay">
                         <div class="text"><br><br>Build a profile and share it with investors to get funding.<br><button onclick="location.href='static_st.php'" class="learn_more_bt">Learn More</button></div>
                     </div>
@@ -31,7 +31,7 @@
             <div class="item4 container">
                 <center>
                     <b><p class="cs2" >FOR INVESTORS</p></b>
-                    <img src="img/loan1.png" height="120" width="120"><br>
+                    <img src="img/Investor-man.png" height="120" width="120"><br>
                 	<div class="overlay">
                 	       <div class="text"><br><br>Access powerful deal flow on a secure platform.<br><button onclick="location.href='static_inv.php'" class="learn_more_bt">Learn More</button></div>
                     </div>
@@ -77,7 +77,7 @@
                 <div class="wrapper-child2">
                     <div>
                         <div class="polaroid" style="margin-left:20px;margin-top:70px;">
-                            <img src="img/internet.png" alt="Web Services" style="width:60% ; margin-top:20px;">
+                            <img src="img/Internet.png" alt="Web Services" style="width:60% ; margin-top:20px;">
                             <div class="container2">
                                 <p><b style="font-size:1.5vw;">Internet/Web Services</b></p>
                             </div>
@@ -85,7 +85,7 @@
                     </div>
                     <div>
                         <div class="polaroid" style="margin-left:20px;margin-top:70px;">
-                            <img src="img/food.png" alt="Food and Drink" style="width:67% ; margin-top:20px;">
+                            <img src="img/Food.png" alt="Food and Drink" style="width:67% ; margin-top:20px;">
                             <div class="container2">
                                 <p><b style="font-size:1.5vw;">Food and Drink</b></p>
                             </div>
@@ -93,7 +93,7 @@
                     </div>
                     <div>
                         <div class="polaroid" style="margin-left:20px;margin-top:70px;">
-                            <img src="img/media-1.png" alt="Chennai" style="width:65% ; margin-top:20px;">
+                            <img src="img/Media.png" alt="Chennai" style="width:65% ; margin-top:20px;">
                             <div class="container2">
                                 <p><b style="font-size:1.5vw;">Media and Entertainment</b></p>
                             </div>
@@ -101,7 +101,7 @@
                     </div>
                     <div>
                         <div class="polaroid" style="margin-left:20px;margin-top:70px;">
-                            <img src="img/education.png" alt="Education" style="width:65% ; margin-top:20px;">
+                            <img src="img/Education.png" alt="Education" style="width:65% ; margin-top:20px;">
                             <div class="container2">
                                 <p><b style="font-size:1.5vw;">Education</b></p>
                             </div>
@@ -109,7 +109,7 @@
                     </div>
                     <div>
                         <div class="polaroid" style="margin-left:20px;margin-top:70px;">
-                            <img src="img/software.png" alt="Software" style="width:65% ; margin-top:20px;">
+                            <img src="img/Software.png" alt="Software" style="width:65% ; margin-top:20px;">
                             <div class="container2">
                                 <p><b style="font-size:1.5vw;">Software</b></p>
                             </div>
@@ -124,7 +124,7 @@
                     <div class="wrapper-child3" style="margin-left:120px;">
                         <div>
                             <center>
-                                <img src="img/protection.png" height="90" width="90"><br>
+                                <img src="img/Protection.png" height="90" width="90"><br>
                                 <font style="font-size:30px;font-family:Arial;">The Trusted Network</font>
                                 <p style="font-size:1.2vw;">Tens of thousands of accredited investors worldwide use Naman.
                                 to connect and collaborate with startup companies.</p>
@@ -133,7 +133,7 @@
 
                         <div>
                             <center>
-                                <img src="img/padlock.png" height="90" width="90"><br>
+                                <img src="img/Padlock.png" height="90" width="90"><br>
                                 <font style="font-size:30px;font-family:Arial;">Robust Privacy Controls</font>
                                 <p style="font-size:1.2vw;">Naman. enables you to control your privacy settings, profile visibility and who has access to your information.
                                 What's private stays private.</p>
@@ -142,7 +142,7 @@
 
                         <div>
                             <center>
-                                <img src="img/network.png" height="90" width="90"><br>
+                                <img src="img/Network.png" height="90" width="90"><br>
                                 <font style="font-size:30px;font-family:Arial;">The Industry Standards</font>
                                 <p style="font-size:1.2vw;">With more than 1,500 investment groups across 150+ countries,
                                 Naman. is the global industry standard for early stage investing.</p>
