@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 13, 2019 at 08:41 AM
+-- Generation Time: Jan 17, 2019 at 03:12 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -140,6 +140,20 @@ CREATE TABLE `membership` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `profile`
+-- (See below for the actual view)
+--
+CREATE TABLE `profile` (
+`StpImg` varchar(200)
+,`StpName` varchar(200)
+,`Type` varchar(200)
+,`FName` varchar(200)
+,`SName` varchar(200)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `requests`
 --
 
@@ -174,7 +188,11 @@ CREATE TABLE `st_addetails` (
 --
 
 INSERT INTO `st_addetails` (`StpID`, `Stage`, `DOF`, `EmpNum`, `IncType`, `LinkedIn`, `Twitter`, `Facebook`, `Instagram`, `Youtube`) VALUES
-(1, 'Prototype ready', '2014-12-12', '12', 'LLP', 'spacex/linkedin', 'spacex/twitter', 'spacex/fb', NULL, NULL);
+(1, 'Prototype ready', '2014-12-12', '12', 'LLP', 'spacex/linkedin', 'spacex/twitter', 'spacex/fb', NULL, NULL),
+(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -222,7 +240,11 @@ CREATE TABLE `st_description` (
 --
 
 INSERT INTO `st_description` (`StpID`, `Summary`, `OLP`, `CustomerProblem`, `ProductService`, `TargetMarket`, `BusinessModel`, `MarketSizing`, `CustomerSegments`, `SaleMarketStrat`, `Competitors`, `CompAdvantage`) VALUES
-(1, 'Space X is an awesome project', 'Lets go to Mars', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(1, 'Space X is an awesome project', 'Lets go to Mars', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -251,7 +273,11 @@ CREATE TABLE `st_details` (
 --
 
 INSERT INTO `st_details` (`StpID`, `Stname`, `Ffname`, `Sfname`, `Email`, `Phone`, `Type`, `Address`, `City`, `State`, `Country`, `Website`, `Investment`) VALUES
-(1, 'Spacex', 'Elon Musk', 'Bill Gates', 'spacex@spx.com', '8169163192', 'Technology', 'Near Launch Pad', 'CC', 'Florida', 'United States', 'spacex.com', '100000000');
+(1, 'Spacex', 'Elon Musk', 'Bill Gates', 'spacex@spx.com', '8169163192', 'Technology', 'Near Launch Pad', 'CC', 'Florida', 'United States', 'spacex.com', '100000000'),
+(2, 'RGIT', 'Principal', 'HOD', 'rgit@rgit.in', '9000000000', 'Education', 'Versova', 'Mumbai', 'Maharashtra', 'India', 'mctrgit.ac.in', '100'),
+(3, 'StarLabs', 'Barry Allen', 'Harrison Wells', 'sl@starlabs.com', '8000000000', 'Technology', 'Central Park', 'Central City', 'Wisconsin', 'United States', 'starlabs.com', '10000000'),
+(4, 'Krishna Ventures', 'Krishna Mehra', 'Rohit Mehra', 'krish@gmail.com', '8888888888', 'Automotive', 'Kasauli', 'Kasauli', 'Himachal Pradesh', 'India', 'krish.com', '100'),
+(5, 'Apple', 'Steve Woz', 'Steve Jobs', 'Apple@tree.com', '7777777777', 'Mobile', 'Garage', 'NYC', 'NY', 'United States', 'apple.com', '100000');
 
 -- --------------------------------------------------------
 
@@ -316,7 +342,11 @@ CREATE TABLE `st_uploads` (
 --
 
 INSERT INTO `st_uploads` (`StpID`, `Logo`, `BackImg`, `PitchName`, `PitchExt`) VALUES
-(1, '/NamanAngels/Uploads/ProfilePic.png', '/NamanAngels/Uploads/download.jpg', 'VID-20181209-WA0003.mp4', 'mp4');
+(1, '/NamanAngels/Uploads/ProfilePic.png', '/NamanAngels/Uploads/download.jpg', 'VID-20181209-WA0003.mp4', 'mp4'),
+(2, NULL, NULL, NULL, NULL),
+(3, NULL, NULL, NULL, NULL),
+(4, NULL, NULL, NULL, NULL),
+(5, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -355,7 +385,20 @@ CREATE TABLE `userstp` (
 --
 
 INSERT INTO `userstp` (`StpID`, `Username`, `Password`) VALUES
-(1, 'abc123', '370194ff6e0f93a7432e16cc9badd9427e8b4e13');
+(1, 'abc123', '370194ff6e0f93a7432e16cc9badd9427e8b4e13'),
+(2, 'rgit', '5e6e740054e783ee301fcd1a8edbc0ff5bb44ab2'),
+(3, 'flash', '0bddc96375f465f6fd6462cc9481ab7605fe40b1'),
+(4, 'krish', '34c5495e71431f37620acacfd1cae0b39d88f778'),
+(5, 'apple', 'd0be2dc421be4fcd0172e5afceea3970e2f3d940');
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `profile`
+--
+DROP TABLE IF EXISTS `profile`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `profile`  AS  select `a`.`Logo` AS `StpImg`,`b`.`Stname` AS `StpName`,`b`.`Type` AS `Type`,`b`.`Ffname` AS `FName`,`b`.`Sfname` AS `SName` from (`st_uploads` `a` join `st_details` `b`) where (`a`.`StpID` = `b`.`StpID`) ;
 
 --
 -- Indexes for dumped tables
@@ -497,7 +540,7 @@ ALTER TABLE `userinv`
 -- AUTO_INCREMENT for table `userstp`
 --
 ALTER TABLE `userstp`
-  MODIFY `StpID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `StpID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
