@@ -12,7 +12,7 @@
 
 	<div class="item2">
 		<center>
-		<img src="../img/logo2.png" height="200">
+		<img src="../img/logo.png" height="200">
 		</center>
 		Welcome to Naman
 		<hr style="align:center;size:10px;width:30%">

@@ -13,7 +13,7 @@
 
 		<div class="item2">
 			<center>
-			<img src="../img/logo2.png" height="200"><br>
+			<img src="../img/logo.png" height="200"><br>
 		</center>
 		Join Naman's Platform for Startup Investing
 		<hr style="align:center;size:10px;width:30%">
