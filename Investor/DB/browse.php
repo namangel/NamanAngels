@@ -2,15 +2,14 @@
     require('../../server.php');
     if(isset($_POST['indsubmit'])){
         $_SESSION['search'] = mysqli_real_escape_string($db, $_POST['indsearchkey']);
-        $_SESSION['searchby']="industry";
-        header('location: browse.php');
+        header('location: browse.php?pageno=1');
     }
 ?>
 <html>
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../css/browse.css"> 
+  <link rel="stylesheet" href="../css/browse.css">
   <title>Find Your StartUp - NamanAngels</title>
 </head>
 <body>
@@ -119,24 +118,25 @@
             <?php
             if (isset($_GET['pageno'])) {
                 $pageno = $_GET['pageno'];
-            } else {
-                $pageno = 1;
             }
-            $sname="Technology";
-            $no_of_records_per_page = 10;
+            // else {
+            //     $pageno = 1;
+            // }
+
+            $sname="";
+
+            $no_of_records_per_page = 3;
             $offset = ($pageno - 1) * $no_of_records_per_page;
 
-            if(isset($_SESSION['search'])){
-                $sname = $_SESSION['search'];
-            }
+            $sname = $_SESSION['search'];
 
 
-            $total_pages_sql = "SELECT COUNT(*) FROM st_details where StpID IN (Select StpID from userstp where Type='$sname')";
+            $total_pages_sql = "SELECT COUNT(*) FROM st_details where StpID IN (Select StpID from userstp where Type Like '%{$sname}%')";
 
             $result = mysqli_query($db,$total_pages_sql);
             $total_rows = mysqli_fetch_array($result)[0];
-            $total_pages = ceil($total_rows / $no_of_records_per_page);
-            $total_pages = ($total_pages < 1? 1:$total_pages);
+            $total_rows = $total_rows < 1? 1:$total_rows;
+            $total_pages = ceil($total_rows/$no_of_records_per_page);
 
             $sql = "SELECT * FROM st_details where StpID IN (Select StpID from st_details where Type Like '%{$sname}%') LIMIT $offset, $no_of_records_per_page";
             $res_data = mysqli_query($db,$sql);
@@ -154,6 +154,7 @@
             ?>
         </div>
         <?php
+            echo $total_rows, $total_pages;
             echo '<div class="pages">';
             echo '<ul class="pagination">';
                 echo '<li><a href="?pageno=1">First</a></li>';
@@ -165,8 +166,8 @@
                     echo '>Prev</a>';
                 echo '</li>';
                 echo '<li class=';
-                if($pageno >= $total_pages){ echo 'disabled'; };
-                echo '>';
+                    if($pageno >= $total_pages){ echo 'disabled'; };
+                    echo '>';
                     echo '<a href=';
                     if($pageno >= $total_pages){ echo "#"; } else { echo "?pageno=".($pageno + 1); };
                     echo '>Next</a>';
