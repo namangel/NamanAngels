@@ -119,9 +119,9 @@
             if (isset($_GET['pageno'])) {
                 $pageno = $_GET['pageno'];
             }
-            // else {
-            //     $pageno = 1;
-            // }
+            else {
+                $pageno = 1;
+            }
 
             $sname="";
 
@@ -138,23 +138,22 @@
             $total_rows = $total_rows < 1? 1:$total_rows;
             $total_pages = ceil($total_rows/$no_of_records_per_page);
 
-            $sql = "SELECT * FROM st_details where StpID IN (Select StpID from st_details where Type Like '%{$sname}%') LIMIT $offset, $no_of_records_per_page";
+            $sql = "SELECT * FROM Profile where Type Like '%{$sname}%' LIMIT $offset, $no_of_records_per_page";
             $res_data = mysqli_query($db,$sql);
             while($row = mysqli_fetch_array($res_data)){
 
                 echo '<div class="card">';
-                    echo '<img src="/NamanAngels/Uploads/ProfilePic.png" alt="John" style="width:100%">';
-                    echo '<h1>StartUp Name</h1>';
-                    echo '<p class="title">Industry Type</p>';
-                    echo '<p>One Line Pitch</p>';
-                    echo '<p>Founder Name</p>';
+                    echo '<img src='.$row['StpImg'].' alt="John" style="width:100%">';
+                    echo '<h1>'.$row['StpName'].'</h1>';
+                    echo '<p class="title">'.$row['Type'].'</p>';
+                    echo '<p>'.$row['FName'].'</p>';
+                    echo '<p>'.$row['SName'].'</p>';
                     echo '<p><button class="contactme">Contact</button></p>';
                 echo '</div>';
             }
             ?>
         </div>
         <?php
-            echo $total_rows, $total_pages;
             echo '<div class="pages">';
             echo '<ul class="pagination">';
                 echo '<li><a href="?pageno=1">First</a></li>';
