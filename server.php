@@ -134,6 +134,7 @@ if (isset($_POST['login_inv'])) {
     $row = mysqli_fetch_assoc($results);
   	if (mysqli_num_rows($results) == 1) {
         $_SESSION['InvID'] = $row['InvID'];
+        $_SESSION['search'] = "";
         header('location: ../Investor/index.php');
   	}else {
         echo "<script>alert('Wrong username/password combination')</script>";
