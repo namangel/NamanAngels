@@ -7,7 +7,7 @@
         <ul>
             <li><a href="/NamanAngels/StartUp/index.php">HOME</a></li>
             <li><a href="/NamanAngels/StartUp/DB/index.php">COMPANY PROFILE</a></li>
-            <li><a href="#">TOOLS & SERVICES</a></li>
+            <li><a href="/NamanAngels/StartUp/Tools/index.php">TOOLS & SERVICES</a></li>
         </ul>
         </nav>
     </div>
