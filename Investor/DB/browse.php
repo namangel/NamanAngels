@@ -12,9 +12,9 @@
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/browseby.css" type="text/css">
   <style media="screen">
       .sbname{
-          padding: 40px;
         text-align: center;
         font-size: 50px;
       }
@@ -25,13 +25,21 @@
 
     <?php require "../include/header/inv_db.php"?>
     <?php require "../include/nav/nav.php"?>
-    <div class="sbname">
-        <a href="browsebyname.php">Search By Name</a>
-    </div>
+  <div class="main">
+      <div class="name">
+          <div class="image">
+            <a href="browsebyname.php"><img src="../img/Name.png"></a>
+          </div>
+          <br>
+      </div>
+      <div class="ind">
+          <div class="image">
+            <a href="browsebyindustry.php"><img src="../img/IndCluster.png"></a>
+          </div>
+          <br>
+      </div>
+  </div>
 
-    <div class="sbname">
-        <a href="browsebyindustry.php">Search By Industry</a>
-    </div>
 
     <?php require "../../include/footer/footer.php"?>
 
