@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 17, 2019 at 03:12 PM
+-- Generation Time: Jan 19, 2019 at 01:00 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -331,7 +331,7 @@ INSERT INTO `st_team` (`ID`, `StpID`, `FName`, `LName`, `Designation`, `Experien
 
 CREATE TABLE `st_uploads` (
   `StpID` int(20) NOT NULL,
-  `Logo` varchar(200) DEFAULT NULL,
+  `Logo` varchar(200) DEFAULT '/NamanAngels/Uploads/default.png',
   `BackImg` varchar(200) DEFAULT NULL,
   `PitchName` varchar(200) DEFAULT NULL,
   `PitchExt` varchar(10) DEFAULT NULL
@@ -343,10 +343,10 @@ CREATE TABLE `st_uploads` (
 
 INSERT INTO `st_uploads` (`StpID`, `Logo`, `BackImg`, `PitchName`, `PitchExt`) VALUES
 (1, '/NamanAngels/Uploads/ProfilePic.png', '/NamanAngels/Uploads/download.jpg', 'VID-20181209-WA0003.mp4', 'mp4'),
-(2, NULL, NULL, NULL, NULL),
-(3, NULL, NULL, NULL, NULL),
-(4, NULL, NULL, NULL, NULL),
-(5, NULL, NULL, NULL, NULL);
+(2, '/NamanAngels/Uploads/default.png', NULL, NULL, NULL),
+(3, '/NamanAngels/Uploads/default.png', NULL, NULL, NULL),
+(4, '/NamanAngels/Uploads/default.png', NULL, NULL, NULL),
+(5, '/NamanAngels/Uploads/default.png', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
