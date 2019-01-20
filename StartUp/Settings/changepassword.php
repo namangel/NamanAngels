@@ -1,8 +1,8 @@
 <?php 
     require '../../server.php';
 
-    $u = $_SESSION['username'];
-    $qu = "SELECT * FROM user_st WHERE Username='$u'";
+    $u = $_SESSION['StpID'];
+    $qu = "SELECT * FROM userstp WHERE StpID='$u'";
     $results = mysqli_query($db, $qu);
     $row = mysqli_fetch_assoc($results);
     $Password = $row['Password'];
@@ -25,7 +25,7 @@
         }
         if (count($errors) == 0){
             $pw=sha1($pw_1);
-            $q = "UPDATE user_st set Password='$pw' where Username='$u';";
+            $q = "UPDATE userstp set Password='$pw' where StpID='$u';";
 			mysqli_query($db, $q);
         }
     }

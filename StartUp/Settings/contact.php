@@ -2,15 +2,19 @@
   
   require '../../server.php';
 
-  $u = $_SESSION['username'];
-  $qu = "SELECT * FROM user_st WHERE Username='$u'";
+  $u = $_SESSION['StpID'];
+  $qu = "SELECT * FROM st_details WHERE StpID='$u'";
 	$results = mysqli_query($db, $qu);
 	$row = mysqli_fetch_assoc($results);
-	$ID = $row['ID'];
+	$ID = $row['StpID'];
 	$Stname = $row['Stname'];
 	$Ffname = $row['Ffname'];
 	$Sfname = $row['Sfname'];
-	$Email = $row['Email'];
+  $Email = $row['Email'];
+  
+  $qu = "SELECT * FROM userstp WHERE StpID='$u'";
+	$results = mysqli_query($db, $qu);
+	$row = mysqli_fetch_assoc($results);
 	$Password = $row['Password'];
 
   if(isset($_POST["contactset"]))
@@ -21,22 +25,22 @@
     $phone = mysqli_real_escape_string($db, $_POST['phone']);
 		if($fname != NULL)
 		{
-			$q = "UPDATE user_st set Ffname='$fname' where Username='$u';";
+			$q = "UPDATE st_details set Ffname='$fname' where StpID='$u';";
 			mysqli_query($db, $q);
     }
     if($lname != NULL)
 		{
-			$q = "UPDATE user_st set Sfname='$lname' where Username='$u';";
+			$q = "UPDATE st_details set Sfname='$lname' where StpID='$u';";
 			mysqli_query($db, $q);
     }
     if($email != NULL)
 		{
-			$q = "UPDATE user_st set Email='$email' where Username='$u';";
+			$q = "UPDATE st_details set Email='$email' where StpID='$u';";
 			mysqli_query($db, $q);
     }
     if($phone != NULL)
 		{
-			$q = "UPDATE user_st set Phone='$phone' where Username='$u';";
+			$q = "UPDATE st_details set Phone='$phone' where Username='$u';";
 			mysqli_query($db, $q);
 		}
 		header('location: contact.php');
