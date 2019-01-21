@@ -7,26 +7,31 @@
     $row = mysqli_fetch_assoc($results);
     $Password = $row['Password'];
 
-    if(isset($_POST["changepw"]))
+	if(isset($_POST["changepw"]))
 	{
         $curr_pw= mysqli_real_escape_string($db, $_POST['currentpassword']);
         $curr_pwd=sha1($curr_pw);
         $pw_1 = mysqli_real_escape_string($db, $_POST['pw_1']);
         $pw_2 = mysqli_real_escape_string($db, $_POST['pw_2']);
+        $error=0;       
 
         if ($Password != $curr_pwd) {
-            array_push($errors, "Your password is incorrect");
+            echo "<script>alert('Your Password is incorrect')</script>";
+            $error=$error+1;
         }
         if (strlen($pw_1) < 8) {
-            array_push($errors, "Enter Password Greater than 8 Characters");
+            echo "<script>alert('Enter Password Greater than 8 Characters')</script>";
+            $error=$error+1;
            }
         if ($pw_1 != $pw_2) {
-            array_push($errors, "The two passwords do not match");
+            echo "<script>alert('The two passwords do not match')</script>";
+            $error=$error+1;
         }
-        if (count($errors) == 0){
+        if ($error == 0){
             $pw=sha1($pw_1);
             $q = "UPDATE userstp set Password='$pw' where StpID='$u';";
 			mysqli_query($db, $q);
+            echo "<script>alert('Password Changed Successfully')</script>";
         }
     }
 
@@ -90,8 +95,6 @@
         <div class="hvr-float-shadow" >
                 CHANGE PASSWORD </div>
       <hr>
-        <?php include 'errors.php';?>
-
         <form method="post" action="changepassword.php">
             <label for="current-password">Current Password*</label>
             <br>
