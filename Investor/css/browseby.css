@@ -5,27 +5,26 @@ body{
 .main{
     display: grid;
     grid-template-columns: 1fr,1fr;
-
     margin: 10px 10px;
+    margin-right: 150px;
+    margin-left: 150px;
 }
 .name{
     grid-column: 1;
     background-color:inherit;
-    padding: 20px;
-    margin: 20px;
-    text-align: right;
+    padding: 10px;
+    text-align: center;
 }
 .ind{
     grid-column: 2;
     background-color:inherit;
-    padding: 20px;
-    margin: 20px;
-    text-align: left;
+    padding: 10px;
+    text-align: center;
 }
 
 .image img{
-    height: 500px;
-    width: 500px;
+    height: 300px;
+    width: 300px;
 }
 
 .image:hover{
