@@ -1,6 +1,5 @@
 <?php
 	require '../../server.php';
-	// $_SESSION['username'] = 'xyz123';//predefine -- nikalo mujhe
 	$id = "";
 	if (isset($_GET['searchquery'])) {
 		$id = $_GET['searchquery'];
@@ -15,7 +14,7 @@
 	if (mysqli_num_rows($req) == 1)
 	{
 		$row1 = mysqli_fetch_assoc($req);
-		$deal = $row1['deal'];
+		$deal = $row1['Deal'];
 		if($deal == 1)
 		{
 			$transbtn = "Invested";
@@ -33,8 +32,9 @@
 			$q = "INSERT into requests(Inv_ID,St_ID) values ('$invid','$id')";
 			mysqli_query($db, $q);
 		}
-		header('location: Doc.php?searchquery='.$id);
+		header('location: index.php?searchquery='.$id);
 	}
+
 	$qu = "SELECT * FROM st_details WHERE StpID = '$id'";
 	$results = mysqli_query($db, $qu);
 	$row = mysqli_fetch_assoc($results);
@@ -70,7 +70,13 @@
 	$PitchName = $row['PitchName'];
 	$PitchExt = $row['PitchExt'];
 	$Logo = $row['Logo'];
-  $Backimg = $row['BackImg'];
+    $Backimg = $row['BackImg'];
+
+	$q = "SELECT * FROM st_description WHERE StpID = '$id';";
+	$results = mysqli_query($db, $q);
+	$row = mysqli_fetch_assoc($results);
+	$Summary = $row['Summary']==""? 'Tell the world who you are and what makes your company special.':$row['Summary'];
+	$OLP = $row['OLP']==""? 'Write A Short Pitch For Your Company In One Line':$row['OLP'];
 
 
 
@@ -79,8 +85,14 @@
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
-        <script src="js\profform.js"></script>
-				<title>StartUp Profile - NamanAngels</title>
+        <script src="js/profform.js"></script>
+		<title>StartUp Profile - NamanAngels</title>
+		<style media="screen">
+		.databox div video{
+			max-height: 300px;
+			max-width: 100%;
+		}
+		</style>
 
     </head>
     <body>
@@ -88,26 +100,22 @@
 			<?php require '../include/nav/nav.php'; ?>
         <div class="container">
             <div class="main">
-			<div class="backimg">
+            	<div class="backimg">
 
-				<?php
+					<?php
 						if($Backimg != ""){
 							echo "<img src=".$Backimg." />";
 						}
 						else{
 							echo '<div class="back">';
-							echo 'Upload a background image!!';
+							echo 'No background image';
 							echo '</div>';
 						}
-				?>
-			</div>
+					?>
+                </div>
                 <div class="sideprof">
-					<div class="pen">
-
-						<br>
-					</div>
                     <div class="upload">
-						<div><?= "<img src=".$Logo." />";?></div>
+                        <div><?= "<img src=".$Logo." />";?></div>
                     </div>
                     <ul class="proflist">
                         <li class="item">Name <span class="value"><?= $Stname?></span></li>
@@ -154,7 +162,7 @@
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
-												<li><form method="post"><button class="b1" name="make_deal"><?= $transbtn?></button></form></li>
+                        <li><form method="post"><button class="b1" name="make_deal"><?= $transbtn?></button></form></li>
                     </ul>
                 </div>
 
@@ -174,7 +182,7 @@
 
                 </div>
 
-				<div class="social sideprof">
+                <div class="social sideprof">
 
                     <h3>Social presence</h3>
 					<ul class="proflist">
@@ -192,37 +200,140 @@
 	                    </li>
                     </ul>
                 </div>
+                <div class="nav">
+                    <div><a href="index.php?searchquery=<?=$id?>" style="color:black;">Overview</a></div>
+                    <div><a href="Exec.php?searchquery=<?=$id?>">Executive summary</a></div>
+                    <div><a href="Finance.php?searchquery=<?=$id?>">Financials</a></div>
+                    <div><a href="Doc.php?searchquery=<?=$id?>">Documents</a></div>
 
-								<div class="nav">
-										<div><a href="index.php?searchquery=<?=$id?>" >Overview</a></div>
-										<div><a href="Exec.php?searchquery=<?=$id?>" >Executive summary</a></div>
-										<div><a href="Finance.php?searchquery=<?=$id?>">Financials</a></div>
-										<div><a href="Doc.php?searchquery=<?=$id?>" style="color:black;">Documents</a></div>
+                </div>
+                <div class="summary">
+                    <div class="databox">
 
-								</div>
+                        <h3>Company Summary</h3>
+						<?php echo $Summary;
+							if($Summary == "Tell the world who you are and what makes your company special."){
+								echo '<img src="../img/Paragraph.png">';
+							}
+						?>
+                    </div>
+					<div class="databox">
 
-				<div class="summary">
-						<div class="databox">
+                        <h3>Elevator Pitch</h3>
+						<?php echo $OLP;
+						?>
+                    </div>
+                    <div class="databox" style="padding:10px;">
+						<h3>Pitch</h3>
 
-													<h3>Business Plan</h3>
+						<?php
+							if($PitchName == ""){
+		                        echo '<label>Increase the impact of your profile by uploading a short pitch</label>';
+		                        echo '<br>';
+								echo '<form class="pitch" action="index.php" method="post" enctype="multipart/form-data">';
+									echo '<input type="file" name="pitchvid">';
+									echo '<input type="submit" name="pitchsub" value="Upload">';
+									// echo '<div float=right><a href="#"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
+								echo '</form>';
+							}
+							else{
+								$videos_field=$PitchName;
+								$video_show= "../../Uploads/$videos_field";
 
-	                        <p>What is your long term business plan? Preferred file types: .pdf, .doc, .xls</p>
-						</div>
-						<div class="databox">
+								echo '<form class="pitch" action="index.php" method="post" enctype="multipart/form-data">';
+									echo '<input type="file" name="pitchvid">';
+									echo '<input type="submit" name="pitchsub" value="Upload">';
+									// echo '<div float=right align=right><a href="#"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
+								echo '</form>';
+								echo "<div align=center><video controls><source src='$video_show' type='video/$PitchExt'>Your browser does not support the video tag.</video></div>";
+							}
+						?>
+                    </div>
+                    <div class="databox">
 
-	                        <h3>Financial Projections</h3>
 
-	                        <p>Provide an overview of where your financials are headed within the next 5 years.<br> Preferred file types: .pdf, .doc, .xls</p>
-	        	</div>
-						<div class="databox">
+                        <h4>Team</h4>
+						<?php
+							$q = "SELECT * FROM st_team where StpID = '$id';";
+							$results=mysqli_query($db, $q);
+							if (mysqli_num_rows($results) > 0) {
+								echo '<table class="tables">';
+								echo "<tr>";
+								echo "<th>Name</th>";
+								echo "<th>Designation</th>";
+								echo "<th>Exp(Yrs)</th>";
+								echo "<th>Email</th>";
+								echo "<th>LinkedIn</th>";
 
-	                        <h3>Additional Documents</h3>
+								echo "</th>";
+							    while($row = mysqli_fetch_assoc($results)) {
+							        echo '<tr>';
+									echo '<td>'.$row["FName"].'&nbsp;'.$row["LName"].'</td>';
+									echo '<td>'.$row["Designation"].'</td>';
+									echo '<td>'.$row['Experience'].'</td>';
+									echo '<td>'.$row['Email'].'</td>';
+									echo '<td>'.$row['LinkedIn'].'</td>';
 
-	                        <p>Upload any documents to support your company.</p>
-						</div>
-				</div>
-		</div>
-				<?php include '../../include/footer/footer.php'; ?>
+									echo "</tr>";
+							    }
+								echo '</table>';
+							} else {
+								echo '<img src="../img/Contact.png">';
+							}
+						?>
+
+                    </div>
+                    <div class="databox">
+
+                        <h4>Advisors</h4>
+						<?php
+							$q = "SELECT * FROM st_advisors where StpID = '$id';";
+							$results=mysqli_query($db, $q);
+							if (mysqli_num_rows($results) > 0) {
+								echo '<table class="tables">';
+								echo "<tr>";
+								echo "<th>Name</th>";
+								echo "<th>Email</th>";
+								echo "</th>";
+							    while($row = mysqli_fetch_assoc($results)) {
+							        echo '<tr>';
+									echo '<td>'.$row["Name"].'</td>';
+									echo '<td>'.$row['Email'].'</td>';
+									echo "</tr>";
+							    }
+								echo '</table>';
+							} else {
+								echo '<img src="../img/Contact.png">';
+							}
+						?>
+                    </div>
+                    <div class="databox">
+
+                        <h4>Previous Investors</h4>
+						<?php
+							$q = "SELECT * FROM st_previnvestment where StpID = '$id';";
+							$results=mysqli_query($db, $q);
+							if (mysqli_num_rows($results) > 0) {
+								echo '<table class="tables">';
+								echo "<tr>";
+								echo "<th>Name</th>";
+								echo "<th>Email</th>";
+								echo "</th>";
+							    while($row = mysqli_fetch_assoc($results)) {
+							        echo '<tr>';
+									echo '<td>'.$row["Name"].'</td>';
+									echo '<td>'.$row['Email'].'</td>';
+									echo "</tr>";
+							    }
+								echo '</table>';
+							} else {
+								echo '<img src="../img/Contact.png">';
+							}
+						?>
+                    </div>
+                </div>
+            </div>
+			<?php require "../../include/footer/footer.php" ?>
         </div>
 
     </body>
