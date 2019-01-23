@@ -62,7 +62,7 @@ body{
   font-size: 18px;
 }
 
-.viewprofile {
+.contactme {
   border: none;
   outline: 0;
   display: inline-block;
@@ -81,7 +81,7 @@ body{
   color: black;
 }
 
-.viewprofile:hover, .detail1:hover {
+.contactme:hover, .detail1:hover {
   opacity: 0.7;
 }
 

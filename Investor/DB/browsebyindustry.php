@@ -138,23 +138,17 @@
             $total_rows = $total_rows < 1? 1:$total_rows;
             $total_pages = ceil($total_rows/$no_of_records_per_page);
 
-            $sql = "SELECT * FROM st_details where Type Like '%{$sname}%' LIMIT $offset, $no_of_records_per_page";
+            $sql = "SELECT * FROM Profile where Type Like '%{$sname}%' LIMIT $offset, $no_of_records_per_page";
             $res_data = mysqli_query($db,$sql);
             while($row = mysqli_fetch_array($res_data)){
 
-                $stid = $row['StpID'];
-                $upload = "SELECT * FROM st_uploads where StpID = '$stid'";
-                $img = mysqli_query($db,$upload);
-                $bckimg = mysqli_fetch_array($img);
                 echo '<div class="card">';
-                    echo '<img src='.$bckimg['Logo'].' alt="John" style="width:100%">';
-                    echo '<h1>'.$row['Stname'].'</h1>';
+                    echo '<img src='.$row['StpImg'].' alt="John" style="width:100%">';
+                    echo '<h1>'.$row['StpName'].'</h1>';
                     echo '<p class="title">'.$row['Type'].'</p>';
-                    echo '<p>'.$row['Ffname'].'</p>';
-                    echo '<p>'.$row['Sfname'].'</p>';
-                    echo "<a href='../Profile/index.php?searchquery=".$stid."' target='_blank'>
-                    <button type='submit' name='subinv' class='viewprofile' value='View Profile' action='index.php'>View Profile</button></a>";
-
+                    echo '<p>'.$row['FName'].'</p>';
+                    echo '<p>'.$row['SName'].'</p>';
+                    echo '<p><button class="contactme">Contact</button></p>';
                 echo '</div>';
             }
             ?>

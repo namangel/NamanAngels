@@ -27,19 +27,17 @@
     <?php require "../include/nav/nav.php"?>
   <div class="main">
       <div class="name">
-
+          <h3>BROWSE BY STARTUP NAME</h3>
           <div class="image">
             <a href="browsebyname.php" title="Browse by name"><img src="../img/Name.png"></a>
           </div>
-            <h3>BROWSE BY STARTUP NAME</h3>
           <br>
       </div>
       <div class="ind">
-
+          <h3>BROWSE BY INDUSTRY TYPE</h3>
           <div class="image">
             <a href="browsebyindustry.php" title="Browse by industry"><img src="../img/IndCluster.png"></a>
           </div>
-          <h3>BROWSE BY INDUSTRY TYPE</h3>
           <br>
       </div>
   </div>

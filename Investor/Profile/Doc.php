@@ -1,16 +1,48 @@
 <?php
 	require '../../server.php';
 	// $_SESSION['username'] = 'xyz123';//predefine -- nikalo mujhe
-	$id = "";
+	$u = "";
 	if (isset($_GET['searchquery'])) {
-		$id = $_GET['searchquery'];
+		$u = $_GET['searchquery'];
 	}
 
-	$invid =	$_SESSION['InvID'];
+	$invu = $_SESSION['username'];
+
+	$qu = "SELECT * FROM user_st WHERE Username='$u'";
+	$results = mysqli_query($db, $qu);
+	$row = mysqli_fetch_assoc($results);
+	$uname = $row['Username'];
+	$ID = $row['ID'];
+	$Stname = $row['Stname'];
+	$Ffname = $row['Ffname'];
+	$Sfname = $row['Sfname'];
+	$Email = $row['Email'];
+	$Type = $row['Type'];
+	$Country = $row['Country'];
+	$State = $row['State'];
+	$City = $row['City'];
+	$Website = $row['Website'];
+	$Inv = $row['Inv'];
+	$Phone = $row['Phone'];
+	$Password = $row['Password'];
+
+	$q = "SELECT * FROM st_overview WHERE Username='$u';";
+	$results = mysqli_query($db, $q);
+	$row = mysqli_fetch_assoc($results);
+	$Stage = $row['Stage'] == "" ? '--' : $row['Stage'];
+	$DOF = $row['DOF'] == "" ? '--' : $row['DOF'];
+	$EmpNum = $row['EmpNum']==""? '--':$row['EmpNum'];
+	$IncType = $row['IncType']==""? '--':$row['IncType'];
+	$LinkedInLink = $row['LinkedInLink']==""? '--':$row['LinkedInLink'];
+	$TwitterLink = $row['TwitterLink']==""? '--':$row['TwitterLink'];
+	$FBLink = $row['FBLink']==""? '--':$row['FBLink'];
+	$Summary = $row['Summary']==""? 'Tell the world who you are and what makes your company special.':$row['Summary'];
+	$OLP = $row['OLP']==""? '--':$row['OLP'];
+	$Logo = $row['Logo'];
 
 	$transbtn = "Invest";
 
-	$qr = "SELECT * FROM requests WHERE Inv_ID='$invid' AND St_ID='$id'";
+	$qr = "SELECT * FROM request WHERE inv_name='$invu' AND st_name='$u'";
 	$req = mysqli_query($db, $qr);
 	if (mysqli_num_rows($req) == 1)
 	{
@@ -30,49 +62,12 @@
 	{
 		if (mysqli_num_rows($req) == 0)
 		{
-			$q = "INSERT into requests(Inv_ID,St_ID) values ('$invid','$id')";
+			$q = "INSERT into request(inv_name,st_name) values ('$invu','$u')";
 			mysqli_query($db, $q);
 		}
-		header('location: Doc.php?searchquery='.$id);
+
+			header('location: Doc.php?searchquery='.$uname);
 	}
-	$qu = "SELECT * FROM st_details WHERE StpID = '$id'";
-	$results = mysqli_query($db, $qu);
-	$row = mysqli_fetch_assoc($results);
-	$Stname = $row['Stname'];
-	$Ffname = $row['Ffname'];
-	$Sfname = $row['Sfname'];
-	$Email = $row['Email'];
-	$Phone = $row['Phone'];
-	$Type = $row['Type'];
-	$Address = $row['Address'];
-	$City = $row['City'];
-	$State = $row['State'];
-	$Country = $row['Country'];
-	$Website = $row['Website'];
-	$Inv = $row['Investment'];
-
-	$q = "SELECT * FROM st_addetails WHERE StpID = '$id';";
-	$results = mysqli_query($db, $q);
-	$row = mysqli_fetch_assoc($results);
-	$Stage = $row['Stage'] == "" ? '--' : $row['Stage'];
-	$DOF = $row['DOF'] == "" ? '--' : $row['DOF'];
-	$EmpNum = $row['EmpNum']==""? '--':$row['EmpNum'];
-	$IncType = $row['IncType']==""? '--':$row['IncType'];
-	$LinkedInLink = $row['LinkedIn']==""? '--':$row['LinkedIn'];
-	$TwitterLink = $row['Twitter']==""? '--':$row['Twitter'];
-	$FBLink = $row['Facebook']==""? '--':$row['Facebook'];
-	$InstaLink = $row['Instagram']==""? '--':$row['Instagram'];
-	$YTLink = $row['Youtube']==""? '--':$row['Youtube'];
-
-	$q = "SELECT * FROM st_uploads WHERE StpID = '$id';";
-	$results = mysqli_query($db, $q);
-	$row = mysqli_fetch_assoc($results);
-	$PitchName = $row['PitchName'];
-	$PitchExt = $row['PitchExt'];
-	$Logo = $row['Logo'];
-  $Backimg = $row['BackImg'];
-
-
 
 ?>
 <html>
@@ -81,33 +76,17 @@
         <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
         <script src="js\profform.js"></script>
 				<title>StartUp Profile - NamanAngels</title>
-
     </head>
     <body>
 			<?php require '../include/header/stp_profile.php'; ?>
-			<?php require '../include/nav/nav.php'; ?>
         <div class="container">
             <div class="main">
-			<div class="backimg">
-
-				<?php
-						if($Backimg != ""){
-							echo "<img src=".$Backimg." />";
-						}
-						else{
-							echo '<div class="back">';
-							echo 'Upload a background image!!';
-							echo '</div>';
-						}
-				?>
-			</div>
+				<div class="backimg">
+                        <font style="font-size:30px;"><?= $Stname?></font>
+                </div>
                 <div class="sideprof">
-					<div class="pen">
-
-						<br>
-					</div>
                     <div class="upload">
-						<div><?= "<img src=".$Logo." />";?></div>
+                        <div><?= '<img src="data:image/jpeg;base64,'.base64_encode($Logo).'"/>';?></div>
                     </div>
                     <ul class="proflist">
                         <li class="item">Name <span class="value"><?= $Stname?></span></li>
@@ -122,19 +101,7 @@
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
-						<li class="item">Location <span class="value"><?= $Address?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                        <li class="item">City <span class="value"><?= $City?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-						<li class="item">State <span class="value"><?= $State?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-						<li class="item">Country <span class="value"><?= $Country?></span></li>
+                        <li class="item">Location <span class="value"><?= $City.", ".$State.", ".$Country?></span></li>
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
@@ -157,25 +124,7 @@
 												<li><form method="post"><button class="b1" name="make_deal"><?= $transbtn?></button></form></li>
                     </ul>
                 </div>
-
-                <div class="contact sideprof">
-
-                    <h3>Contact</h3>
-					<ul class="proflist">
-						<li class="item">Phone :  <span class="value"><?= $Phone?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                        <li class="item">Email ID : <span class="value"><?= $Email?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                    </ul>
-
-                </div>
-
-				<div class="social sideprof">
-
+                <div class="social sideprof">
                     <h3>Social presence</h3>
 					<ul class="proflist">
 						<li class="item">LinkedIn <span class="value"><?= $LinkedInLink?></span></li>
@@ -193,42 +142,42 @@
                     </ul>
                 </div>
 
-								<div class="nav">
-										<div><a href="index.php?searchquery=<?=$id?>" >Overview</a></div>
-										<div><a href="Exec.php?searchquery=<?=$id?>" >Executive summary</a></div>
-										<div><a href="Finance.php?searchquery=<?=$id?>">Financials</a></div>
-										<div><a href="Doc.php?searchquery=<?=$id?>" style="color:black;">Documents</a></div>
+                <div class="contact sideprof">
+                    <h3>Contact</h3>
+					<ul class="proflist">
+						<li class="item">Phone :  <span class="value"><?= $Phone?></span></li>
+                        <li style="list-style: none; display: inline">
+                            <hr>
+                        </li>
+                        <li class="item">Email ID : <span class="value"><?= $Email?></span></li>
+                        <li style="list-style: none; display: inline">
+                            <hr>
+                        </li>
+                    </ul>
 
-								</div>
-
+                </div>
+				<div class="nav">
+                    <div><a href="Overview.php?searchquery=<?=$u?>">Overview</a></div>
+                    <div><a href="Exec.php?searchquery=<?=$u?>">Executive summary</a></div>
+                    <div><a href="Finance.php?searchquery=<?=$u?>">Financials</a></div>
+                    <div><a href="Doc.php?searchquery=<?=$u?>">Documents</a></div>
+                </div>
 				<div class="summary">
 						<div class="databox">
-
-													<h3>Business Plan</h3>
-
+	                        <h3>Business Plan</h3>
 	                        <p>What is your long term business plan? Preferred file types: .pdf, .doc, .xls</p>
 						</div>
 						<div class="databox">
-
 	                        <h3>Financial Projections</h3>
-
-	                        <p>Provide an overview of where your financials are headed within the next 5 years.<br> Preferred file types: .pdf, .doc, .xls</p>
+	                        <p>Provide an overview of where your financials are headed within the next 5 years. Preferred file types: .pdf, .doc, .xls</p>
 	        	</div>
 						<div class="databox">
-
-	                        <h3>Additional Documents</h3>
-
+	                        <h3>Supplemental Documents</h3>
 	                        <p>Upload any documents to support your company.</p>
 						</div>
 				</div>
-		</div>
-				<?php include '../../include/footer/footer.php'; ?>
+    		</div>
         </div>
-
+		<?php include '../../include/footer/footer.php'; ?>
     </body>
 </html>
-<script>
-	if ( window.history.replaceState ) {
-		window.history.replaceState( null, null, window.location.href );
-	}
-</script>
