@@ -39,6 +39,7 @@
 	$Logo = $row['Logo'];
   $Backimg = $row['BackImg'];
 
+
 	$qu = "SELECT * FROM st_description WHERE StpID = '$id';";
 	$results = mysqli_query($db, $qu);
 	$row = mysqli_fetch_assoc($results);
@@ -55,6 +56,14 @@
 	$CompAdv = $row['CompAdvantage'];
 
 
+	// if(isset($_POST["mtsave"])){
+	// 	$MTeam = mysqli_real_escape_string($db, $_POST['manageform']);
+	//
+	// 	$q = "UPDATE st_description SET MTeam='$MTeam' WHERE StpID = '$id';";
+	// 	mysqli_query($db, $q);
+	//
+	// 	header('location: Exec.php');
+	// }
 ?>
 <html>
     <head>
@@ -62,29 +71,26 @@
         <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
         <script src="js\profform.js"></script>
 		<title>StartUp Profile - NamanAngels</title>
-
 	    </head>
     <body>
-	<?php require '../include/header/stp_profile.php'; ?>
-		<?php require '../include/nav/nav.php'; ?>
+		<?php require '../include/header/stp_profile.php'; ?>
 		<div class="container">
             <div class="main">
 			<div class="backimg">
-
 				<?php
 						if($Backimg != ""){
-							echo "<img src=".$Backimg." />";
+							echo '<img src="data:image/jpeg;base64,'.base64_encode($Backimg).'"/>';
 						}
 						else{
 							echo '<div class="back">';
-							echo 'Upload a background image!!';
+							echo 'No background image!!';
 							echo '</div>';
 						}
 				?>
 				</div>
 				<div class="sideprof">
 					<div class="upload">
-						<div><?= "<img src=".$Logo." />";?></div>
+						<div><?= '<img src="data:image/jpeg;base64,'.base64_encode($Logo).'"/>';?></div>
 					</div>
 					<ul class="proflist">
 						<li class="item">Name <span class="value"><?= $Stname?></span></li>
@@ -131,12 +137,11 @@
 						<li style="list-style: none; display: inline">
 							<hr>
 						</li>
-						<li><button class="b1" name="requestbtn" onclick="">Download One Pager</button></li>
+						
 					</ul>
 				</div>
 
 				<div class="contact sideprof">
-
 					<h3>Contact</h3>
 					<ul class="proflist">
 						<li class="item">Phone :  <span class="value"><?= $Phone?></span></li>
@@ -169,18 +174,15 @@
 						</li>
 					</ul>
 				</div>
-
 				<div class="nav">
 					<div><a href="index.php">Overview</a></div>
 					<div><a href="Exec.php" style="color:black;">Executive summary</a></div>
 					<div><a href="Finance.php">Financials</a></div>
 					<div><a href="Doc.php">Documents</a></div>
-
 				</div>
 
 				<div class="summary">
 					<div class="databox">
-
 						<h3>Management Team</h3>
 						<p>Who are the members of your management team and how will their experience aid in your success?</p>
 						<div>
@@ -201,14 +203,12 @@
 						<div><?php echo $ProdSer?></div>
 					</div>
 					<div class="databox">
-
 						<h3>Target Market</h3>
 						<p>Define the important geographic, demographic, and/or psychographic characteristics of the market within which your customer segments exist.</p>
 						<div><?php echo $TarMar?></div>
 
 					</div>
 					<div class="databox">
-
 						<h3>Business Model</h3>
 						<p>What strategy will you employ to build, deliver, and retain company value (e.g., profits)?</p>
 
@@ -224,39 +224,38 @@
 					</script>
 
 					<div class="databox">
-
 						<h3>Market Sizing</h3>
 						<p>Estimate and realize the potential of you Market.</p>
 						<div><?php echo $BModel?></div>
 					</div>
 
 					<div class="databox">
-
 						<h3>Customer Segments</h3>
 						<p>Outline your targeted customer segments. These are the specific subsets of your target market that you will focus on to gain traction.</p>
 						<div><?php echo $CSegments?></div>
 					</div>
 					<div class="databox">
-
 						<h3>Sales & Marketing Strategy</h3>
 						<p>What is your customer acquisition and retention strategy? Detail how you will promote, sell and create customer loyalty for your products and services.</p>
 						<div><?php echo $SMStrat?></div>
 					</div>
 					<div class="databox">
-
 						<h3>Competitors</h3>
 						<p>Describe the competitive landscape and your competitors strengths and weaknesses. If direct competitors don't exist, describe the existing alternatives.</p>
 						<div><?php echo $Competitors?></div>
 					</div>
 					<div class="databox">
-
 						<h3>Competitive Advantage</h3>
 						<p>What is your company's competitive or unfair advantage? This can include patents, first mover advantage, unique expertise, or proprietary processes/technology.</p>
 						<div><?php echo $CompAdv?></div>
 					</div>
-				</div>
+					<!-- <div class="databox">
+						<h3>Consultancy</h3>
+						<p>Need help??..contact our consultancy</p>
 
-		</div>
+					</div> -->
+				</div>
+				</div>
 <?php require "../../include/footer/footer.php" ?>
 	    </div>
 

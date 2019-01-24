@@ -1,6 +1,5 @@
 <?php
 	require '../../server.php';
-	// $_SESSION['username'] = 'xyz123';//predefine -- nikalo mujhe
 	$u = "";
 	if (isset($_GET['searchquery'])) {
 		$u = $_GET['searchquery'];
@@ -37,10 +36,8 @@
 	$TwitterLink = $row['TwitterLink']==""? '--':$row['TwitterLink'];
 	$FBLink = $row['FBLink']==""? '--':$row['FBLink'];
 	$Summary = $row['Summary']==""? 'Tell the world who you are and what makes your company special.':$row['Summary'];
-	// $CAdvName = $row['CAdvName']==""? '--':$row['CAdvName'];
-	// $CAdvEmail = $row['CAdvEmail']==""? '--':$row['CAdvEmail'];
-	// $PIName = $row['PIName']==""? '--':$row['PIName'];
-	// $PIEmail = $row['PIEmail']==""? '--':$row['PIEmail'];
+	$PitchName = $row['PitchName'];
+	$PitchExt = $row['PitchExt'];
 	$OLP = $row['OLP']==""? '--':$row['OLP'];
 	$Logo = $row['Logo'];
 
@@ -69,8 +66,7 @@
 			$q = "INSERT into request(inv_name,st_name) values ('$invu','$u')";
 			mysqli_query($db, $q);
 		}
-
-			header('location: Finance.php?searchquery='.$uname);
+		header('location: Overview.php?searchquery='.$uname);
 	}
 
 ?>
@@ -78,15 +74,20 @@
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
-        <link rel="stylesheet" href="../css/financial.css" type="text/css">
         <script src="js\profform.js"></script>
 				<title>StartUp Profile - NamanAngels</title>
+				<style media="screen">
+				.databox div video{
+					max-height: 300px;
+					max-width: 100%;
+				}
+				</style>
     </head>
     <body>
-		<?php require '../include/header/stp_profile.php'; ?>
+			<?php require '../include/header/stp_profile.php'; ?>
         <div class="container">
             <div class="main">
-				<div class="backimg">
+            	<div class="backimg">
                         <font style="font-size:30px;"><?= $Stname?></font>
                 </div>
                 <div class="sideprof">
@@ -126,7 +127,7 @@
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
-												<li><form method="post"><button class="b1" name="make_deal"><?= $transbtn?></button></form></li>
+						<li><form method="post"><button class="b1" name="make_deal"><?= $transbtn?></button></form></li>
                     </ul>
                 </div>
                 <div class="social sideprof">
@@ -161,51 +162,111 @@
                     </ul>
 
                 </div>
-				<div class="nav">
+
+                <div class="nav">
                     <div><a href="Overview.php?searchquery=<?=$u?>">Overview</a></div>
                     <div><a href="Exec.php?searchquery=<?=$u?>">Executive summary</a></div>
                     <div><a href="Finance.php?searchquery=<?=$u?>">Financials</a></div>
                     <div><a href="Doc.php?searchquery=<?=$u?>">Documents</a></div>
                 </div>
-				<div class="summary">
-					<center><i class="fa fa-lock icsize">Only NamanAngels users who have been granted access can view this content.</i></center>
-					<div class="databox">
-						<h3>Current Funding Round (USD)</h3>
-						  Detail your stage of funding, the capital you're seeking and your pre-money valuation.<br><br>
-						  <button class="btnfund">Open Funding Round</button>
-					</div>
-					<div class="databox">
-						<h3>Funding History (USD)</h3><br>
-						  Please add any previous funding rounds.
-					</div>
-					<div class="databox">
-						<h3>Annual Financials (USD)</h3>
-						<div class="p2">
-						</div>
-						<p>Enter your financials for this year and last year, as well as projections for the following three years.</p>
-						<p>Investors like to compare and evaluate financial performance over this timeframe, so do your best to complete it.</p>
-					</div>
-					<div class="databox">
-						<pre>Annual Revenue Run Rate --                        Monthly Burn Rate --<pre>
-							<table>
-							  <tr>
-								<td>         </td>
-							  </tr>
-							  <tr>
-								<td>Revenue Driver</td>
-							  </tr>
-							  <tr>
-								<td>Revenue $</td>
-							  </tr>
-							  <tr>
-								<td>Expenditure $</td>
-							  </tr>
-							  <tr>
-								<td>Profit (Loss) $</td>
-							  </tr>
-							</table>
-					</div>
-				</div>
+                <div class="summary">
+                    <div class="databox">
+                        <h3>Company Summary</h3>
+						<?php echo $Summary;
+							if($Summary == "Tell the world who you are and what makes your company special."){
+								echo '<img src="../img/Paragraph.png">';
+							}
+						?>
+                    </div>
+                    <div class="databox" style="padding:10px;">
+						<h3>Pitch</h3>
+						<?php
+							if($PitchName == ""){
+		                        echo 'The StartUp Has Not Uploaded Any Pitch';
+							}
+							else{
+								$videos_field=$PitchName;
+								$video_show= "../../Uploads/$videos_field";
+
+								echo "<div align=center><video max-height='500px' controls><source src='$video_show' type='video/$PitchExt'>Your browser does not support the video tag.</video></div>";
+							}
+						?>
+                    </div>
+                    <div class="databox">
+                        <h4>Team</h4>
+						<?php
+							$q = "SELECT * FROM st_teams where Username='$u';";
+							$results=mysqli_query($db, $q);
+							if (mysqli_num_rows($results) > 0) {
+								echo '<table class="tables">';
+								echo "<tr>";
+								echo "<th>Name</th>";
+								echo "<th>Phone</th>";
+								echo "<th>Experience</th>";
+								echo "<th>Email</th>";
+								echo "</th>";
+							    while($row = mysqli_fetch_assoc($results)) {
+							        echo '<tr>';
+									echo '<td>'.$row["TName"].'</td>';
+									echo '<td>'.$row['TPhone'].'</td>';
+									echo '<td>'.$row['TExp'].'</td>';
+									echo '<td>'.$row['TEmail'].'</td>';
+									echo "</tr>";
+							    }
+								echo '</table>';
+							} else {
+								echo '<img src="../img/Contact.png">';
+							}
+						?>
+
+                    </div>
+                    <div class="databox">
+                        <h4>Advisors</h4>
+						<?php
+							$q = "SELECT * FROM st_advisors where Username='$u';";
+							$results=mysqli_query($db, $q);
+							if (mysqli_num_rows($results) > 0) {
+								echo '<table class="tables">';
+								echo "<tr>";
+								echo "<th>Name</th>";
+								echo "<th>Email</th>";
+								echo "</th>";
+							    while($row = mysqli_fetch_assoc($results)) {
+							        echo '<tr>';
+									echo '<td>'.$row["CAName"].'</td>';
+									echo '<td>'.$row['CAEmail'].'</td>';
+									echo "</tr>";
+							    }
+								echo '</table>';
+							} else {
+								echo '<img src="../img/Contact.png">';
+							}
+						?>
+                    </div>
+                    <div class="databox">
+                        <h4>Previous Investors</h4>
+						<?php
+							$q = "SELECT * FROM st_previnvestment where Username='$u';";
+							$results=mysqli_query($db, $q);
+							if (mysqli_num_rows($results) > 0) {
+								echo '<table class="tables">';
+								echo "<tr>";
+								echo "<th>Name</th>";
+								echo "<th>Email</th>";
+								echo "</th>";
+							    while($row = mysqli_fetch_assoc($results)) {
+							        echo '<tr>';
+									echo '<td>'.$row["PIName"].'</td>';
+									echo '<td>'.$row['PIEmail'].'</td>';
+									echo "</tr>";
+							    }
+								echo '</table>';
+							} else {
+								echo '<img src="../img/Contact.png">';
+							}
+						?>
+                    </div>
+                </div>
             </div>
 			<?php require "../../include/footer/footer.php" ?>
         </div>

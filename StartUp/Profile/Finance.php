@@ -39,38 +39,36 @@
 	$Logo = $row['Logo'];
   $Backimg = $row['BackImg'];
 
-	?>
-	<html>
-	    <head>
-	        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	        <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
-	        <link rel="stylesheet" href="../css/financial.css" type="text/css">
-	        <script src="js/profform.js"></script>
-					<title>StartUp Profile - NamanAngels</title>
 
-	    </head>
-	    <body>
-		
-			<?php require '../include/nav/nav.php'; ?>
-	        <div class="container">
-	            <div class="main">
-				<div class="backimg">
+?>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
+        <link rel="stylesheet" href="../css/financial.css" type="text/css">
+        <script src="js/profform.js"></script>
+				<title>StartUp Profile - NamanAngels</title>
 
-					<?php
-							if($Backimg != ""){
-								echo "<img src=".$Backimg." />";
-							}
-							else{
-								echo '<div class="back">';
-								echo 'Upload a background image!!';
-								echo '</div>';
-							}
+    </head>
+    <body>
+		<?php require '../include/header/stp_profile.php'; ?>
+        <div class="container">
+            <div class="main">
+			<div class="backimg">
+				<?php
+						if($Backimg != ""){
+							echo '<img src="data:image/jpeg;base64,'.base64_encode($Backimg).'"/>';
+						}
+						else{
+							echo '<div class="back">';
+							echo 'No background image!!';
+							echo '</div>';
+						}
 				?>
 			</div>
                 <div class="sideprof">
-
                     <div class="upload">
-						<div><?= "<img src=".$Logo." />";?></div>
+                        <div><?= '<img src="data:image/jpeg;base64,'.base64_encode($Logo).'"/>';?></div>
                     </div>
                     <ul class="proflist">
                         <li class="item">Name <span class="value"><?= $Stname?></span></li>
@@ -117,7 +115,7 @@
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
-                        <li><button class="b1" name="requestbtn" onclick="">Download One Pager</button></li>
+                    
                     </ul>
                 </div>
 
@@ -157,58 +155,52 @@
                 </div>
 
 				<div class="nav">
-					<div><a href="index.php">Overview</a></div>
-					<div><a href="Exec.php">Executive summary</a></div>
-					<div><a href="Finance.php" style="color:black;">Financials</a></div>
-					<div><a href="Doc.php">Documents</a></div>
-
+									<div><a href="index.php">Overview</a></div>
+									<div><a href="Exec.php">Executive summary</a></div>
+									<div><a href="Finance.php" style="color:black;">Financials</a></div>
+									<div><a href="Doc.php">Documents</a></div>
 				</div>
+								<div class="summary">
+									<center><i class="fa fa-lock icsize">Only NamanAngels users who have been granted access can view this content.</i></center>
+									<div class="databox">
+										<h3>Current Funding Round (USD)</h3>
 
-				<div class="summary">
-					<center><i class="fa fa-lock icsize">Only NamanAngels users who have been granted access can view this content.</i></center>
-					<div class="databox">
-
-						<h3>Current Funding Round (USD)</h3>
-
-							Detail your stage of funding, the capital you're seeking and your pre-money valuation.<br><br>
-
-					</div>
-					<div class="databox">
-
-						<h3>Funding History (USD)</h3><br>
-							Please add any previous funding rounds.
-					</div>
-					<div class="databox">
-
-						<h3>Annual Financials (USD)</h3>
-						<div class="p2">
+										  Detail your stage of funding, the capital you're seeking and your pre-money valuation.<br><br>
+									</div>
+									<div class="databox">
+										<h3>Funding History (USD)</h3><br>
+										  Please add any previous funding rounds.
+									</div>
+									<div class="databox">
+										<h3>Annual Financials (USD)</h3>
+										<div class="p2">
+										</div>
+										<p>Enter your financials for this year and last year, as well as projections for the following three years.</p>
+										<p>Investors like to compare and evaluate financial performance over this timeframe, so do your best to complete it.</p>
+									</div>
+									<div class="databox">
+										<pre>Annual Revenue Run Rate --                        Monthly Burn Rate --<pre>
+											<table>
+											  <tr>
+												<td>         </td>
+											  </tr>
+											  <tr>
+												<td>Revenue Driver</td>
+											  </tr>
+											  <tr>
+												<td>Revenue $</td>
+											  </tr>
+											  <tr>
+												<td>Expenditure $</td>
+											  </tr>
+											  <tr>
+												<td>Profit (Loss) $</td>
+											  </tr>
+											</table>
+									</div>
+				</div>
 						</div>
-						<p>Enter your financials for this year and last year, as well as projections for the following three years.</p>
-						<p>Investors like to compare and evaluate financial performance over this timeframe, so do your best to complete it.</p>
-					</div>
-					<div class="databox">
-						<pre>Annual Revenue Run Rate --                        Monthly Burn Rate --<pre>
-							<table>
-								<tr>
-								<td>         </td>
-								</tr>
-								<tr>
-								<td>Revenue Driver</td>
-								</tr>
-								<tr>
-								<td>Revenue $</td>
-								</tr>
-								<tr>
-								<td>Expenditure $</td>
-								</tr>
-								<tr>
-								<td>Profit (Loss) $</td>
-								</tr>
-							</table>
-					</div>
-				</div>
 
-				</div>
 			<?php require "../../include/footer/footer.php" ?>
         </div>
 

@@ -46,7 +46,6 @@
 	$OLP = $row['OLP']==""? 'Write A Short Pitch For Your Company In One Line':$row['OLP'];
 
 
-
 ?>
 <html>
     <head>
@@ -55,6 +54,7 @@
         <script src="js/profform.js"></script>
 		<title>StartUp Profile - NamanAngels</title>
 		<style media="screen">
+
 		.databox div video{
 			max-height: 300px;
 			max-width: 100%;
@@ -64,25 +64,23 @@
     </head>
     <body>
 			<?php require '../include/header/stp_profile.php'; ?>
-			<?php require '../include/nav/nav.php'; ?>
         <div class="container">
             <div class="main">
             	<div class="backimg">
-				
-					<?php
+				<?php
 						if($Backimg != ""){
-							echo "<img src=".$Backimg." />";
+							echo '<img src="data:image/jpeg;base64,'.base64_encode($Backimg).'"/>';
 						}
 						else{
 							echo '<div class="back">';
-							echo 'No background image';
+							echo 'No background image!!';
 							echo '</div>';
 						}
-					?>
+				?>
                 </div>
                 <div class="sideprof">
                     <div class="upload">
-                        <div><?= "<img src=".$Logo." />";?></div>
+                        <div><?= '<img src="data:image/jpeg;base64,'.base64_encode($Logo).'"/>';?></div>
                     </div>
                     <ul class="proflist">
                         <li class="item">Name <span class="value"><?= $Stname?></span></li>
@@ -129,7 +127,6 @@
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
-                        <li><button class="b1" name="requestbtn" onclick="">Download One Pager</button></li>
                     </ul>
                 </div>
 
@@ -172,11 +169,9 @@
                     <div><a href="Exec.php">Executive summary</a></div>
                     <div><a href="Finance.php">Financials</a></div>
                     <div><a href="Doc.php">Documents</a></div>
-
                 </div>
                 <div class="summary">
                     <div class="databox">
-
                         <h3>Company Summary</h3>
 						<?php echo $Summary;
 							if($Summary == "Tell the world who you are and what makes your company special."){
@@ -185,7 +180,6 @@
 						?>
                     </div>
 					<div class="databox">
-
                         <h3>Elevator Pitch</h3>
 						<?php echo $OLP;
 						?>
@@ -197,28 +191,17 @@
 							if($PitchName == ""){
 		                        echo '<label>Increase the impact of your profile by uploading a short pitch</label>';
 		                        echo '<br>';
-								echo '<form class="pitch" action="index.php" method="post" enctype="multipart/form-data">';
-									echo '<input type="file" name="pitchvid">';
-									echo '<input type="submit" name="pitchsub" value="Upload">';
-									// echo '<div float=right><a href="#"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
-								echo '</form>';
 							}
 							else{
 								$videos_field=$PitchName;
 								$video_show= "../../Uploads/$videos_field";
 
-								echo '<form class="pitch" action="index.php" method="post" enctype="multipart/form-data">';
-									echo '<input type="file" name="pitchvid">';
-									echo '<input type="submit" name="pitchsub" value="Upload">';
-									// echo '<div float=right align=right><a href="#"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
-								echo '</form>';
 								echo "<div align=center><video controls><source src='$video_show' type='video/$PitchExt'>Your browser does not support the video tag.</video></div>";
 							}
 						?>
                     </div>
                     <div class="databox">
-
-
+                        <!-- <button onclick="teamon()" class="pencil"><i class="fa fa-pencil"></i></button> -->
                         <h4>Team</h4>
 						<?php
 							$q = "SELECT * FROM st_team where StpID = '$id';";
@@ -235,11 +218,11 @@
 								echo "</th>";
 							    while($row = mysqli_fetch_assoc($results)) {
 							        echo '<tr>';
-									echo '<td>'.$row["FName"].'&nbsp;'.$row["LName"].'</td>';
-									echo '<td>'.$row["Designation"].'</td>';
-									echo '<td>'.$row['Experience'].'</td>';
-									echo '<td>'.$row['Email'].'</td>';
-									echo '<td>'.$row['LinkedIn'].'</td>';
+									echo '<td>'.$row["TFName"].'&nbsp;'.$row["TLName"].'</td>';
+									echo '<td>'.$row["TDsgn"].'</td>';
+									echo '<td>'.$row['TExp'].'</td>';
+									echo '<td>'.$row['TEmail'].'</td>';
+									echo '<td>'.$row['TLinkedIn'].'</td>';
 
 									echo "</tr>";
 							    }
@@ -251,7 +234,6 @@
 
                     </div>
                     <div class="databox">
-
                         <h4>Advisors</h4>
 						<?php
 							$q = "SELECT * FROM st_advisors where StpID = '$id';";
@@ -264,8 +246,8 @@
 								echo "</th>";
 							    while($row = mysqli_fetch_assoc($results)) {
 							        echo '<tr>';
-									echo '<td>'.$row["Name"].'</td>';
-									echo '<td>'.$row['Email'].'</td>';
+									echo '<td>'.$row["CAName"].'</td>';
+									echo '<td>'.$row['CAEmail'].'</td>';
 									echo "</tr>";
 							    }
 								echo '</table>';
@@ -275,7 +257,6 @@
 						?>
                     </div>
                     <div class="databox">
-
                         <h4>Previous Investors</h4>
 						<?php
 							$q = "SELECT * FROM st_previnvestment where StpID = '$id';";
@@ -288,8 +269,8 @@
 								echo "</th>";
 							    while($row = mysqli_fetch_assoc($results)) {
 							        echo '<tr>';
-									echo '<td>'.$row["Name"].'</td>';
-									echo '<td>'.$row['Email'].'</td>';
+									echo '<td>'.$row["PIName"].'</td>';
+									echo '<td>'.$row['PIEmail'].'</td>';
 									echo "</tr>";
 							    }
 								echo '</table>';
