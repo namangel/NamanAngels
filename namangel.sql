@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jan 19, 2019 at 01:00 PM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.10
+-- Host: 127.0.0.1
+-- Generation Time: Jan 25, 2019 at 09:17 PM
+-- Server version: 10.1.33-MariaDB
+-- PHP Version: 7.2.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -161,8 +161,15 @@ CREATE TABLE `requests` (
   `ReqID` int(10) NOT NULL,
   `Inv_ID` varchar(20) NOT NULL,
   `St_ID` varchar(20) NOT NULL,
-  `Deal` binary(1) NOT NULL DEFAULT '\0'
+  `Deal` binary(1) DEFAULT '\0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `requests`
+--
+
+INSERT INTO `requests` (`ReqID`, `Inv_ID`, `St_ID`, `Deal`) VALUES
+(2, '1', '1', 0x00);
 
 -- --------------------------------------------------------
 
@@ -351,6 +358,32 @@ INSERT INTO `st_uploads` (`StpID`, `Logo`, `BackImg`, `PitchName`, `PitchExt`) V
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tools`
+--
+
+CREATE TABLE `tools` (
+  `tool_id` int(50) NOT NULL,
+  `tl_name` varchar(200) NOT NULL,
+  `tl_img` varchar(200) NOT NULL,
+  `tl_cost` varchar(200) NOT NULL,
+  `tl_desc` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tools`
+--
+
+INSERT INTO `tools` (`tool_id`, `tl_name`, `tl_img`, `tl_cost`, `tl_desc`) VALUES
+(1, 'Tool1', '/NamanAngels/Uploads/Tools.jpg', '100', 'Tool1 Description\r\n Hello World 1\r\n ABC  1\r\n'),
+(2, 'Tool2', '/NamanAngels/Uploads/Tools.jpg', '200', 'Tool2 Description\r\n Hello World 2\r\n ABC  2'),
+(3, 'Tool3', '/NamanAngels/Uploads/Tools.jpg', '300', 'Tool3 Description\r\n Hello World 3\r\n ABC  3'),
+(4, 'Tool4', '/NamanAngels/Uploads/Tools.jpg', '400', 'Tool4 Description\r\n Hello World 4\r\n ABC  4'),
+(5, 'Tool5', '/NamanAngels/Uploads/Tools.jpg', '500', 'Tool5 Description\r\n Hello World 5\r\n ABC  5'),
+(6, 'Tool6', '/NamanAngels/Uploads/Tools.jpg', '600', 'Tool6 Description\r\n Hello World 6\r\n ABC  6');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `userinv`
 --
 
@@ -489,6 +522,12 @@ ALTER TABLE `st_uploads`
   ADD PRIMARY KEY (`StpID`);
 
 --
+-- Indexes for table `tools`
+--
+ALTER TABLE `tools`
+  ADD PRIMARY KEY (`tool_id`);
+
+--
 -- Indexes for table `userinv`
 --
 ALTER TABLE `userinv`
@@ -516,7 +555,7 @@ ALTER TABLE `inv_group`
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `ReqID` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `ReqID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `st_advisors`
