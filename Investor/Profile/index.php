@@ -231,8 +231,6 @@
 		                        echo '<label>Increase the impact of your profile by uploading a short pitch</label>';
 		                        echo '<br>';
 								echo '<form class="pitch" action="index.php" method="post" enctype="multipart/form-data">';
-									echo '<input type="file" name="pitchvid">';
-									echo '<input type="submit" name="pitchsub" value="Upload">';
 									// echo '<div float=right><a href="#"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
 								echo '</form>';
 							}
