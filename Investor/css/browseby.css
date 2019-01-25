@@ -8,6 +8,7 @@ body{
     margin: 10px 10px;
     margin-right: 150px;
     margin-left: 150px;
+    min-height: 600px;
 }
 .name{
     grid-column: 1;

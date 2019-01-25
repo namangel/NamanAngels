@@ -44,7 +44,6 @@
       </div>
   </div>
 
-
     <?php require "../../include/footer/footer.php"?>
 
 

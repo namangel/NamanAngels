@@ -64,14 +64,14 @@
     </head>
     <body>
 			<?php require '../include/header/stp_profile.php'; ?>
-			<?php require '../include/nav/nav.php'; ?>
+
         <div class="container">
             <div class="main">
             	<div class="backimg">
-				
+
 					<?php
 						if($Backimg != ""){
-							echo "<img src=".$Backimg." />";
+							echo '<img src="data:image/jpeg;base64,'.base64_encode($Backimg).'"/>';
 						}
 						else{
 							echo '<div class="back">';
@@ -82,7 +82,7 @@
                 </div>
                 <div class="sideprof">
                     <div class="upload">
-                        <div><?= "<img src=".$Logo." />";?></div>
+                        <div><?= '<img src="data:image/jpeg;base64,'.base64_encode($Logo).'"/>';?></div>
                     </div>
                     <ul class="proflist">
                         <li class="item">Name <span class="value"><?= $Stname?></span></li>
@@ -129,7 +129,7 @@
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
-                        <li><button class="b1" name="requestbtn" onclick="">Download One Pager</button></li>
+
                     </ul>
                 </div>
 
