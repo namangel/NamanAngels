@@ -154,7 +154,6 @@
                     echo '<p>'.$row['Sfname'].'</p>';
                     echo "<a href='../Profile/index.php?searchquery=".$stid."' target='_blank'>
                     <button type='submit' name='subinv' class='viewprofile' value='View Profile' action='index.php'>View Profile</button></a>";
-
                 echo '</div>';
             }
             ?>
