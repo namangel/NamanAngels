@@ -213,11 +213,11 @@
 		if (isset($name)){
 			$path= '../../Uploads/';
 			if (!empty($name)){
-				if (($fileextension !== "mp4") && ($fileextension !== "ogg") && ($fileextension !== "webm")){
+				if (($fileextension !== "mp4") && ($fileextension !== "ogg") && ($fileextension !== "webm") && ($fileextension !== "pdf")){
 					$success=0;
 					echo '<script>alert("The file extension must be .mp4, .ogg, or .webm in order to be uploaded")</script>';
 				}
-				else if (($fileextension == "mp4") || ($fileextension == "ogg") || ($fileextension == "webm")){
+				else if (($fileextension == "mp4") || ($fileextension == "ogg") || ($fileextension == "webm") || ($fileextension == "pdf")){
 					$success=1;
 					if (copy($tmp_name, $path.basename($_FILES['pitchvid']['name']))) {
 						echo '<script> alert("Uploaded!")</script>';
