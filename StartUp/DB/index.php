@@ -34,7 +34,7 @@
 	$q = "SELECT * FROM st_uploads WHERE StpID = '$id';";
 	$results = mysqli_query($db, $q);
 	$row = mysqli_fetch_assoc($results);
-	$PitchName = '/NamanAngels/Uploads/'.$row['PitchName'];
+	$PitchName = $row['PitchName'];
 	$PitchExt = $row['PitchExt'];
 	$Logo = $row['Logo'];
     $Backimg = $row['BackImg'];
@@ -213,11 +213,11 @@
 		if (isset($name)){
 			$path= '../../Uploads/';
 			if (!empty($name)){
-				if (($fileextension !== "mp4") && ($fileextension !== "ogg") && ($fileextension !== "webm") && ($fileextension !== "pdf")){
+				if (($fileextension !== "mp4") && ($fileextension !== "ogg") && ($fileextension !== "webm")){
 					$success=0;
-					echo '<script>alert("The file extension must be .mp4, .ogg, or .webm or .pdf in order to be uploaded")</script>';
+					echo '<script>alert("The file extension must be .mp4, .ogg, or .webm in order to be uploaded")</script>';
 				}
-				else if (($fileextension == "mp4") || ($fileextension == "ogg") || ($fileextension == "webm") || ($fileextension == "pdf")){
+				else if (($fileextension == "mp4") || ($fileextension == "ogg") || ($fileextension == "webm")){
 					$success=1;
 					if (copy($tmp_name, $path.basename($_FILES['pitchvid']['name']))) {
 						echo '<script> alert("Uploaded!")</script>';
@@ -790,14 +790,6 @@
 									echo '<input type="submit" name="pitchsub" value="Upload">';
 									// echo '<div float=right><a href="#"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
 								echo '</form>';
-							}
-							elseif ($PitchExt == 'pdf'){
-								echo '<form class="pitch" action="index.php" method="post" enctype="multipart/form-data">';
-									echo '<input type="file" name="pitchvid">';
-									echo '<input type="submit" name="pitchsub" value="Upload">';
-									// echo '<div float=right align=right><a href="#"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
-								echo '</form>';
-								echo "<iframe src='$PitchName' style='width: 100%; height:500px'></iframe>";
 							}
 							else{
 								$videos_field=$PitchName;

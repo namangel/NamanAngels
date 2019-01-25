@@ -135,7 +135,7 @@
 				}
 			}
 		}
-		header('location: Overview.php');
+		header('location: index.php');
 	}
 
 
@@ -165,7 +165,7 @@
 			$q = "UPDATE inv_addetails set Instagram='$slinst' where InvID='$u'";
 			mysqli_query($db, $q);
         }
-		header('location: Overview.php');
+		header('location: index.php');
     }
 
     if(isset($_POST["cfsave"]))
@@ -184,7 +184,7 @@
 			mysqli_query($db, $q);
 		}
 
-		header('location: Overview.php');
+		header('location: index.php');
     }
 
     if(isset($_POST["sumsave"]))
@@ -192,7 +192,7 @@
         $summ = mysqli_real_escape_string($db, $_POST['summaryform']);
 			$q = "UPDATE inv_addetails set Summary='$summ' where InvID='$u'";
 			mysqli_query($db, $q);
-		header('location: Overview.php');
+		header('location: index.php');
     }
 
 	if(isset($_POST['gmsave'])){
@@ -202,7 +202,7 @@
 
 		$q = "INSERT INTO inv_group (InvID, Name, Designation, Experience) VALUES ('$u','$tmname', '$tmdesig', '$tmexp')";
 		mysqli_query($db, $q);
-		header('location: Overview.php');
+		header('location: index.php');
 
 	}
 
@@ -216,7 +216,7 @@
 		$q = "INSERT INTO inv_previnvestment (InvID, Name, Year,Amount, Stage, Stake, Website) VALUES ('$u', '$piname', '$piyear', '$piamount','$pistage','$pistake','$piweb');";
 		mysqli_query($db, $q);
 
-		header('location: Overview.php');
+		header('location: index.php');
 	}
 
 ?>
@@ -251,7 +251,7 @@
 
         <div id="overlay">
                     <div class="compbasics">
-                        <form class="profform" method="post" action='Overview.php' enctype="multipart/form-data">
+                        <form class="profform" method="post" action='index.php' enctype="multipart/form-data">
                             <button class="close" onclick="off()"><i class="fa fa-close"></i></button>
                             <div class="i1">
                                 <h2>Investor Basics</h2>
@@ -670,7 +670,7 @@
 
         <div class="summary">
         <!-- <div class="nav">
-            <div><a href="Overview.php" style="color:black;">Overview</a></div>
+            <div><a href="index.php" style="color:black;">Overview</a></div>
         </div><br><br> -->
         <h3> Company Overview</h3>
             <div class="databox">
