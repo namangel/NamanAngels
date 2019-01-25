@@ -36,14 +36,14 @@
 	if(isset($_POST["cbsave"])){
         $cbfname = mysqli_real_escape_string($db, $_POST['cbfname']);
         $cblname = mysqli_real_escape_string($db, $_POST['cblname']);
-		$cbcomp = mysqli_real_escape_string($db, $_POST['cbcomp']);
-		$cbcity = mysqli_real_escape_string($db, $_POST['cbcity']);
-		$cbcountry = mysqli_real_escape_string($db, $_POST['cbcountry']);
-		$cbrole = mysqli_real_escape_string($db, $_POST['cbrole']);
+				$cbcomp = mysqli_real_escape_string($db, $_POST['cbcomp']);
+				$cbcity = mysqli_real_escape_string($db, $_POST['cbcity']);
+				$cbcountry = mysqli_real_escape_string($db, $_POST['cbcountry']);
+				$cbrole = mysqli_real_escape_string($db, $_POST['cbrole']);
         $cbpartner = mysqli_real_escape_string($db, $_POST['cbpartner']);
         $cbioi = mysqli_real_escape_string($db, $_POST['cbioi']);
-		$cbrange = mysqli_real_escape_string($db, $_POST['cbrange']);
-		$cbweb = mysqli_real_escape_string($db, $_POST['cbweb']);
+				$cbrange = mysqli_real_escape_string($db, $_POST['cbrange']);
+				$cbweb = mysqli_real_escape_string($db, $_POST['cbweb']);
 
 
 		if($cbfname != "")
@@ -241,7 +241,7 @@
 				<br>
 			</div>
             <div class="upload">
-				<div><?= "<img src=".$img." />";?></div><br><br>
+				<div><?= "<img src=".$img." alt='Image not available' />";?></div><br><br>
                 <b><?= $fname ?>&nbsp;<?= $lname ?></b><br>
                 <?= $cname ?><br>
                 Role: <?= $role ?><br>
