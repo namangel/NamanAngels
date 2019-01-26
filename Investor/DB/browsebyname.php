@@ -50,18 +50,13 @@
             $sql = "SELECT * FROM Profile where StpName Like '%{$sname}%' LIMIT $offset, $no_of_records_per_page";
             $res_data = mysqli_query($db,$sql);
             while($row = mysqli_fetch_array($res_data)){
-              $stn = $row['StpName'];
-              $sid = "SELECT StpID FROM st_details where Stname ='$stn' ";
-              $st = mysqli_query($db,$sid);
-              $strow = mysqli_fetch_assoc($st);
-              $stid = $strow['StpID'];
                 echo '<div class="card">';
                 echo '<img src='.$row['StpImg'].' alt="John" style="width:100%">';
                       echo '<h1>'.$row['StpName'].'</h1>';
                     echo '<p class="title">'.$row['Type'].'</p>';
                     echo '<p>'.$row['FName'].'</p>';
                     echo '<p>'.$row['SName'].'</p>';
-                    echo "<a href='../Profile/index.php?searchquery=".$stid."' target='_blank'>
+                    echo "<a href='../Profile/index.php?searchquery=".$row['StpID']."' target='_blank'>
                     <button type='submit' name='subinv' class='viewprofile' value='View Profile' action='index.php'>View Profile</button></a>";
 
                 echo '</div>';
