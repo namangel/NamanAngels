@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 25, 2019 at 09:17 PM
--- Server version: 10.1.33-MariaDB
--- PHP Version: 7.2.6
+-- Host: localhost
+-- Generation Time: Jan 26, 2019 at 07:22 AM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -144,7 +144,8 @@ CREATE TABLE `membership` (
 -- (See below for the actual view)
 --
 CREATE TABLE `profile` (
-`StpImg` varchar(200)
+`StpID` int(20)
+,`StpImg` varchar(200)
 ,`StpName` varchar(200)
 ,`Type` varchar(200)
 ,`FName` varchar(200)
@@ -431,7 +432,7 @@ INSERT INTO `userstp` (`StpID`, `Username`, `Password`) VALUES
 --
 DROP TABLE IF EXISTS `profile`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `profile`  AS  select `a`.`Logo` AS `StpImg`,`b`.`Stname` AS `StpName`,`b`.`Type` AS `Type`,`b`.`Ffname` AS `FName`,`b`.`Sfname` AS `SName` from (`st_uploads` `a` join `st_details` `b`) where (`a`.`StpID` = `b`.`StpID`) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `profile`  AS  select `a`.`StpID` AS `StpID`,`a`.`Logo` AS `StpImg`,`b`.`Stname` AS `StpName`,`b`.`Type` AS `Type`,`b`.`Ffname` AS `FName`,`b`.`Sfname` AS `SName` from (`st_uploads` `a` join `st_details` `b`) where (`a`.`StpID` = `b`.`StpID`) ;
 
 --
 -- Indexes for dumped tables
