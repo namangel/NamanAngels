@@ -142,11 +142,7 @@
             $res_data = mysqli_query($db,$sql);
             while($row = mysqli_fetch_array($res_data)){
 
-                $stn = $row['StpName'];
-                $sid = "SELECT StpID FROM st_details where Stname ='$stn' ";
-                $st = mysqli_query($db,$sid);
-                $strow = mysqli_fetch_assoc($st);
-                $stid = $strow['StpID'];
+                $stid = $row['StpID'];
                 echo '<div class="card">';
                 echo '<img src='.$row['StpImg'].' alt="John" style="width:100%">';
                 echo '<h1>'.$row['StpName'].'</h1>';

@@ -5,17 +5,6 @@
 
 	$qu = "SELECT * FROM tools;";
 	$results = mysqli_query($db, $qu);
-	$Tname = array();
-	$Tdesc = array();
-	$Tcost = array();
-	$Timg = array();
-	while($row=mysqli_fetch_array($results))
-	{
-		array_push($Tname,$row['tl_name']);
-		array_push($Tdesc,$row['tl_desc']);
-		array_push($Tcost,$row['tl_cost']);
-		array_push($Timg,$row['tl_img']);
-	}
 ?>
 <html>
     <head>
@@ -29,59 +18,19 @@
 			<?php require '../include/header/stp_db.php'; ?>
 			<?php require '../include/nav/nav.php'; ?>
         <div class="container">
-					<div class="card">
-						<img src=<?=$Timg[0]?> alt="John">
-							<h1><?=$Tname[0]?></h1>
-							<p class="title"><?=$Tdesc[0]?></p>
-							<p class="price">$ <?=$Tcost[0]?></p>
-							<a href="#">
-							<button type='submit' name='subinv' class='pricebtn' value='Price' action='index.php'>BUY</button></a>
-					</div>
+					<?php
+					while($row = mysqli_fetch_array($results)){
+							echo '<div class="card">';
+							echo '<img src='.$row['tl_img'].' alt="John">';
+										echo '<h1>'.$row['tl_name'].'</h1>';
+									echo '<p class="title">'.$row['tl_desc'].'</p>';
+									echo '<p class="price">'.$row['tl_cost'].'</p>';
+									echo "<a href='#' target='_blank'>
+									<button type='submit' name='subinv' class='pricebtn' value='Price' action='index.php'>BUY</button></a>";
 
-					<div class="card">
-						<img src=<?=$Timg[1]?> alt="John">
-							<h1><?=$Tname[1]?></h1>
-							<p class="title"><?=$Tdesc[1]?></p>
-							<p class="price">$ <?=$Tcost[1]?></p>
-							<a href="#">
-							<button type='submit' name='subinv' class='pricebtn' value='Price' action='index.php'>BUY</button></a>
-					</div>
-
-					<div class="card">
-						<img src=<?=$Timg[2]?> alt="John">
-							<h1><?=$Tname[2]?></h1>
-							<p class="title"><?=$Tdesc[2]?></p>
-							<p class="price">$ <?=$Tcost[2]?></p>
-							<a href="#">
-							<button type='submit' name='subinv' class='pricebtn' value='Price' action='index.php'>BUY</button></a>
-					</div>
-
-					<div class="card">
-						<img src=<?=$Timg[3]?> alt="John">
-							<h1><?=$Tname[3]?></h1>
-							<p class="title"><?=$Tdesc[3]?></p>
-							<p class="price">$ <?=$Tcost[3]?></p>
-							<a href="#">
-							<button type='submit' name='subin3' class='pricebtn' value='Price' action='index.php'>BUY</button></a>
-					</div>
-
-					<div class="card">
-						<img src=<?=$Timg[4]?> alt="John">
-							<h1><?=$Tname[4]?></h1>
-							<p class="title"><?=$Tdesc[4]?></p>
-							<p class="price">$ <?=$Tcost[4]?></p>
-							<a href="#">
-							<button type='submit' name='subinv' class='pricebtn' value='Price' action='index.php'>BUY</button></a>
-					</div>
-
-					<div class="card">
-						<img src=<?=$Timg[5]?> alt="John">
-							<h1><?=$Tname[5]?></h1>
-							<p class="title"><?=$Tdesc[5]?></p>
-							<p class="price">$ <?=$Tcost[5]?></p>
-							<a href="#">
-							<button type='submit' name='subinv' class='pricebtn' value='Price' action='index.php'>BUY</button></a>
-					</div>
+							echo '</div>';
+					}
+					?>
 					<br>
 					<br>
 		</div>

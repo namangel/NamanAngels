@@ -5,7 +5,7 @@ body{
 
 .container{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-auto-rows: auto;
     grid-gap: 20px;
     text-align: center;
@@ -19,7 +19,7 @@ body{
   display: inline-block;
   padding: 8px;
   color: white;
-  background-color: #000;
+  background-color: #2fa29d;
   text-align: center;
   cursor: pointer;
   width: 100%;
@@ -35,9 +35,10 @@ body{
   /* background-color: #F4F5FA; */
   margin: auto;
   width: 80%;
-  min-height: 400px;
+  min-height: 250px;
   text-align: center;
   font-family: arial;
+  padding-bottom: 30px;
 }
 
 .card img{
