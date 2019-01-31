@@ -58,7 +58,7 @@
 
 				<?php
 						if($Backimg != ""){
-							echo '<img src="data:image/jpeg;base64,'.base64_encode($Backimg).'"/>';
+							echo "<img src=".$Backimg." />";
 						}
 						else{
 							echo '<div class="back">';
@@ -69,7 +69,7 @@
 			</div>
                 <div class="sideprof">
                     <div class="upload">
-						 <div><?= '<img src="data:image/jpeg;base64,'.base64_encode($Logo).'"/>';?></div>
+						<div><?= "<img src=".$Logo." />";?></div>
                     </div>
                     <ul class="proflist">
                         <li class="item">Name <span class="value"><?= $Stname?></span></li>

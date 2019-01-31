@@ -37,9 +37,9 @@
 	$PitchName = $row['PitchName'];
 	$PitchExt = $row['PitchExt'];
 	$Logo = $row['Logo'];
-  $Backimg = $row['BackImg'];
+  	$Backimg = $row['BackImg'];
 
-	?>
+?>
 	<html>
 	    <head>
 	        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -58,7 +58,7 @@
 
 					<?php
 							if($Backimg != ""){
-								echo '<img src="data:image/jpeg;base64,'.base64_encode($Backimg).'"/>';
+								echo "<img src=".$Backimg." />";
 							}
 							else{
 								echo '<div class="back">';
@@ -70,7 +70,7 @@
                 <div class="sideprof">
 
                     <div class="upload">
-						<div><?= '<img src="data:image/jpeg;base64,'.base64_encode($Logo).'"/>';?></div>
+						<div><?= "<img src=".$Logo." />";?></div>
                     </div>
                     <ul class="proflist">
                         <li class="item">Name <span class="value"><?= $Stname?></span></li>

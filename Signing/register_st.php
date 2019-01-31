@@ -5,6 +5,44 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="css/register.css">
 </head>
+<script>
+function validateForm() {
+var stname = document.forms["register_st"]["stname"].value;
+var email = document.forms["register_st"]["email"].value;
+var ffname = document.forms["register_st"]["ffname"].value;
+var type = document.forms["register_st"]["type"].value;
+var address = document.forms["register_st"]["address"].value;
+var city = document.forms["register_st"]["city"].value;
+var state = document.forms["register_st"]["state"].value;
+var country = document.forms["register_st"]["city"].value;
+var website = document.forms["register_st"]["website"].value;
+var inv = document.forms["register_st"]["inv"].value;
+var phone = document.forms["register_st"]["phone"].value;
+var username = document.forms["register_st"]["username"].value;
+var password_1 = document.forms["register_st"]["password_1"].value;
+var password_2 = document.forms["register_st"]["password_2"].value;
+
+if (stname.length < 3) {
+  alert("Please fill correct Startup firm name");
+  return false;
+}
+
+if (ffname.length < 3) {
+  alert("Please fill correct first founder name");
+  return false;
+}
+
+if (sfname.length < 3) {
+  alert("Please fill correct second founder name");
+  return false;
+}
+
+if (phone.length != 10) {
+  alert("Please fill correct phone number");
+  return false;
+}
+}
+</script>
 <body>
 <?php require 'include/header/sign.php'; ?>
   <div class="header">
@@ -12,7 +50,7 @@
     <hr>
   </div>
 
-  <form method="post" action="register_st.php">
+  <form method="post" action="register_st.php" name="register_st">
     <div class="content">
       	<div class="input-group">
       	  <label>Startup Firm Name</label>
@@ -400,7 +438,7 @@
       	</div>
         <div class="input-group">
           <label>Investment Received Till Date</label>
-          <input type="text" name="inv" required>
+          <input type="number" name="inv" required>
         </div>
         <div class="input-group">
           <label>Phone</label>
@@ -417,7 +455,7 @@
       	<div class="input-group">
 			<label>Password</label>
 			<input type="password" name="password_1" required>
-			<span class="tooltiptext">Use a password that has at least 8 characters, at least one number, 
+			<span class="tooltiptext">Use a password that has at least 8 characters, at least one number,
                 one uppercase letter, one lowercase letter and one special symbol.</span>
       	</div>
         <div class="input-group">
@@ -429,7 +467,7 @@
     </div>
     <div class="contbot">
   	<div class="input-group">
-  	  <button type="submit" class="btn" name="reg_st" style="background :#0e3c58;">Register Startup</button>
+  	  <button type="submit" class="btn" name="reg_st" onclick="validateForm()" style="background :#0e3c58;">Register Startup</button>
   	</div>
   	<p  style="font-size:15px">
   		Already a member? <a href="login_st.php">Sign in</a>
