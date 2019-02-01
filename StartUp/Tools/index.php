@@ -3,8 +3,7 @@
 
 	$id = $_SESSION['StpID'];
 
-	$qu = "SELECT * FROM tools;";
-	$results = mysqli_query($db, $qu);
+
 ?>
 <html>
     <head>
@@ -19,6 +18,8 @@
 			<?php require '../include/nav/nav.php'; ?>
         <div class="container">
 					<?php
+					$qu = "SELECT * FROM tools;";
+					$results = mysqli_query($db, $qu);
 					while($row = mysqli_fetch_array($results)){
 							echo '<div class="card">';
 							echo '<img src='.$row['tl_img'].' alt="John">';

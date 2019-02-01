@@ -65,7 +65,7 @@
                     <hr>
                 </h1>
                 <div class="prii">
-     <p><input type="checkbox" name="vehicle" value="Bike" onclick="changeimage()">Your privacy settings control how people can contact and connect with you on Gust. It's important to note that you are automatically connected to anyone affiliated to your company or organization.
+     <p><input type="checkbox" name="vehicle" value="Bike" onclick="changeimage()">Your privacy settings control how people can contact and connect with you on Naman Angels. It's important to note that you are automatically connected to anyone affiliated to your company or organization.
                  People must enter my email address to send a connection request. </p>
              </div>
 
