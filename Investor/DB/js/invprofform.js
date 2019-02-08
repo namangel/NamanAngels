@@ -44,16 +44,13 @@ function on() {
       document.getElementById("sumformov").style.display = "none";
   }
 
-  function addgrpon() {
-      document.getElementById("addteam").style.display = "block";
-  }
   function addgrpoff() {
       document.getElementById("addteam").style.display = "none";
   }
 
-  function addpion() {
-      document.getElementById("inv").style.display = "block";
-  }
+  // function addpion() {
+  //     document.getElementById("inv").style.display = "block";
+  // }
   function addpioff() {
       document.getElementById("inv").style.display = "none";
   }

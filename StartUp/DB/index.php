@@ -316,9 +316,72 @@
 			max-height: 300px;
 			max-width: 100%;
 		}
+		.limit_mem,.limit_adv,.limit_pre{
+			color:red;
+			display: none;
+			font-weight: lighter;
+		}
 		</style>
 
     </head>
+		<script type="text/javascript">
+
+		<?php
+			$q = "SELECT * FROM st_team;";
+			$results=mysqli_query($db, $q);
+			if (mysqli_num_rows($results) >= 6)
+			{
+				echo 'function addteamon() {
+				    document.getElementById("addteam").style.display = "none";
+						document.getElementById("limit_mem").style.display = "inline";
+				}';
+			}
+			else{
+				echo 'function addteamon() {
+				    document.getElementById("addteam").style.display = "block";
+				}';
+			}
+
+			$q = "SELECT * FROM st_advisors;";
+			$results=mysqli_query($db, $q);
+			if (mysqli_num_rows($results) >= 3)
+			{
+				echo 'function advon() {
+						document.getElementById("adv").style.display = "none";
+						document.getElementById("limit_adv").style.display = "inline";
+				}';
+			}
+			else{
+				echo 'function advon() {
+						document.getElementById("adv").style.display = "block";
+				}';
+			}
+
+
+
+				$q = "SELECT * FROM st_previnvestment;";
+				$results=mysqli_query($db, $q);
+				if (mysqli_num_rows($results) >= 3)
+				{
+					echo 'function invon() {
+							document.getElementById("inv").style.display = "none";
+							document.getElementById("limit_pre").style.display = "inline";
+					}';
+				}
+				else{
+					echo 'function invon() {
+							document.getElementById("inv").style.display = "block";
+					}';
+				}
+
+
+
+
+		?>
+		function addteamoff() {
+				document.getElementById("addteam").style.display = "none";
+		}
+		</script>
     <body>
 			<?php require '../include/header/stp_db.php'; ?>
 			<?php require '../include/nav/nav.php'; ?>
@@ -807,7 +870,8 @@
                     <div class="databox">
                         <!-- <button onclick="teamon()" class="pencil"><i class="fa fa-pencil"></i></button> -->
                         <button onclick="addteamon()" class="add"><i class="fa fa-plus"></i></button>
-                        <h4>Team</h4>
+                        <h4>Team	<div class="limit_mem" id="limit_mem">(maximum 6 members can be added!)</div>
+</h4>
 						<?php
 							$q = "SELECT * FROM st_team where StpID = '$id';";
 							$results=mysqli_query($db, $q);
@@ -840,7 +904,7 @@
                     </div>
                     <div class="databox">
                         <button onclick="advon()" class="add"><i class="fa fa-plus"></i></button>
-                        <h4>Advisors</h4>
+                        <h4>Advisors <div class="limit_adv" id="limit_adv">(maximum 3 advisors can be added!)</div></h4>
 						<?php
 							$q = "SELECT * FROM st_advisors where StpID = '$id';";
 							$results=mysqli_query($db, $q);
@@ -862,9 +926,9 @@
 							}
 						?>
                     </div>
-                    <div class="databox">
+            <div class="databox">
                         <button onclick="invon()" class="add"><i class="fa fa-plus"></i></button>
-                        <h4>Previous Investors</h4>
+                        <h4>Previous Investors <div class="limit_pre" id="limit_pre">(maximum 3 previous investors can be added!)</div></h4>
 						<?php
 							$q = "SELECT * FROM st_previnvestment where StpID = '$id';";
 							$results=mysqli_query($db, $q);

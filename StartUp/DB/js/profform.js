@@ -50,12 +50,6 @@ function teamoff() {
     document.getElementById("profteam").style.display = "none";
 }
 
-function addteamon() {
-    document.getElementById("addteam").style.display = "block";
-}
-function addteamoff() {
-    document.getElementById("addteam").style.display = "none";
-}
 
 function advon() {
     document.getElementById("adv").style.display = "block";
@@ -176,4 +170,3 @@ function annualon() {
 function annualoff() {
     document.getElementById("annualfin").style.display = "none";
 }
-

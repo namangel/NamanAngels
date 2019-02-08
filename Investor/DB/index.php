@@ -31,7 +31,7 @@
 	$q = "SELECT * FROM inv_uploads WHERE InvID='$u'";
     $results = mysqli_query($db, $q);
 	$row = mysqli_fetch_assoc($results);
-	$img = $row['ProfilePic']==""? '--':$row['ProfilePic'];
+	$img = $row['ProfilePic']==""? '/NamanAngels/Uploads/default.png':$row['ProfilePic'];
 
 	if(isset($_POST["cbsave"])){
         $cbfname = mysqli_real_escape_string($db, $_POST['cbfname']);
@@ -226,7 +226,53 @@
         <link rel="stylesheet" href="../css/invprof.css" type="text/css">
         <script src="js/invprofform.js"></script>
 				<title>Investor Profile - NamanAngels</title>
+
+<style media="screen">
+.limit_grp,.limit_inv{
+	color:red;
+	display: none;
+	font-weight: lighter;
+}
+</style>
+
+
 		</head>
+		<script type="text/javascript">
+		<?php
+			$q = "SELECT * FROM inv_group;";
+			$results=mysqli_query($db, $q);
+			if (mysqli_num_rows($results) >= 5)
+			{
+				echo 'function addgrpon() {
+						document.getElementById("addteam").style.display = "none";
+						document.getElementById("limit_grp").style.display = "inline";
+				}';
+			}
+			else{
+				echo 'function addgrpon() {
+						document.getElementById("addteam").style.display = "block";
+				}';
+			}
+
+			$q = "SELECT * FROM inv_previnvestment;";
+			$results=mysqli_query($db, $q);
+			if (mysqli_num_rows($results) >= 3)
+			{
+				echo 'function addpion() {
+						document.getElementById("inv").style.display = "none";
+						document.getElementById("limit_inv").style.display = "inline";
+				}';
+			}
+			else{
+				echo 'function addpion() {
+						document.getElementById("inv").style.display = "block";
+				}';
+			}
+
+
+		?>
+
+		</script>
 
     <body>
     <?php require '../include/header/inv_db.php'; ?>
@@ -241,7 +287,10 @@
 				<br>
 			</div>
             <div class="upload">
-				<div><?= "<img src=".$img." alt='Image not available' />";?></div><br><br>
+				<div>
+
+
+					<?= "<img src=".$img."  />";?></div><br><br>
                 <b><?= $fname ?>&nbsp;<?= $lname ?></b><br>
                 <?= $cname ?><br>
                 Role: <?= $role ?><br>
@@ -684,7 +733,7 @@
             </div>
     		<div class="databox">
                 <button onclick="addgrpon()" class="add"><i class="fa fa-plus"></i></button>
-                <h4>Group</h4>
+                <h4>Group <div class="limit_grp" id="limit_grp">(maximum 5 group members can be added!)</div></h4>
 	    		<?php
 			    	$q = "SELECT * FROM inv_group where InvID='$u';";
 		    		$results=mysqli_query($db, $q);
@@ -711,7 +760,7 @@
 			<div class="databox">
                 <!-- <button onclick="teamon()" class="pencil"><i class="fa fa-pencil"></i></button> -->
                 <button onclick="addpion()" class="add"><i class="fa fa-plus"></i></button>
-                <h4>Previous Investment</h4>
+                <h4>Previous Investment <div class="limit_inv" id="limit_inv">(maximum 3 previous investors can be added!)</div></h4>
     			<?php
     				$q = "SELECT * FROM inv_previnvestment where InvID='$u';";
 					$results=mysqli_query($db, $q);
@@ -780,7 +829,7 @@
                             <textarea rows="10" name="tmexp" cols="150" required></textarea><br><br>
                         </div>
                         <div class="formtext submits">
-                            <input type="submit" value="Cancel" name="cancel" class="cancel">
+                            <input type="submit" onclick="addgrpoff()" value="Cancel" name="cancel" class="cancel">
                             <input type="submit" value="Save" name="gmsave" class="save">
                         </div>
                        </form>
@@ -825,7 +874,7 @@
 														<input type="text" size="50" name="piweb" required><br><br>
                         </div>
                         <div class="formtext submits">
-                            <input type="submit" value="Cancel" name="cancel" class="cancel">
+                            <input type="submit" onclick="addpioff()" value="Cancel" name="cancel" class="cancel">
                             <input type="submit" value="Save" name="pisave" class="save">
                         </div>
                     </form>
