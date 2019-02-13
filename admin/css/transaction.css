@@ -1,0 +1,38 @@
+.cont{
+                margin-left: 290px;
+            }
+            .tab{
+                margin:40px;
+            }
+            .tab table,form{
+                width:100%;
+            }
+            .tab td{
+                padding:15px 0px;
+                text-align:center;
+            }
+            .tab th {
+                background-color: #ff8533;
+                color: white;
+                padding:15px 0px;
+                text-align:center;
+            }
+            .tab tr{
+                background-color: white;
+            }
+            tr:nth-child(odd){background-color: #f2f2f2;}
+            .tab form{
+                margin:20px 0px;
+                background-color:white;
+                padding:20px;
+            }
+            .tab input,select{
+                margin:0px 20px;
+            }
+            .butn{
+                background-color: #ff8533;
+                border: none;
+                color: white;
+                cursor: pointer;
+                padding:5px 20px;
+            }

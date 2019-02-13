@@ -1,0 +1,35 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    background-image: linear-gradient(to bottom,  #2a2b3d, #2a2b3d 50%, white 50%, white);
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Droid Sans', sans-serif;
+}
+.login{
+    position: fixed;
+    border: 1px solid lightgray;
+    background-color: white;
+    width    : 400px;
+    left     : 50%;
+    top      : 45%;
+    margin-left : -200px; /* half of the width  */
+    margin-top  : -200px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+input{
+    width: 100%;
+    padding: 20px;
+    margin-top:20px; 
+    box-sizing: border-box;
+}
+input[type=submit]{
+    background-color:  #2a2b3d;
+    border: none;
+    color: white;
+}
+
+input[type=submit]:hover{
+    opacity: 0.6;
+}

@@ -1,0 +1,64 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+.container{
+    box-shadow: 2px 0px 8px 0px #888888; 
+}
+
+a{
+    text-decoration: none;
+}
+ul{
+    list-style: none;
+    padding-left: 0;
+}
+
+.color{
+    background-color:#0A2B40;
+    color: white;
+}
+
+.nam{
+    height: 15%;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.name,.desig{
+    padding-bottom: 30px;
+}
+
+.icon i{
+    font-size: 30px;
+    padding: 5px;
+}
+
+.prof{
+    height: 25%;
+    padding: 20px;
+}
+
+.list li{
+    border: 1px solid black;
+    padding: 20px;
+    text-align: center;
+}
+.list a{
+    color: white;
+}
+
+#sub{
+    display:none;
+}
+.subli{
+    background-color: #114b6e;
+}
+
+.butn{
+    width: 100%;
+    border: none;
+    background: none;
+    color: white;
+    cursor: pointer;
+}
