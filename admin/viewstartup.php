@@ -1,4 +1,4 @@
-<?php require('server.php'); ?>
+<?php require('../server.php'); ?>
 <?if(isset($_POST['submit'])){
         $_SESSION['search'] = mysqli_real_escape_string($db, $_POST['searchkey']);
         header('location: viewstartup.php?pageno=1');
@@ -50,8 +50,8 @@
   margin-left: auto;
   margin-right: auto;
   text-align: center;
- 
-  
+
+
 }
      img{
       display: block;
@@ -220,19 +220,22 @@
                 <input type="text" name="searchkey" placeholder="Enter Keyword">
                 <input type="submit" name="submit" value="Search">
             </form>
-      <?php
-      if (isset($_GET['pageno'])) {
-        $pageno = $_GET['pageno'];
-    }
-    else {
-        $pageno = 1;
-    }
-    
-    $sname="";
-    
-    $no_of_records_per_page = 3;
-    $offset = ($pageno - 1) * $no_of_records_per_page;
-    $sname = $_SESSION['search'];
+     <?php
+          if (isset($_GET['pageno'])) {
+            $pageno = $_GET['pageno'];
+        }
+        else {
+            $pageno = 1;
+        }
+
+        $sname="";
+
+        $no_of_records_per_page = 3;
+        $offset = ($pageno - 1) * $no_of_records_per_page;
+        if(isset($_SESSION['search'])){
+            $sname = $_SESSION['search'];
+        }
+
    $total_pages_sql = "SELECT COUNT(*) FROM Profile where StpName LIKE '%{$sname}%'";
     $result = mysqli_query($db,$total_pages_sql);
     $total_rows = mysqli_fetch_array($result)[0];
@@ -241,43 +244,38 @@
     $sql = "SELECT * FROM Profile where StpName Like '%{$sname}%' LIMIT $offset, $no_of_records_per_page";
              $res_data = mysqli_query($db,$sql);
             echo '
-                  <section class="admins">
-                    <div class="container-fluid">
+            <section class="admins">
+                <div class="container-fluid">
                     <div class="row">
-
-                     <h3 style="text-align:center;font-size:bold">  &nbsp;&nbsp;&nbsp;BROWSE STARTUPS</h3>
-
-
+                        <h3 style="text-align:center;font-size:bold">  &nbsp;&nbsp;&nbsp;BROWSE STARTUPS</h3>
             ';
             while($row = mysqli_fetch_array($res_data))
             {
-                    echo '
-                      <div class="col-md-6">
-                      <div class="box">
-                            <div class="admin">
-                            <img src='.$row['StpImg'].' alt="John" style="width:30%; align:middle">
-                            <h1 style="color:#FF8C00;text-align:center">'.$row['StpName'].'</h1>
-                          <p class="title">'.$row['Type'].'</p>
-                          <p>'.$row['FName'].'</p>
-                           <p>'.$row['SName'].'</p>
-                           <a href=../Profile/index.php?searchquery='.$row['StpID'].' target=_blank>
-                           <button type= submit name=subinv class=viewprofile value=View Profile action=index.php><h4>View Profile</h4></button></a>
-
+            echo '
+                        <div class="col-md-6">
+                            <div class="box">
+                                <div class="admin">
+                                    <img src='.$row['StpImg'].' alt="John" style="width:30%; align:middle">
+                                    <h1 style="color:#FF8C00;text-align:center">'.$row['StpName'].'</h1>
+                                    <p class="title">'.$row['Type'].'</p>
+                                    <p>'.$row['FName'].'</p>
+                                    <p>'.$row['SName'].'</p>
+                                    <a href=../StartUp/Profile/index.php?searchquery='.$row['StpID'].' target=_blank>
+                                    <button type= submit name=subinv class=viewprofile value=View Profile action=index.php><h4>View Profile</h4></button></a>
+                                </div>
                             </div>
-                            </div>
-                            </div>';
+                        </div>';
             }
             echo '
-            </div>
-            </div>
-            </section>
+                    </div>
+                </div>
+                </section>
             ';
             ?>
 
-<?php
 
 
-
+            <?php
             echo '<div class="pages">';
             echo '<ul class="pagination">';
                 echo '<li><a href="?pageno=1">First</a></li>';
@@ -300,6 +298,5 @@
         echo '</div>';
         ?>
       </div>
-            ?>
     </body>
     </html>

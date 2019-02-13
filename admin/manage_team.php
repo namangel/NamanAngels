@@ -1,4 +1,4 @@
-<?php?>
+<?php require "../server.php" ?>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -56,7 +56,7 @@
       .welcome p {
         color: #999;
       }
-    
+
       .outer{
         width: 50%;
         float: left;
@@ -70,7 +70,7 @@
         padding: 20px;
         width: 60%;
         }
-     
+
         input[type=text]{
             width: 100%;
             padding: 5px;
@@ -93,7 +93,7 @@
         color: white;
         cursor: pointer;
         margin: 50px 0px;
-        padding: 20px; 
+        padding: 20px;
         font-size: 18px;
       }
       .cross{
@@ -173,7 +173,7 @@
             // if(document.getElementById("f1").style.display === 'none')
             // {
             //     document.getElementById("f1").removeAttribute("style","display:none;");
-            //     document.getElementById("f1").setAttribute("style","visibility:hidden;");   
+            //     document.getElementById("f1").setAttribute("style","visibility:hidden;");
             // }
             document.getElementById("f2").style.visibility = "visible";
         }

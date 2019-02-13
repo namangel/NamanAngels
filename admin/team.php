@@ -1,4 +1,4 @@
-<?php require "server.php" ?>
+<?php require "../server.php" ?>
 <html lang="en">
   <head>
     <meta charset="UTF-8">

@@ -1,5 +1,5 @@
-<?php 
-    require 'server.php';
+<?php
+    require '../server.php';
 
     $u = $_SESSION['adminID'];
     $qu = "SELECT * FROM admin WHERE adminID='$u'";
@@ -13,7 +13,7 @@
         // $curr_pwd=sha1($curr_pw);
         $pw_1 = mysqli_real_escape_string($db, $_POST['pw_1']);
         $pw_2 = mysqli_real_escape_string($db, $_POST['pw_2']);
-        $error=0;       
+        $error=0;
 
         if ($Password != $curr_pw) {
             echo "<script>alert('Your Password is incorrect')</script>";
@@ -46,7 +46,7 @@
 </head>
 <style>
     body {
-    margin: 0px; 
+    margin: 0px;
   }
 
   .wrapper {
@@ -63,7 +63,7 @@
    border-radius: 5px;
    }
 
- 
+
   .two{
     margin-left: 310px;
    grid-column: 1;
@@ -74,7 +74,7 @@ text-align: left;
 margin-top:-60px;
 
   }
- 
+
   .four{
       grid-column: 1/8;
    grid-row: 8/10;
@@ -86,7 +86,7 @@ margin-top:-60px;
   padding:0px;
   list-style-type:none;
   }
- 
+
 
 
   input[type=text], input[type="email"]{
@@ -110,7 +110,7 @@ margin-top:-60px;
       float:left;
       align-content: center;
   }
-  
+
   input[type=file] {
       background-color: transparent;
       color: white;
@@ -153,7 +153,7 @@ margin-top:-60px;
   }
   label{
       color: black;
-     
+
   }
 
   h5{
@@ -229,8 +229,8 @@ margin-top:-60px;
 <?php require "sidebar.php" ?>
 <div class="wrapper">
   <div class="two">
-   
-  
+
+
         <div class="hvr-float-shadow" >
                 CHANGE PASSWORD </div>
       <hr>

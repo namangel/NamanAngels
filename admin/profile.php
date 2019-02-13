@@ -1,5 +1,5 @@
 <?php
-    require "server.php";
+    require "../server.php";
 
     $id = $_SESSION['adminID'];
 
@@ -15,7 +15,7 @@
     if(isset($_POST["adminsave"])){
         $AdminName = mysqli_real_escape_string($db, $_POST['adminname']);
         $AdminDesgn = mysqli_real_escape_string($db, $_POST['admindesgn']);
-				
+
 
 
 		if($AdminName != "")
@@ -29,7 +29,7 @@
 			$q ="UPDATE admin set AdminDesgn ='$AdminDesgn' where adminID='$id';";
 			mysqli_query($db, $q);
         }
-        
+
         $check = getimagesize($_FILES["profile"]["tmp_name"]);
 		if($check != false)
 		{
@@ -98,7 +98,7 @@
         height: 200px;
         width: 200px;
         border-radius: 50%;
-    } 
+    }
     .detail{
         float: right;
     }
@@ -106,7 +106,7 @@
         float: left;
         width: 200px;
         padding: 10px;
-        margin-top:10px; 
+        margin-top:10px;
         font-size: 22px;
         box-sizing: border-box;
         border: 1px solid lightgray;
@@ -125,7 +125,7 @@
         float: left;
         width: 200px;
         padding: 10px;
-        margin-top:10px; 
+        margin-top:10px;
         font-size: 22px;
         /* box-sizing: border-box;
         border: 1px solid lightgray; */

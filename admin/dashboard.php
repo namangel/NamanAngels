@@ -1,12 +1,12 @@
 <?php
-require '../server.php';
-  $q = "SELECT * FROM userstp;";
-	$results=mysqli_query($db, $q);
-  $startup=mysqli_num_rows($results);
+    require '../server.php';
+    $q = "SELECT * FROM userstp;";
+    $results=mysqli_query($db, $q);
+    $startup=mysqli_num_rows($results);
 
-  $q1 = "SELECT * FROM userinv;";
-	$results=mysqli_query($db, $q1);
-  $investor=mysqli_num_rows($results);
+    $q1 = "SELECT * FROM userinv;";
+    $results=mysqli_query($db, $q1);
+    $investor=mysqli_num_rows($results);
 ?>
 <html lang="en">
   <head>

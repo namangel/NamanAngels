@@ -1,18 +1,18 @@
-<?php 
+<?php
 
-    require "server.php";
+    require "../server.php";
     if(isset($_POST["transact"]))
 	{
         $inid = mysqli_real_escape_string($db, $_POST['inv']);
         $stupid = mysqli_real_escape_string($db, $_POST['stup']);
-        $status = mysqli_real_escape_string($db, $_POST['stat']); 
+        $status = mysqli_real_escape_string($db, $_POST['stat']);
 
 		if ($status == 'done')
 		{
             $q = "UPDATE requests SET Deal = 1 WHERE St_ID='$stupid' AND Inv_ID='$inid';";
 			mysqli_query($db, $q);
 		}
-        
+
         if ($status == 'interest')
 		{
             $q1 = "SELECT * FROM requests WHERE St_ID='$stupid' AND Inv_ID='$inid';";
@@ -27,7 +27,7 @@
             mysqli_query($db, $q);
             }
 		}
-        
+
         if ($status == 'cancel')
 		{
             $q = "DELETE FROM requests WHERE St_ID='$stupid' AND Inv_ID='$inid'";
@@ -85,7 +85,7 @@
     <body>
         <?php require "sidebar.php" ?>
         <div class="cont">
-            <div class="tab">    
+            <div class="tab">
                 <center>
                 <form method="post" action="transaction.php">
                     <label>Startup Name: </label>
@@ -94,9 +94,9 @@
                             $qu1= "SELECT * FROM st_details;";
                             $res1 = mysqli_query($db, $qu1);
                             while($row1 = mysqli_fetch_assoc($res1)){
-                                echo '<option value="'.$row1['StpID'].'">'.$row1['Stname'].'</option>'; 
+                                echo '<option value="'.$row1['StpID'].'">'.$row1['Stname'].'</option>';
                             }
-                        ?>   
+                        ?>
                     </select>
                     <label>Investor Name: </label>
                     <select name="inv">
@@ -104,9 +104,9 @@
                             $qu1= "SELECT * FROM inv_details;";
                             $res1 = mysqli_query($db, $qu1);
                             while($row1 = mysqli_fetch_assoc($res1)){
-                                echo '<option value="'.$row1['InvID'].'">'.$row1['CName'].'</option>'; 
+                                echo '<option value="'.$row1['InvID'].'">'.$row1['CName'].'</option>';
                             }
-                        ?>   
+                        ?>
                     </select>
                     <label>Status: </label>
                     <select name="stat">
@@ -122,7 +122,7 @@
                         <th>Startup</th>
                         <th>Status</th>
                     </tr>
-                    <?php 
+                    <?php
                     $qu = "SELECT * FROM requests";
                     $results = mysqli_query($db, $qu);
                     while($row = mysqli_fetch_assoc($results))
@@ -130,7 +130,7 @@
                         $deal = $row['Deal'];
                         $stpid = $row['St_ID'];
                         $invid = $row['Inv_ID'];
-                        
+
                         $qu1= "SELECT * FROM st_details WHERE StpID = '$stpid'";
                         $res1 = mysqli_query($db, $qu1);
                         $row1 = mysqli_fetch_assoc($res1);
@@ -138,17 +138,17 @@
                         $qu2= "SELECT * FROM inv_details WHERE InvID = '$invid'";
                         $res2 = mysqli_query($db, $qu2);
                         $row2 = mysqli_fetch_assoc($res2);
-                        
+
                         echo '<tr>
                         <td>'.$row1['Stname'].'</td>
                         <td>'.$row2['CName'].'</td>'
                         ;
                         if($deal == 0)
                             echo '<td>Investor Interested</td>
-                                </tr>'; 
+                                </tr>';
                         if($deal == 1)
                             echo '<td>Deal Completed</td>
-                                </tr>'; 
+                                </tr>';
                     }
                     ?>
                 </table>

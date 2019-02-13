@@ -1,10 +1,10 @@
 <?php
-session_start();
 
 $db = mysqli_connect('localhost', 'root', '', 'namangel');
 //admin login
-
+session_start();
 if (isset($_POST['login'])) {
+
   $username = mysqli_real_escape_string($db, $_POST['username']);
   $password = mysqli_real_escape_string($db, $_POST['password']);
   // $designation = mysqli_real_escape_string($db, $_POST['designation']);
@@ -14,12 +14,16 @@ if (isset($_POST['login'])) {
   $results = mysqli_query($db, $query);
   $row = mysqli_fetch_assoc($results);
   if (mysqli_num_rows($results) == 1) {
+
       $_SESSION['adminID'] = $row['adminID'];
       // $_SESSION['search'] = "";
+
       header('location: dashboard.php');
+
   }else {
       echo "<script>alert('Wrong username/password combination')</script>";
   }
+
 }
 
 // REGISTER INVESTER
@@ -66,6 +70,7 @@ if (isset($_POST['reg_inv'])) {
         mysqli_query($db, $query);
 
         // $_SESSION['success'] = "You are now logged in";
+
         header('location: ../Investor/index.php');
     }
 }
@@ -113,7 +118,6 @@ if (isset($_POST['reg_st'])) {
         echo "<script>alert('Username already exists')</script>";
     }
     else{
-
         $fpass = sha1($password_1);
         $query = "INSERT INTO userstp (StpID, Username, Password)
         VALUES(NULL, '$username', '$fpass')";
@@ -138,6 +142,7 @@ if (isset($_POST['reg_st'])) {
         $query = "INSERT INTO st_uploads (StpID) values ('$userid')";
         mysqli_query($db, $query);
 
+
         header('location: ../StartUp/index.php');
     }
 }
@@ -154,6 +159,7 @@ if (isset($_POST['login_inv'])) {
   	if (mysqli_num_rows($results) == 1) {
         $_SESSION['InvID'] = $row['InvID'];
         $_SESSION['search'] = "";
+
         header('location: ../Investor/index.php');
   	}else {
         echo "<script>alert('Wrong username/password combination')</script>";
@@ -172,6 +178,7 @@ if (isset($_POST['login_st']))
     $row = mysqli_fetch_assoc($results);
   	if (mysqli_num_rows($results) == 1) {
         $_SESSION['StpID'] = $row['StpID'];
+
         header('location: ../StartUp/index.php');
   	}
     else
