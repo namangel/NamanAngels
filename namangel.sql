@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 12, 2019 at 06:50 PM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- Host: localhost
+-- Generation Time: Feb 13, 2019 at 04:36 PM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -247,7 +247,9 @@ CREATE TABLE `requests` (
 --
 
 INSERT INTO `requests` (`ReqID`, `Inv_ID`, `St_ID`, `Deal`) VALUES
-(1, '1', '1', 0x00);
+(1, '1', '1', 0x00),
+(2, '1', '1', 0x00),
+(3, '1', '1', 0x00);
 
 -- --------------------------------------------------------
 
@@ -407,15 +409,19 @@ CREATE TABLE `st_uploads` (
   `Logo` varchar(200) DEFAULT NULL,
   `BackImg` varchar(200) DEFAULT NULL,
   `PitchName` varchar(200) DEFAULT NULL,
-  `PitchExt` varchar(10) DEFAULT NULL
+  `PitchExt` varchar(10) DEFAULT NULL,
+  `BPlan` varchar(200) DEFAULT NULL,
+  `BPlanExt` varchar(200) DEFAULT NULL,
+  `FProjection` varchar(200) DEFAULT NULL,
+  `FProjectionExt` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `st_uploads`
 --
 
-INSERT INTO `st_uploads` (`StpID`, `Logo`, `BackImg`, `PitchName`, `PitchExt`) VALUES
-(1, '/NamanAngels/Uploads/ProfilePic.png', '/NamanAngels/Uploads/download.jpg', 'VID-20181209-WA0003.mp4', 'mp4');
+INSERT INTO `st_uploads` (`StpID`, `Logo`, `BackImg`, `PitchName`, `PitchExt`, `BPlan`, `BPlanExt`, `FProjection`, `FProjectionExt`) VALUES
+(1, '/NamanAngels/Uploads/ProfilePic.png', '/NamanAngels/Uploads/download.jpg', 'naman-todo.pdf', 'pdf', 'naman-todo.pdf', 'pdf', 'Aayush Singh.pdf', 'pdf');
 
 -- --------------------------------------------------------
 
@@ -632,7 +638,7 @@ ALTER TABLE `inv_group`
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `ReqID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ReqID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `st_advisors`
