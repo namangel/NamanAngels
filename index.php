@@ -162,7 +162,7 @@
             </div>
         </div>
         <?php
-        include "include/footer/footer.php"
+            include "include/footer/footer.php";
         ?>
 
 </body>

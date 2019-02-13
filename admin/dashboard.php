@@ -1,5 +1,5 @@
 <?php
-  require "server.php" ;
+require '../server.php';
   $q = "SELECT * FROM userstp;";
 	$results=mysqli_query($db, $q);
   $startup=mysqli_num_rows($results);
@@ -147,8 +147,8 @@
       .danger {background-color: #d9534f}
       .success {background-color: #5cb85c}
       .inf {background-color: #5bc0de}
-      
-      
+
+
       /* Start media query */
 
       @media (max-width: 767px) {
