@@ -1,4 +1,81 @@
-<?php require "../server.php" ?>
+<?php
+  require "../server.php";
+
+  if (isset($_POST["addmem"])){
+    $MemName = mysqli_real_escape_string($db, $_POST['mem_name']);
+    $MemDesc = mysqli_real_escape_string($db, $_POST['mem_desc']);
+    $MemLink = mysqli_real_escape_string($db, $_POST['mem_link']);
+
+    $member_check_query = "SELECT * FROM namanteam WHERE member_name='$MemName' AND description='$MemDesc';";
+    $result = mysqli_query($db, $member_check_query);
+    $user = mysqli_fetch_assoc($result);
+
+    if (mysqli_num_rows($result) > 0) {
+        echo "<script>alert('Member already exists')</script>";
+        header('location:manage_team.php');
+    }
+    else{
+    $q = "INSERT INTO namanteam (image, member_link, member_name, description) VALUES (null ,'$MemLink','$MemName','$MemDesc')";
+    mysqli_query($db, $q);
+    echo "<script>alert('Member added successfully!')</script>";
+    header('location:manage_team.php');
+    
+    // $check = getimagesize($_FILES["mem_img"]["tmp_name"]);
+		// if($check != false)
+		// {
+		// 	$file_name = $_FILES['mem_img']['name'];
+		// 	$file_size = $_FILES['mem_img']['size'];
+		// 	$file_tmp = $_FILES['mem_img']['tmp_name'];
+		// 	$file_type = $_FILES['mem_img']['type'];
+		// 	$file_ext=strtolower(end(explode('.',$_FILES['mem_img']['name'])));
+
+		// 	$extensions= array("jpeg","jpg","png");
+
+		// 	if(in_array($file_ext,$extensions)=== false)
+		// 	{
+		// 		echo "<script>alert('Extension not allowed, please choose a JPEG or PNG file.')</script>";
+		// 	}
+		// 	else
+		// 	{
+		// 		if($file_size > 5242880)
+		// 		{
+		// 			echo "<script>alert('File size must be less than 5 MB')</script>";
+		// 		}
+		// 		else
+		// 		{
+		// 			$upload = "/NamanAngels_Admin/Uploads/".$file_name;
+		// 			move_uploaded_file($file_tmp,$upload);
+		// 			$q = "UPDATE admin set mem_imgPic='$upload' where adminID='$id';";
+		// 			mysqli_query($db, $q);
+		// 			echo "<script>alert('Successfully Uploaded')</script>";
+		// 		}
+		// 	}
+		// }
+  }
+}
+
+  if (isset($_POST["delmem"])){
+    $MemName = mysqli_real_escape_string($db, $_POST['mem_name']);
+    $MemDesc = mysqli_real_escape_string($db, $_POST['mem_desc']);
+
+    $member_check_query = "SELECT * FROM namanteam WHERE member_name='$MemName' AND description='$MemDesc';";
+    $result = mysqli_query($db, $member_check_query);
+    $user = mysqli_fetch_assoc($result);
+
+    if (mysqli_num_rows($result) > 0) {
+      $q = "DELETE FROM namanteam WHERE member_name='$MemName' AND description='$MemDesc';";
+      mysqli_query($db, $q);
+      echo "<script>alert('Member deleted successfully!')</script>";
+      header('location:manage_team.php');
+    }
+
+    else{
+      echo "<script>alert('Member does not exists!')</script>";
+      header('location:manage_team.php');
+    }
+  }
+
+?>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -56,7 +133,7 @@
       .welcome p {
         color: #999;
       }
-
+    
       .outer{
         width: 50%;
         float: left;
@@ -70,7 +147,7 @@
         padding: 20px;
         width: 60%;
         }
-
+     
         input[type=text]{
             width: 100%;
             padding: 5px;
@@ -93,7 +170,7 @@
         color: white;
         cursor: pointer;
         margin: 50px 0px;
-        padding: 20px;
+        padding: 20px; 
         font-size: 18px;
       }
       .cross{
@@ -131,16 +208,16 @@
             <center>
             <div class="teamform">
                     <i class="fa fa-close cross" onclick="f1off()"></i><br>
-                    <form method="POST">
+                    <form method="POST" action="manage_team.php">
                         <label>Member Name:</label><br>
                         <input type="text" name="mem_name"><br><br>
                         <label>Member Designation/Description:</label><br>
                         <input type="text" name="mem_desc"><br><br>
                         <label>Member's LinkedIn:</label><br>
                         <input type="text" name="mem_link"><br><br>
-                        <label>Member Profile Image:</label><br>
+                        <label>Member mem_img Image:</label><br>
                         <input type="file" name="mem_img"><br><br>
-                        <input type="submit" name="addmem">
+                        <input type="submit" name="addmem" value="addmem">
                     </form>
             </div>
             </center>
@@ -149,9 +226,11 @@
             <center>
             <div class="teamform">
                     <i class="fa fa-close cross" onclick="f2off()"></i><br>
-                    <form method="POST">
+                    <form method="POST" action="manage_team.php">
                         <label>Member Name:</label><br>
                         <input type="text" name="mem_name"><br><br>
+                        <label>Member Designation/Description:</label><br>
+                        <input type="text" name="mem_desc"><br><br>
                         <input type="submit" name="delmem">
                     </form>
             </div>
@@ -173,7 +252,7 @@
             // if(document.getElementById("f1").style.display === 'none')
             // {
             //     document.getElementById("f1").removeAttribute("style","display:none;");
-            //     document.getElementById("f1").setAttribute("style","visibility:hidden;");
+            //     document.getElementById("f1").setAttribute("style","visibility:hidden;");   
             // }
             document.getElementById("f2").style.visibility = "visible";
         }
