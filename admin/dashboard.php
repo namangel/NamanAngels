@@ -1,12 +1,12 @@
 <?php
-    require '../server.php';
-    $q = "SELECT * FROM userstp;";
-    $results=mysqli_query($db, $q);
-    $startup=mysqli_num_rows($results);
+  require "../server.php" ;
+  $q = "SELECT * FROM userstp;";
+	$results=mysqli_query($db, $q);
+  $startup=mysqli_num_rows($results);
 
-    $q1 = "SELECT * FROM userinv;";
-    $results=mysqli_query($db, $q1);
-    $investor=mysqli_num_rows($results);
+  $q1 = "SELECT * FROM userinv;";
+	$results=mysqli_query($db, $q1);
+  $investor=mysqli_num_rows($results);
 ?>
 <html lang="en">
   <head>
@@ -88,7 +88,7 @@
         padding: 10px;
       }
       .admins .box .admin .img {
-        width: 20%;
+        width: 25%;
         margin-right: 5%;
         float: left;
       }
@@ -96,9 +96,16 @@
         border-radius: 50%;
       }
       .admins .box .info {
-        width: 75%;
+        width: 70%;
         color: #EEE;
         float: left;
+      }
+      .name{
+        font-size: 22px;
+        color:#ffc107;
+      }
+      .admins h3{
+        color: white;
       }
       .admins .box .info h3 {font-size: 19px}
       .admins .box .info p {color: #BBB}
@@ -147,8 +154,8 @@
       .danger {background-color: #d9534f}
       .success {background-color: #5cb85c}
       .inf {background-color: #5bc0de}
-
-
+      
+      
       /* Start media query */
 
       @media (max-width: 767px) {
@@ -222,75 +229,42 @@
           </div>
         </div>
       </section>
-      <section class="admins">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="box">
-                <h3>Admins:</h3>
-                <div class="admin">
-                  <div class="img">
-                    <img class="img-responsive" src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148906966/small/1501685402/enhance" alt="admin">
-                  </div>
-                  <div class="info">
-                    <h3>Joge Lucky</h3>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                  </div>
-                </div>
-                <div class="admin">
-                  <div class="img">
-                    <img class="img-responsive" src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907137/small/1501685404/enhance" alt="admin">
-                  </div>
-                  <div class="info">
-                    <h3>Joge Lucky</h3>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                  </div>
-                </div>
-                <div class="admin">
-                  <div class="img">
-                    <img class="img-responsive" src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907019/small/1501685403/enhance" alt="admin">
-                  </div>
-                  <div class="info">
-                    <h3>Joge Lucky</h3>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                  </div>
-                </div>
-              </div>
+      <?php
+            $qu = "SELECT * FROM admin";
+            $results = mysqli_query($db, $qu);
+            echo '
+                  <section class="admins">
+                    <div class="container-fluid">
+                    <div class="row">
+
+                     <h3>  &nbsp;&nbsp;&nbsp;Admins:</h3>
+
+            ';
+
+            while($row = mysqli_fetch_assoc($results))
+            {
+                    echo '
+                      <div class="col-md-6">
+                      <div class="box">
+                            <div class="admin">
+                              <div class="img">
+                              <img class="img-responsive" src="'.$row['ProfilePic'].'"/>
+                              </div>
+                              <div class="info"><br><br>
+                              <font class="name">'.$row['AdminName'].'</font><br><br>
+                              <p class="designation">'.$row['AdminDesgn'].'</p></center>
+                              </div>
+                            </div>
+                            </div>
+                            </div>';
+            }
+            echo '
             </div>
-            <div class="col-md-6">
-              <div class="box">
-                <h3>Moderators:</h3>
-                <div class="admin">
-                  <div class="img">
-                    <img class="img-responsive" src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907114/small/1501685404/enhance" alt="admin">
-                  </div>
-                  <div class="info">
-                    <h3>Joge Lucky</h3>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                  </div>
-                </div>
-                <div class="admin">
-                  <div class="img">
-                    <img class="img-responsive" src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907086/small/1501685404/enhance" alt="admin">
-                  </div>
-                  <div class="info">
-                    <h3>Joge Lucky</h3>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                  </div>
-                </div>
-                <div class="admin">
-                  <div class="img">
-                    <img class="img-responsive" src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="admin">
-                  </div>
-                  <div class="info">
-                    <h3>Joge Lucky</h3>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
-          </section>
+            </section>
+            ';
+            ?>
+
       </section>
       </div>
       <!-- <script src='http://code.jquery.com/jquery-latest.js'></script>
