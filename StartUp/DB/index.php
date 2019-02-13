@@ -871,7 +871,7 @@
                         <!-- <button onclick="teamon()" class="pencil"><i class="fa fa-pencil"></i></button> -->
                         <button onclick="addteamon()" class="add"><i class="fa fa-plus"></i></button>
                         <h4>Team	<div class="limit_mem" id="limit_mem">(maximum 6 members can be added!)</div>
-</h4>
+						</h4>
 						<?php
 							$q = "SELECT * FROM st_team where StpID = '$id';";
 							$results=mysqli_query($db, $q);

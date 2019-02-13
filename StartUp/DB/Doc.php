@@ -37,7 +37,11 @@
 	$PitchName = $row['PitchName'];
 	$PitchExt = $row['PitchExt'];
 	$Logo = $row['Logo'];
-  $Backimg = $row['BackImg'];
+	$Backimg = $row['BackImg'];
+	$BPlan = $row['BPlan'];
+	$BPlanExt = $row['BPlanExt'];
+	$FProjection = $row['FProjection'];
+	$FProjectionExt = $row['FProjectionExt'];
 
 
 	if(isset($_POST["cbsave"])){
@@ -203,6 +207,64 @@
 		header('location:Doc.php');
 	}
 
+
+
+	if(isset($_POST['subbusinessplan'])){
+		$name= $_FILES['businessplan']['name'];
+		$tmp_name= $_FILES['businessplan']['tmp_name'];
+		$submitbutton= $_POST['subbusinessplan'];
+		$position= strpos($name, ".");
+		$fileextension= substr($name, $position + 1);
+		$fileextension= strtolower($fileextension);
+		$success= -1;
+		if (isset($name)){
+			$path= '../../Uploads/';
+			if (!empty($name)){
+				if ($fileextension !== "pdf"){
+					$success=0;
+					echo '<script>alert("The file extension must be .pdf in order to be uploaded")</script>';
+				}
+				else if ($fileextension == "pdf"){
+					$success=1;
+					if (copy($tmp_name, $path.basename($_FILES['businessplan']['name']))) {
+						echo '<script> alert("Uploaded!")</script>';
+						$q = "UPDATE st_uploads SET BPlan='$name', BPlanExt='$fileextension' where StpID='$id';";
+						mysqli_query($db, $q);
+					}
+				}
+			}
+		}
+		header('location:Doc.php');
+	}
+
+	if(isset($_POST['subfinancialprojection'])){
+		$name= $_FILES['financialprojection']['name'];
+		$tmp_name= $_FILES['financialprojection']['tmp_name'];
+		$submitbutton= $_POST['subfinancialprojection'];
+		$position= strpos($name, ".");
+		$fileextension= substr($name, $position + 1);
+		$fileextension= strtolower($fileextension);
+		$success= -1;
+		if (isset($name)){
+			$path= '../../Uploads/';
+			if (!empty($name)){
+				if ($fileextension !== "pdf"){
+					$success=0;
+					echo '<script>alert("The file extension must be .pdf in order to be uploaded")</script>';
+				}
+				else if ($fileextension == "pdf"){
+					$success=1;
+					if (copy($tmp_name, $path.basename($_FILES['financialprojection']['name']))) {
+						echo '<script> alert("Uploaded!")</script>';
+						$q = "UPDATE st_uploads SET FProjection='$name', FProjectionExt='$fileextension' where StpID='$id';";
+						mysqli_query($db, $q);
+					}
+				}
+			}
+		}
+		header('location:Doc.php');
+	}
+
 ?>
 <html>
     <head>
@@ -321,6 +383,7 @@
 	                    </li>
                     </ul>
                 </div>
+
 				<div id="overlay">
 					<div class="compbasics">
 						<form class="profform" method="post" action='Doc.php' enctype="multipart/form-data">
@@ -718,23 +781,59 @@
                 </div>
 				<div class="summary">
 						<div class="databox">
-							<button class="adddoc">Add Document</button>
-													<h3>Business Plan</h3>
-													<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>
-	                        <p>What is your long term business plan? Preferred file types: .pdf, .doc, .xls</p>
+							<?php
+								if($BPlan == ""){
+			                        echo '<h3>Business Plan</h3>';
+			                        echo '<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
+									echo '<p>What is your long term business plan? Preferred file types: .pdf, .doc, .xls</p>';
+									echo '<form action="Doc.php" method="post" enctype="multipart/form-data">';
+										echo '<input type="file" name="businessplan" value="Select File">';
+										echo '<input type="submit" name="subbusinessplan" value="Submit">';
+									echo '</form>';
+								}
+								else{
+									$BPlanShow= "../../Uploads/$BPlan";
+									echo '<h3>Business Plan</h3>';
+								    echo '<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
+								    echo '<p>What is your long term business plan? (Upload .pdf file)</p>';
+									echo '<form action="Doc.php" method="post" enctype="multipart/form-data">';
+										echo '<input type="file" name="businessplan" value="Select File">';
+										echo '<input type="submit" name="subbusinessplan" value="Submit">';
+									echo '</form>';
+									echo '<iframe src="'.$BPlanShow.'" height=500px width=100%></iframe>';
+								}
+							?>
 						</div>
 						<div class="databox">
-							<button class="adddoc">Add Document</button>
-	                        <h3>Financial Projections</h3>
-													<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>
-	                        <p>Provide an overview of where your financials are headed within the next 5 years.<br> Preferred file types: .pdf, .doc, .xls</p>
-	        	</div>
+							<?php
+								if($FProjection == ""){
+			                        echo '<h3>Financial Projections</h3>';
+			                        echo '<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
+									echo '<p>Provide an overview of where your financials are headed within the next 5 years.<br> Preferred file types: .pdf, .doc, .xls</p>';
+									echo '<form action="Doc.php" method="post" enctype="multipart/form-data">';
+										echo '<input type="file" name="financialprojection" value="Select File">';
+										echo '<input type="submit" name="subfinancialprojection" value="Submit">';
+									echo '</form>';
+								}
+								else{
+									$FProjectionShow= "../../Uploads/$FProjection";
+									echo '<h3>Financial Projections</h3>';
+								    echo '<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
+								    echo '<p>Provide an overview of where your financials are headed within the next 5 years.<br> Preferred file types: .pdf, .doc, .xls</p>';
+									echo '<form action="Doc.php" method="post" enctype="multipart/form-data">';
+										echo '<input type="file" name="financialprojection" value="Select File">';
+										echo '<input type="submit" name="subfinancialprojection" value="Submit">';
+									echo '</form>';
+									echo '<iframe src="'.$FProjectionShow.'" height=500px width=100%></iframe>';
+								}
+							?>
+	        			</div>
 						<div class="databox">
 							<button class="adddoc">Add Document</button>
 	                        <h3>Additional Documents</h3>
-													<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>
+							<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>
 	                        <p>Upload any documents to support your company.</p>
-						</div>
+						</div> 
 				</div>
 		</div>
 				<?php include '../../include/footer/footer.php'; ?>
