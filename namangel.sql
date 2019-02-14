@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3307:3307
--- Generation Time: Feb 14, 2019 at 05:43 AM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 7.0.31
+-- Host: 127.0.0.1
+-- Generation Time: Feb 14, 2019 at 06:36 AM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -421,6 +421,7 @@ CREATE TABLE `st_team` (
   `LName` varchar(200) NOT NULL,
   `Designation` varchar(200) NOT NULL,
   `Experience` varchar(200) NOT NULL,
+  `Expertise` varchar(200) NOT NULL,
   `Email` varchar(200) NOT NULL,
   `LinkedIn` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -429,8 +430,8 @@ CREATE TABLE `st_team` (
 -- Dumping data for table `st_team`
 --
 
-INSERT INTO `st_team` (`ID`, `StpID`, `FName`, `LName`, `Designation`, `Experience`, `Email`, `LinkedIn`) VALUES
-(1, 1, 'Tony', 'Stark', 'Cap', '5', 'tony@stark.com', 'tony/in');
+INSERT INTO `st_team` (`ID`, `StpID`, `FName`, `LName`, `Designation`, `Experience`, `Expertise`, `Email`, `LinkedIn`) VALUES
+(1, 1, 'Tony', 'Stark', 'Cap', '5', '', 'tony@stark.com', 'tony/in');
 
 -- --------------------------------------------------------
 
