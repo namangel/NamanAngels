@@ -53,7 +53,7 @@
 				}
 				else
 				{
-					$upload = "/NamanAngels_Admin/Uploads/".$file_name;
+					$upload = "/NamanAngels/Uploads/".$file_name;
 					move_uploaded_file($file_tmp,$upload);
 					$q = "UPDATE admin set ProfilePic='$upload' where adminID='$id';";
 					mysqli_query($db, $q);

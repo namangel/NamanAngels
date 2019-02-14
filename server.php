@@ -27,16 +27,15 @@ if (isset($_POST['login'])) {
 }
 
 // REGISTER INVESTER
-if (isset($_POST['reg_inv'])) {
+if (isset($_POST['reginv_ind'])) {
 
-    $iname = mysqli_real_escape_string($db, $_POST['iname']);
+    $type='Individual';
     $fname = mysqli_real_escape_string($db, $_POST['fname']);
     $lname = mysqli_real_escape_string($db, $_POST['lname']);
     $email = mysqli_real_escape_string($db, $_POST['email']);
     $country = mysqli_real_escape_string($db, $_POST['country']);
     $city = mysqli_real_escape_string($db, $_POST['city']);
     $state = mysqli_real_escape_string($db, $_POST['state']);
-    $website = mysqli_real_escape_string($db, $_POST['website']);
     $avg = mysqli_real_escape_string($db, $_POST['average']);
     $username = mysqli_real_escape_string($db, $_POST['username']);
     $phone = mysqli_real_escape_string($db, $_POST['phone']);
@@ -60,8 +59,8 @@ if (isset($_POST['reg_inv'])) {
         $userid = $user['InvID'];
         $_SESSION['InvID'] = $user['InvID'];
 
-        $query = "INSERT INTO inv_details (InvID,CName,FName,LName,Email,Phone,Website,City,State,Country,AvgInvestment)
-        VALUES('$userid', '$iname', '$fname', '$lname', '$email', '$phone', '$website', '$city', '$state', '$country', '$avg')";
+        $query = "INSERT INTO inv_details (InvID,CName,FName,LName,Email,Phone,Website,City,State,Country,AvgInvestment,InvType)
+        VALUES('$userid', null , '$fname', '$lname', '$email', '$phone', null , '$city', '$state', '$country', '$avg', '$type')";
         mysqli_query($db, $query);
 
         $query = "INSERT INTO inv_addetails (InvID) values ('$userid')";
@@ -73,6 +72,56 @@ if (isset($_POST['reg_inv'])) {
 
         header('location: ../Investor/index.php');
     }
+}
+
+
+if (isset($_POST['reginv_inst'])) {
+
+  $type='Institution';
+  $cname = mysqli_real_escape_string($db, $_POST['iname']);
+  $fname = mysqli_real_escape_string($db, $_POST['fname']);
+  $lname = mysqli_real_escape_string($db, $_POST['lname']);
+  $email = mysqli_real_escape_string($db, $_POST['email']);
+  $country = mysqli_real_escape_string($db, $_POST['country']);
+  $city = mysqli_real_escape_string($db, $_POST['city']);
+  $state = mysqli_real_escape_string($db, $_POST['state']);
+  $avg = mysqli_real_escape_string($db, $_POST['average']);
+  $website = mysqli_real_escape_string($db, $_POST['website']);
+  $username = mysqli_real_escape_string($db, $_POST['username']);
+  $phone = mysqli_real_escape_string($db, $_POST['phone']);
+  $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
+
+  $user_check_query = "SELECT * FROM userinv WHERE Username='$username'";
+  $result = mysqli_query($db, $user_check_query);
+  $user = mysqli_fetch_assoc($result);
+
+  if (mysqli_num_rows($result) > 0) {
+      echo "<script>alert('Username already exists')</script>";
+  }
+  else{
+      $fpass = sha1($password_1);
+      $query = "INSERT INTO userinv (InvID, Username, Password) VALUES (NULL, '$username', '$fpass')";
+      mysqli_query($db, $query);
+
+      $user_query = "SELECT * FROM userinv WHERE Username='$username'";
+      $result = mysqli_query($db, $user_query);
+      $user = mysqli_fetch_assoc($result);
+      $userid = $user['InvID'];
+      $_SESSION['InvID'] = $user['InvID'];
+
+      $query = "INSERT INTO inv_details (InvID,CName,FName,LName,Email,Phone,Website,City,State,Country,AvgInvestment,InvType)
+      VALUES('$userid', '$iname' , '$fname', '$lname', '$email', '$phone', '$website' , '$city', '$state', '$country', '$avg', '$type')";
+      mysqli_query($db, $query);
+
+      $query = "INSERT INTO inv_addetails (InvID) values ('$userid')";
+      mysqli_query($db, $query);
+      $query = "INSERT INTO inv_uploads (InvID) values ('$userid')";
+      mysqli_query($db, $query);
+
+      // $_SESSION['success'] = "You are now logged in";
+
+      header('location: ../Investor/index.php');
+  }
 }
 
 if (isset($_POST['dir_mem'])) {
