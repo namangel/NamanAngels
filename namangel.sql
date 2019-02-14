@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3307:3307
--- Generation Time: Feb 14, 2019 at 10:58 AM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 7.0.31
+-- Host: 127.0.0.1:3306
+-- Generation Time: Feb 14, 2019 at 12:42 PM
+-- Server version: 5.7.23
+-- PHP Version: 5.6.38
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,14 +28,17 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
-CREATE TABLE `admin` (
-  `adminID` int(20) NOT NULL,
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE IF NOT EXISTS `admin` (
+  `adminID` int(20) NOT NULL AUTO_INCREMENT,
   `AdminName` varchar(100) NOT NULL,
   `AdminDesgn` varchar(100) NOT NULL,
   `Username` varchar(50) NOT NULL,
   `Password` varchar(50) NOT NULL,
-  `ProfilePic` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `ProfilePic` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`adminID`),
+  UNIQUE KEY `Username` (`Username`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
@@ -50,7 +53,8 @@ INSERT INTO `admin` (`adminID`, `AdminName`, `AdminDesgn`, `Username`, `Password
 -- Table structure for table `annual_financial`
 --
 
-CREATE TABLE `annual_financial` (
+DROP TABLE IF EXISTS `annual_financial`;
+CREATE TABLE IF NOT EXISTS `annual_financial` (
   `StpID` int(20) NOT NULL,
   `revenue_rate` int(20) NOT NULL,
   `burn_rate` int(20) NOT NULL,
@@ -60,8 +64,26 @@ CREATE TABLE `annual_financial` (
   `revenue` int(30) NOT NULL,
   `expenditure` int(30) NOT NULL,
   `year` year(4) NOT NULL,
-  `annual_fin_ID` int(20) NOT NULL
+  `annual_fin_ID` int(20) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`annual_fin_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `cprofile`
+-- (See below for the actual view)
+--
+DROP VIEW IF EXISTS `cprofile`;
+CREATE TABLE IF NOT EXISTS `cprofile` (
+`InvID` int(20)
+,`CName` varchar(200)
+,`FName` varchar(200)
+,`WebLink` varchar(200)
+,`LName` varchar(200)
+,`AvgInv` varchar(200)
+,`CImg` varchar(200)
+);
 
 -- --------------------------------------------------------
 
@@ -69,7 +91,8 @@ CREATE TABLE `annual_financial` (
 -- Table structure for table `current_round`
 --
 
-CREATE TABLE `current_round` (
+DROP TABLE IF EXISTS `current_round`;
+CREATE TABLE IF NOT EXISTS `current_round` (
   `StpID` int(20) NOT NULL,
   `Round` varchar(30) NOT NULL,
   `Seeking` int(30) NOT NULL,
@@ -78,7 +101,8 @@ CREATE TABLE `current_round` (
   `Val_cap` int(30) NOT NULL,
   `Conversion_disc` int(5) NOT NULL,
   `Interest_rate` int(5) NOT NULL,
-  `Term_len` int(5) NOT NULL
+  `Term_len` int(5) NOT NULL,
+  PRIMARY KEY (`StpID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -87,7 +111,8 @@ CREATE TABLE `current_round` (
 -- Table structure for table `inv_addetails`
 --
 
-CREATE TABLE `inv_addetails` (
+DROP TABLE IF EXISTS `inv_addetails`;
+CREATE TABLE IF NOT EXISTS `inv_addetails` (
   `InvID` int(20) NOT NULL,
   `IOI` varchar(200) DEFAULT NULL,
   `Facebook` varchar(200) DEFAULT NULL,
@@ -97,7 +122,8 @@ CREATE TABLE `inv_addetails` (
   `Role` varchar(200) DEFAULT NULL,
   `Partner` varchar(200) DEFAULT NULL,
   `InvRange` varchar(200) DEFAULT NULL,
-  `Summary` varchar(200) DEFAULT NULL
+  `Summary` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`InvID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -113,7 +139,8 @@ INSERT INTO `inv_addetails` (`InvID`, `IOI`, `Facebook`, `Twitter`, `LinkedIn`, 
 -- Table structure for table `inv_details`
 --
 
-CREATE TABLE `inv_details` (
+DROP TABLE IF EXISTS `inv_details`;
+CREATE TABLE IF NOT EXISTS `inv_details` (
   `InvID` int(20) NOT NULL,
   `CName` varchar(200) NOT NULL,
   `FName` varchar(200) NOT NULL,
@@ -124,7 +151,8 @@ CREATE TABLE `inv_details` (
   `City` varchar(200) NOT NULL,
   `State` varchar(200) NOT NULL,
   `Country` varchar(200) NOT NULL,
-  `AvgInvestment` varchar(200) NOT NULL
+  `AvgInvestment` varchar(200) NOT NULL,
+  PRIMARY KEY (`InvID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -140,12 +168,14 @@ INSERT INTO `inv_details` (`InvID`, `CName`, `FName`, `LName`, `Email`, `Phone`,
 -- Table structure for table `inv_group`
 --
 
-CREATE TABLE `inv_group` (
-  `ID` int(50) NOT NULL,
+DROP TABLE IF EXISTS `inv_group`;
+CREATE TABLE IF NOT EXISTS `inv_group` (
+  `ID` int(50) NOT NULL AUTO_INCREMENT,
   `InvID` int(20) NOT NULL,
   `Name` varchar(200) NOT NULL,
   `Designation` varchar(200) NOT NULL,
-  `Experience` varchar(200) NOT NULL
+  `Experience` varchar(200) NOT NULL,
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -154,7 +184,8 @@ CREATE TABLE `inv_group` (
 -- Table structure for table `inv_previnvestment`
 --
 
-CREATE TABLE `inv_previnvestment` (
+DROP TABLE IF EXISTS `inv_previnvestment`;
+CREATE TABLE IF NOT EXISTS `inv_previnvestment` (
   `ID` int(50) NOT NULL,
   `InvID` int(20) NOT NULL,
   `Name` varchar(200) NOT NULL,
@@ -162,7 +193,8 @@ CREATE TABLE `inv_previnvestment` (
   `Amount` varchar(200) NOT NULL,
   `Stage` varchar(200) NOT NULL,
   `Stake` varchar(200) NOT NULL,
-  `Website` varchar(200) NOT NULL
+  `Website` varchar(200) NOT NULL,
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -171,9 +203,11 @@ CREATE TABLE `inv_previnvestment` (
 -- Table structure for table `inv_uploads`
 --
 
-CREATE TABLE `inv_uploads` (
+DROP TABLE IF EXISTS `inv_uploads`;
+CREATE TABLE IF NOT EXISTS `inv_uploads` (
   `InvID` int(20) NOT NULL,
-  `ProfilePic` varchar(200) NOT NULL
+  `ProfilePic` varchar(200) NOT NULL,
+  PRIMARY KEY (`InvID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -189,11 +223,13 @@ INSERT INTO `inv_uploads` (`InvID`, `ProfilePic`) VALUES
 -- Table structure for table `membership`
 --
 
-CREATE TABLE `membership` (
+DROP TABLE IF EXISTS `membership`;
+CREATE TABLE IF NOT EXISTS `membership` (
   `InvID` int(20) NOT NULL,
   `MemID` varchar(20) NOT NULL,
   `StDate` date NOT NULL,
-  `ExpDate` date NOT NULL
+  `ExpDate` date NOT NULL,
+  PRIMARY KEY (`InvID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -202,37 +238,40 @@ CREATE TABLE `membership` (
 -- Table structure for table `namanteam`
 --
 
-CREATE TABLE `namanteam` (
-  `image` varchar(200) DEFAULT NULL,
-  `member_link` varchar(25) NOT NULL,
-  `member_name` varchar(30) NOT NULL,
-  `description` varchar(100) NOT NULL,
-  `sr_no` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `namanteam`;
+CREATE TABLE IF NOT EXISTS `namanteam` (
+  `SR` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(30) NOT NULL,
+  `Link` varchar(25) NOT NULL,
+  `Description` varchar(100) NOT NULL,
+  `Image` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`SR`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `namanteam`
 --
 
-INSERT INTO `namanteam` (`image`, `member_link`, `member_name`, `description`, `sr_no`) VALUES
-('\\NamanAngels\\include\\img\\team\\shweta-shalini.png', 'link1', 'Shweta Shalini', 'Official Spokesperson - Bhartiya Janta Party | Chief Evangelist - The Billennium Divas Thought Leade', 1),
-('\\NamanAngels\\include\\img\\team\\miten-mehta.png', 'link2', 'Miten Mehta', 'Co-Founder of Spinta Global Accelerato', 2),
-('\\NamanAngels\\include\\img\\team\\sandeep-sehgal.png', 'link3', 'Sandeep Sehgal', 'CEO and Co-Founder of Global ScaleUp | HQ in Singapore', 3),
-('\\NamanAngels\\include\\img\\team\\nilesh-gandhi.png', 'link4', 'Nilesh Gandhi', 'Managing Director at Unid Finance Consultancy Pvt. Ltd.', 4),
-('\\NamanAngels\\include\\img\\team\\tapaswi-patel.png', 'link5', 'Tapaswi Patel', 'Serial Entrepreneur Startup Investor Founder: Naman Angels India Foundation, ZoomStart India', 5),
-('\\NamanAngels\\include\\img\\team\\dinesh-israni.png', 'link6', 'Dinesh Israni', 'Co-Founder | CEO ', 6),
-('\\NamanAngels\\include\\img\\team\\bhavesh-kothari.png', 'link7', 'Bhavesh Kothari', 'Co-Founder | CBO ', 7),
-('\\NamanAngels\\include\\img\\team\\ankit-buti.png', 'link8', 'Ankit Buti', 'Entrepreneur in Residence with NAMAN Angels India Foundation | Founder & CEO at StartupEd', 8),
-('\\NamanAngels\\include\\img\\team\\pratik-lalani.png', 'link', 'Pratik Lalani', 'Principal Evangelist', 9),
-('\\NamanAngels\\include\\img\\team\\purvang-joshi.png', 'link', 'Purvang Joshi', 'Principal Evangelist', 10),
-('\\NamanAngels\\include\\img\\team\\deep-patel.png', 'link11', 'Deep Patel', 'Principal Evangelist', 11),
-('\\NamanAngels\\include\\img\\team\\sonali-shah.png', 'link12', 'Sonali Shah', 'Design & Marketing Support', 12),
-('\\NamanAngels\\include\\img\\team\\bharti-keswani.png', 'link', 'Bharti Keswani', 'Financial Analyst', 13),
-('\\NamanAngels\\include\\img\\team\\harsha-therani.png', 'link13', 'Harsha Therani', 'Financial Analyst', 14),
-('\\NamanAngels\\include\\img\\team\\sunny-tiwari.png', 'link', 'Sunny Tiwari', 'Financial Analyst', 15),
-('\\NamanAngels\\include\\img\\team\\yash-thakkar.png', 'link', 'Yash Thakkar', 'Investment Fund Manager', 16),
-('\\NamanAngels\\include\\img\\team\\nikita-tilak.png', 'link', 'Nikita Tilak', 'Investment Fund Manager', 17),
-('\\NamanAngels\\include\\img\\team\\vidisha.png', 'link', 'Vidisha Dholkhedia', 'Digital Marketing', 18);
+INSERT INTO `namanteam` (`SR`, `Name`, `Link`, `Description`, `Image`) VALUES
+(1, 'Shweta Shalini', 'link1', 'Official Spokesperson - Bhartiya Janta Party | Chief Evangelist - The Billennium Divas Thought Leade', '\\NamanAngels\\include\\img\\team\\shweta-shalini.png'),
+(2, 'Miten Mehta', 'link2', 'Co-Founder of Spinta Global Accelerato', '\\NamanAngels\\include\\img\\team\\miten-mehta.png'),
+(3, 'Sandeep Sehgal', 'link3', 'CEO and Co-Founder of Global ScaleUp | HQ in Singapore', '\\NamanAngels\\include\\img\\team\\sandeep-sehgal.png'),
+(4, 'Nilesh Gandhi', 'link4', 'Managing Director at Unid Finance Consultancy Pvt. Ltd.', '\\NamanAngels\\include\\img\\team\\nilesh-gandhi.png'),
+(5, 'Tapaswi Patel', 'link5', 'Serial Entrepreneur Startup Investor Founder: Naman Angels India Foundation, ZoomStart India', '\\NamanAngels\\include\\img\\team\\tapaswi-patel.png'),
+(6, 'Dinesh Israni', 'link6', 'Co-Founder | CEO ', '\\NamanAngels\\include\\img\\team\\dinesh-israni.png'),
+(7, 'Bhavesh Kothari', 'link7', 'Co-Founder | CBO ', '\\NamanAngels\\include\\img\\team\\bhavesh-kothari.png'),
+(8, 'Ankit Buti', 'link8', 'Entrepreneur in Residence with NAMAN Angels India Foundation | Founder & CEO at StartupEd', '\\NamanAngels\\include\\img\\team\\ankit-buti.png'),
+(9, 'Pratik Lalani', 'link', 'Principal Evangelist', '\\NamanAngels\\include\\img\\team\\pratik-lalani.png'),
+(10, 'Purvang Joshi', 'link', 'Principal Evangelist', '\\NamanAngels\\include\\img\\team\\purvang-joshi.png'),
+(11, 'Deep Patel', 'link11', 'Principal Evangelist', '\\NamanAngels\\include\\img\\team\\deep-patel.png'),
+(12, 'Sonali Shah', 'link12', 'Design & Marketing Support', '\\NamanAngels\\include\\img\\team\\sonali-shah.png'),
+(13, 'Bharti Keswani', 'link', 'Financial Analyst', '\\NamanAngels\\include\\img\\team\\bharti-keswani.png'),
+(14, 'Harsha Therani', 'link13', 'Financial Analyst', '\\NamanAngels\\include\\img\\team\\harsha-therani.png'),
+(15, 'Sunny Tiwari', 'link', 'Financial Analyst', '\\NamanAngels\\include\\img\\team\\sunny-tiwari.png'),
+(16, 'Yash Thakkar', 'link', 'Investment Fund Manager', '\\NamanAngels\\include\\img\\team\\yash-thakkar.png'),
+(17, 'Nikita Tilak', 'link', 'Investment Fund Manager', '\\NamanAngels\\include\\img\\team\\nikita-tilak.png'),
+(18, 'Vidisha Dholkhedia', 'link', 'Digital Marketing', '\\NamanAngels\\include\\img\\team\\vidisha.png'),
+(19, 'Aayush', 'linkedin.in/aayush', 'Chairman', NULL);
 
 -- --------------------------------------------------------
 
@@ -240,13 +279,15 @@ INSERT INTO `namanteam` (`image`, `member_link`, `member_name`, `description`, `
 -- Stand-in structure for view `profile`
 -- (See below for the actual view)
 --
-CREATE TABLE `profile` (
+DROP VIEW IF EXISTS `profile`;
+CREATE TABLE IF NOT EXISTS `profile` (
 `StpID` int(20)
-,`StpImg` varchar(200)
 ,`StpName` varchar(200)
+,`StpImg` varchar(200)
 ,`FName` varchar(200)
 ,`SName` varchar(200)
 ,`Type` varchar(200)
+,`Verified` int(1)
 );
 
 -- --------------------------------------------------------
@@ -255,12 +296,14 @@ CREATE TABLE `profile` (
 -- Table structure for table `requests`
 --
 
-CREATE TABLE `requests` (
-  `ReqID` int(10) NOT NULL,
+DROP TABLE IF EXISTS `requests`;
+CREATE TABLE IF NOT EXISTS `requests` (
+  `ReqID` int(10) NOT NULL AUTO_INCREMENT,
   `Inv_ID` varchar(20) NOT NULL,
   `St_ID` varchar(20) NOT NULL,
-  `Deal` binary(1) NOT NULL DEFAULT '\0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Deal` binary(1) NOT NULL DEFAULT '\0',
+  PRIMARY KEY (`ReqID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `requests`
@@ -277,22 +320,15 @@ INSERT INTO `requests` (`ReqID`, `Inv_ID`, `St_ID`, `Deal`) VALUES
 -- Table structure for table `round_history`
 --
 
-CREATE TABLE `round_history` (
-  `HistID` int(20) NOT NULL,
+DROP TABLE IF EXISTS `round_history`;
+CREATE TABLE IF NOT EXISTS `round_history` (
+  `HistID` int(20) NOT NULL AUTO_INCREMENT,
   `StpID` int(20) NOT NULL,
   `Round` varchar(30) NOT NULL,
-  `Security_type` varchar(30) NOT NULL,
   `Capital_raised` int(30) NOT NULL,
-  `Close_date` varchar(50) NOT NULL
+  `Close_date` date NOT NULL,
+  PRIMARY KEY (`HistID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `round_history`
---
-
-INSERT INTO `round_history` (`HistID`, `StpID`, `Round`, `Security_type`, `Capital_raised`, `Close_date`) VALUES
-(5, 1, 'Founder', 'Preferred Equity', 3124, '2019-02-15'),
-(7, 1, 'Friends and Family', 'Preferred Equity', 3124, '2019-02-22');
 
 -- --------------------------------------------------------
 
@@ -300,7 +336,8 @@ INSERT INTO `round_history` (`HistID`, `StpID`, `Round`, `Security_type`, `Capit
 -- Table structure for table `st_addetails`
 --
 
-CREATE TABLE `st_addetails` (
+DROP TABLE IF EXISTS `st_addetails`;
+CREATE TABLE IF NOT EXISTS `st_addetails` (
   `StpID` int(20) NOT NULL,
   `Stage` varchar(200) DEFAULT NULL,
   `DOF` varchar(200) DEFAULT NULL,
@@ -310,7 +347,8 @@ CREATE TABLE `st_addetails` (
   `Twitter` varchar(200) DEFAULT NULL,
   `Facebook` varchar(200) DEFAULT NULL,
   `Instagram` varchar(200) DEFAULT NULL,
-  `Youtube` varchar(200) DEFAULT NULL
+  `Youtube` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`StpID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -319,8 +357,7 @@ CREATE TABLE `st_addetails` (
 
 INSERT INTO `st_addetails` (`StpID`, `Stage`, `DOF`, `EmpNum`, `IncType`, `LinkedIn`, `Twitter`, `Facebook`, `Instagram`, `Youtube`) VALUES
 (1, 'Prototype ready', '2014-12-12', '12', 'LLP', 'spacex/linkedin', 'spacex/twitter', 'spacex/fb', NULL, NULL),
-(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -328,12 +365,14 @@ INSERT INTO `st_addetails` (`StpID`, `Stage`, `DOF`, `EmpNum`, `IncType`, `Linke
 -- Table structure for table `st_advisors`
 --
 
-CREATE TABLE `st_advisors` (
-  `ID` int(50) NOT NULL,
+DROP TABLE IF EXISTS `st_advisors`;
+CREATE TABLE IF NOT EXISTS `st_advisors` (
+  `ID` int(50) NOT NULL AUTO_INCREMENT,
   `StpID` int(20) NOT NULL,
   `Name` varchar(200) NOT NULL,
-  `Email` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Email` varchar(200) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `st_advisors`
@@ -348,7 +387,8 @@ INSERT INTO `st_advisors` (`ID`, `StpID`, `Name`, `Email`) VALUES
 -- Table structure for table `st_description`
 --
 
-CREATE TABLE `st_description` (
+DROP TABLE IF EXISTS `st_description`;
+CREATE TABLE IF NOT EXISTS `st_description` (
   `StpID` int(20) NOT NULL,
   `Summary` varchar(500) DEFAULT NULL,
   `OLP` varchar(200) DEFAULT NULL,
@@ -360,7 +400,8 @@ CREATE TABLE `st_description` (
   `CustomerSegments` varchar(500) DEFAULT NULL,
   `SaleMarketStrat` varchar(500) DEFAULT NULL,
   `Competitors` varchar(500) DEFAULT NULL,
-  `CompAdvantage` varchar(500) DEFAULT NULL
+  `CompAdvantage` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`StpID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -369,8 +410,7 @@ CREATE TABLE `st_description` (
 
 INSERT INTO `st_description` (`StpID`, `Summary`, `OLP`, `CustomerProblem`, `ProductService`, `TargetMarket`, `BusinessModel`, `MarketSizing`, `CustomerSegments`, `SaleMarketStrat`, `Competitors`, `CompAdvantage`) VALUES
 (1, 'Space X is an awesome project', 'Lets go to Mars', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -378,7 +418,8 @@ INSERT INTO `st_description` (`StpID`, `Summary`, `OLP`, `CustomerProblem`, `Pro
 -- Table structure for table `st_details`
 --
 
-CREATE TABLE `st_details` (
+DROP TABLE IF EXISTS `st_details`;
+CREATE TABLE IF NOT EXISTS `st_details` (
   `StpID` int(20) NOT NULL,
   `Stname` varchar(200) NOT NULL,
   `Ffname` varchar(200) NOT NULL,
@@ -391,7 +432,8 @@ CREATE TABLE `st_details` (
   `State` varchar(200) NOT NULL,
   `Country` varchar(200) NOT NULL,
   `Website` varchar(200) NOT NULL,
-  `Investment` varchar(200) NOT NULL
+  `Investment` varchar(200) NOT NULL,
+  PRIMARY KEY (`StpID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -400,8 +442,7 @@ CREATE TABLE `st_details` (
 
 INSERT INTO `st_details` (`StpID`, `Stname`, `Ffname`, `Sfname`, `Email`, `Phone`, `Type`, `Address`, `City`, `State`, `Country`, `Website`, `Investment`) VALUES
 (1, 'Spacex', 'Elon Musk', 'Bill Gates', 'spacex@spx.com', '8169163192', 'Technology', 'Near Launch Pad', 'CC', 'Florida', 'United States', 'spacex.com', '100000000'),
-(2, 'acasu', 'asvckuy', 'svcuyav', 'jvkd@sc.in', '8989898989', 'B2B', 'ascvuy', 'dyivgi', 'iycgi', 'Iceland', 'saci.in', '126381'),
-(3, 'igviuASBCI', 'ASCHBI', 'BAISBDI', 'bilsdub@in.in', '9090909090', 'Information Technology', 'ISBDI', 'BISUBL', 'KBB', 'Bahamas', 'IUB.in', '90000');
+(4, 'akdbis', 'baiubai', 'bibiyv', 'qsbiab@in.in', '9090909090', 'B2B', 'vjh', 'jv', 'jv', 'Jamaica', 'vui.in', '1222');
 
 -- --------------------------------------------------------
 
@@ -409,11 +450,13 @@ INSERT INTO `st_details` (`StpID`, `Stname`, `Ffname`, `Sfname`, `Email`, `Phone
 -- Table structure for table `st_previnvestment`
 --
 
-CREATE TABLE `st_previnvestment` (
+DROP TABLE IF EXISTS `st_previnvestment`;
+CREATE TABLE IF NOT EXISTS `st_previnvestment` (
   `ID` int(50) NOT NULL,
   `StpID` int(20) NOT NULL,
   `Name` varchar(200) NOT NULL,
-  `Email` varchar(200) NOT NULL
+  `Email` varchar(200) NOT NULL,
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -429,8 +472,9 @@ INSERT INTO `st_previnvestment` (`ID`, `StpID`, `Name`, `Email`) VALUES
 -- Table structure for table `st_team`
 --
 
-CREATE TABLE `st_team` (
-  `ID` int(50) NOT NULL,
+DROP TABLE IF EXISTS `st_team`;
+CREATE TABLE IF NOT EXISTS `st_team` (
+  `ID` int(50) NOT NULL AUTO_INCREMENT,
   `StpID` int(20) NOT NULL,
   `FName` varchar(200) NOT NULL,
   `LName` varchar(200) NOT NULL,
@@ -438,8 +482,9 @@ CREATE TABLE `st_team` (
   `Experience` varchar(200) NOT NULL,
   `Expertise` varchar(200) NOT NULL,
   `Email` varchar(200) NOT NULL,
-  `LinkedIn` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `LinkedIn` varchar(200) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `st_team`
@@ -454,7 +499,8 @@ INSERT INTO `st_team` (`ID`, `StpID`, `FName`, `LName`, `Designation`, `Experien
 -- Table structure for table `st_uploads`
 --
 
-CREATE TABLE `st_uploads` (
+DROP TABLE IF EXISTS `st_uploads`;
+CREATE TABLE IF NOT EXISTS `st_uploads` (
   `StpID` int(20) NOT NULL,
   `Logo` varchar(200) DEFAULT '/NamanAngels/uploads/default/default.png',
   `BackImg` varchar(200) DEFAULT '/NamanAngels/uploads/default/defaultbackimg.jpg',
@@ -463,7 +509,8 @@ CREATE TABLE `st_uploads` (
   `BPlan` varchar(200) DEFAULT NULL,
   `BPlanExt` varchar(200) DEFAULT NULL,
   `FProjection` varchar(200) DEFAULT NULL,
-  `FProjectionExt` varchar(200) DEFAULT NULL
+  `FProjectionExt` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`StpID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -471,7 +518,8 @@ CREATE TABLE `st_uploads` (
 --
 
 INSERT INTO `st_uploads` (`StpID`, `Logo`, `BackImg`, `PitchName`, `PitchExt`, `BPlan`, `BPlanExt`, `FProjection`, `FProjectionExt`) VALUES
-(1, '/NamanAngels/Uploads/ProfilePic.png', '/NamanAngels/Uploads/download.jpg', 'naman-todo.pdf', 'pdf', 'naman-todo.pdf', 'pdf', 'Aayush Singh.pdf', 'pdf');
+(1, '/NamanAngels/Uploads/ProfilePic.png', '/NamanAngels/Uploads/download.jpg', 'naman-todo.pdf', 'pdf', 'naman-todo.pdf', 'pdf', 'Aayush Singh.pdf', 'pdf'),
+(4, '/NamanAngels/uploads/default/default.png', '/NamanAngels/uploads/default/defaultbackimg.jpg', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -479,12 +527,14 @@ INSERT INTO `st_uploads` (`StpID`, `Logo`, `BackImg`, `PitchName`, `PitchExt`, `
 -- Table structure for table `tools`
 --
 
-CREATE TABLE `tools` (
+DROP TABLE IF EXISTS `tools`;
+CREATE TABLE IF NOT EXISTS `tools` (
   `tool_id` int(50) NOT NULL,
   `tl_name` varchar(200) NOT NULL,
   `tl_img` varchar(200) NOT NULL,
   `tl_cost` varchar(200) NOT NULL,
-  `tl_desc` varchar(200) NOT NULL
+  `tl_desc` varchar(200) NOT NULL,
+  PRIMARY KEY (`tool_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -505,12 +555,15 @@ INSERT INTO `tools` (`tool_id`, `tl_name`, `tl_img`, `tl_cost`, `tl_desc`) VALUE
 -- Table structure for table `userinv`
 --
 
-CREATE TABLE `userinv` (
-  `InvID` int(20) NOT NULL,
+DROP TABLE IF EXISTS `userinv`;
+CREATE TABLE IF NOT EXISTS `userinv` (
+  `InvID` int(20) NOT NULL AUTO_INCREMENT,
   `MemID` varchar(20) NOT NULL,
   `Username` varchar(50) NOT NULL,
-  `Password` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Password` varchar(200) NOT NULL,
+  PRIMARY KEY (`InvID`),
+  UNIQUE KEY `Username` (`Username`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `userinv`
@@ -525,20 +578,32 @@ INSERT INTO `userinv` (`InvID`, `MemID`, `Username`, `Password`) VALUES
 -- Table structure for table `userstp`
 --
 
-CREATE TABLE `userstp` (
-  `StpID` int(20) NOT NULL,
+DROP TABLE IF EXISTS `userstp`;
+CREATE TABLE IF NOT EXISTS `userstp` (
+  `StpID` int(20) NOT NULL AUTO_INCREMENT,
   `Username` varchar(200) NOT NULL,
-  `Password` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Password` varchar(200) NOT NULL,
+  `Verified` int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`StpID`),
+  UNIQUE KEY `Username` (`Username`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `userstp`
 --
 
-INSERT INTO `userstp` (`StpID`, `Username`, `Password`) VALUES
-(1, 'abc123', '370194ff6e0f93a7432e16cc9badd9427e8b4e13'),
-(2, 'aaaa`', 'b480c074d6b75947c02681f31c90c668c46bf6b8'),
-(3, 'aaa', 'f7a9e24777ec23212c54d7a350bc5bea5477fdbb');
+INSERT INTO `userstp` (`StpID`, `Username`, `Password`, `Verified`) VALUES
+(1, 'abc123', '370194ff6e0f93a7432e16cc9badd9427e8b4e13', 1),
+(4, 'vivi', 'ed42785ca24ae8fa2d9fd131401e44c3c86519ae', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `cprofile`
+--
+DROP TABLE IF EXISTS `cprofile`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `cprofile`  AS  select `a`.`InvID` AS `InvID`,`a`.`CName` AS `CName`,`a`.`FName` AS `FName`,`a`.`Website` AS `WebLink`,`a`.`LName` AS `LName`,`a`.`AvgInvestment` AS `AvgInv`,`b`.`ProfilePic` AS `CImg` from (`inv_details` `a` join `inv_uploads` `b`) where (`a`.`InvID` = `b`.`InvID`) ;
 
 -- --------------------------------------------------------
 
@@ -547,210 +612,7 @@ INSERT INTO `userstp` (`StpID`, `Username`, `Password`) VALUES
 --
 DROP TABLE IF EXISTS `profile`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `profile`  AS  select `a`.`StpID` AS `StpID`,`a`.`Logo` AS `StpImg`,`b`.`Stname` AS `StpName`,`b`.`Ffname` AS `FName`,`b`.`Sfname` AS `SName`,`b`.`Type` AS `Type` from (`st_uploads` `a` join `st_details` `b`) where (`a`.`StpID` = `b`.`StpID`) ;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`adminID`),
-  ADD UNIQUE KEY `Username` (`Username`);
-
---
--- Indexes for table `annual_financial`
---
-ALTER TABLE `annual_financial`
-  ADD PRIMARY KEY (`annual_fin_ID`);
-
---
--- Indexes for table `current_round`
---
-ALTER TABLE `current_round`
-  ADD PRIMARY KEY (`StpID`);
-
---
--- Indexes for table `inv_addetails`
---
-ALTER TABLE `inv_addetails`
-  ADD PRIMARY KEY (`InvID`);
-
---
--- Indexes for table `inv_details`
---
-ALTER TABLE `inv_details`
-  ADD PRIMARY KEY (`InvID`);
-
---
--- Indexes for table `inv_group`
---
-ALTER TABLE `inv_group`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `inv_previnvestment`
---
-ALTER TABLE `inv_previnvestment`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `inv_uploads`
---
-ALTER TABLE `inv_uploads`
-  ADD PRIMARY KEY (`InvID`);
-
---
--- Indexes for table `membership`
---
-ALTER TABLE `membership`
-  ADD PRIMARY KEY (`InvID`);
-
---
--- Indexes for table `namanteam`
---
-ALTER TABLE `namanteam`
-  ADD PRIMARY KEY (`sr_no`);
-
---
--- Indexes for table `requests`
---
-ALTER TABLE `requests`
-  ADD PRIMARY KEY (`ReqID`);
-
---
--- Indexes for table `round_history`
---
-ALTER TABLE `round_history`
-  ADD PRIMARY KEY (`HistID`);
-
---
--- Indexes for table `st_addetails`
---
-ALTER TABLE `st_addetails`
-  ADD PRIMARY KEY (`StpID`);
-
---
--- Indexes for table `st_advisors`
---
-ALTER TABLE `st_advisors`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `st_description`
---
-ALTER TABLE `st_description`
-  ADD PRIMARY KEY (`StpID`);
-
---
--- Indexes for table `st_details`
---
-ALTER TABLE `st_details`
-  ADD PRIMARY KEY (`StpID`);
-
---
--- Indexes for table `st_previnvestment`
---
-ALTER TABLE `st_previnvestment`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `st_team`
---
-ALTER TABLE `st_team`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `st_uploads`
---
-ALTER TABLE `st_uploads`
-  ADD PRIMARY KEY (`StpID`);
-
---
--- Indexes for table `tools`
---
-ALTER TABLE `tools`
-  ADD PRIMARY KEY (`tool_id`);
-
---
--- Indexes for table `userinv`
---
-ALTER TABLE `userinv`
-  ADD PRIMARY KEY (`InvID`),
-  ADD UNIQUE KEY `Username` (`Username`);
-
---
--- Indexes for table `userstp`
---
-ALTER TABLE `userstp`
-  ADD PRIMARY KEY (`StpID`),
-  ADD UNIQUE KEY `Username` (`Username`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `admin`
---
-ALTER TABLE `admin`
-  MODIFY `adminID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `annual_financial`
---
-ALTER TABLE `annual_financial`
-  MODIFY `annual_fin_ID` int(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `inv_group`
---
-ALTER TABLE `inv_group`
-  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `namanteam`
---
-ALTER TABLE `namanteam`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- AUTO_INCREMENT for table `requests`
---
-ALTER TABLE `requests`
-  MODIFY `ReqID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `round_history`
---
-ALTER TABLE `round_history`
-  MODIFY `HistID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `st_advisors`
---
-ALTER TABLE `st_advisors`
-  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `st_team`
---
-ALTER TABLE `st_team`
-  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `userinv`
---
-ALTER TABLE `userinv`
-  MODIFY `InvID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `userstp`
---
-ALTER TABLE `userstp`
-  MODIFY `StpID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `profile`  AS  select `a`.`StpID` AS `StpID`,`b`.`Stname` AS `StpName`,`a`.`Logo` AS `StpImg`,`b`.`Ffname` AS `FName`,`b`.`Sfname` AS `SName`,`b`.`Type` AS `Type`,`c`.`Verified` AS `Verified` from ((`st_uploads` `a` join `st_details` `b`) join `userstp` `c`) where ((`a`.`StpID` = `c`.`StpID`) and (`b`.`StpID` = `c`.`StpID`)) ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
