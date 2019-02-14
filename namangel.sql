@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 14, 2019 at 07:09 AM
+-- Generation Time: Feb 14, 2019 at 09:09 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -310,8 +310,7 @@ CREATE TABLE `st_addetails` (
 
 INSERT INTO `st_addetails` (`StpID`, `Stage`, `DOF`, `EmpNum`, `IncType`, `LinkedIn`, `Twitter`, `Facebook`, `Instagram`, `Youtube`) VALUES
 (1, 'Prototype ready', '2014-12-12', '12', 'LLP', 'spacex/linkedin', 'spacex/twitter', 'spacex/fb', NULL, NULL),
-(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -360,8 +359,7 @@ CREATE TABLE `st_description` (
 
 INSERT INTO `st_description` (`StpID`, `Summary`, `OLP`, `CustomerProblem`, `ProductService`, `TargetMarket`, `BusinessModel`, `MarketSizing`, `CustomerSegments`, `SaleMarketStrat`, `Competitors`, `CompAdvantage`) VALUES
 (1, 'Space X is an awesome project', 'Lets go to Mars', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -391,8 +389,7 @@ CREATE TABLE `st_details` (
 
 INSERT INTO `st_details` (`StpID`, `Stname`, `Ffname`, `Sfname`, `Email`, `Phone`, `Type`, `Address`, `City`, `State`, `Country`, `Website`, `Investment`) VALUES
 (1, 'Spacex', 'Elon Musk', 'Bill Gates', 'spacex@spx.com', '8169163192', 'Technology', 'Near Launch Pad', 'CC', 'Florida', 'United States', 'spacex.com', '100000000'),
-(2, 'acasu', 'asvckuy', 'svcuyav', 'jvkd@sc.in', '8989898989', 'B2B', 'ascvuy', 'dyivgi', 'iycgi', 'Iceland', 'saci.in', '126381'),
-(3, 'igviuASBCI', 'ASCHBI', 'BAISBDI', 'bilsdub@in.in', '9090909090', 'Information Technology', 'ISBDI', 'BISUBL', 'KBB', 'Bahamas', 'IUB.in', '90000');
+(4, 'akdbis', 'baiubai', 'bibiyv', 'qsbiab@in.in', '9090909090', 'B2B', 'vjh', 'jv', 'jv', 'Jamaica', 'vui.in', '1222');
 
 -- --------------------------------------------------------
 
@@ -462,7 +459,8 @@ CREATE TABLE `st_uploads` (
 --
 
 INSERT INTO `st_uploads` (`StpID`, `Logo`, `BackImg`, `PitchName`, `PitchExt`, `BPlan`, `BPlanExt`, `FProjection`, `FProjectionExt`) VALUES
-(1, '/NamanAngels/Uploads/ProfilePic.png', '/NamanAngels/Uploads/download.jpg', 'naman-todo.pdf', 'pdf', 'naman-todo.pdf', 'pdf', 'Aayush Singh.pdf', 'pdf');
+(1, '/NamanAngels/Uploads/ProfilePic.png', '/NamanAngels/Uploads/download.jpg', 'naman-todo.pdf', 'pdf', 'naman-todo.pdf', 'pdf', 'Aayush Singh.pdf', 'pdf'),
+(4, '/NamanAngels/uploads/default/default.png', '/NamanAngels/uploads/default/defaultbackimg.jpg', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -519,17 +517,17 @@ INSERT INTO `userinv` (`InvID`, `MemID`, `Username`, `Password`) VALUES
 CREATE TABLE `userstp` (
   `StpID` int(20) NOT NULL,
   `Username` varchar(200) NOT NULL,
-  `Password` varchar(200) NOT NULL
+  `Password` varchar(200) NOT NULL,
+  `Verified` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `userstp`
 --
 
-INSERT INTO `userstp` (`StpID`, `Username`, `Password`) VALUES
-(1, 'abc123', '370194ff6e0f93a7432e16cc9badd9427e8b4e13'),
-(2, 'aaaa`', 'b480c074d6b75947c02681f31c90c668c46bf6b8'),
-(3, 'aaa', 'f7a9e24777ec23212c54d7a350bc5bea5477fdbb');
+INSERT INTO `userstp` (`StpID`, `Username`, `Password`, `Verified`) VALUES
+(1, 'abc123', '370194ff6e0f93a7432e16cc9badd9427e8b4e13', 1),
+(4, 'vivi', 'ed42785ca24ae8fa2d9fd131401e44c3c86519ae', 0);
 
 -- --------------------------------------------------------
 
@@ -741,7 +739,7 @@ ALTER TABLE `userinv`
 -- AUTO_INCREMENT for table `userstp`
 --
 ALTER TABLE `userstp`
-  MODIFY `StpID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `StpID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
