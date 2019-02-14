@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 14, 2019 at 05:11 AM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- Host: 127.0.0.1:3307:3307
+-- Generation Time: Feb 14, 2019 at 05:43 AM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 7.0.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -43,6 +43,43 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`adminID`, `AdminName`, `AdminDesgn`, `Username`, `Password`, `ProfilePic`) VALUES
 (1, 'Deep', 'CTO', 'admin', 'admin12345', '/NamanAngels_Admin/Uploads/ProfilePic2.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `annual_financial`
+--
+
+CREATE TABLE `annual_financial` (
+  `StpID` int(20) NOT NULL,
+  `revenue_rate` int(20) NOT NULL,
+  `burn_rate` int(20) NOT NULL,
+  `financial_annotation` varchar(200) NOT NULL,
+  `revenue_driver` varchar(200) NOT NULL,
+  `sales` int(30) NOT NULL,
+  `revenue` int(30) NOT NULL,
+  `expenditure` int(30) NOT NULL,
+  `year` year(4) NOT NULL,
+  `annual_fin_ID` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `current_round`
+--
+
+CREATE TABLE `current_round` (
+  `StpID` int(20) NOT NULL,
+  `Round` varchar(30) NOT NULL,
+  `Seeking` int(30) NOT NULL,
+  `Security_type` varchar(30) NOT NULL,
+  `Premoney_val` int(30) NOT NULL,
+  `Val_cap` int(30) NOT NULL,
+  `Conversion_disc` int(5) NOT NULL,
+  `Interest_rate` int(5) NOT NULL,
+  `Term_len` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -233,6 +270,20 @@ INSERT INTO `requests` (`ReqID`, `Inv_ID`, `St_ID`, `Deal`) VALUES
 (1, '1', '1', 0x00),
 (2, '1', '1', 0x00),
 (3, '1', '1', 0x00);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `round_history`
+--
+
+CREATE TABLE `round_history` (
+  `HistID` int(20) NOT NULL,
+  `StpID` int(20) NOT NULL,
+  `Round` varchar(30) NOT NULL,
+  `Capital_raised` int(30) NOT NULL,
+  `Close_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -492,6 +543,18 @@ ALTER TABLE `admin`
   ADD UNIQUE KEY `Username` (`Username`);
 
 --
+-- Indexes for table `annual_financial`
+--
+ALTER TABLE `annual_financial`
+  ADD PRIMARY KEY (`annual_fin_ID`);
+
+--
+-- Indexes for table `current_round`
+--
+ALTER TABLE `current_round`
+  ADD PRIMARY KEY (`StpID`);
+
+--
 -- Indexes for table `inv_addetails`
 --
 ALTER TABLE `inv_addetails`
@@ -538,6 +601,12 @@ ALTER TABLE `namanteam`
 --
 ALTER TABLE `requests`
   ADD PRIMARY KEY (`ReqID`);
+
+--
+-- Indexes for table `round_history`
+--
+ALTER TABLE `round_history`
+  ADD PRIMARY KEY (`HistID`);
 
 --
 -- Indexes for table `st_addetails`
@@ -612,6 +681,12 @@ ALTER TABLE `admin`
   MODIFY `adminID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `annual_financial`
+--
+ALTER TABLE `annual_financial`
+  MODIFY `annual_fin_ID` int(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `inv_group`
 --
 ALTER TABLE `inv_group`
@@ -628,6 +703,12 @@ ALTER TABLE `namanteam`
 --
 ALTER TABLE `requests`
   MODIFY `ReqID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `round_history`
+--
+ALTER TABLE `round_history`
+  MODIFY `HistID` int(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `st_advisors`
