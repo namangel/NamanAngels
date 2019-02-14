@@ -1,11 +1,18 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
+<<<<<<< HEAD
 -- Host: localhost
 -- Generation Time: Feb 14, 2019 at 04:30 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
+=======
+-- Host: 127.0.0.1
+-- Generation Time: Feb 14, 2019 at 02:50 PM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.1
+>>>>>>> 8d66766fad1db6418d5630908cdb0d1a5f5d6439
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -131,24 +138,29 @@ INSERT INTO `inv_addetails` (`InvID`, `IOI`, `Facebook`, `Twitter`, `LinkedIn`, 
 
 CREATE TABLE `inv_details` (
   `InvID` int(20) NOT NULL,
-  `CName` varchar(200) NOT NULL,
+  `CName` varchar(200) DEFAULT NULL,
   `FName` varchar(200) NOT NULL,
   `LName` varchar(200) NOT NULL,
   `Email` varchar(200) NOT NULL,
   `Phone` varchar(200) NOT NULL,
-  `Website` varchar(200) NOT NULL,
+  `Website` varchar(200) DEFAULT NULL,
   `City` varchar(200) NOT NULL,
   `State` varchar(200) NOT NULL,
   `Country` varchar(200) NOT NULL,
+<<<<<<< HEAD
   `AvgInvestment` varchar(200) NOT NULL
+=======
+  `AvgInvestment` varchar(200) NOT NULL,
+  `Type` varchar(50) NOT NULL
+>>>>>>> 8d66766fad1db6418d5630908cdb0d1a5f5d6439
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `inv_details`
 --
 
-INSERT INTO `inv_details` (`InvID`, `CName`, `FName`, `LName`, `Email`, `Phone`, `Website`, `City`, `State`, `Country`, `AvgInvestment`) VALUES
-(1, 'Stark Enterprise', 'Tony', 'Stark', 'tony@stark.in', '9999999999', 'stark.in', 'New York City', 'Manhattan', 'United States', '100');
+INSERT INTO `inv_details` (`InvID`, `CName`, `FName`, `LName`, `Email`, `Phone`, `Website`, `City`, `State`, `Country`, `AvgInvestment`, `Type`) VALUES
+(1, 'Stark Enterprise', 'Tony', 'Stark', 'tony@stark.in', '9999999999', 'stark.in', 'New York City', 'Manhattan', 'United States', '100', 'Institution');
 
 -- --------------------------------------------------------
 
@@ -189,7 +201,11 @@ CREATE TABLE `inv_previnvestment` (
 
 CREATE TABLE `inv_uploads` (
   `InvID` int(20) NOT NULL,
+<<<<<<< HEAD
   `ProfilePic` varchar(200) NOT NULL DEFAULT '/NamanAngels/uploads/default/default.png'
+=======
+  `ProfilePic` varchar(200) NOT NULL
+>>>>>>> 8d66766fad1db6418d5630908cdb0d1a5f5d6439
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -197,7 +213,21 @@ CREATE TABLE `inv_uploads` (
 --
 
 INSERT INTO `inv_uploads` (`InvID`, `ProfilePic`) VALUES
+<<<<<<< HEAD
 (1, '../../uploads/investor/Tony_Stark_Tools.jpg');
+=======
+(1, ''),
+(2, ''),
+(3, ''),
+(4, ''),
+(5, ''),
+(6, ''),
+(7, ''),
+(8, ''),
+(9, ''),
+(10, ''),
+(11, '');
+>>>>>>> 8d66766fad1db6418d5630908cdb0d1a5f5d6439
 
 -- --------------------------------------------------------
 
@@ -446,6 +476,16 @@ CREATE TABLE `st_team` (
   `Email` varchar(200) NOT NULL,
   `LinkedIn` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+<<<<<<< HEAD
+=======
+
+--
+-- Dumping data for table `st_team`
+--
+
+INSERT INTO `st_team` (`ID`, `StpID`, `FName`, `LName`, `Designation`, `Experience`, `Expertise`, `Email`, `LinkedIn`) VALUES
+(1, 1, 'Tony', 'Stark', 'Cap', '5', '', 'tony@stark.com', 'tony/in');
+>>>>>>> 8d66766fad1db6418d5630908cdb0d1a5f5d6439
 
 -- --------------------------------------------------------
 
@@ -462,9 +502,13 @@ CREATE TABLE `st_uploads` (
   `BPlan` varchar(200) DEFAULT NULL,
   `BPlanExt` varchar(200) DEFAULT NULL,
   `FProjection` varchar(200) DEFAULT NULL,
+<<<<<<< HEAD
   `FProjectionExt` varchar(200) DEFAULT NULL,
   `AdDocs` varchar(200) DEFAULT NULL,
   `AdDocsExt` varchar(200) DEFAULT NULL
+=======
+  `FProjectionExt` varchar(200) DEFAULT NULL
+>>>>>>> 8d66766fad1db6418d5630908cdb0d1a5f5d6439
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -755,7 +799,11 @@ ALTER TABLE `st_team`
 -- AUTO_INCREMENT for table `userinv`
 --
 ALTER TABLE `userinv`
+<<<<<<< HEAD
   MODIFY `InvID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+=======
+  MODIFY `InvID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+>>>>>>> 8d66766fad1db6418d5630908cdb0d1a5f5d6439
 
 --
 -- AUTO_INCREMENT for table `userstp`
