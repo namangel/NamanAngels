@@ -21,7 +21,7 @@
         {
                 echo '<div class="member">
                         <center>
-                        <img src="data:image/png;base64,'.base64_encode($row['image']).'"/>
+                        <img src="'.$row['image'].'"/>
                         <a class="linkedin" ahref="#">'.$row['member_link'].'</a><br><br>
                         <font class="name">'.$row['member_name'].'</font><br>
                         <p class="designation">'.$row['description'].'</p></center>
