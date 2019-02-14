@@ -1,4 +1,14 @@
-<?php require('../server.php') ?>
+<?php require('../server.php');
+
+    $id = $_SESSION['StpID'];
+    $qu = "SELECT * FROM st_details WHERE StpID = '$id'";
+    $results = mysqli_query($db, $qu);
+    $row = mysqli_fetch_assoc($results);
+    $Stname = $row['Stname'];
+    $verify = "RED";
+
+    $acctype = "Verify Yourself";
+ ?>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="css\stp_landing.css">
@@ -11,7 +21,7 @@
   <div class="outer-grid">
 
          <div class="item3">
-            <h1><b>Hello!</b></h1>
+            <h2><i class="fa fa-user-circle-o" aria-hidden="true" style="color:<?= $verify?>" title="<?= $acctype?>"></i>&nbsp;&nbsp;<b>Hello <?= $Stname?>!!</b></h2>
           </div>
 
             <div class="eval">
@@ -40,18 +50,19 @@
 
         <div class="item5">
             <big><b>Steps to get funded</b></big><br><br>
-            <a href="#" class="button1"><i class="fa fa-check-circle-o">Find Relevant Investors</i></a><br>
-            <a href="#" class="button1"><i class="fa fa-check-circle-o">Communicate your venture</i></a><br>
-            <a href="#" class="button1"><i class="fa fa-check-circle-o">Get discovered</i></a><br>
-            <a href="#" class="button1"><i class="fa fa-check-circle-o">Get funding from Investors</i></a>
+            <i class="fa fa-check-circle-o button1">&nbsp;Build Your Profile</i><br>
+            <i class="fa fa-check-circle-o button1">&nbsp;Verify Yourself</i></a><br>
+            <i class="fa fa-check-circle-o button1">&nbsp;Get Discovered</i></a><br>
+            <i class="fa fa-check-circle-o button1">&nbsp;Get Funding</i></a>
             <br><br><br>
         </div>
         <div class="item6">
             <big><b>Find Relevant Investors.</b></big><br><br><br>
-                Most investor Groups focus on industries with which they're familiar.<br>
-                Selecting your industry will help us put you in front of the right investors.<br><br>
+                <p>Most investor Groups focus on industries with which they're familiar.<br>
+                Selecting your industry will help us put you in front of the right investors.<br><br></p>
                 <br>
-                <button type="button" onclick="window.location.href='DB/index.php'" style="width:30%; height:40px; background:#B2DCFF;">Continue Building Your Company Profile</button>
+                <button type="button" onclick="window.location.href='DB/index.php'" style="width:30%; height:40px; background:#B2DCFF;">Build Your Profile</button>
+                <button type="button" onclick="window.location.href='DB/index.php'" style="width:30%; height:40px; background:#B2DCFF;">Verify Your Company Profile</button>
                 <br>
         </div>
       </div>

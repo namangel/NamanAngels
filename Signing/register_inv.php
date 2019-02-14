@@ -383,6 +383,7 @@ function show(){
               <label>Confirm password</label>
               <input type="password" name="password_2" placeholder="Re-enter password" required>
             </div>
+
           </div>
               <div class="content" id="institution"style="display:none">
                 <div class="input-group">

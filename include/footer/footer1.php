@@ -11,7 +11,7 @@
 }
 .grid-item {
    			background-color:#F4F6F5;
-  			padding: 20px;
+  			padding: 5px 70px;
   			height:430px;
 }
 .spa a{
@@ -52,13 +52,13 @@
 </head>
 <body>
 <div class="grid-container" >
-  <div class="grid-item"><a href="./index.php"><img src="/NamanAngels/img/HeaderLogo.png" style="height:100px;width:350px; margin: 5px;"></a>
+  <div class="grid-item" style="font-size:16px;"><a href="./index.php"><img src="/NamanAngels/img/HeaderLogo.png" style="height:100px;width:350px; margin: 5px;"></a>
   <p align="justify">Naman Angels India Foundation (NAMAN) is Navi Mumbai's first Seed Investment & Innovation Platform. We are committed to disrupt the seed investment in Navi Mumbai and Maharashtra. Our innovation platform provides values to startups through its angel networks, mentors, venture funds & co-working facility and strategic tie-ups.</p><br><br><br><br><br><br><br>
   <p align="left" style="font-size:11px">Coyright © 2018 All Rights Reserved.A Tapaswi Group Ventures Presentation LLP.</p>
 
 
   </div>
-  <div class="grid-item"><br><center><h1>Useful Links</h1><br>
+  <div class="grid-item" style="font-size:16px;"><br><center><h1>Useful Links</h1><br>
     <table width="50%">
       <tr>
         <td><ul><li><span class="spa">
