@@ -1,6 +1,3 @@
-function on() {
-    document.getElementById("overlay").style.display = "block";
-}
 function off() {
     document.getElementById("overlay").style.display = "none";
 }
@@ -176,4 +173,11 @@ function annualon() {
 }
 function annualoff() {
     document.getElementById("annualfin").style.display = "none";
+}
+
+function historyon() {
+    document.getElementById("hist").style.display = "block";
+}
+function historyoff() {
+    document.getElementById("hist").style.display = "none";
 }
