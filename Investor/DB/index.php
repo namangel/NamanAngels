@@ -219,6 +219,24 @@
 		header('location: index.php');
 	}
 
+	if(isset($_POST['rem_mem'])){
+		$mem_id = mysqli_real_escape_string($db, $_POST['member']);
+
+		$q = "DELETE FROM inv_group where ID = $mem_id;";
+		mysqli_query($db, $q);
+
+		header('location:index.php');
+	}
+
+	if(isset($_POST['rem_inv'])){
+		$mem_id = mysqli_real_escape_string($db, $_POST['prev_inv']);
+
+		$q = "DELETE FROM inv_previnvestment where ID = $mem_id;";
+		mysqli_query($db, $q);
+
+		header('location:index.php');
+	}
+
 ?>
 <html>
     <head>
@@ -232,6 +250,16 @@
 	color:red;
 	display: none;
 	font-weight: lighter;
+}
+
+.member, .advisor, .prev_inv{
+	display: none;
+}
+
+.rem_mem,.rem_inv{
+	margin-top: 10px;
+	border: none;
+	background-color: white;
 }
 </style>
 
@@ -743,12 +771,19 @@
 					echo "<th>Name</th>";
 					echo "<th>Designation</th>";
 					echo "<th>Experience</th>";
+					echo "<th></th>";
+
 					echo "</th>";
 				    while($row = mysqli_fetch_assoc($results)) {
 				        echo '<tr>';
 						echo '<td>'.$row["Name"].'</td>';
 						echo '<td>'.$row['Designation'].'</td>';
 						echo '<td>'.$row['Experience'].'</td>';
+						echo '<td><center><form method="post" action="index.php">
+						<input class="member" type="number" name="member" value="'.$row['ID'].'">
+						<button name="rem_mem" value="rem_mem" type="submit" class="rem_mem" id="'.$row['ID'].'" ><i class="fa fa-minus-circle"></i></button>
+						</form></center>
+						</td>';
 						echo "</tr>";
 				    }
 					echo '</table>';
@@ -773,6 +808,7 @@
 					echo "<th>Stage</th>";
 					echo "<th>Stake holding (%)</th>";
 					echo "<th>Website</th>";
+					echo "<th></th>";
 					echo "</th>";
 				    while($row = mysqli_fetch_assoc($results)) {
 				        echo '<tr>';
@@ -782,6 +818,11 @@
 						echo '<td>'.$row["Stage"].'</td>';
 						echo '<td>'.$row['Stake'].'</td>';
 						echo '<td>'.$row['Website'].'</td>';
+						echo '<td><center><form method="post" action="index.php">
+						<input class="member" type="number" name="prev_inv" value="'.$row['ID'].'">
+						<button name="rem_inv" value="rem_inv" type="submit" class="rem_inv" id="'.$row['ID'].'" ><i class="fa fa-minus-circle"></i></button>
+						</form></center>
+						</td>';
 						echo "</tr>";
 				    }
 					echo '</table>';
