@@ -7,6 +7,10 @@
   $q1 = "SELECT * FROM userinv;";
 	$results=mysqli_query($db, $q1);
   $investor=mysqli_num_rows($results);
+
+  $q1 = "SELECT * FROM requests WHERE Deal=1;";
+	$results=mysqli_query($db, $q1);
+  $transactions=mysqli_num_rows($results);
 ?>
 <html lang="en">
   <head>
@@ -222,7 +226,7 @@
             <div class="col-md-3">
               <div class="box success">
                 <i class="fa fa-handshake-o"></i>
-                <h3>5,154</h3>
+                <h3><?php echo $transactions ;?></h3>
                 <p class="lead">Transactions</p>
               </div>
             </div>

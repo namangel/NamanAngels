@@ -1,19 +1,18 @@
 <?php 
   
-  require '../../server.php';
+  require '../../../server.php';
 
-  $u = $_SESSION['StpID'];
-  $qu = "SELECT * FROM st_details WHERE StpID='$u'";
+  $u = $_SESSION['InvID'];
+  $qu = "SELECT * FROM inv_details WHERE InvID='$u'";
 	$results = mysqli_query($db, $qu);
 	$row = mysqli_fetch_assoc($results);
-	$ID = $row['StpID'];
-	$Stname = $row['Stname'];
-	$Ffname = $row['Ffname'];
-	$Sfname = $row['Sfname'];
+	$Stname = $row['CName'];
+	$Ffname = $row['FName'];
+	$Sfname = $row['LName'];
   $Email = $row['Email'];
-  
-  $qu = "SELECT * FROM userstp WHERE StpID='$u'";
-	$results = mysqli_query($db, $qu);
+
+  $qu = "SELECT * FROM userinv WHERE InvID='$u'";
+  $results = mysqli_query($db, $qu);
 	$row = mysqli_fetch_assoc($results);
 	$Password = $row['Password'];
 
@@ -25,27 +24,26 @@
     $phone = mysqli_real_escape_string($db, $_POST['phone']);
 		if($fname != NULL)
 		{
-			$q = "UPDATE st_details set Ffname='$fname' where StpID='$u';";
+			$q = "UPDATE inv_details set FName='$fname' where InvID='$u';";
 			mysqli_query($db, $q);
     }
     if($lname != NULL)
 		{
-			$q = "UPDATE st_details set Sfname='$lname' where StpID='$u';";
+			$q = "UPDATE inv_details set LName='$lname' where InvID='$u';";
 			mysqli_query($db, $q);
     }
     if($email != NULL)
 		{
-			$q = "UPDATE st_details set Email='$email' where StpID='$u';";
+			$q = "UPDATE inv_details set Email='$email' where InvID='$u';";
 			mysqli_query($db, $q);
     }
     if($phone != NULL)
 		{
-			$q = "UPDATE st_details set Phone='$phone' where Username='$u';";
+			$q = "UPDATE inv_details set Phone='$phone' where InvID='$u';";
 			mysqli_query($db, $q);
 		}
 		header('location: contact.php');
   }
-
 ?>
 <html>
 <head>
@@ -57,8 +55,8 @@
 </head>
 
 <body>
-  	<?php require '../include/header/stp_db.php'; ?>
-    <?php require '../include/nav/nav.php'; ?>
+  	<?php require '../include/header/inv_db.php'; ?>
+    <?php require "../include/nav/nav.php"?>
 <div class="wrapper">
   <div class="two">
       <div class=hvr-float-shadow >ACCOUNT SETTINGS</div>
@@ -84,9 +82,9 @@
             <div class="link_title">
               <a href="managecompanies.php " class="five"><span><i class="fa fa-fw fa-user" style="font-size:24px" ></i> Manage Companies</span></a>
             </div>
-            </li> -->
+            </li>
 
-            <!-- <li class="var_nav">
+            <li class="var_nav">
             <div class="link_bg"></div>
             <div class="link_title">
               <a href="privacy.php" class="five"><span> <i class="fa fa-fw fa-wrench" style="font-size:24px"></i>Privacy Settings</span></a>
@@ -107,7 +105,7 @@
             CONTACT INFORMATION </div>
       <hr>
 
-        <form  method="post" action="contact.php">
+      <form  method="post" action="contact.php">
             <label for="fname">First Name</label>
             <input type="text" id="fname" name="fname" placeholder="Enter your name..">
 
@@ -139,6 +137,6 @@
           </form>
   </div>
 </div>
-<?php require "../../include/footer/footer.php" ?>
+<?php require "../../../include/footer/footer.php" ?>
 </body>
 </html>

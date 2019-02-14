@@ -70,7 +70,7 @@ if (isset($_POST['reginv_ind'])) {
 
         // $_SESSION['success'] = "You are now logged in";
 
-        header('location: ../Investor/index.php');
+        header('location: ../Investor/Individual/index.php');
     }
 }
 
@@ -119,8 +119,7 @@ if (isset($_POST['reginv_inst'])) {
       mysqli_query($db, $query);
 
       // $_SESSION['success'] = "You are now logged in";
-
-      header('location: ../Investor/index.php');
+      header('location: ../Investor/Institution/index.php');
   }
 }
 
@@ -200,16 +199,28 @@ if (isset($_POST['reg_st'])) {
 if (isset($_POST['login_inv'])) {
     $username = mysqli_real_escape_string($db, $_POST['username']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
-
     $fpass = sha1($password);
   	$query = "SELECT * FROM userinv WHERE Username='$username' AND Password='$fpass'";
   	$results = mysqli_query($db, $query);
     $row = mysqli_fetch_assoc($results);
+
   	if (mysqli_num_rows($results) == 1) {
         $_SESSION['InvID'] = $row['InvID'];
         $_SESSION['search'] = "";
 
-        header('location: ../Investor/index.php');
+        $u = $_SESSION['InvID'];
+        $qu = "SELECT * FROM inv_details WHERE InvID='$u'";
+        $results = mysqli_query($db, $qu);
+        $row = mysqli_fetch_assoc($results);
+        $type = $row['Type'];
+
+        if($type == "Individual"){
+          header('location: ../Investor/Individual/index.php');
+        }
+        else{
+          header('location: ../Investor/Institution/index.php');
+        }
+        
   	}else {
         echo "<script>alert('Wrong username/password combination')</script>";
   	}
