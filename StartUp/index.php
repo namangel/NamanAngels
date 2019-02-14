@@ -32,7 +32,6 @@
       <?php require 'include/header/stp_land.php'; ?>
       <?php require 'include/nav/nav.php'; ?>
   <div class="outer-grid">
-
          <div class="item3">
             <h2><i class="fa fa-user-circle-o" aria-hidden="true" style="color:<?= $verify?>" title="<?= $acctype?>"></i>&nbsp;&nbsp;<b>Hello <?= $Stname?>!!</b></h2>
           </div>
@@ -75,7 +74,6 @@
                 Selecting your industry will help us put you in front of the right investors.<br><br></p>
                 <br>
                 <button type="button" onclick="window.location.href='DB/index.php'" style="width:30%; height:40px; background:#B2DCFF;">Build Your Profile</button>
-                <button type="button" onclick="window.location.href='DB/index.php'" style="width:30%; height:40px; background:#B2DCFF;">Verify Your Company Profile</button>
                 <br>
         </div>
       </div>
