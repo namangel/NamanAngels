@@ -292,6 +292,16 @@
 		}
 		header('location:Exec.php');
 	}
+
+	if(isset($_POST["memsave"])){
+		$Expertise = mysqli_real_escape_string($db, $_POST['manageform']);
+		$fname = mysqli_real_escape_string($db, $_POST['member_name']);
+
+		$q = "UPDATE st_team SET Expertise='$Expertise' WHERE FName = '$fname';";
+		mysqli_query($db, $q);
+
+		header('location: Exec.php');
+	}
 ?>
 <html>
     <head>
@@ -299,7 +309,12 @@
         <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
         <script src="js\profform.js"></script>
 		<title>StartUp Profile - NamanAngels</title>
-
+		<style>
+			.member_name{
+				width: 50%;
+				margin-bottom: 20px;
+			}
+		</style>
 	    </head>
     <body>
 		<?php require '../include/header/stp_db.php'; ?>
@@ -812,7 +827,26 @@
 						<h3>Management Team</h3>
 						<p>Who are the members of your management team and how will their experience aid in your success?</p>
 						<div>
-							<!-- //MTeam -->
+							<?php
+								$q = "SELECT * FROM st_team where StpID = '$id' AND expertise != '';";
+								$results=mysqli_query($db, $q);
+								if (mysqli_num_rows($results) > 0) {
+									echo '<table class="tables">';
+									echo "<tr>";
+									echo "<th>Name</th>";
+									echo "<th>Expertise</th>";
+									echo "</th>";
+								    while($row = mysqli_fetch_assoc($results)) {
+								        echo '<tr>';
+										echo '<td>'.$row["FName"].'&nbsp;'.$row["LName"].'</td>';
+										echo '<td>'.$row["Expertise"].'</td>';
+										echo "</tr>";
+								    }
+									echo '</table>';
+								} else {
+									echo '<img src="../img/Contact.png">';
+								}
+							?>
 						</div>
 					</div>
 					<div class="databox">
@@ -895,10 +929,25 @@
 	                            </div>
 	                            <div class="formtext">
 	                                <form method="post">
-	                                    <div class="formtext"><textarea autofocus rows="10" cols="75" name="manageform"></textarea></div>
+																		<label>Member Name: </label>
+																		<select class="member_name" name="member_name">
+																				<?php
+																						$qu1= "SELECT * FROM st_team;";
+																						$res1 = mysqli_query($db, $qu1);
+																						while($row1 = mysqli_fetch_assoc($res1)){
+																								echo '<option value="'.$row1["FName"].'">'.$row1["FName"].'&nbsp;'.$row1["LName"].'</option>';
+																						}
+																				?>
+																		</select>
+
+	                                    <div class="formtext">
+																				<label>Expertise: </label>
+																				<textarea autofocus rows="5" cols="75" name="manageform"></textarea>
+																			</div>
+
 	                                    <div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
-	                                        <input type="submit" value="Save" name="mtsave" class="save">
+	                                        <input type="submit" value="Save" name="memsave" class="save">
 	                                    </div>
 	                                </form>
 	                            </div>

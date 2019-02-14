@@ -321,6 +321,27 @@
 			display: none;
 			font-weight: lighter;
 		}
+		.member, .advisor, .prev_inv{
+			display: none;
+		}
+
+		.rem_mem{
+			margin-top: 10px;
+			border: none;
+			background-color: white;
+		}
+
+		.rem_adv{
+			margin-top: 10px;
+			border: none;
+			background-color: white;
+		}
+
+		.rem_inv{
+			margin-top: 15px;
+			border: none;
+			background-color: white;
+		}
 		</style>
 
     </head>
@@ -370,10 +391,36 @@
 				}
 				else{
 					echo 'function invon() {
-							document.getElementById("inv").style.display = "block";
-					}';
+							document.getElementById("inv").style.display = "block";					}';
 				}
 
+
+				if(isset($_POST['rem_mem'])){
+					$mem_id = mysqli_real_escape_string($db, $_POST['member']);
+
+					$q = "DELETE FROM st_team where ID = $mem_id;";
+					mysqli_query($db, $q);
+
+					header('location:index.php');
+				}
+
+				if(isset($_POST['rem_adv'])){
+					$mem_id = mysqli_real_escape_string($db, $_POST['advisor']);
+
+					$q = "DELETE FROM st_advisors where ID = $mem_id;";
+					mysqli_query($db, $q);
+
+					header('location:index.php');
+				}
+
+				if(isset($_POST['rem_inv'])){
+					$mem_id = mysqli_real_escape_string($db, $_POST['prev_inv']);
+
+					$q = "DELETE FROM st_previnvestment where ID = $mem_id;";
+					mysqli_query($db, $q);
+
+					header('location:index.php');
+				}
 
 
 
@@ -381,6 +428,8 @@
 		function addteamoff() {
 				document.getElementById("addteam").style.display = "none";
 		}
+
+
 		</script>
     <body>
 			<?php require '../include/header/stp_db.php'; ?>
@@ -883,6 +932,7 @@
 								echo "<th>Exp(Yrs)</th>";
 								echo "<th>Email</th>";
 								echo "<th>LinkedIn</th>";
+								echo "<th></th>";
 
 								echo "</th>";
 							    while($row = mysqli_fetch_assoc($results)) {
@@ -892,7 +942,14 @@
 									echo '<td>'.$row['Experience'].'</td>';
 									echo '<td>'.$row['Email'].'</td>';
 									echo '<td>'.$row['LinkedIn'].'</td>';
-
+									echo '<td><center><form method="post" action="index.php">
+									<input class="member" type="number" name="member" value="'.$row['ID'].'">
+									<button name="rem_mem" value="rem_mem" type="submit" class="rem_mem" id="'.$row['ID'].'" onclick="remove_team(this.id)" ><i class="fa fa-minus-circle"></i></button>
+									</form></center>
+									</td>';
+									// echo '<td>
+									//  <a name="rem_mem" class="remove" id="'.$row['ID'].'" onclick="remove_team(this.id)" ><i class="fa fa-minus-circle"></i></a>
+									//  </td>';
 									echo "</tr>";
 							    }
 								echo '</table>';
@@ -913,11 +970,17 @@
 								echo "<tr>";
 								echo "<th>Name</th>";
 								echo "<th>Email</th>";
+								echo "<th></th>";
 								echo "</th>";
 							    while($row = mysqli_fetch_assoc($results)) {
 							        echo '<tr>';
 									echo '<td>'.$row["Name"].'</td>';
 									echo '<td>'.$row['Email'].'</td>';
+									echo '<td><center><form method="post" action="index.php">
+									<input class="advisor" type="number" name="advisor" value="'.$row['ID'].'">
+									<button name="rem_adv" value="rem_adv" type="submit" class="rem_adv"><i class="fa fa-minus-circle"></i></button>
+									</form></center>
+									</td>';
 									echo "</tr>";
 							    }
 								echo '</table>';
@@ -937,11 +1000,17 @@
 								echo "<tr>";
 								echo "<th>Name</th>";
 								echo "<th>Email</th>";
+								echo "<th></th>";
 								echo "</th>";
 							    while($row = mysqli_fetch_assoc($results)) {
 							        echo '<tr>';
 									echo '<td>'.$row["Name"].'</td>';
 									echo '<td>'.$row['Email'].'</td>';
+									echo '<td><center><form method="post" action="index.php">
+									<input class="prev_inv" type="number" name="prev_inv" value="'.$row['ID'].'>
+									<button name="rem_inv" value="rem_inv" type="submit" class="rem_inv" ><i class="fa fa-minus-circle"></i></button>
+									</form></center>
+									</td>';
 									echo "</tr>";
 							    }
 								echo '</table>';
@@ -1136,9 +1205,7 @@
                                         <input type="email" name="tmemail" size="50" required><br><br>
 																				<label>LinkedIn</label><br>
 																				<input type="text" name="tmlinkedin" size="50" required><br><br>
-                                        <input type="checkbox">Can manage my Company Profile <br><br>
-                                        <p class="icsize">Allow this team member to edit the Company Profile. Note: only the Account Owner can apply to investor groups.</p>
-                                    </div>
+                                      </div>
                                     <div class="formtext submits">
                                         <input type="submit" onclick="addteamoff()"value="Cancel" name="cancel" class="cancel">
                                         <input type="submit" value="Save" name="tmsave" class="save">
