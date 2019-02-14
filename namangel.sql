@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Feb 14, 2019 at 04:43 PM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.10
+-- Host: 127.0.0.1
+-- Generation Time: Feb 14, 2019 at 05:02 PM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -121,7 +121,10 @@ CREATE TABLE `inv_addetails` (
 --
 
 INSERT INTO `inv_addetails` (`InvID`, `IOI`, `Facebook`, `Twitter`, `LinkedIn`, `Instagram`, `Role`, `Partner`, `InvRange`, `Summary`) VALUES
-(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -131,24 +134,26 @@ INSERT INTO `inv_addetails` (`InvID`, `IOI`, `Facebook`, `Twitter`, `LinkedIn`, 
 
 CREATE TABLE `inv_details` (
   `InvID` int(20) NOT NULL,
-  `CName` varchar(200) NOT NULL,
+  `CName` varchar(200) DEFAULT NULL,
   `FName` varchar(200) NOT NULL,
   `LName` varchar(200) NOT NULL,
   `Email` varchar(200) NOT NULL,
   `Phone` varchar(200) NOT NULL,
-  `Website` varchar(200) NOT NULL,
+  `Website` varchar(200) DEFAULT NULL,
   `City` varchar(200) NOT NULL,
   `State` varchar(200) NOT NULL,
   `Country` varchar(200) NOT NULL,
-  `AvgInvestment` varchar(200) NOT NULL
+  `AvgInvestment` varchar(200) NOT NULL,
+  `Type` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `inv_details`
 --
 
-INSERT INTO `inv_details` (`InvID`, `CName`, `FName`, `LName`, `Email`, `Phone`, `Website`, `City`, `State`, `Country`, `AvgInvestment`) VALUES
-(1, 'Stark Enterprise', 'Tony', 'Stark', 'tony@stark.in', '9999999999', 'stark.in', 'New York City', 'Manhattan', 'United States', '100');
+INSERT INTO `inv_details` (`InvID`, `CName`, `FName`, `LName`, `Email`, `Phone`, `Website`, `City`, `State`, `Country`, `AvgInvestment`, `Type`) VALUES
+(1, 'Stark Enterprise', 'Tony', 'Stark', 'tony@stark.in', '9999999999', 'stark.in', 'New York City', 'Manhattan', 'United States', '100', 'Institution'),
+(4, NULL, 'Deepali', 'Panda', 'deepali4499@gmail.com', '8689922983', NULL, 'Mumbai', 'Maharashtra', 'India', '8', 'Individual');
 
 -- --------------------------------------------------------
 
@@ -197,7 +202,10 @@ CREATE TABLE `inv_uploads` (
 --
 
 INSERT INTO `inv_uploads` (`InvID`, `ProfilePic`) VALUES
-(1, '../../uploads/investor/Tony_Stark_Tools.jpg');
+(1, '../../uploads/investor/Tony_Stark_Tools.jpg'),
+(2, '/NamanAngels/uploads/default/default.png'),
+(3, '/NamanAngels/uploads/default/default.png'),
+(4, '/NamanAngels/uploads/default/default.png');
 
 -- --------------------------------------------------------
 
@@ -519,7 +527,8 @@ CREATE TABLE `userinv` (
 --
 
 INSERT INTO `userinv` (`InvID`, `MemID`, `Username`, `Password`) VALUES
-(1, '', 'xyz123', '5f2b8374d197548aa0c1bd765ffc3464605cf51c');
+(1, '', 'xyz123', '5f2b8374d197548aa0c1bd765ffc3464605cf51c'),
+(2, '', 'admin', '7fe54080e26dd169ccbffba947dbc5958e26ecea');
 
 -- --------------------------------------------------------
 
@@ -755,7 +764,7 @@ ALTER TABLE `st_team`
 -- AUTO_INCREMENT for table `userinv`
 --
 ALTER TABLE `userinv`
-  MODIFY `InvID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `InvID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `userstp`
