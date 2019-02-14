@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Feb 14, 2019 at 10:18 AM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.10
+-- Host: 127.0.0.1:3307:3307
+-- Generation Time: Feb 14, 2019 at 10:58 AM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 7.0.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -203,52 +203,50 @@ CREATE TABLE `membership` (
 --
 
 CREATE TABLE `namanteam` (
-  `SR` int(11) NOT NULL,
-  `Name` varchar(30) NOT NULL,
-  `Link` varchar(25) NOT NULL,
-  `Description` varchar(100) NOT NULL,
-  `Image` varchar(200) DEFAULT NULL
+  `image` varchar(200) DEFAULT NULL,
+  `member_link` varchar(25) NOT NULL,
+  `member_name` varchar(30) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  `sr_no` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `namanteam`
 --
 
-INSERT INTO `namanteam` (`SR`, `Name`, `Link`, `Description`, `Image`) VALUES
-(1, 'Shweta Shalini', 'link1', 'Official Spokesperson - Bhartiya Janta Party | Chief Evangelist - The Billennium Divas Thought Leade', '\\NamanAngels\\include\\img\\team\\shweta-shalini.png'),
-(2, 'Miten Mehta', 'link2', 'Co-Founder of Spinta Global Accelerato', '\\NamanAngels\\include\\img\\team\\miten-mehta.png'),
-(3, 'Sandeep Sehgal', 'link3', 'CEO and Co-Founder of Global ScaleUp | HQ in Singapore', '\\NamanAngels\\include\\img\\team\\sandeep-sehgal.png'),
-(4, 'Nilesh Gandhi', 'link4', 'Managing Director at Unid Finance Consultancy Pvt. Ltd.', '\\NamanAngels\\include\\img\\team\\nilesh-gandhi.png'),
-(5, 'Tapaswi Patel', 'link5', 'Serial Entrepreneur Startup Investor Founder: Naman Angels India Foundation, ZoomStart India', '\\NamanAngels\\include\\img\\team\\tapaswi-patel.png'),
-(6, 'Dinesh Israni', 'link6', 'Co-Founder | CEO ', '\\NamanAngels\\include\\img\\team\\dinesh-israni.png'),
-(7, 'Bhavesh Kothari', 'link7', 'Co-Founder | CBO ', '\\NamanAngels\\include\\img\\team\\bhavesh-kothari.png'),
-(8, 'Ankit Buti', 'link8', 'Entrepreneur in Residence with NAMAN Angels India Foundation | Founder & CEO at StartupEd', '\\NamanAngels\\include\\img\\team\\ankit-buti.png'),
-(9, 'Pratik Lalani', 'link', 'Principal Evangelist', '\\NamanAngels\\include\\img\\team\\pratik-lalani.png'),
-(10, 'Purvang Joshi', 'link', 'Principal Evangelist', '\\NamanAngels\\include\\img\\team\\purvang-joshi.png'),
-(11, 'Deep Patel', 'link11', 'Principal Evangelist', '\\NamanAngels\\include\\img\\team\\deep-patel.png'),
-(12, 'Sonali Shah', 'link12', 'Design & Marketing Support', '\\NamanAngels\\include\\img\\team\\sonali-shah.png'),
-(13, 'Bharti Keswani', 'link', 'Financial Analyst', '\\NamanAngels\\include\\img\\team\\bharti-keswani.png'),
-(14, 'Harsha Therani', 'link13', 'Financial Analyst', '\\NamanAngels\\include\\img\\team\\harsha-therani.png'),
-(15, 'Sunny Tiwari', 'link', 'Financial Analyst', '\\NamanAngels\\include\\img\\team\\sunny-tiwari.png'),
-(16, 'Yash Thakkar', 'link', 'Investment Fund Manager', '\\NamanAngels\\include\\img\\team\\yash-thakkar.png'),
-(17, 'Nikita Tilak', 'link', 'Investment Fund Manager', '\\NamanAngels\\include\\img\\team\\nikita-tilak.png'),
-(18, 'Vidisha Dholkhedia', 'link', 'Digital Marketing', '\\NamanAngels\\include\\img\\team\\vidisha.png'),
-(19, 'Aayush', 'linkedin.in/aayush', 'Chairman', NULL);
+INSERT INTO `namanteam` (`image`, `member_link`, `member_name`, `description`, `sr_no`) VALUES
+('\\NamanAngels\\include\\img\\team\\shweta-shalini.png', 'link1', 'Shweta Shalini', 'Official Spokesperson - Bhartiya Janta Party | Chief Evangelist - The Billennium Divas Thought Leade', 1),
+('\\NamanAngels\\include\\img\\team\\miten-mehta.png', 'link2', 'Miten Mehta', 'Co-Founder of Spinta Global Accelerato', 2),
+('\\NamanAngels\\include\\img\\team\\sandeep-sehgal.png', 'link3', 'Sandeep Sehgal', 'CEO and Co-Founder of Global ScaleUp | HQ in Singapore', 3),
+('\\NamanAngels\\include\\img\\team\\nilesh-gandhi.png', 'link4', 'Nilesh Gandhi', 'Managing Director at Unid Finance Consultancy Pvt. Ltd.', 4),
+('\\NamanAngels\\include\\img\\team\\tapaswi-patel.png', 'link5', 'Tapaswi Patel', 'Serial Entrepreneur Startup Investor Founder: Naman Angels India Foundation, ZoomStart India', 5),
+('\\NamanAngels\\include\\img\\team\\dinesh-israni.png', 'link6', 'Dinesh Israni', 'Co-Founder | CEO ', 6),
+('\\NamanAngels\\include\\img\\team\\bhavesh-kothari.png', 'link7', 'Bhavesh Kothari', 'Co-Founder | CBO ', 7),
+('\\NamanAngels\\include\\img\\team\\ankit-buti.png', 'link8', 'Ankit Buti', 'Entrepreneur in Residence with NAMAN Angels India Foundation | Founder & CEO at StartupEd', 8),
+('\\NamanAngels\\include\\img\\team\\pratik-lalani.png', 'link', 'Pratik Lalani', 'Principal Evangelist', 9),
+('\\NamanAngels\\include\\img\\team\\purvang-joshi.png', 'link', 'Purvang Joshi', 'Principal Evangelist', 10),
+('\\NamanAngels\\include\\img\\team\\deep-patel.png', 'link11', 'Deep Patel', 'Principal Evangelist', 11),
+('\\NamanAngels\\include\\img\\team\\sonali-shah.png', 'link12', 'Sonali Shah', 'Design & Marketing Support', 12),
+('\\NamanAngels\\include\\img\\team\\bharti-keswani.png', 'link', 'Bharti Keswani', 'Financial Analyst', 13),
+('\\NamanAngels\\include\\img\\team\\harsha-therani.png', 'link13', 'Harsha Therani', 'Financial Analyst', 14),
+('\\NamanAngels\\include\\img\\team\\sunny-tiwari.png', 'link', 'Sunny Tiwari', 'Financial Analyst', 15),
+('\\NamanAngels\\include\\img\\team\\yash-thakkar.png', 'link', 'Yash Thakkar', 'Investment Fund Manager', 16),
+('\\NamanAngels\\include\\img\\team\\nikita-tilak.png', 'link', 'Nikita Tilak', 'Investment Fund Manager', 17),
+('\\NamanAngels\\include\\img\\team\\vidisha.png', 'link', 'Vidisha Dholkhedia', 'Digital Marketing', 18);
 
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `Profile`
+-- Stand-in structure for view `profile`
 -- (See below for the actual view)
 --
-CREATE TABLE `Profile` (
+CREATE TABLE `profile` (
 `StpID` int(20)
-,`StpName` varchar(200)
 ,`StpImg` varchar(200)
+,`StpName` varchar(200)
 ,`FName` varchar(200)
 ,`SName` varchar(200)
 ,`Type` varchar(200)
-,`Verified` int(1)
 );
 
 -- --------------------------------------------------------
@@ -283,9 +281,18 @@ CREATE TABLE `round_history` (
   `HistID` int(20) NOT NULL,
   `StpID` int(20) NOT NULL,
   `Round` varchar(30) NOT NULL,
+  `Security_type` varchar(30) NOT NULL,
   `Capital_raised` int(30) NOT NULL,
-  `Close_date` date NOT NULL
+  `Close_date` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `round_history`
+--
+
+INSERT INTO `round_history` (`HistID`, `StpID`, `Round`, `Security_type`, `Capital_raised`, `Close_date`) VALUES
+(5, 1, 'Founder', 'Preferred Equity', 3124, '2019-02-15'),
+(7, 1, 'Friends and Family', 'Preferred Equity', 3124, '2019-02-22');
 
 -- --------------------------------------------------------
 
@@ -312,7 +319,8 @@ CREATE TABLE `st_addetails` (
 
 INSERT INTO `st_addetails` (`StpID`, `Stage`, `DOF`, `EmpNum`, `IncType`, `LinkedIn`, `Twitter`, `Facebook`, `Instagram`, `Youtube`) VALUES
 (1, 'Prototype ready', '2014-12-12', '12', 'LLP', 'spacex/linkedin', 'spacex/twitter', 'spacex/fb', NULL, NULL),
-(4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -361,7 +369,8 @@ CREATE TABLE `st_description` (
 
 INSERT INTO `st_description` (`StpID`, `Summary`, `OLP`, `CustomerProblem`, `ProductService`, `TargetMarket`, `BusinessModel`, `MarketSizing`, `CustomerSegments`, `SaleMarketStrat`, `Competitors`, `CompAdvantage`) VALUES
 (1, 'Space X is an awesome project', 'Lets go to Mars', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -391,7 +400,8 @@ CREATE TABLE `st_details` (
 
 INSERT INTO `st_details` (`StpID`, `Stname`, `Ffname`, `Sfname`, `Email`, `Phone`, `Type`, `Address`, `City`, `State`, `Country`, `Website`, `Investment`) VALUES
 (1, 'Spacex', 'Elon Musk', 'Bill Gates', 'spacex@spx.com', '8169163192', 'Technology', 'Near Launch Pad', 'CC', 'Florida', 'United States', 'spacex.com', '100000000'),
-(4, 'akdbis', 'baiubai', 'bibiyv', 'qsbiab@in.in', '9090909090', 'B2B', 'vjh', 'jv', 'jv', 'Jamaica', 'vui.in', '1222');
+(2, 'acasu', 'asvckuy', 'svcuyav', 'jvkd@sc.in', '8989898989', 'B2B', 'ascvuy', 'dyivgi', 'iycgi', 'Iceland', 'saci.in', '126381'),
+(3, 'igviuASBCI', 'ASCHBI', 'BAISBDI', 'bilsdub@in.in', '9090909090', 'Information Technology', 'ISBDI', 'BISUBL', 'KBB', 'Bahamas', 'IUB.in', '90000');
 
 -- --------------------------------------------------------
 
@@ -461,8 +471,7 @@ CREATE TABLE `st_uploads` (
 --
 
 INSERT INTO `st_uploads` (`StpID`, `Logo`, `BackImg`, `PitchName`, `PitchExt`, `BPlan`, `BPlanExt`, `FProjection`, `FProjectionExt`) VALUES
-(1, '/NamanAngels/Uploads/ProfilePic.png', '/NamanAngels/Uploads/download.jpg', 'naman-todo.pdf', 'pdf', 'naman-todo.pdf', 'pdf', 'Aayush Singh.pdf', 'pdf'),
-(4, '/NamanAngels/uploads/default/default.png', '/NamanAngels/uploads/default/defaultbackimg.jpg', NULL, NULL, NULL, NULL, NULL, NULL);
+(1, '/NamanAngels/Uploads/ProfilePic.png', '/NamanAngels/Uploads/download.jpg', 'naman-todo.pdf', 'pdf', 'naman-todo.pdf', 'pdf', 'Aayush Singh.pdf', 'pdf');
 
 -- --------------------------------------------------------
 
@@ -519,26 +528,26 @@ INSERT INTO `userinv` (`InvID`, `MemID`, `Username`, `Password`) VALUES
 CREATE TABLE `userstp` (
   `StpID` int(20) NOT NULL,
   `Username` varchar(200) NOT NULL,
-  `Password` varchar(200) NOT NULL,
-  `Verified` int(1) NOT NULL DEFAULT '0'
+  `Password` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `userstp`
 --
 
-INSERT INTO `userstp` (`StpID`, `Username`, `Password`, `Verified`) VALUES
-(1, 'abc123', '370194ff6e0f93a7432e16cc9badd9427e8b4e13', 1),
-(4, 'vivi', 'ed42785ca24ae8fa2d9fd131401e44c3c86519ae', 0);
+INSERT INTO `userstp` (`StpID`, `Username`, `Password`) VALUES
+(1, 'abc123', '370194ff6e0f93a7432e16cc9badd9427e8b4e13'),
+(2, 'aaaa`', 'b480c074d6b75947c02681f31c90c668c46bf6b8'),
+(3, 'aaa', 'f7a9e24777ec23212c54d7a350bc5bea5477fdbb');
 
 -- --------------------------------------------------------
 
 --
--- Structure for view `Profile`
+-- Structure for view `profile`
 --
-DROP TABLE IF EXISTS `Profile`;
+DROP TABLE IF EXISTS `profile`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `profile`  AS  select `a`.`StpID` AS `StpID`,`b`.`Stname` AS `StpName`,`a`.`Logo` AS `StpImg`,`b`.`Ffname` AS `FName`,`b`.`Sfname` AS `SName`,`b`.`Type` AS `Type`,`c`.`Verified` AS `Verified` from ((`st_uploads` `a` join `st_details` `b`) join `userstp` `c`) where ((`a`.`StpID` = `c`.`StpID`) and (`b`.`StpID` = `c`.`StpID`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `profile`  AS  select `a`.`StpID` AS `StpID`,`a`.`Logo` AS `StpImg`,`b`.`Stname` AS `StpName`,`b`.`Ffname` AS `FName`,`b`.`Sfname` AS `SName`,`b`.`Type` AS `Type` from (`st_uploads` `a` join `st_details` `b`) where (`a`.`StpID` = `b`.`StpID`) ;
 
 --
 -- Indexes for dumped tables
@@ -603,7 +612,7 @@ ALTER TABLE `membership`
 -- Indexes for table `namanteam`
 --
 ALTER TABLE `namanteam`
-  ADD PRIMARY KEY (`SR`);
+  ADD PRIMARY KEY (`sr_no`);
 
 --
 -- Indexes for table `requests`
@@ -705,7 +714,7 @@ ALTER TABLE `inv_group`
 -- AUTO_INCREMENT for table `namanteam`
 --
 ALTER TABLE `namanteam`
-  MODIFY `SR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `requests`
@@ -717,7 +726,7 @@ ALTER TABLE `requests`
 -- AUTO_INCREMENT for table `round_history`
 --
 ALTER TABLE `round_history`
-  MODIFY `HistID` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `HistID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `st_advisors`
@@ -741,7 +750,7 @@ ALTER TABLE `userinv`
 -- AUTO_INCREMENT for table `userstp`
 --
 ALTER TABLE `userstp`
-  MODIFY `StpID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `StpID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -218,12 +218,37 @@
 			mysqli_query($db, $q);
 		}
 		if( $Sec_type == 'Convertible Notes' ){
-			$q = "INSERT INTO current_round(StpId,Round,Seeking,Val_cap,Conversion_disc,Interest_rate,Term_len) values('$id','$Round','$Seek','$Sec_type','$Val_cap','$Discount','$Interest','$Term')";
+			$q = "INSERT INTO current_round(StpId,Round,Seeking,Security_type,Val_cap,Conversion_disc,Interest_rate,Term_len) values('$id','$Round','$Seek','$Sec_type','$Val_cap','$Discount','$Interest','$Term')";
 			mysqli_query($db, $q); 
 		}
 		header('location:Finance.php');
 	}
 
+	if(isset($_POST['clroundsave'])){
+		$Capraised = mysqli_real_escape_string($db, $_POST['capraise']);
+		$Cldate = mysqli_real_escape_string($db, $_POST['cal']);
+		
+		$q= "SELECT Round,Security_type FROM current_round WHERE StpID = '$id';";
+		$results = mysqli_query($db, $q);
+		$row=mysqli_fetch_array($results);
+
+		$q1= "INSERT INTO round_history(StpID,Round,Security_type,Capital_raised,Close_date) values('$id','$row[0]','$row[1]','$Capraised','$Cldate')";
+		mysqli_query($db, $q1);
+
+		$q2 = "DELETE FROM current_round WHERE StpId='$id'"; 
+		mysqli_query($db, $q2);
+	
+		header('location:Finance.php');
+	}
+
+	if(isset($_POST['histdel'])){
+		$Hid= mysqli_real_escape_string($db, $_POST['hid']);
+		$q2 = "DELETE FROM round_history WHERE HistID='$Hid'"; 
+		mysqli_query($db, $q2);
+
+		header('location:Finance.php');
+	}
+	
 
 ?>
 <html>
@@ -760,23 +785,34 @@
 											echo '<span style="float:left">Premoney Valuation</span><span style="float:right">'.$row['Premoney_val'].'</span><br/><hr>';
 										}
 										if($row['Security_type'] == 'Convertible Notes'){
-											echo '<span style="float:left">Valuation Capital</span><span style="float:right">'.$row['Val_Cap'].'</span><br/><hr>';
+											echo '<span style="float:left">Valuation Capital</span><span style="float:right">'.$row['Val_cap'].'</span><br/><hr>';
 											echo '<span style="float:left">Conversion discount</span><span style="float:right">'.$row['Conversion_disc'].'</span><br/><hr>';
 											echo '<span style="float:left">Interest Rate</span><span style="float:right">'.$row['Interest_rate'].'</span><br/><hr>';
 											echo '<span style="float:left">Term Length</span><span style="float:right">'.$row['Term_len'].'</span><br/><hr>';
 										}
 										echo '<button class="btnfund" onclick="clroundon()">Close Funding Round</button>';
 									}
-									else{
-										echo '<button class="btnfund" onclick="roundon()">Open Funding Round</button>';
-									}
+								}
+								$q = "SELECT * FROM current_round WHERE StpID='$id'"; 
+								$results = mysqli_query($db, $q);
+								if(mysqli_num_rows($results)== 0){
+									echo '<button class="btnfund" onclick="roundon()">Open Funding Round</button>';
 								}
 							?>
 					</div>
 					<div class="databox">
-						<button class="pencil"><i class="fa fa-pencil "></i></button>
+						<button class="pencil" onclick="historyon()"><i class="fa fa-pencil "></i></button>
 						<h3>Funding History (USD)</h3><br>
-							Please add any previous funding rounds.
+						<?php
+							$q= "SELECT * FROM round_history WHERE StpID = '$id';";
+							$results = mysqli_query($db, $q);
+							while($row=mysqli_fetch_assoc($results)){
+								echo '<span style="float:left">Round</span><span style="float:right">'.$row['Round'].'</span><br/><hr>';
+								echo '<span style="float:left"></span>Security Type<span style="float:right">'.$row['Security_type'].'</span><br/><hr>';
+								echo '<span style="float:left">Capital raised</span><span style="float:right">'.$row['Capital_raised'].'</span><br/><hr>';
+								echo '<span style="float:left">Close Date</span><span style="float:right">'.$row['Close_date'].'</span><br/><hr><hr>';
+							}
+						?>	
 					</div>
 					<div class="databox">
 						<button class="pencil" onclick="annualon()"><i class="fa fa-pencil"></i></button>
@@ -823,11 +859,11 @@
 									<br>
 									<select name="round">
                                     <option>Select Round</option>
-                                    <option>Founder</option>
-                                    <option>Friends and Family</option>
-                                    <option>Angel</option>
-                                    <option>Preseries A</option>
-                                    <option>Series A</option>
+                                    <option value="Founder">Founder</option>
+                                    <option value="Friends and Family">Friends and Family</option>
+                                    <option value="Angel">Angel</option>
+                                    <option value="Preseries A">Preseries A</option>
+                                    <option value="Series A">Series A</option>
 									</select>
 									<br><br>
 									<label>Seeking</label>
@@ -883,73 +919,73 @@
                     <div class="form">
                         <div class="formhead">
                             <button onclick="clroundoff()" class="close"><i class="fa fa-close"></i></button>
-                            <h3>Start Fundraising</h3>
-
-                            <p>Open a new round by filling out the following information.</p>
+                            <b>Close round</b>
                         </div>
                         <div class="formtext">
                             <form method="post" action="Finance.php">
                                 <div class="formtext">
-									<label>Round</label>
+									
+									<?php
+										
+										$q= "SELECT Round FROM current_round WHERE StpID = '$id';";
+										$results = mysqli_query($db, $q);
+										$row=mysqli_fetch_array($results);
+										// $row= mysqli_result($results);
+										// echo $row[0];
+										
+									?>
+									<p><label>Round: </label><?= $row[0]?></p>
+									<label>Capital Raised</label>
 									<br>
-									<select name="round">
-                                    <option>Select Round</option>
-                                    <option>Founder</option>
-                                    <option>Friends and Family</option>
-                                    <option>Angel</option>
-                                    <option>Preseries A</option>
-                                    <option>Series A</option>
-									</select>
+									<i class="fa fa-dollar"><input type="text" name="capraise" placeholder="Numbers Only" size="54"></i>
 									<br><br>
-									<label>Seeking</label>
+									<label>Closing Date</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="seeking" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-calendar">&nbsp;<input type="date" name="cal" size="54"></i>
 									<br><br>
-									<label>Security type</label>
-									<br>
-									<select name="security" id="sec" onchange="valfunc()">
-                                    <option value="a">Select Security Type</option>
-                                    <option value="Preferred Equity">Preferred Equity</option>
-                                    <option value="Common Equity">Common Equity</option>
-                                    <option value="Convertible Notes">Convertible Notes</option>
-									</select>
-									<br><br>
-									<span id="equity">
-										<hr>
-										<label>Pre-Money Valuation</label>
-										<br>
-										<i class="fa fa-dollar"><input type="text" name="preval" placeholder="Numbers Only" size="54"></i>
-										<br><br>
-									</span>
-									<span id="notes">
-										<hr>
-										<label>Valuation Cap</label>
-										<br>
-										<i class="fa fa-dollar"><input type="text" name="valcap" placeholder="Numbers Only" size="54"></i>
-										<br><br>
-										<label>Conversion Discount</label>
-										<br>
-										<i class="fa fa-percent"><input type="text" name="discount" placeholder="Numbers Only" size="53"></i>
-										<br><br>
-										<label>Interest Rate</label>
-										<br>
-										<i class="fa fa-percent"><input type="text" name="interest" placeholder="Numbers Only" size="53"></i>
-										<br><br>
-										<label>Term Length</label>
-										<br>
-										<input type="text" name="term" placeholder="Months" size="55">
-										<br><br>
-									</span>
 								</div>
-                                <div class="formtext submits">
+								<div class="formtext submits">
                                     <input type="submit" onclick="clroundoff()" value="Cancel" name="cancel" class="cancel">
                                     <input type="submit" value="Save" name="clroundsave" class="save">
-                                </div>
+                                </div>	
                             </form>
                         </div>
                     </div>
                 </div>
 
+				<div id="hist">
+                    <div class="form">
+                        <div class="formhead">
+                            <button onclick="clroundoff()" class="close"><i class="fa fa-close"></i></button>
+							<b>Financial Hitory</b>
+							<p>Provide information about previous funding rounds that your company has raised.</p>
+                        </div>
+                        <div class="formtext">
+                            <form method="post" action="Finance.php">
+                                <div class="formtext">
+									<?php
+										$q= "SELECT * FROM round_history WHERE StpID = '$id';";
+										$results = mysqli_query($db, $q);
+										while($row=mysqli_fetch_assoc($results)){
+											echo '<p><label>Round: </label>'.$row['Round'].'</p>
+												<label>Security Type: '.$row['Security_type'].'</label>
+												<br><br>
+												<label>Capital Raised: <i class="fa fa-dollar"></i>'.$row['Capital_raised'].'</label>
+												<br><br>
+												<label>Closing Date: '.$row['Close_date'].'</label>
+												<br><br>
+											<input type="text" name="hid" value="'.$row['HistID'].'" style="display:none;">';
+											echo '<div class="formtext submits">
+											<input type="submit" value="Remove Round" name="histdel" class="save">
+											</div><br><br>';
+										}
+									?>
+								</div>	
+                            </form>
+                        </div>
+                    </div>
+				</div>
+				
 				<div id="annualfin">
                     <div class="form">
                         <div class="formhead">
@@ -1270,6 +1306,13 @@ function annualon() {
 }
 function annualoff() {
     document.getElementById("annualfin").style.display = "none";
+}
+
+function historyon() {
+    document.getElementById("hist").style.display = "block";
+}
+function historyoff() {
+    document.getElementById("hist").style.display = "none";
 }
 
 </script>
