@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 14, 2019 at 06:36 AM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- Host: localhost
+-- Generation Time: Feb 14, 2019 at 07:09 AM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -309,7 +309,9 @@ CREATE TABLE `st_addetails` (
 --
 
 INSERT INTO `st_addetails` (`StpID`, `Stage`, `DOF`, `EmpNum`, `IncType`, `LinkedIn`, `Twitter`, `Facebook`, `Instagram`, `Youtube`) VALUES
-(1, 'Prototype ready', '2014-12-12', '12', 'LLP', 'spacex/linkedin', 'spacex/twitter', 'spacex/fb', NULL, NULL);
+(1, 'Prototype ready', '2014-12-12', '12', 'LLP', 'spacex/linkedin', 'spacex/twitter', 'spacex/fb', NULL, NULL),
+(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -357,7 +359,9 @@ CREATE TABLE `st_description` (
 --
 
 INSERT INTO `st_description` (`StpID`, `Summary`, `OLP`, `CustomerProblem`, `ProductService`, `TargetMarket`, `BusinessModel`, `MarketSizing`, `CustomerSegments`, `SaleMarketStrat`, `Competitors`, `CompAdvantage`) VALUES
-(1, 'Space X is an awesome project', 'Lets go to Mars', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(1, 'Space X is an awesome project', 'Lets go to Mars', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -386,7 +390,9 @@ CREATE TABLE `st_details` (
 --
 
 INSERT INTO `st_details` (`StpID`, `Stname`, `Ffname`, `Sfname`, `Email`, `Phone`, `Type`, `Address`, `City`, `State`, `Country`, `Website`, `Investment`) VALUES
-(1, 'Spacex', 'Elon Musk', 'Bill Gates', 'spacex@spx.com', '8169163192', 'Technology', 'Near Launch Pad', 'CC', 'Florida', 'United States', 'spacex.com', '100000000');
+(1, 'Spacex', 'Elon Musk', 'Bill Gates', 'spacex@spx.com', '8169163192', 'Technology', 'Near Launch Pad', 'CC', 'Florida', 'United States', 'spacex.com', '100000000'),
+(2, 'acasu', 'asvckuy', 'svcuyav', 'jvkd@sc.in', '8989898989', 'B2B', 'ascvuy', 'dyivgi', 'iycgi', 'Iceland', 'saci.in', '126381'),
+(3, 'igviuASBCI', 'ASCHBI', 'BAISBDI', 'bilsdub@in.in', '9090909090', 'Information Technology', 'ISBDI', 'BISUBL', 'KBB', 'Bahamas', 'IUB.in', '90000');
 
 -- --------------------------------------------------------
 
@@ -441,8 +447,8 @@ INSERT INTO `st_team` (`ID`, `StpID`, `FName`, `LName`, `Designation`, `Experien
 
 CREATE TABLE `st_uploads` (
   `StpID` int(20) NOT NULL,
-  `Logo` varchar(200) DEFAULT NULL,
-  `BackImg` varchar(200) DEFAULT NULL,
+  `Logo` varchar(200) DEFAULT '/NamanAngels/uploads/default/default.png',
+  `BackImg` varchar(200) DEFAULT '/NamanAngels/uploads/default/defaultbackimg.jpg',
   `PitchName` varchar(200) DEFAULT NULL,
   `PitchExt` varchar(10) DEFAULT NULL,
   `BPlan` varchar(200) DEFAULT NULL,
@@ -521,7 +527,9 @@ CREATE TABLE `userstp` (
 --
 
 INSERT INTO `userstp` (`StpID`, `Username`, `Password`) VALUES
-(1, 'abc123', '370194ff6e0f93a7432e16cc9badd9427e8b4e13');
+(1, 'abc123', '370194ff6e0f93a7432e16cc9badd9427e8b4e13'),
+(2, 'aaaa`', 'b480c074d6b75947c02681f31c90c668c46bf6b8'),
+(3, 'aaa', 'f7a9e24777ec23212c54d7a350bc5bea5477fdbb');
 
 -- --------------------------------------------------------
 
@@ -733,7 +741,7 @@ ALTER TABLE `userinv`
 -- AUTO_INCREMENT for table `userstp`
 --
 ALTER TABLE `userstp`
-  MODIFY `StpID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `StpID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
