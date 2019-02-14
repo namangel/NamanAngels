@@ -138,7 +138,7 @@
             $total_rows = $total_rows < 1? 1:$total_rows;
             $total_pages = ceil($total_rows/$no_of_records_per_page);
 
-            $sql = "SELECT * FROM Profile where Type Like '%{$sname}%' LIMIT $offset, $no_of_records_per_page";
+            $sql = "SELECT * FROM Profile where Verified = 1 AND Type Like '%{$sname}%' LIMIT $offset, $no_of_records_per_page";
             $res_data = mysqli_query($db,$sql);
             while($row = mysqli_fetch_array($res_data)){
 
