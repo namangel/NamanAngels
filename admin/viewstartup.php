@@ -276,6 +276,7 @@
 
 
             <?php
+            echo "<center>";
             echo '<div class="pages">';
             echo '<ul class="pagination">';
                 echo '<li><a href="?pageno=1">First</a></li>';
@@ -296,6 +297,7 @@
                 echo "<li><a href='?pageno=$total_pages'>Last</a></li>";
             echo '</ul>';
         echo '</div>';
+        echo "</center>"
         ?>
       </div>
     </body>

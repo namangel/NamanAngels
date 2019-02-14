@@ -176,43 +176,34 @@
       <?php
             $qu = "SELECT * FROM namanteam";
             $results = mysqli_query($db, $qu);
-            echo '
-                  <section class="admins">
-                    <div class="container-fluid">
-                    <div class="row">
-
-                     <h3>  &nbsp;&nbsp;&nbsp;Our Chief Advisory & Team</h3>
-
-
-            ';
-
+            echo '<section class="admins">';
+                echo '<div class="container-fluid">';
+                    echo '<div class="row">';
+                        echo '<h3>  &nbsp;&nbsp;&nbsp;Our Chief Advisory & Team</h3>';
             while($row = mysqli_fetch_assoc($results))
             {
-                    echo '
-                      <div class="col-md-6">
-                      <div class="box">
-                            <div class="admin">
-                              <div class="img">
-                              <img class="img-responsive" src="data:image/png;base64,'.base64_encode($row['image']).'"/>
-                              <center><a class="linkedin" ahref="#">'.$row['member_link'].'</a></center><br><br>
-                              </div>
-                              <div class="info"><br><br>
-                              <font class="name">'.$row['member_name'].'</font><br><br>
-                              <p class="designation">'.$row['description'].'</p></center>
-                              </div>
-                            </div>
-                            </div>
-                            </div>';
-            }
-            echo '
-            </div>
-            </div>
-            </section>
-            ';
+                        echo '<div class="col-md-6">';
+                            echo '<div class="box">';
+                                echo '<div class="admin">';
+                                    echo '<div class="img">';
+                                        echo '<img class="img-responsive" src="'.$row["image"].'"/>';
+                                        echo '<center><a class="linkedin" href='.$row["member_link"].'>My LinkedIn Account</a></center><br><br>';
+                                    echo '</div>';
+                                    echo '<div class="info"><br><br>';
+                                        echo '<font class="name">'.$row["member_name"].'</font><br><br>';
+                                        echo '<p class="designation">'.$row["description"].'</p></center>';
+                                    echo '</div>';
+                                echo '</div>';
+                            echo '</div>';
+                        echo '</div>';
+            };
+                    echo '</div>';
+                echo '</div>';
+            echo '</section>';
             ?>
 
 
-      </div>
+</div>
       <!-- <script src='http://code.jquery.com/jquery-latest.js'></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>

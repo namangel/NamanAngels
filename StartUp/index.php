@@ -5,9 +5,22 @@
     $results = mysqli_query($db, $qu);
     $row = mysqli_fetch_assoc($results);
     $Stname = $row['Stname'];
-    $verify = "RED";
 
-    $acctype = "Verify Yourself";
+    $qu = "SELECT * FROM userstp WHERE StpID = '$id'";
+    $results = mysqli_query($db, $qu);
+    $row = mysqli_fetch_assoc($results);
+
+    if($row['Verified'] == 0){
+        $verify = "RED";
+        $acctype = "Verify Yourself";
+    }
+    else{
+        $verify = "Green";
+        $acctype = "Verified Account";
+    }
+
+
+
  ?>
 <html>
 <head>
