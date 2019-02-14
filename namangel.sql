@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 14, 2019 at 09:09 AM
+-- Generation Time: Feb 14, 2019 at 10:18 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -203,50 +203,52 @@ CREATE TABLE `membership` (
 --
 
 CREATE TABLE `namanteam` (
-  `image` varchar(200) DEFAULT NULL,
-  `member_link` varchar(25) NOT NULL,
-  `member_name` varchar(30) NOT NULL,
-  `description` varchar(100) NOT NULL,
-  `sr_no` int(11) NOT NULL
+  `SR` int(11) NOT NULL,
+  `Name` varchar(30) NOT NULL,
+  `Link` varchar(25) NOT NULL,
+  `Description` varchar(100) NOT NULL,
+  `Image` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `namanteam`
 --
 
-INSERT INTO `namanteam` (`image`, `member_link`, `member_name`, `description`, `sr_no`) VALUES
-('\\NamanAngels\\include\\img\\team\\shweta-shalini.png', 'link1', 'Shweta Shalini', 'Official Spokesperson - Bhartiya Janta Party | Chief Evangelist - The Billennium Divas Thought Leade', 1),
-('\\NamanAngels\\include\\img\\team\\miten-mehta.png', 'link2', 'Miten Mehta', 'Co-Founder of Spinta Global Accelerato', 2),
-('\\NamanAngels\\include\\img\\team\\sandeep-sehgal.png', 'link3', 'Sandeep Sehgal', 'CEO and Co-Founder of Global ScaleUp | HQ in Singapore', 3),
-('\\NamanAngels\\include\\img\\team\\nilesh-gandhi.png', 'link4', 'Nilesh Gandhi', 'Managing Director at Unid Finance Consultancy Pvt. Ltd.', 4),
-('\\NamanAngels\\include\\img\\team\\tapaswi-patel.png', 'link5', 'Tapaswi Patel', 'Serial Entrepreneur Startup Investor Founder: Naman Angels India Foundation, ZoomStart India', 5),
-('\\NamanAngels\\include\\img\\team\\dinesh-israni.png', 'link6', 'Dinesh Israni', 'Co-Founder | CEO ', 6),
-('\\NamanAngels\\include\\img\\team\\bhavesh-kothari.png', 'link7', 'Bhavesh Kothari', 'Co-Founder | CBO ', 7),
-('\\NamanAngels\\include\\img\\team\\ankit-buti.png', 'link8', 'Ankit Buti', 'Entrepreneur in Residence with NAMAN Angels India Foundation | Founder & CEO at StartupEd', 8),
-('\\NamanAngels\\include\\img\\team\\pratik-lalani.png', 'link', 'Pratik Lalani', 'Principal Evangelist', 9),
-('\\NamanAngels\\include\\img\\team\\purvang-joshi.png', 'link', 'Purvang Joshi', 'Principal Evangelist', 10),
-('\\NamanAngels\\include\\img\\team\\deep-patel.png', 'link11', 'Deep Patel', 'Principal Evangelist', 11),
-('\\NamanAngels\\include\\img\\team\\sonali-shah.png', 'link12', 'Sonali Shah', 'Design & Marketing Support', 12),
-('\\NamanAngels\\include\\img\\team\\bharti-keswani.png', 'link', 'Bharti Keswani', 'Financial Analyst', 13),
-('\\NamanAngels\\include\\img\\team\\harsha-therani.png', 'link13', 'Harsha Therani', 'Financial Analyst', 14),
-('\\NamanAngels\\include\\img\\team\\sunny-tiwari.png', 'link', 'Sunny Tiwari', 'Financial Analyst', 15),
-('\\NamanAngels\\include\\img\\team\\yash-thakkar.png', 'link', 'Yash Thakkar', 'Investment Fund Manager', 16),
-('\\NamanAngels\\include\\img\\team\\nikita-tilak.png', 'link', 'Nikita Tilak', 'Investment Fund Manager', 17),
-('\\NamanAngels\\include\\img\\team\\vidisha.png', 'link', 'Vidisha Dholkhedia', 'Digital Marketing', 18);
+INSERT INTO `namanteam` (`SR`, `Name`, `Link`, `Description`, `Image`) VALUES
+(1, 'Shweta Shalini', 'link1', 'Official Spokesperson - Bhartiya Janta Party | Chief Evangelist - The Billennium Divas Thought Leade', '\\NamanAngels\\include\\img\\team\\shweta-shalini.png'),
+(2, 'Miten Mehta', 'link2', 'Co-Founder of Spinta Global Accelerato', '\\NamanAngels\\include\\img\\team\\miten-mehta.png'),
+(3, 'Sandeep Sehgal', 'link3', 'CEO and Co-Founder of Global ScaleUp | HQ in Singapore', '\\NamanAngels\\include\\img\\team\\sandeep-sehgal.png'),
+(4, 'Nilesh Gandhi', 'link4', 'Managing Director at Unid Finance Consultancy Pvt. Ltd.', '\\NamanAngels\\include\\img\\team\\nilesh-gandhi.png'),
+(5, 'Tapaswi Patel', 'link5', 'Serial Entrepreneur Startup Investor Founder: Naman Angels India Foundation, ZoomStart India', '\\NamanAngels\\include\\img\\team\\tapaswi-patel.png'),
+(6, 'Dinesh Israni', 'link6', 'Co-Founder | CEO ', '\\NamanAngels\\include\\img\\team\\dinesh-israni.png'),
+(7, 'Bhavesh Kothari', 'link7', 'Co-Founder | CBO ', '\\NamanAngels\\include\\img\\team\\bhavesh-kothari.png'),
+(8, 'Ankit Buti', 'link8', 'Entrepreneur in Residence with NAMAN Angels India Foundation | Founder & CEO at StartupEd', '\\NamanAngels\\include\\img\\team\\ankit-buti.png'),
+(9, 'Pratik Lalani', 'link', 'Principal Evangelist', '\\NamanAngels\\include\\img\\team\\pratik-lalani.png'),
+(10, 'Purvang Joshi', 'link', 'Principal Evangelist', '\\NamanAngels\\include\\img\\team\\purvang-joshi.png'),
+(11, 'Deep Patel', 'link11', 'Principal Evangelist', '\\NamanAngels\\include\\img\\team\\deep-patel.png'),
+(12, 'Sonali Shah', 'link12', 'Design & Marketing Support', '\\NamanAngels\\include\\img\\team\\sonali-shah.png'),
+(13, 'Bharti Keswani', 'link', 'Financial Analyst', '\\NamanAngels\\include\\img\\team\\bharti-keswani.png'),
+(14, 'Harsha Therani', 'link13', 'Financial Analyst', '\\NamanAngels\\include\\img\\team\\harsha-therani.png'),
+(15, 'Sunny Tiwari', 'link', 'Financial Analyst', '\\NamanAngels\\include\\img\\team\\sunny-tiwari.png'),
+(16, 'Yash Thakkar', 'link', 'Investment Fund Manager', '\\NamanAngels\\include\\img\\team\\yash-thakkar.png'),
+(17, 'Nikita Tilak', 'link', 'Investment Fund Manager', '\\NamanAngels\\include\\img\\team\\nikita-tilak.png'),
+(18, 'Vidisha Dholkhedia', 'link', 'Digital Marketing', '\\NamanAngels\\include\\img\\team\\vidisha.png'),
+(19, 'Aayush', 'linkedin.in/aayush', 'Chairman', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `profile`
+-- Stand-in structure for view `Profile`
 -- (See below for the actual view)
 --
-CREATE TABLE `profile` (
+CREATE TABLE `Profile` (
 `StpID` int(20)
-,`StpImg` varchar(200)
 ,`StpName` varchar(200)
+,`StpImg` varchar(200)
 ,`FName` varchar(200)
 ,`SName` varchar(200)
 ,`Type` varchar(200)
+,`Verified` int(1)
 );
 
 -- --------------------------------------------------------
@@ -532,11 +534,11 @@ INSERT INTO `userstp` (`StpID`, `Username`, `Password`, `Verified`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure for view `profile`
+-- Structure for view `Profile`
 --
-DROP TABLE IF EXISTS `profile`;
+DROP TABLE IF EXISTS `Profile`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `profile`  AS  select `a`.`StpID` AS `StpID`,`a`.`Logo` AS `StpImg`,`b`.`Stname` AS `StpName`,`b`.`Ffname` AS `FName`,`b`.`Sfname` AS `SName`,`b`.`Type` AS `Type` from (`st_uploads` `a` join `st_details` `b`) where (`a`.`StpID` = `b`.`StpID`) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `profile`  AS  select `a`.`StpID` AS `StpID`,`b`.`Stname` AS `StpName`,`a`.`Logo` AS `StpImg`,`b`.`Ffname` AS `FName`,`b`.`Sfname` AS `SName`,`b`.`Type` AS `Type`,`c`.`Verified` AS `Verified` from ((`st_uploads` `a` join `st_details` `b`) join `userstp` `c`) where ((`a`.`StpID` = `c`.`StpID`) and (`b`.`StpID` = `c`.`StpID`)) ;
 
 --
 -- Indexes for dumped tables
@@ -601,7 +603,7 @@ ALTER TABLE `membership`
 -- Indexes for table `namanteam`
 --
 ALTER TABLE `namanteam`
-  ADD PRIMARY KEY (`sr_no`);
+  ADD PRIMARY KEY (`SR`);
 
 --
 -- Indexes for table `requests`
@@ -703,7 +705,7 @@ ALTER TABLE `inv_group`
 -- AUTO_INCREMENT for table `namanteam`
 --
 ALTER TABLE `namanteam`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `SR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `requests`

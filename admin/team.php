@@ -186,12 +186,12 @@
                             echo '<div class="box">';
                                 echo '<div class="admin">';
                                     echo '<div class="img">';
-                                        echo '<img class="img-responsive" src="'.$row["image"].'"/>';
-                                        echo '<center><a class="linkedin" href='.$row["member_link"].'>My LinkedIn Account</a></center><br><br>';
+                                        echo '<img class="img-responsive" src="'.$row["Image"].'"/>';
+                                        echo '<center><a class="linkedin" href='.$row["Link"].'>My LinkedIn Account</a></center><br><br>';
                                     echo '</div>';
                                     echo '<div class="info"><br><br>';
-                                        echo '<font class="name">'.$row["member_name"].'</font><br><br>';
-                                        echo '<p class="designation">'.$row["description"].'</p></center>';
+                                        echo '<font class="name">'.$row["Name"].'</font><br><br>';
+                                        echo '<p class="designation">'.$row["Description"].'</p></center>';
                                     echo '</div>';
                                 echo '</div>';
                             echo '</div>';

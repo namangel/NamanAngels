@@ -6,7 +6,7 @@
     $MemDesc = mysqli_real_escape_string($db, $_POST['mem_desc']);
     $MemLink = mysqli_real_escape_string($db, $_POST['mem_link']);
 
-    $member_check_query = "SELECT * FROM namanteam WHERE member_name='$MemName' AND description='$MemDesc';";
+    $member_check_query = "SELECT * FROM namanteam WHERE Name='$MemName' AND Description='$MemDesc';";
     $result = mysqli_query($db, $member_check_query);
     $user = mysqli_fetch_assoc($result);
 
@@ -15,11 +15,11 @@
         header('location:manage_team.php');
     }
     else{
-    $q = "INSERT INTO namanteam (image, member_link, member_name, description) VALUES (null ,'$MemLink','$MemName','$MemDesc')";
+    $q = "INSERT INTO namanteam (Image, Link, Name, Description) VALUES (null ,'$MemLink','$MemName','$MemDesc')";
     mysqli_query($db, $q);
     echo "<script>alert('Member added successfully!')</script>";
     header('location:manage_team.php');
-    
+
     // $check = getimagesize($_FILES["mem_img"]["tmp_name"]);
 		// if($check != false)
 		// {
@@ -58,12 +58,12 @@
     $MemName = mysqli_real_escape_string($db, $_POST['mem_name']);
     $MemDesc = mysqli_real_escape_string($db, $_POST['mem_desc']);
 
-    $member_check_query = "SELECT * FROM namanteam WHERE member_name='$MemName' AND description='$MemDesc';";
+    $member_check_query = "SELECT * FROM namanteam WHERE Name='$MemName' AND Description='$MemDesc';";
     $result = mysqli_query($db, $member_check_query);
     $user = mysqli_fetch_assoc($result);
 
     if (mysqli_num_rows($result) > 0) {
-      $q = "DELETE FROM namanteam WHERE member_name='$MemName' AND description='$MemDesc';";
+      $q = "DELETE FROM namanteam WHERE Name='$MemName' AND Description='$MemDesc';";
       mysqli_query($db, $q);
       echo "<script>alert('Member deleted successfully!')</script>";
       header('location:manage_team.php');
@@ -133,7 +133,7 @@
       .welcome p {
         color: #999;
       }
-    
+
       .outer{
         width: 50%;
         float: left;
@@ -147,7 +147,7 @@
         padding: 20px;
         width: 60%;
         }
-     
+
         input[type=text]{
             width: 100%;
             padding: 5px;
@@ -170,7 +170,7 @@
         color: white;
         cursor: pointer;
         margin: 50px 0px;
-        padding: 20px; 
+        padding: 20px;
         font-size: 18px;
       }
       .cross{
@@ -215,7 +215,7 @@
                         <input type="text" name="mem_desc"><br><br>
                         <label>Member's LinkedIn:</label><br>
                         <input type="text" name="mem_link"><br><br>
-                        <label>Member mem_img Image:</label><br>
+                        <label>Member Image:</label><br>
                         <input type="file" name="mem_img"><br><br>
                         <input type="submit" name="addmem" value="addmem">
                     </form>
@@ -252,7 +252,7 @@
             // if(document.getElementById("f1").style.display === 'none')
             // {
             //     document.getElementById("f1").removeAttribute("style","display:none;");
-            //     document.getElementById("f1").setAttribute("style","visibility:hidden;");   
+            //     document.getElementById("f1").setAttribute("style","visibility:hidden;");
             // }
             document.getElementById("f2").style.visibility = "visible";
         }

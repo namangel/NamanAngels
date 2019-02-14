@@ -328,6 +328,7 @@
           </ul>
         </li>
         <li><i class="fa fa-handshake-o fa-fw"></i><a href="transaction.php"> Deals </a></li>
+        <li><i class="fa fa-check-circle"></i><a href="verify.php"> Verify StartUps</a></li>
         <!-- <li><i class="fa fa-envelope-open-o fa-fw"></i><a href="#"> Inbox <span class="num dang">56</span></a></li> -->
         <!-- <li><i class="fa fa-wrench fa-fw"></i><a href="#"> Settings </span></a>
         </li> -->
