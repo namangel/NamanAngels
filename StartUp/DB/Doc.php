@@ -42,6 +42,8 @@
 	$BPlanExt = $row['BPlanExt'];
 	$FProjection = $row['FProjection'];
 	$FProjectionExt = $row['FProjectionExt'];
+	$AdDocs = $row['AdDocs'];
+	$AdDocsExt = $row['AdDocsExt'];
 
 
 	if(isset($_POST["cbsave"])){
@@ -109,13 +111,14 @@
 			mysqli_query($db, $q);
 		}
 
+
 		$check = getimagesize($_FILES["cblogo"]["tmp_name"]);
 	    if($check != false){
-			$file_name = $_FILES['cblogo']['name'];
+			$file_name = $Stname.'_'.$_FILES['cblogo']['name'];
 			$file_size = $_FILES['cblogo']['size'];
 			$file_tmp = $_FILES['cblogo']['tmp_name'];
 			$file_type = $_FILES['cblogo']['type'];
-			$file_ext=strtolower(end(explode('.',$_FILES['cblogo']['name'])));
+			$file_ext = strtolower(end(explode('.',$_FILES['cblogo']['name'])));
 
 			$extensions= array("jpeg","jpg","png");
 
@@ -127,14 +130,16 @@
 					echo "<script>alert('File size must be less than 5 MB')</script>";
 				}
 				else{
-					$upload = "/NamanAngels/Uploads/".$file_name;
-					move_uploaded_file($file_tmp,$upload);
-					$q = "UPDATE st_uploads set Logo='$upload' where StpID='$id';";
-					mysqli_query($db, $q);
-					echo "<script>alert('Successfully Uploaded')</script>";
+					$upload = "../../uploads/startup/".$file_name;
+					if(move_uploaded_file($file_tmp,$upload)){
+						$q = "UPDATE st_uploads set Logo='$upload' where StpID='$id';";
+						mysqli_query($db, $q);
+						echo "<script>alert('Successfully Uploaded')</script>";
+					}
 				}
 			}
 		}
+
 
 		header('location: Doc.php');
 	}
@@ -181,7 +186,7 @@
 
 	if(isset($_POST['BIsave'])){
 
-		$file_name = $_FILES['backimg']['name'];
+		$file_name = $Stname."_backimg_".$_FILES['backimg']['name'];
 		$file_size = $_FILES['backimg']['size'];
 		$file_tmp = $_FILES['backimg']['tmp_name'];
 		$file_type = $_FILES['backimg']['type'];
@@ -197,7 +202,7 @@
 				echo "<script>alert('File size must be less than 5 MB')</script>";
 			}
 			else{
-				$upload = "/NamanAngels/Uploads/".$file_name;
+				$upload = "../../uploads/startup/".$file_name;
 				move_uploaded_file($file_tmp,$upload);
 				$q = "UPDATE st_uploads set BackImg='$upload' where StpID='$id';";
 				mysqli_query($db, $q);
@@ -210,7 +215,7 @@
 
 
 	if(isset($_POST['subbusinessplan'])){
-		$name= $_FILES['businessplan']['name'];
+		$name= $Stname."_bplan_".$_FILES['businessplan']['name'];
 		$tmp_name= $_FILES['businessplan']['tmp_name'];
 		$submitbutton= $_POST['subbusinessplan'];
 		$position= strpos($name, ".");
@@ -218,7 +223,7 @@
 		$fileextension= strtolower($fileextension);
 		$success= -1;
 		if (isset($name)){
-			$path= '../../Uploads/';
+			$path= '../../uploads/startup/'.$name;
 			if (!empty($name)){
 				if ($fileextension !== "pdf"){
 					$success=0;
@@ -226,9 +231,9 @@
 				}
 				else if ($fileextension == "pdf"){
 					$success=1;
-					if (copy($tmp_name, $path.basename($_FILES['businessplan']['name']))) {
+					if (copy($tmp_name, $path)) {
 						echo '<script> alert("Uploaded!")</script>';
-						$q = "UPDATE st_uploads SET BPlan='$name', BPlanExt='$fileextension' where StpID='$id';";
+						$q = "UPDATE st_uploads SET BPlan='$path', BPlanExt='$fileextension' where StpID='$id';";
 						mysqli_query($db, $q);
 					}
 				}
@@ -238,7 +243,7 @@
 	}
 
 	if(isset($_POST['subfinancialprojection'])){
-		$name= $_FILES['financialprojection']['name'];
+		$name= $Stname."_fproj_".$_FILES['financialprojection']['name'];
 		$tmp_name= $_FILES['financialprojection']['tmp_name'];
 		$submitbutton= $_POST['subfinancialprojection'];
 		$position= strpos($name, ".");
@@ -246,7 +251,7 @@
 		$fileextension= strtolower($fileextension);
 		$success= -1;
 		if (isset($name)){
-			$path= '../../Uploads/';
+			$path= '../../uploads/startup/'.$name;
 			if (!empty($name)){
 				if ($fileextension !== "pdf"){
 					$success=0;
@@ -254,9 +259,37 @@
 				}
 				else if ($fileextension == "pdf"){
 					$success=1;
-					if (copy($tmp_name, $path.basename($_FILES['financialprojection']['name']))) {
+					if (copy($tmp_name, $path)) {
 						echo '<script> alert("Uploaded!")</script>';
-						$q = "UPDATE st_uploads SET FProjection='$name', FProjectionExt='$fileextension' where StpID='$id';";
+						$q = "UPDATE st_uploads SET FProjection='$path', FProjectionExt='$fileextension' where StpID='$id';";
+						mysqli_query($db, $q);
+					}
+				}
+			}
+		}
+		header('location:Doc.php');
+	}
+
+	if(isset($_POST['sub_add_docs'])){
+		$name= $Stname."_add_doc_".$_FILES['add_doc']['name'];
+		$tmp_name= $_FILES['add_doc']['tmp_name'];
+		$submitbutton= $_POST['sub_add_docs'];
+		$position= strpos($name, ".");
+		$fileextension= substr($name, $position + 1);
+		$fileextension= strtolower($fileextension);
+		$success= -1;
+		if (isset($name)){
+			$path= '../../uploads/startup/'.$name;
+			if (!empty($name)){
+				if ($fileextension !== "pdf"){
+					$success=0;
+					echo '<script>alert("The file extension must be .pdf in order to be uploaded")</script>';
+				}
+				else if ($fileextension == "pdf"){
+					$success=1;
+					if (copy($tmp_name, $path)) {
+						echo '<script> alert("Uploaded!")</script>';
+						$q = "UPDATE st_uploads SET AdDocs='$path', AdDocsExt='$fileextension' where StpID='$id';";
 						mysqli_query($db, $q);
 					}
 				}
@@ -275,99 +308,99 @@
 
     </head>
     <body>
-			<?php require '../include/header/stp_db.php'; ?>
-			<?php require '../include/nav/nav.php'; ?>
+		<?php require '../include/header/stp_db.php'; ?>
+		<?php require '../include/nav/nav.php'; ?>
         <div class="container">
             <div class="main">
-			<div class="backimg">
-				<div><button class="back-button" onclick="backimgon()" ><i class="fa fa-camera"></i>&nbsp;Upload Background</button></div>
-				<?php
-						if($Backimg != ""){
-							echo "<img src=".$Backimg." />";
-						}
-						else{
-							echo '<div class="back">';
-							echo 'Upload a background image!!';
-							echo '</div>';
-						}
-				?>
-			</div>
-                <div class="sideprof">
+				<div class="backimg">
+					<div><button class="back-button" onclick="backimgon()" ><i class="fa fa-camera"></i>&nbsp;Upload Background</button></div>
+					<?php
+							if($Backimg != ""){
+								echo "<img src=".$Backimg." />";
+							}
+							else{
+								echo '<div class="back">';
+								echo 'Upload a background image!!';
+								echo '</div>';
+							}
+					?>
+				</div>
+	            <div class="sideprof">
 					<div class="pen">
 						<button class="pencil" onclick="on()"><i class="fa fa-pencil"></i></button>
 						<br>
 					</div>
-                    <div class="upload">
+	                <div class="upload">
 						<div><?= "<img src=".$Logo." />";?></div>
-                    </div>
-                    <ul class="proflist">
-                        <li class="item">Name <span class="value"><?= $Stname?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                        <li class="item">Stage <span class="value"><?= $Stage?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                        <li class="item">Industry <span class="value"><?= $Type?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
+	                </div>
+	                <ul class="proflist">
+	                    <li class="item">Name <span class="value"><?= $Stname?></span></li>
+	                    <li style="list-style: none; display: inline">
+	                        <hr>
+	                    </li>
+	                    <li class="item">Stage <span class="value"><?= $Stage?></span></li>
+	                    <li style="list-style: none; display: inline">
+	                        <hr>
+	                    </li>
+	                    <li class="item">Industry <span class="value"><?= $Type?></span></li>
+	                    <li style="list-style: none; display: inline">
+	                        <hr>
+	                    </li>
 						<li class="item">Location <span class="value"><?= $Address?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                        <li class="item">City <span class="value"><?= $City?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
+	                    <li style="list-style: none; display: inline">
+	                        <hr>
+	                    </li>
+	                    <li class="item">City <span class="value"><?= $City?></span></li>
+	                    <li style="list-style: none; display: inline">
+	                        <hr>
+	                    </li>
 						<li class="item">State <span class="value"><?= $State?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
+	                    <li style="list-style: none; display: inline">
+	                        <hr>
+	                    </li>
 						<li class="item">Country <span class="value"><?= $Country?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                        <li class="item">Founded <span class="value"><?= $DOF?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                        <li class="item">Employees <span class="value"><?= $EmpNum?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                        <li class="item">Incorporation Type <span class="value"><?= $IncType?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                        <li class="item">Website <span class="value"><?= $Website?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
+	                    <li style="list-style: none; display: inline">
+	                        <hr>
+	                    </li>
+	                    <li class="item">Founded <span class="value"><?= $DOF?></span></li>
+	                    <li style="list-style: none; display: inline">
+	                        <hr>
+	                    </li>
+	                    <li class="item">Employees <span class="value"><?= $EmpNum?></span></li>
+	                    <li style="list-style: none; display: inline">
+	                        <hr>
+	                    </li>
+	                    <li class="item">Incorporation Type <span class="value"><?= $IncType?></span></li>
+	                    <li style="list-style: none; display: inline">
+	                        <hr>
+	                    </li>
+	                    <li class="item">Website <span class="value"><?= $Website?></span></li>
+	                    <li style="list-style: none; display: inline">
+	                        <hr>
+	                    </li>
 						<li><button class="b1" name="requestbtn" onclick="">Download One Pager</button></li>
-                    </ul>
-                </div>
+	                </ul>
+	            </div>
 
-                <div class="contact sideprof">
-                    <button class="pencil" onclick="contacton()"><i class="fa fa-pencil"></i></button>
-                    <h3>Contact</h3>
+	            <div class="contact sideprof">
+	                <button class="pencil" onclick="contacton()"><i class="fa fa-pencil"></i></button>
+	                <h3>Contact</h3>
 					<ul class="proflist">
 						<li class="item">Phone :  <span class="value"><?= $Phone?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                        <li class="item">Email ID : <span class="value"><?= $Email?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                    </ul>
+	                    <li style="list-style: none; display: inline">
+	                        <hr>
+	                    </li>
+	                    <li class="item">Email ID : <span class="value"><?= $Email?></span></li>
+	                    <li style="list-style: none; display: inline">
+	                        <hr>
+	                    </li>
+	                </ul>
 
-                </div>
+	            </div>
 
 				<div class="social sideprof">
-                    <button class="pencil" onclick="socialon()"><i class="fa fa-pencil"></i></button>
-                    <h3>Social presence</h3>
+	                <button class="pencil" onclick="socialon()"><i class="fa fa-pencil"></i></button>
+	                <h3>Social presence</h3>
 					<ul class="proflist">
 						<li class="item">LinkedIn <span class="value"><?= $LinkedInLink?></span></li>
 	                    <li style="list-style: none; display: inline">
@@ -381,8 +414,8 @@
 	                    <li style="list-style: none; display: inline">
 	                        <hr>
 	                    </li>
-                    </ul>
-                </div>
+	                </ul>
+	            </div>
 
 				<div id="overlay">
 					<div class="compbasics">
@@ -712,131 +745,148 @@
 					</div>
 				</div>
 				<div class="nav">
-                    <div><a href="index.php">Overview</a></div>
-                    <div><a href="Exec.php">Executive summary</a></div>
-                    <div><a href="Finance.php">Financials</a></div>
+	                <div><a href="index.php">Overview</a></div>
+	                <div><a href="Exec.php">Executive summary</a></div>
+	                <div><a href="Finance.php">Financials</a></div>
 					<div><a href="Doc.php" style="color:black;">Documents</a></div>
 					<div><a href="Consult.php" target="_blank">Consultancy</a></div>
-                </div>
-                <div id="socialformov">
-                    <div class="form">
-                        <div class="formhead">
-                            <button class="close" onclick="socialoff()"><i class="fa fa-close"></i></button>
-                            <h3>Social Presence</h3>
-                            <p>Add your company's social media links.</p>
-                        </div>
-                        <div class="formtext">
-                            <form method="post">
-                                <div class="socialic">
-                                    <i class="fa fa-linkedin"></i><input size="30" type="text" name="sflinkedin" placeholder="<?= $LinkedInLink?>">
-                                </div>
-                                <div class="socialic">
-                                    <i class="fa fa-twitter"></i><input size="30" type="text" name="sftwitter" placeholder="<?= $TwitterLink?>">
-                                </div>
-                                <div class="socialic">
-                                    <i class="fa fa-facebook"></i><input size="30" type="text" name="sffacebook" placeholder="<?= $FBLink?>">
-                                </div><br>
-                                <div class="formtext submits">
-                                    <input class="cancel" name="cancel" type="submit" value="Cancel"> <input class="save" name="sfsave" type="submit" value="Save">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-            	</div>
-                <div id="contactform">
-                    <form class="form" method="post">
-                        <div class="formhead">
-                            <button class="close" onclick="contactoff()"><i class="fa fa-close"></i></button>
-                            <h3>Contact Information</h3>
-                            <p>Provide contact information for your company.</p>
-                        </div>
-                        <div class="formtext">
-                            <label for="cfphone">Phone Number</label><br>
-                            <input name="cfphone" size="40" type="text" placeholder="<?= $Phone?>"><br>
-                            <label for="cfemail">Email</label><br>
-                            <input name="cfemail" size="40" type="email" placeholder="<?= $Email?>"><br>
-                            <br>
-                            <div class="formtext submits">
-                                <input class="cancel" name="cancel" type="submit" value="Cancel"> <input class="save" name="cfsave" type="submit" value="Save">
-                            </div>
-                        </div>
-                    </form>
-                </div>
+	            </div>
+	            <div id="socialformov">
+	                <div class="form">
+	                    <div class="formhead">
+	                        <button class="close" onclick="socialoff()"><i class="fa fa-close"></i></button>
+	                        <h3>Social Presence</h3>
+	                        <p>Add your company's social media links.</p>
+	                    </div>
+	                    <div class="formtext">
+	                        <form method="post">
+	                            <div class="socialic">
+	                                <i class="fa fa-linkedin"></i><input size="30" type="text" name="sflinkedin" placeholder="<?= $LinkedInLink?>">
+	                            </div>
+	                            <div class="socialic">
+	                                <i class="fa fa-twitter"></i><input size="30" type="text" name="sftwitter" placeholder="<?= $TwitterLink?>">
+	                            </div>
+	                            <div class="socialic">
+	                                <i class="fa fa-facebook"></i><input size="30" type="text" name="sffacebook" placeholder="<?= $FBLink?>">
+	                            </div><br>
+	                            <div class="formtext submits">
+	                                <input class="cancel" name="cancel" type="submit" value="Cancel"> <input class="save" name="sfsave" type="submit" value="Save">
+	                            </div>
+	                        </form>
+	                    </div>
+	                </div>
+	        	</div>
+	            <div id="contactform">
+	                <form class="form" method="post">
+	                    <div class="formhead">
+	                        <button class="close" onclick="contactoff()"><i class="fa fa-close"></i></button>
+	                        <h3>Contact Information</h3>
+	                        <p>Provide contact information for your company.</p>
+	                    </div>
+	                    <div class="formtext">
+	                        <label for="cfphone">Phone Number</label><br>
+	                        <input name="cfphone" size="40" type="text" placeholder="<?= $Phone?>"><br>
+	                        <label for="cfemail">Email</label><br>
+	                        <input name="cfemail" size="40" type="email" placeholder="<?= $Email?>"><br>
+	                        <br>
+	                        <div class="formtext submits">
+	                            <input class="cancel" name="cancel" type="submit" value="Cancel"> <input class="save" name="cfsave" type="submit" value="Save">
+	                        </div>
+	                    </div>
+	                </form>
+	            </div>
 				<div id="backimg">
-                    <div class="form">
-                        <div class="formhead">
-                            <button onclick="backimgoff()" class="close"><i class="fa fa-close"></i></button>
-                            <h3>Background Image</h3>
-                        </div>
-                        <div class="formtext">
-                            <form method="post" action='Doc.php' enctype="multipart/form-data">
-                                <div class="formtext"><input type="file" name="backimg"><br><br>Choose file of type .jpeg, .png, .jpg and size less than 5MB!</div>
-                                <div class="formtext submits">
-                                    <input type="submit" onclick="backimgoff()" value="Cancel" name="cancel" class="cancel">
-                                    <input type="submit" value="Save" name="BIsave" class="save">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+	                    <div class="form">
+	                        <div class="formhead">
+	                            <button onclick="backimgoff()" class="close"><i class="fa fa-close"></i></button>
+	                            <h3>Background Image</h3>
+	                        </div>
+	                        <div class="formtext">
+	                            <form method="post" action='Doc.php' enctype="multipart/form-data">
+	                                <div class="formtext"><input type="file" name="backimg"><br><br>Choose file of type .jpeg, .png, .jpg and size less than 5MB!</div>
+	                                <div class="formtext submits">
+	                                    <input type="submit" onclick="backimgoff()" value="Cancel" name="cancel" class="cancel">
+	                                    <input type="submit" value="Save" name="BIsave" class="save">
+	                                </div>
+	                            </form>
+	                        </div>
+	                    </div>
+	                </div>
 				<div class="summary">
-						<div class="databox">
-							<?php
-								if($BPlan == ""){
-			                        echo '<h3>Business Plan</h3>';
-			                        echo '<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
-									echo '<p>What is your long term business plan? Preferred file types: .pdf, .doc, .xls</p>';
-									echo '<form action="Doc.php" method="post" enctype="multipart/form-data">';
-										echo '<input type="file" name="businessplan" value="Select File">';
-										echo '<input type="submit" name="subbusinessplan" value="Submit">';
-									echo '</form>';
-								}
-								else{
-									$BPlanShow= "../../Uploads/$BPlan";
-									echo '<h3>Business Plan</h3>';
-								    echo '<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
-								    echo '<p>What is your long term business plan? (Upload .pdf file)</p>';
-									echo '<form action="Doc.php" method="post" enctype="multipart/form-data">';
-										echo '<input type="file" name="businessplan" value="Select File">';
-										echo '<input type="submit" name="subbusinessplan" value="Submit">';
-									echo '</form>';
-									echo '<iframe src="'.$BPlanShow.'" height=500px width=100%></iframe>';
-								}
-							?>
-						</div>
-						<div class="databox">
-							<?php
-								if($FProjection == ""){
-			                        echo '<h3>Financial Projections</h3>';
-			                        echo '<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
-									echo '<p>Provide an overview of where your financials are headed within the next 5 years.<br> Preferred file types: .pdf, .doc, .xls</p>';
-									echo '<form action="Doc.php" method="post" enctype="multipart/form-data">';
-										echo '<input type="file" name="financialprojection" value="Select File">';
-										echo '<input type="submit" name="subfinancialprojection" value="Submit">';
-									echo '</form>';
-								}
-								else{
-									$FProjectionShow= "../../Uploads/$FProjection";
-									echo '<h3>Financial Projections</h3>';
-								    echo '<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
-								    echo '<p>Provide an overview of where your financials are headed within the next 5 years.<br> Preferred file types: .pdf, .doc, .xls</p>';
-									echo '<form action="Doc.php" method="post" enctype="multipart/form-data">';
-										echo '<input type="file" name="financialprojection" value="Select File">';
-										echo '<input type="submit" name="subfinancialprojection" value="Submit">';
-									echo '</form>';
-									echo '<iframe src="'.$FProjectionShow.'" height=500px width=100%></iframe>';
-								}
-							?>
-	        			</div>
-						<div class="databox">
-							<button class="adddoc">Add Document</button>
-	                        <h3>Additional Documents</h3>
-							<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>
-	                        <p>Upload any documents to support your company.</p>
-						</div> 
+					<div class="databox">
+						<?php
+							if($BPlan == ""){
+		                        echo '<h3>Business Plan</h3>';
+		                        echo '<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
+								echo '<p>What is your long term business plan? Preferred file types: .pdf, .doc, .xls</p>';
+								echo '<form action="Doc.php" method="post" enctype="multipart/form-data">';
+									echo '<input type="file" name="businessplan" value="Select File">';
+									echo '<input type="submit" name="subbusinessplan" value="Submit">';
+								echo '</form>';
+							}
+							else{
+								echo '<h3>Business Plan</h3>';
+							    echo '<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
+							    echo '<p>What is your long term business plan? (Upload .pdf file)</p>';
+								echo '<form action="Doc.php" method="post" enctype="multipart/form-data">';
+									echo '<input type="file" name="businessplan" value="Select File">';
+									echo '<input type="submit" name="subbusinessplan" value="Submit">';
+								echo '</form>';
+								echo '<iframe src="'.$BPlan.'" height=500px width=100%></iframe>';
+							}
+						?>
+					</div>
+					<div class="databox">
+						<?php
+							if($FProjection == ""){
+		                        echo '<h3>Financial Projections</h3>';
+		                        echo '<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
+								echo '<p>Provide an overview of where your financials are headed within the next 5 years.<br> Preferred file types: .pdf, .doc, .xls</p>';
+								echo '<form action="Doc.php" method="post" enctype="multipart/form-data">';
+									echo '<input type="file" name="financialprojection" value="Select File">';
+									echo '<input type="submit" name="subfinancialprojection" value="Submit">';
+								echo '</form>';
+							}
+							else{
+								echo '<h3>Financial Projections</h3>';
+							    echo '<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
+							    echo '<p>Provide an overview of where your financials are headed within the next 5 years.<br> Preferred file types: .pdf, .doc, .xls</p>';
+								echo '<form action="Doc.php" method="post" enctype="multipart/form-data">';
+									echo '<input type="file" name="financialprojection" value="Select File">';
+									echo '<input type="submit" name="subfinancialprojection" value="Submit">';
+								echo '</form>';
+								echo '<iframe src="'.$FProjection.'" height=500px width=100%></iframe>';
+							}
+						?>
+	    			</div>
+					<div class="databox">
+
+
+						<?php
+							if($AdDocs == ""){
+		                        echo '<h3>Additional Documents</h3>';
+		                        echo '<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
+								echo '<p>Upload any documents to support your company. (Upload all document as a single PDF File )</p>';
+								echo '<form action="Doc.php" method="post" enctype="multipart/form-data">';
+									echo '<input type="file" name="add_doc" value="Select File">';
+									echo '<input type="submit" name="sub_add_docs" value="Submit">';
+								echo '</form>';
+							}
+							else{
+								echo '<h3>Additional Documents</h3>';
+							    echo '<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
+							    echo '<p>Upload any documents to support your company. (Upload all document as a single PDF File )</p>';
+								echo '<form action="Doc.php" method="post" enctype="multipart/form-data">';
+									echo '<input type="file" name="add_doc" value="Select File">';
+									echo '<input type="submit" name="sub_add_docs" value="Submit">';
+								echo '</form>';
+								echo '<iframe src="'.$AdDocs.'" height=500px width=100%></iframe>';
+							}
+						?>
+					</div>
 				</div>
-		</div>
-				<?php include '../../include/footer/footer.php'; ?>
+			</div>
+		<?php include '../../include/footer/footer.php'; ?>
         </div>
 
     </body>

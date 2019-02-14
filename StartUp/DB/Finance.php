@@ -105,13 +105,14 @@
 			mysqli_query($db, $q);
 		}
 
+
 		$check = getimagesize($_FILES["cblogo"]["tmp_name"]);
 	    if($check != false){
-			$file_name = $_FILES['cblogo']['name'];
+			$file_name = $Stname.'_'.$_FILES['cblogo']['name'];
 			$file_size = $_FILES['cblogo']['size'];
 			$file_tmp = $_FILES['cblogo']['tmp_name'];
 			$file_type = $_FILES['cblogo']['type'];
-			$file_ext=strtolower(end(explode('.',$_FILES['cblogo']['name'])));
+			$file_ext = strtolower(end(explode('.',$_FILES['cblogo']['name'])));
 
 			$extensions= array("jpeg","jpg","png");
 
@@ -123,14 +124,16 @@
 					echo "<script>alert('File size must be less than 5 MB')</script>";
 				}
 				else{
-					$upload = "/NamanAngels/Uploads/".$file_name;
-					move_uploaded_file($file_tmp,$upload);
-					$q = "UPDATE st_uploads set Logo='$upload' where StpID='$id';";
-					mysqli_query($db, $q);
-					echo "<script>alert('Successfully Uploaded')</script>";
+					$upload = "../../uploads/startup/".$file_name;
+					if(move_uploaded_file($file_tmp,$upload)){
+						$q = "UPDATE st_uploads set Logo='$upload' where StpID='$id';";
+						mysqli_query($db, $q);
+						echo "<script>alert('Successfully Uploaded')</script>";
+					}
 				}
 			}
 		}
+
 
 		header('location: Finance.php');
 	}
@@ -177,7 +180,7 @@
 
 	if(isset($_POST['BIsave'])){
 
-		$file_name = $_FILES['backimg']['name'];
+		$file_name = $Stname."_backimg_".$_FILES['backimg']['name'];
 		$file_size = $_FILES['backimg']['size'];
 		$file_tmp = $_FILES['backimg']['tmp_name'];
 		$file_type = $_FILES['backimg']['type'];
@@ -193,7 +196,7 @@
 				echo "<script>alert('File size must be less than 5 MB')</script>";
 			}
 			else{
-				$upload = "/NamanAngels/Uploads/".$file_name;
+				$upload = "../../uploads/startup/".$file_name;
 				move_uploaded_file($file_tmp,$upload);
 				$q = "UPDATE st_uploads set BackImg='$upload' where StpID='$id';";
 				mysqli_query($db, $q);
@@ -214,12 +217,12 @@
 		$Term = mysqli_real_escape_string($db, $_POST['term']);
 
 		if( $Sec_type == 'Preferred Equity' || $Sec_type == 'Common Equity' ){
-			$q = "INSERT INTO current_round(StpId,Round,Seeking,Security_type,Premoney_val) values('$id','$Round','$Seek','$Sec_type',$Premoney_val)"; 
+			$q = "INSERT INTO current_round(StpId,Round,Seeking,Security_type,Premoney_val) values('$id','$Round','$Seek','$Sec_type',$Premoney_val)";
 			mysqli_query($db, $q);
 		}
 		if( $Sec_type == 'Convertible Notes' ){
 			$q = "INSERT INTO current_round(StpId,Round,Seeking,Security_type,Val_cap,Conversion_disc,Interest_rate,Term_len) values('$id','$Round','$Seek','$Sec_type','$Val_cap','$Discount','$Interest','$Term')";
-			mysqli_query($db, $q); 
+			mysqli_query($db, $q);
 		}
 		header('location:Finance.php');
 	}
@@ -227,7 +230,7 @@
 	if(isset($_POST['clroundsave'])){
 		$Capraised = mysqli_real_escape_string($db, $_POST['capraise']);
 		$Cldate = mysqli_real_escape_string($db, $_POST['cal']);
-		
+
 		$q= "SELECT Round,Security_type FROM current_round WHERE StpID = '$id';";
 		$results = mysqli_query($db, $q);
 		$row=mysqli_fetch_array($results);
@@ -235,20 +238,20 @@
 		$q1= "INSERT INTO round_history(StpID,Round,Security_type,Capital_raised,Close_date) values('$id','$row[0]','$row[1]','$Capraised','$Cldate')";
 		mysqli_query($db, $q1);
 
-		$q2 = "DELETE FROM current_round WHERE StpId='$id'"; 
+		$q2 = "DELETE FROM current_round WHERE StpId='$id'";
 		mysqli_query($db, $q2);
-	
+
 		header('location:Finance.php');
 	}
 
 	if(isset($_POST['histdel'])){
 		$Hid= mysqli_real_escape_string($db, $_POST['hid']);
-		$q2 = "DELETE FROM round_history WHERE HistID='$Hid'"; 
+		$q2 = "DELETE FROM round_history WHERE HistID='$Hid'";
 		mysqli_query($db, $q2);
 
 		header('location:Finance.php');
 	}
-	
+
 
 ?>
 <html>
@@ -774,7 +777,7 @@
 
 							Detail your stage of funding, the capital you're seeking and your pre-money valuation.<br><br>
 							<?php
-								$q = "SELECT * FROM current_round"; 
+								$q = "SELECT * FROM current_round";
 								$results = mysqli_query($db, $q);
 								while($row = mysqli_fetch_assoc($results)){
 									if($row['StpID'] == $id){
@@ -793,7 +796,7 @@
 										echo '<button class="btnfund" onclick="clroundon()">Close Funding Round</button>';
 									}
 								}
-								$q = "SELECT * FROM current_round WHERE StpID='$id'"; 
+								$q = "SELECT * FROM current_round WHERE StpID='$id'";
 								$results = mysqli_query($db, $q);
 								if(mysqli_num_rows($results)== 0){
 									echo '<button class="btnfund" onclick="roundon()">Open Funding Round</button>';
@@ -812,7 +815,7 @@
 								echo '<span style="float:left">Capital raised</span><span style="float:right">'.$row['Capital_raised'].'</span><br/><hr>';
 								echo '<span style="float:left">Close Date</span><span style="float:right">'.$row['Close_date'].'</span><br/><hr><hr>';
 							}
-						?>	
+						?>
 					</div>
 					<div class="databox">
 						<button class="pencil" onclick="annualon()"><i class="fa fa-pencil"></i></button>
@@ -924,15 +927,15 @@
                         <div class="formtext">
                             <form method="post" action="Finance.php">
                                 <div class="formtext">
-									
+
 									<?php
-										
+
 										$q= "SELECT Round FROM current_round WHERE StpID = '$id';";
 										$results = mysqli_query($db, $q);
 										$row=mysqli_fetch_array($results);
 										// $row= mysqli_result($results);
 										// echo $row[0];
-										
+
 									?>
 									<p><label>Round: </label><?= $row[0]?></p>
 									<label>Capital Raised</label>
@@ -947,7 +950,7 @@
 								<div class="formtext submits">
                                     <input type="submit" onclick="clroundoff()" value="Cancel" name="cancel" class="cancel">
                                     <input type="submit" value="Save" name="clroundsave" class="save">
-                                </div>	
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -980,12 +983,12 @@
 											</div><br><br>';
 										}
 									?>
-								</div>	
+								</div>
                             </form>
                         </div>
                     </div>
 				</div>
-				
+
 				<div id="annualfin">
                     <div class="form">
                         <div class="formhead">

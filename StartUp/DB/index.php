@@ -114,11 +114,11 @@
 
 		$check = getimagesize($_FILES["cblogo"]["tmp_name"]);
 	    if($check != false){
-			$file_name = $_FILES['cblogo']['name'];
+			$file_name = $Stname.'_'.$_FILES['cblogo']['name'];
 			$file_size = $_FILES['cblogo']['size'];
 			$file_tmp = $_FILES['cblogo']['tmp_name'];
 			$file_type = $_FILES['cblogo']['type'];
-			$file_ext=strtolower(end(explode('.',$_FILES['cblogo']['name'])));
+			$file_ext = strtolower(end(explode('.',$_FILES['cblogo']['name'])));
 
 			$extensions= array("jpeg","jpg","png");
 
@@ -130,11 +130,12 @@
 					echo "<script>alert('File size must be less than 5 MB')</script>";
 				}
 				else{
-					$upload = "/NamanAngels/Uploads/".$file_name;
-					move_uploaded_file($file_tmp,$upload);
-					$q = "UPDATE st_uploads set Logo='$upload' where StpID='$id';";
-					mysqli_query($db, $q);
-					echo "<script>alert('Successfully Uploaded')</script>";
+					$upload = "../../uploads/startup/".$file_name;
+					if(move_uploaded_file($file_tmp,$upload)){
+						$q = "UPDATE st_uploads set Logo='$upload' where StpID='$id';";
+						mysqli_query($db, $q);
+						echo "<script>alert('Successfully Uploaded')</script>";
+					}
 				}
 			}
 		}
@@ -203,7 +204,7 @@
 	}
 
 	if(isset($_POST['pitchsub'])){
-		$name= $_FILES['pitchvid']['name'];
+		$name= $Stname."_pitch_".$_FILES['pitchvid']['name'];
 		$tmp_name= $_FILES['pitchvid']['tmp_name'];
 		$submitbutton= $_POST['pitchsub'];
 		$position= strpos($name, ".");
@@ -211,7 +212,7 @@
 		$fileextension= strtolower($fileextension);
 		$success= -1;
 		if (isset($name)){
-			$path= '../../Uploads/';
+			$path= '../../uploads/startup/'.$name;
 			if (!empty($name)){
 				if (($fileextension !== "mp4") && ($fileextension !== "ogg") && ($fileextension !== "webm") && ($fileextension !== "pdf")){
 					$success=0;
@@ -219,9 +220,9 @@
 				}
 				else if (($fileextension == "mp4") || ($fileextension == "ogg") || ($fileextension == "webm") || ($fileextension == "pdf")){
 					$success=1;
-					if (copy($tmp_name, $path.basename($_FILES['pitchvid']['name']))) {
+					if (copy($tmp_name, $path)) {
 						echo '<script> alert("Uploaded!")</script>';
-						$q = "UPDATE st_uploads SET PitchName='$name', PitchExt='$fileextension' where StpID='$id';";
+						$q = "UPDATE st_uploads SET PitchName='$path', PitchExt='$fileextension' where StpID='$id';";
 						mysqli_query($db, $q);
 					}
 				}
@@ -277,7 +278,7 @@
 
     if(isset($_POST['BIsave'])){
 
-		$file_name = $_FILES['backimg']['name'];
+		$file_name = $Stname."_backimg_".$_FILES['backimg']['name'];
 		$file_size = $_FILES['backimg']['size'];
 		$file_tmp = $_FILES['backimg']['tmp_name'];
 		$file_type = $_FILES['backimg']['type'];
@@ -293,7 +294,7 @@
 				echo "<script>alert('File size must be less than 5 MB')</script>";
 			}
 			else{
-				$upload = "/NamanAngels/Uploads/".$file_name;
+				$upload = "../../uploads/startup/".$file_name;
 				move_uploaded_file($file_tmp,$upload);
 				$q = "UPDATE st_uploads set BackImg='$upload' where StpID='$id';";
 				mysqli_query($db, $q);
@@ -345,7 +346,7 @@
 		</style>
 
     </head>
-		<script type="text/javascript">
+	<script type="text/javascript">
 
 		<?php
 			$q = "SELECT * FROM st_team;";
@@ -421,19 +422,14 @@
 
 					header('location:index.php');
 				}
-
-
-
 		?>
 		function addteamoff() {
 				document.getElementById("addteam").style.display = "none";
 		}
-
-
-		</script>
+	</script>
     <body>
-			<?php require '../include/header/stp_db.php'; ?>
-			<?php require '../include/nav/nav.php'; ?>
+		<?php require '../include/header/stp_db.php'; ?>
+		<?php require '../include/nav/nav.php'; ?>
         <div class="container">
             <div class="main">
             	<div class="backimg">
@@ -904,15 +900,12 @@
 								echo '</form>';
 							}
 							else{
-								$videos_field=$PitchName;
-								$video_show= "../../Uploads/$videos_field";
-
 								echo '<form class="pitch" action="index.php" method="post" enctype="multipart/form-data">';
 									echo '<input type="file" name="pitchvid">';
 									echo '<input type="submit" name="pitchsub" value="Upload">';
 									// echo '<div float=right align=right><a href="#"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
 								echo '</form>';
-								echo "<div align=center><video controls><source src='$video_show' type='video/$PitchExt'>Your browser does not support the video tag.</video></div>";
+								echo "<div align=center><video controls><source src='$PitchName' type='video/$PitchExt'>Your browser does not support the video tag.</video></div>";
 							}
 						?>
                     </div>

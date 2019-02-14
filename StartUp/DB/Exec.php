@@ -105,13 +105,14 @@
 			mysqli_query($db, $q);
 		}
 
+
 		$check = getimagesize($_FILES["cblogo"]["tmp_name"]);
 	    if($check != false){
-			$file_name = $_FILES['cblogo']['name'];
+			$file_name = $Stname.'_'.$_FILES['cblogo']['name'];
 			$file_size = $_FILES['cblogo']['size'];
 			$file_tmp = $_FILES['cblogo']['tmp_name'];
 			$file_type = $_FILES['cblogo']['type'];
-			$file_ext=strtolower(end(explode('.',$_FILES['cblogo']['name'])));
+			$file_ext = strtolower(end(explode('.',$_FILES['cblogo']['name'])));
 
 			$extensions= array("jpeg","jpg","png");
 
@@ -123,14 +124,16 @@
 					echo "<script>alert('File size must be less than 5 MB')</script>";
 				}
 				else{
-					$upload = "/NamanAngels/Uploads/".$file_name;
-					move_uploaded_file($file_tmp,$upload);
-					$q = "UPDATE st_uploads set Logo='$upload' where StpID='$id';";
-					mysqli_query($db, $q);
-					echo "<script>alert('Successfully Uploaded')</script>";
+					$upload = "../../uploads/startup/".$file_name;
+					if(move_uploaded_file($file_tmp,$upload)){
+						$q = "UPDATE st_uploads set Logo='$upload' where StpID='$id';";
+						mysqli_query($db, $q);
+						echo "<script>alert('Successfully Uploaded')</script>";
+					}
 				}
 			}
 		}
+
 
 		header('location: Exec.php');
 	}
@@ -267,7 +270,7 @@
 
 	if(isset($_POST['BIsave'])){
 
-		$file_name = $_FILES['backimg']['name'];
+		$file_name = $Stname."_backimg_".$_FILES['backimg']['name'];
 		$file_size = $_FILES['backimg']['size'];
 		$file_tmp = $_FILES['backimg']['tmp_name'];
 		$file_type = $_FILES['backimg']['type'];
@@ -283,7 +286,7 @@
 				echo "<script>alert('File size must be less than 5 MB')</script>";
 			}
 			else{
-				$upload = "/NamanAngels/Uploads/".$file_name;
+				$upload = "../../uploads/startup/".$file_name;
 				move_uploaded_file($file_tmp,$upload);
 				$q = "UPDATE st_uploads set BackImg='$upload' where StpID='$id';";
 				mysqli_query($db, $q);

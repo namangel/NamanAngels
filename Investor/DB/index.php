@@ -31,7 +31,7 @@
 	$q = "SELECT * FROM inv_uploads WHERE InvID='$u'";
     $results = mysqli_query($db, $q);
 	$row = mysqli_fetch_assoc($results);
-	$img = $row['ProfilePic']==""? '/NamanAngels/Uploads/default.png':$row['ProfilePic'];
+	$img = $row['ProfilePic'];
 
 	if(isset($_POST["cbsave"])){
         $cbfname = mysqli_real_escape_string($db, $_POST['cbfname']);
@@ -107,7 +107,7 @@
 		$check = getimagesize($_FILES["cbpic"]["tmp_name"]);
 		if($check != false)
 		{
-			$file_name = $_FILES['cbpic']['name'];
+			$file_name = $fname."_".$lname."_".$_FILES['cbpic']['name'];
 			$file_size = $_FILES['cbpic']['size'];
 			$file_tmp = $_FILES['cblpic']['tmp_name'];
 			$file_type = $_FILES['cbpic']['type'];
@@ -127,11 +127,12 @@
 				}
 				else
 				{
-					$upload = "/NamanAngels/Uploads/".$file_name;
-					move_uploaded_file($file_tmp,$upload);
-					$q = "UPDATE inv_uploads set ProfilePic='$upload' where InvID='$u';";
-					mysqli_query($db, $q);
-					echo "<script>alert('Successfully Uploaded')</script>";
+					$upload = "../../uploads/investor/".$file_name;
+					if(move_uploaded_file($file_tmp, $upload)){
+						$q = "UPDATE inv_uploads set ProfilePic='$upload' where InvID='$u';";
+						mysqli_query($db, $q);
+						echo "<script>alert('Successfully Uploaded')</script>";
+					}
 				}
 			}
 		}
