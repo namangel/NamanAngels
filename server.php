@@ -59,7 +59,7 @@ if (isset($_POST['reginv_ind'])) {
         $userid = $user['InvID'];
         $_SESSION['InvID'] = $user['InvID'];
 
-        $query = "INSERT INTO inv_details (InvID,CName,FName,LName,Email,Phone,Website,City,State,Country,AvgInvestment,InvType)
+        $query = "INSERT INTO inv_details (InvID,CName,FName,LName,Email,Phone,Website,City,State,Country,AvgInvestment,Type)
         VALUES('$userid', null , '$fname', '$lname', '$email', '$phone', null , '$city', '$state', '$country', '$avg', '$type')";
         mysqli_query($db, $query);
 
@@ -109,8 +109,8 @@ if (isset($_POST['reginv_inst'])) {
       $userid = $user['InvID'];
       $_SESSION['InvID'] = $user['InvID'];
 
-      $query = "INSERT INTO inv_details (InvID,CName,FName,LName,Email,Phone,Website,City,State,Country,AvgInvestment,InvType)
-      VALUES('$userid', '$iname' , '$fname', '$lname', '$email', '$phone', '$website' , '$city', '$state', '$country', '$avg', '$type')";
+      $query = "INSERT INTO inv_details (InvID,CName,FName,LName,Email,Phone,Website,City,State,Country,AvgInvestment,Type)
+      VALUES('$userid', '$cname' , '$fname', '$lname', '$email', '$phone', '$website' , '$city', '$state', '$country', '$avg', '$type')";
       mysqli_query($db, $query);
 
       $query = "INSERT INTO inv_addetails (InvID) values ('$userid')";
