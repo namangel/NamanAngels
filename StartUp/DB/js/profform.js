@@ -150,14 +150,21 @@ function roundoff() {
     document.getElementById("openround").style.display = "none";
 }
 
+function clroundon() {
+    document.getElementById("closeround").style.display = "block";
+}
+function clroundoff() {
+    document.getElementById("closeround").style.display = "none";
+}
+
 function valfunc(){
     var x = document.getElementById("sec").value;
-    if (x== "b" || x=="c")
+    if (x== "Preferred Equity" || x=="Common Equity")
     {
         document.getElementById("equity").style.display = "block";
         document.getElementById("notes").style.display = "none";
     }
-    if(x=="d")
+    if(x=="Convertible Notes")
     {
         document.getElementById("notes").style.display = "block";
         document.getElementById("equity").style.display = "none";

@@ -203,6 +203,27 @@
 		header('location:Finance.php');
 	}
 
+	if(isset($_POST['roundsave'])){
+		$Round = mysqli_real_escape_string($db, $_POST['round']);
+		$Seek = mysqli_real_escape_string($db, $_POST['seeking']);
+		$Sec_type = mysqli_real_escape_string($db, $_POST['security']);
+		$Premoney_val = mysqli_real_escape_string($db, $_POST['preval']);
+		$Val_cap = mysqli_real_escape_string($db, $_POST['valcap']);
+		$Discount = mysqli_real_escape_string($db, $_POST['discount']);
+		$Interest = mysqli_real_escape_string($db, $_POST['interest']);
+		$Term = mysqli_real_escape_string($db, $_POST['term']);
+
+		if( $Sec_type == 'Preferred Equity' || $Sec_type == 'Common Equity' ){
+			$q = "INSERT INTO current_round(StpId,Round,Seeking,Security_type,Premoney_val) values('$id','$Round','$Seek','$Sec_type',$Premoney_val)"; 
+			mysqli_query($db, $q);
+		}
+		if( $Sec_type == 'Convertible Notes' ){
+			$q = "INSERT INTO current_round(StpId,Round,Seeking,Val_cap,Conversion_disc,Interest_rate,Term_len) values('$id','$Round','$Seek','$Sec_type','$Val_cap','$Discount','$Interest','$Term')";
+			mysqli_query($db, $q); 
+		}
+		header('location:Finance.php');
+	}
+
 
 ?>
 <html>
@@ -210,7 +231,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
         <link rel="stylesheet" href="../css/financial.css" type="text/css">
-        <script src="js/profform.js"></script>
+        <!-- <script src="js/profform.js"></script> -->
 				<title>StartUp Profile - NamanAngels</title>
 
     </head>
@@ -727,7 +748,30 @@
 						<h3>Current Funding Round (USD)</h3>
 
 							Detail your stage of funding, the capital you're seeking and your pre-money valuation.<br><br>
-							<button class="btnfund" onclick="roundon()">Open Funding Round</button>
+							<?php
+								$q = "SELECT * FROM current_round"; 
+								$results = mysqli_query($db, $q);
+								while($row = mysqli_fetch_assoc($results)){
+									if($row['StpID'] == $id){
+										echo '<span style="float:left">Round</span><span style="float:right">'.$row['Round'].'</span><br/><hr>';
+										echo '<span style="float:left">Seeking</span><span style="float:right">'.$row['Seeking'].'</span><br/><hr>';
+										echo '<span style="float:left"></span>Security Type<span style="float:right">'.$row['Security_type'].'</span><br/><hr>';
+										if($row['Security_type'] == 'Preferred Equity' || $row['Security_type'] == 'Common Equity'){
+											echo '<span style="float:left">Premoney Valuation</span><span style="float:right">'.$row['Premoney_val'].'</span><br/><hr>';
+										}
+										if($row['Security_type'] == 'Convertible Notes'){
+											echo '<span style="float:left">Valuation Capital</span><span style="float:right">'.$row['Val_Cap'].'</span><br/><hr>';
+											echo '<span style="float:left">Conversion discount</span><span style="float:right">'.$row['Conversion_disc'].'</span><br/><hr>';
+											echo '<span style="float:left">Interest Rate</span><span style="float:right">'.$row['Interest_rate'].'</span><br/><hr>';
+											echo '<span style="float:left">Term Length</span><span style="float:right">'.$row['Term_len'].'</span><br/><hr>';
+										}
+										echo '<button class="btnfund" onclick="clroundon()">Close Funding Round</button>';
+									}
+									else{
+										echo '<button class="btnfund" onclick="roundon()">Open Funding Round</button>';
+									}
+								}
+							?>
 					</div>
 					<div class="databox">
 						<button class="pencil"><i class="fa fa-pencil "></i></button>
@@ -773,7 +817,7 @@
                             <p>Open a new round by filling out the following information.</p>
                         </div>
                         <div class="formtext">
-                            <form method="post">
+                            <form method="post" action="Finance.php">
                                 <div class="formtext">
 									<label>Round</label>
 									<br>
@@ -794,9 +838,9 @@
 									<br>
 									<select name="security" id="sec" onchange="valfunc()">
                                     <option value="a">Select Security Type</option>
-                                    <option value="b">Preferred Equity</option>
-                                    <option value="c">Common Equity</option>
-                                    <option value="d">Convertible Notes</option>
+                                    <option value="Preferred Equity">Preferred Equity</option>
+                                    <option value="Common Equity">Common Equity</option>
+                                    <option value="Convertible Notes">Convertible Notes</option>
 									</select>
 									<br><br>
 									<span id="equity">
@@ -829,6 +873,77 @@
                                 <div class="formtext submits">
                                     <input type="submit" onclick="roundoff()" value="Cancel" name="cancel" class="cancel">
                                     <input type="submit" value="Save" name="roundsave" class="save">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+				<div id="closeround">
+                    <div class="form">
+                        <div class="formhead">
+                            <button onclick="clroundoff()" class="close"><i class="fa fa-close"></i></button>
+                            <h3>Start Fundraising</h3>
+
+                            <p>Open a new round by filling out the following information.</p>
+                        </div>
+                        <div class="formtext">
+                            <form method="post" action="Finance.php">
+                                <div class="formtext">
+									<label>Round</label>
+									<br>
+									<select name="round">
+                                    <option>Select Round</option>
+                                    <option>Founder</option>
+                                    <option>Friends and Family</option>
+                                    <option>Angel</option>
+                                    <option>Preseries A</option>
+                                    <option>Series A</option>
+									</select>
+									<br><br>
+									<label>Seeking</label>
+									<br>
+									<i class="fa fa-dollar"><input type="text" name="seeking" placeholder="Numbers Only" size="54"></i>
+									<br><br>
+									<label>Security type</label>
+									<br>
+									<select name="security" id="sec" onchange="valfunc()">
+                                    <option value="a">Select Security Type</option>
+                                    <option value="Preferred Equity">Preferred Equity</option>
+                                    <option value="Common Equity">Common Equity</option>
+                                    <option value="Convertible Notes">Convertible Notes</option>
+									</select>
+									<br><br>
+									<span id="equity">
+										<hr>
+										<label>Pre-Money Valuation</label>
+										<br>
+										<i class="fa fa-dollar"><input type="text" name="preval" placeholder="Numbers Only" size="54"></i>
+										<br><br>
+									</span>
+									<span id="notes">
+										<hr>
+										<label>Valuation Cap</label>
+										<br>
+										<i class="fa fa-dollar"><input type="text" name="valcap" placeholder="Numbers Only" size="54"></i>
+										<br><br>
+										<label>Conversion Discount</label>
+										<br>
+										<i class="fa fa-percent"><input type="text" name="discount" placeholder="Numbers Only" size="53"></i>
+										<br><br>
+										<label>Interest Rate</label>
+										<br>
+										<i class="fa fa-percent"><input type="text" name="interest" placeholder="Numbers Only" size="53"></i>
+										<br><br>
+										<label>Term Length</label>
+										<br>
+										<input type="text" name="term" placeholder="Months" size="55">
+										<br><br>
+									</span>
+								</div>
+                                <div class="formtext submits">
+                                    <input type="submit" onclick="clroundoff()" value="Cancel" name="cancel" class="cancel">
+                                    <input type="submit" value="Save" name="clroundsave" class="save">
                                 </div>
                             </form>
                         </div>
@@ -976,4 +1091,185 @@
 	if ( window.history.replaceState ) {
 		window.history.replaceState( null, null, window.location.href );
 	}
+
+	function on() {
+    document.getElementById("overlay").style.display = "block";
+}
+function off() {
+    document.getElementById("overlay").style.display = "none";
+}
+
+
+function socialon() {
+    document.getElementById("socialformov").style.display = "block";
+}
+function socialoff() {
+    document.getElementById("socialformov").style.display = "none";
+}
+
+function reqon() {
+    document.getElementById("reqformov").style.display = "block";
+}
+function reqoff() {
+    document.getElementById("reqformov").style.display = "none";
+}
+
+
+function contacton() {
+    document.getElementById("contactform").style.display = "block";
+}
+function contactoff() {
+    document.getElementById("contactform").style.display = "none";
+}
+
+
+function summon() {
+    document.getElementById("sumformov").style.display = "block";
+}
+function summoff() {
+    document.getElementById("sumformov").style.display = "none";
+}
+
+function olpon() {
+    document.getElementById("olpformov").style.display = "block";
+}
+function olpoff() {
+    document.getElementById("olpformov").style.display = "none";
+}
+
+function teamon() {
+    document.getElementById("profteam").style.display = "block";
+}
+function teamoff() {
+    document.getElementById("profteam").style.display = "none";
+}
+
+
+function advon() {
+    document.getElementById("adv").style.display = "block";
+}
+function advoff() {
+    document.getElementById("adv").style.display = "none";
+}
+
+function invon() {
+    document.getElementById("inv").style.display = "block";
+}
+function invoff() {
+    document.getElementById("inv").style.display = "none";
+}
+
+function ovon() {
+    document.getElementById("overly").style.display = "block";
+}
+
+function ovoff() {
+    document.getElementById("overly").style.display = "none";
+}
+function custon() {
+    document.getElementById("cust").style.display = "block";
+}
+
+function custoff() {
+    document.getElementById("cust").style.display = "none";
+}
+function producton() {
+    document.getElementById("product").style.display = "block";
+}
+
+function productoff() {
+    document.getElementById("product").style.display = "none";
+}
+function targeton() {
+    document.getElementById("target").style.display = "block";
+}
+
+function targetoff() {
+    document.getElementById("target").style.display = "none";
+}
+function bussion() {
+    document.getElementById("bussi").style.display = "block";
+}
+
+function bussioff() {
+    document.getElementById("bussi").style.display = "none";
+}
+function marketon() {
+    document.getElementById("market").style.display = "block";
+}
+
+function marketoff() {
+    document.getElementById("market").style.display = "none";
+}
+function segson() {
+    document.getElementById("segs").style.display = "block";
+}
+
+function segsoff() {
+    document.getElementById("segs").style.display = "none";
+}
+function saleson() {
+    document.getElementById("sales").style.display = "block";
+}
+
+function salesoff() {
+    document.getElementById("sales").style.display = "none";
+}
+function compon() {
+    document.getElementById("comp").style.display = "block";
+}
+
+function compoff() {
+    document.getElementById("comp").style.display = "none";
+}
+function advon() {
+    document.getElementById("adv").style.display = "block";
+}
+
+function advoff() {
+    document.getElementById("adv").style.display = "none";
+}
+
+function backimgon() {
+    document.getElementById("backimg").style.display = "block";
+}
+function backimgoff() {
+    document.getElementById("backimg").style.display = "none";
+}
+
+function roundon() {
+    document.getElementById("openround").style.display = "block";
+}
+function roundoff() {
+    document.getElementById("openround").style.display = "none";
+}
+
+function clroundon() {
+    document.getElementById("closeround").style.display = "block";
+}
+function clroundoff() {
+    document.getElementById("closeround").style.display = "none";
+}
+
+function valfunc(){
+    var x = document.getElementById("sec").value;
+    if (x== "Preferred Equity" || x=="Common Equity")
+    {
+        document.getElementById("equity").style.display = "block";
+        document.getElementById("notes").style.display = "none";
+    }
+    if(x=="Convertible Notes")
+    {
+        document.getElementById("notes").style.display = "block";
+        document.getElementById("equity").style.display = "none";
+    }
+}
+
+function annualon() {
+    document.getElementById("annualfin").style.display = "block";
+}
+function annualoff() {
+    document.getElementById("annualfin").style.display = "none";
+}
+
 </script>
