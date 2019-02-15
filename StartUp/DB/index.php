@@ -313,36 +313,36 @@
         <script src="js/profform.js"></script>
 		<title>StartUp Profile - NamanAngels</title>
 		<style media="screen">
-		.databox div video{
-			max-height: 300px;
-			max-width: 100%;
-		}
-		.limit_mem,.limit_adv,.limit_pre{
-			color:red;
-			display: none;
-			font-weight: lighter;
-		}
-		.member, .advisor, .prev_inv{
-			display: none;
-		}
+				.databox div video{
+					max-height: 300px;
+					max-width: 100%;
+				}
+				.limit_mem,.limit_adv,.limit_pre{
+					color:red;
+					display: none;
+					font-weight: lighter;
+				}
+				.member, .advisor, .prev_inv{
+					display: none;
+				}
 
-		.rem_mem{
-			margin-top: 10px;
-			border: none;
-			background-color: white;
-		}
+				.rem_mem{
+					margin-top: 10px;
+					border: none;
+					background-color: white;
+				}
 
-		.rem_adv{
-			margin-top: 10px;
-			border: none;
-			background-color: white;
-		}
+				.rem_adv{
+					margin-top: 10px;
+					border: none;
+					background-color: white;
+				}
 
-		.rem_inv{
-			margin-top: 15px;
-			border: none;
-			background-color: white;
-		}
+				.rem_inv{
+					margin-top: 15px;
+					border: none;
+					background-color: white;
+				}
 		</style>
 
     </head>
@@ -392,7 +392,7 @@
 		}
 		else{
 			echo 'function invon() {
-					document.getElementById("inv").style.display = "block";					
+					document.getElementById("inv").style.display = "block";
 				}';
 		}
 
@@ -1001,7 +1001,7 @@
 									echo '<td>'.$row["Name"].'</td>';
 									echo '<td>'.$row['Email'].'</td>';
 									echo '<td><center><form method="post" action="index.php">
-									<input class="prev_inv" type="number" name="prev_inv" value="'.$row['ID'].'>
+									<input class="prev_inv" type="number" name="prev_inv" value="'.$row['ID'].'">
 									<button name="rem_inv" value="rem_inv" type="submit" class="rem_inv" ><i class="fa fa-minus-circle"></i></button>
 									</form></center>
 									</td>';
