@@ -898,6 +898,20 @@
 									}	
 								?>
 								</tr>
+								<tr>
+								<td>Profit $</td>
+								<?php
+									$yr= date("Y") -2;
+									for($i=0;$i<6;$i++){
+										$q = "SELECT revenue,expenditure FROM annual_financial WHERE StpID='$id' AND year='$yr'"; 
+										$result = mysqli_query($db, $q);
+										$row = mysqli_fetch_array($result);
+										$prof=$row[0]-$row[1];
+										$yr=$yr+1;
+										echo '<td>'.$prof.'</td>';
+									}	
+								?>
+								</tr>
 							</table>
 					</div>
 				</div>
