@@ -381,47 +381,48 @@
 
 
 
-				$q = "SELECT * FROM st_previnvestment;";
-				$results=mysqli_query($db, $q);
-				if (mysqli_num_rows($results) >= 3)
-				{
-					echo 'function invon() {
-							document.getElementById("inv").style.display = "none";
-							document.getElementById("limit_pre").style.display = "inline";
-					}';
-				}
-				else{
-					echo 'function invon() {
-							document.getElementById("inv").style.display = "block";					}';
-				}
+		$q = "SELECT * FROM st_previnvestment;";
+		$results=mysqli_query($db, $q);
+		if (mysqli_num_rows($results) >= 3)
+		{
+			echo 'function invon() {
+					document.getElementById("inv").style.display = "none";
+					document.getElementById("limit_pre").style.display = "inline";
+			}';
+		}
+		else{
+			echo 'function invon() {
+					document.getElementById("inv").style.display = "block";					
+				}';
+		}
 
 
-				if(isset($_POST['rem_mem'])){
-					$mem_id = mysqli_real_escape_string($db, $_POST['member']);
+		if(isset($_POST['rem_mem'])){
+			$mem_id = mysqli_real_escape_string($db, $_POST['member']);
 
-					$q = "DELETE FROM st_team where ID = $mem_id;";
-					mysqli_query($db, $q);
+			$q = "DELETE FROM st_team where ID = $mem_id;";
+			mysqli_query($db, $q);
 
-					header('location:index.php');
-				}
+			header('location:index.php');
+		}
 
-				if(isset($_POST['rem_adv'])){
-					$mem_id = mysqli_real_escape_string($db, $_POST['advisor']);
+		if(isset($_POST['rem_adv'])){
+			$mem_id = mysqli_real_escape_string($db, $_POST['advisor']);
 
-					$q = "DELETE FROM st_advisors where ID = $mem_id;";
-					mysqli_query($db, $q);
+			$q = "DELETE FROM st_advisors where ID = $mem_id;";
+			mysqli_query($db, $q);
 
-					header('location:index.php');
-				}
+			header('location:index.php');
+		}
 
-				if(isset($_POST['rem_inv'])){
-					$mem_id = mysqli_real_escape_string($db, $_POST['prev_inv']);
+		if(isset($_POST['rem_inv'])){
+			$mem_id = mysqli_real_escape_string($db, $_POST['prev_inv']);
 
-					$q = "DELETE FROM st_previnvestment where ID = $mem_id;";
-					mysqli_query($db, $q);
+			$q = "DELETE FROM st_previnvestment where ID = $mem_id;";
+			mysqli_query($db, $q);
 
-					header('location:index.php');
-				}
+			header('location:index.php');
+		}
 		?>
 		function addteamoff() {
 				document.getElementById("addteam").style.display = "none";
@@ -982,9 +983,9 @@
 							}
 						?>
                     </div>
-            <div class="databox">
-                        <button onclick="invon()" class="add"><i class="fa fa-plus"></i></button>
-                        <h4>Previous Investors <div class="limit_pre" id="limit_pre">(maximum 3 previous investors can be added!)</div></h4>
+					<div class="databox">
+						<button onclick="invon()" class="add"><i class="fa fa-plus"></i></button>
+						<h4>Previous Investors <div class="limit_pre" id="limit_pre">(maximum 3 previous investors can be added!)</div></h4>
 						<?php
 							$q = "SELECT * FROM st_previnvestment where StpID = '$id';";
 							$results=mysqli_query($db, $q);
@@ -995,8 +996,8 @@
 								echo "<th>Email</th>";
 								echo "<th></th>";
 								echo "</th>";
-							    while($row = mysqli_fetch_assoc($results)) {
-							        echo '<tr>';
+								while($row = mysqli_fetch_assoc($results)) {
+									echo '<tr>';
 									echo '<td>'.$row["Name"].'</td>';
 									echo '<td>'.$row['Email'].'</td>';
 									echo '<td><center><form method="post" action="index.php">
@@ -1005,13 +1006,13 @@
 									</form></center>
 									</td>';
 									echo "</tr>";
-							    }
+								}
 								echo '</table>';
 							} else {
 								echo '<img src="../img/Contact.png">';
 							}
 						?>
-                    </div>
+					</div>
                 </div>
                 <div id="backimg">
                     <div class="form">
@@ -1176,38 +1177,38 @@
                     </div>
                 </div>
                 <div id="addteam">
-                        <div class="form">
-                            <div class="formhead">
-                                <button onclick="addteamoff()" class="close"><i class="fa fa-close"></i></button>
-                                <h3>Add a Team Member (max. 6)</h3>
-                                <p>Your team is one of the most influential factors driving investor interest. If your team’s information is incomplete, you could be limiting your investment potential.</p>
-                                <p class="icsize">Remember to split equity before applying for funding. Divide ownership fairly and easily with our free Co-founder Equity Split tool.</p>
-                            </div>
-                            <div class="formtext">
-                                <form method="post">
-                                    <div class="formtext">
-                                        <label>First Name</label><br>
-                                        <input type="text" name="tmfname" size="50" required><br><br>
-																				<label>Last Name</label><br>
-                                        <input type="text" name="tmlname" size="50" required><br><br>
-                                        <label>Designation</label><br>
-                                        <input type="text" name="tmdsgn" size="50" required><br><br>
-                                        <label>Experience and Expertise(in yrs)</label><br>
-																				<input type="number" name="tmexp" size="50" required><br><br>
-                                        <label>Email</label><br>
-                                        <input type="email" name="tmemail" size="50" required><br><br>
-																				<label>LinkedIn</label><br>
-																				<input type="text" name="tmlinkedin" size="50" required><br><br>
-                                      </div>
-                                    <div class="formtext submits">
-                                        <input type="submit" onclick="addteamoff()"value="Cancel" name="cancel" class="cancel">
-                                        <input type="submit" value="Save" name="tmsave" class="save">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+					<div class="form">
+						<div class="formhead">
+							<button onclick="addteamoff()" class="close"><i class="fa fa-close"></i></button>
+							<h3>Add a Team Member (max. 6)</h3>
+							<p>Your team is one of the most influential factors driving investor interest. If your team’s information is incomplete, you could be limiting your investment potential.</p>
+							<p class="icsize">Remember to split equity before applying for funding. Divide ownership fairly and easily with our free Co-founder Equity Split tool.</p>
+						</div>
+						<div class="formtext">
+							<form method="post">
+								<div class="formtext">
+									<label>First Name</label><br>
+									<input type="text" name="tmfname" size="50" required><br><br>
+																			<label>Last Name</label><br>
+									<input type="text" name="tmlname" size="50" required><br><br>
+									<label>Designation</label><br>
+									<input type="text" name="tmdsgn" size="50" required><br><br>
+									<label>Experience and Expertise(in yrs)</label><br>
+																			<input type="number" name="tmexp" size="50" required><br><br>
+									<label>Email</label><br>
+									<input type="email" name="tmemail" size="50" required><br><br>
+																			<label>LinkedIn</label><br>
+																			<input type="text" name="tmlinkedin" size="50" required><br><br>
+									</div>
+								<div class="formtext submits">
+									<input type="submit" onclick="addteamoff()"value="Cancel" name="cancel" class="cancel">
+									<input type="submit" value="Save" name="tmsave" class="save">
+								</div>
+							</form>
+						</div>
+					</div>
                 </div>
-                <div id="adv">
+				<div id="adv">
                     <div class="form">
                         <div class="formhead">
                             <button onclick="advoff()" class="close"><i class="fa fa-close"></i></button>
@@ -1230,30 +1231,30 @@
                         </div>
                     </div>
                 </div>
-                <div id="inv">
-                        <div class="form">
-                            <div class="formhead">
-                                <button onclick="invoff()" class="close"><i class="fa fa-close"></i></button>
-                                <h3>Add a Previous Investor(max. 3)</h3>
-                                <p class="icsize">Please provide the name and email address of a previous investor. Once they have confirmed their role, they'll gain access to your private profile. View our privacy policy</p>
-                            </div>
-                            <div class="formtext">
-                                <form method="post">
-                                    <div class="formtext">
-                                        <label>Name</label><br>
-                                        <input type="text" size="50" name="piname" required><br><br>
-                                        <label>Email</label><br>
-                                        <input type="text" size="50" name="piemail" required><br><br>
-                                    </div>
-                                    <div class="formtext submits">
-                                        <input type="submit" onclick="invoff()" value="Cancel" name="cancel" class="cancel">
-                                        <input type="submit" value="Save" name="pisave" class="save">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                </div>
             </div>
+				<div id="inv">
+					<div class="form">
+						<div class="formhead">
+							<button onclick="invoff()" class="close"><i class="fa fa-close"></i></button>
+							<h3>Add a Previous Investor(max. 3)</h3>
+							<p class="icsize">Please provide the name and email address of a previous investor. Once they have confirmed their role, they'll gain access to your private profile. View our privacy policy</p>
+						</div>
+						<div class="formtext">
+							<form method="post">
+								<div class="formtext">
+									<label>Name</label><br>
+									<input type="text" size="50" name="piname" required><br><br>
+									<label>Email</label><br>
+									<input type="text" size="50" name="piemail" required><br><br>
+								</div>
+								<div class="formtext submits">
+									<input type="submit" onclick="invoff()" value="Cancel" name="cancel" class="cancel">
+									<input type="submit" value="Save" name="pisave" class="save">
+								</div>
+							</form>
+						</div>
+					</div>
+                </div>
 			<?php require "../../include/footer/footer.php" ?>
         </div>
 

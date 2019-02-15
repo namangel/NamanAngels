@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3307:3307
--- Generation Time: Feb 15, 2019 at 12:45 PM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 7.0.31
+-- Host: 127.0.0.1
+-- Generation Time: Feb 15, 2019 at 03:28 PM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -186,14 +186,6 @@ CREATE TABLE `inv_previnvestment` (
   `Website` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `inv_previnvestment`
---
-
-INSERT INTO `inv_previnvestment` (`ID`, `InvID`, `Name`, `Year`, `Amount`, `Stage`, `Stake`, `Website`) VALUES
-(0, 1, 'asd', '2019', '345', 'Product in Development', '12', 'wesdrftgyh'),
-(2, 1, 'fsfddsd', '2324', '1324', 'sdfgth', '21', 'zxcvbhn');
-
 -- --------------------------------------------------------
 
 --
@@ -360,13 +352,6 @@ CREATE TABLE `st_advisors` (
   `Email` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `st_advisors`
---
-
-INSERT INTO `st_advisors` (`ID`, `StpID`, `Name`, `Email`) VALUES
-(1, 1, 'Nick Fury', 'nick@shield.com');
-
 -- --------------------------------------------------------
 
 --
@@ -444,7 +429,7 @@ CREATE TABLE `st_previnvestment` (
 --
 
 INSERT INTO `st_previnvestment` (`ID`, `StpID`, `Name`, `Email`) VALUES
-(0, 1, 'ABC', 'abc12@123.com');
+(1, 1, 'ABC', 'abc12@123.com');
 
 -- --------------------------------------------------------
 
@@ -740,6 +725,12 @@ ALTER TABLE `inv_group`
   MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `inv_previnvestment`
+--
+ALTER TABLE `inv_previnvestment`
+  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `namanteam`
 --
 ALTER TABLE `namanteam`
@@ -761,7 +752,13 @@ ALTER TABLE `round_history`
 -- AUTO_INCREMENT for table `st_advisors`
 --
 ALTER TABLE `st_advisors`
-  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `st_previnvestment`
+--
+ALTER TABLE `st_previnvestment`
+  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `st_team`

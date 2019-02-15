@@ -315,7 +315,7 @@
       <ul class="categories">
       <li><i class="fa fa-dashboard fa-fw"></i><a href="dashboard.php"> Dashboard</span></a>
         </li>
-        <li><i class="fa fa-bar-chart-o"></i><a href="analytics">Analysis</a></li>
+        <li><i class="fa fa-bar-chart-o"></i><a href="analytics.php">Analysis</a></li>
         <li><i class="fa fa-users fa-fw"></i><a href="#"> Our team</a>
           <ul class="side-nav-dropdown">
             <li><a href="team.php">View team</a></li>
