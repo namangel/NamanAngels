@@ -249,6 +249,22 @@
 		header('location:Finance.php');
 	}
 	
+	if(isset($_POST['annualsave'])){
+		$rr = mysqli_real_escape_string($db, $_POST['runrate']);
+		$br = mysqli_real_escape_string($db, $_POST['burnrate']);
+		$fa = mysqli_real_escape_string($db, $_POST['finannotation']);
+		$rd = mysqli_real_escape_string($db, $_POST['revdriver']);
+		$year = date("Y") -3;
+		for($i=0;$i<6;$i++){
+			$sale= mysqli_real_escape_string($db, $_POST['sales'][$i]);
+			$reven = mysqli_real_escape_string($db, $_POST['rev'][$i]);
+			$exp = mysqli_real_escape_string($db, $_POST['expend'][$i]);
+			$year= $year+1;
+			$q = "INSERT INTO annual_financial(StpID,revenue_rate,burn_rate,financial_annotation,revenue_driver,sales,revenue,expenditure,year) values('$id','$rr','$br','$fa','$rd','$sale','$reven','$exp','$year')"; 
+			mysqli_query($db, $q);
+		}
+		header('location:Finance.php');
+	}
 
 ?>
 <html>
@@ -779,16 +795,16 @@
 								while($row = mysqli_fetch_assoc($results)){
 									if($row['StpID'] == $id){
 										echo '<span style="float:left">Round</span><span style="float:right">'.$row['Round'].'</span><br/><hr>';
-										echo '<span style="float:left">Seeking</span><span style="float:right">'.$row['Seeking'].'</span><br/><hr>';
+										echo '<span style="float:left">Seeking</span><span style="float:right">$ '.$row['Seeking'].'</span><br/><hr>';
 										echo '<span style="float:left"></span>Security Type<span style="float:right">'.$row['Security_type'].'</span><br/><hr>';
 										if($row['Security_type'] == 'Preferred Equity' || $row['Security_type'] == 'Common Equity'){
-											echo '<span style="float:left">Premoney Valuation</span><span style="float:right">'.$row['Premoney_val'].'</span><br/><hr>';
+											echo '<span style="float:left">Premoney Valuation</span><span style="float:right">$ '.$row['Premoney_val'].'</span><br/><hr>';
 										}
 										if($row['Security_type'] == 'Convertible Notes'){
 											echo '<span style="float:left">Valuation Capital</span><span style="float:right">'.$row['Val_cap'].'</span><br/><hr>';
-											echo '<span style="float:left">Conversion discount</span><span style="float:right">'.$row['Conversion_disc'].'</span><br/><hr>';
-											echo '<span style="float:left">Interest Rate</span><span style="float:right">'.$row['Interest_rate'].'</span><br/><hr>';
-											echo '<span style="float:left">Term Length</span><span style="float:right">'.$row['Term_len'].'</span><br/><hr>';
+											echo '<span style="float:left">Conversion discount</span><span style="float:right">'.$row['Conversion_disc'].' %</span><br/><hr>';
+											echo '<span style="float:left">Interest Rate</span><span style="float:right">'.$row['Interest_rate'].' %</span><br/><hr>';
+											echo '<span style="float:left">Term Length</span><span style="float:right">'.$row['Term_len'].' Months</span><br/><hr>';
 										}
 										echo '<button class="btnfund" onclick="clroundon()">Close Funding Round</button>';
 									}
@@ -809,7 +825,7 @@
 							while($row=mysqli_fetch_assoc($results)){
 								echo '<span style="float:left">Round</span><span style="float:right">'.$row['Round'].'</span><br/><hr>';
 								echo '<span style="float:left"></span>Security Type<span style="float:right">'.$row['Security_type'].'</span><br/><hr>';
-								echo '<span style="float:left">Capital raised</span><span style="float:right">'.$row['Capital_raised'].'</span><br/><hr>';
+								echo '<span style="float:left">Capital raised</span><span style="float:right">$ '.$row['Capital_raised'].'</span><br/><hr>';
 								echo '<span style="float:left">Close Date</span><span style="float:right">'.$row['Close_date'].'</span><br/><hr style="height:1px; background-color:black;">';
 							}
 						?>	
@@ -821,24 +837,66 @@
 						</div>
 						<p>Enter your financials for this year and last year, as well as projections for the following three years.</p>
 						<p>Investors like to compare and evaluate financial performance over this timeframe, so do your best to complete it.</p>
-					</div>
-					<div class="databox">
-						<pre>Annual Revenue Run Rate --                        Monthly Burn Rate --<pre>
+					<?php
+						$y=date("Y");
+						$q = "SELECT revenue_rate,burn_rate FROM annual_financial WHERE StpId='$id' AND year= '$y' "; 
+						$results = mysqli_query($db, $q);
+						$row=mysqli_fetch_array($results);
+						$revrr= $row[0];
+						$mbr= $row[1];
+					?>
+						<pre>Annual Revenue Run Rate: <?=$revrr?>                        Monthly Burn Rate: <?=$mbr?><pre>
 							<table>
-								<tr>
-								<td>         </td>
+								<td>Year</td>
+								<?php
+									$q = "SELECT year FROM annual_financial WHERE StpID='$id'"; 
+									$result = mysqli_query($db, $q);
+									$storeArray = Array();
+									$x=0;
+									while ($row = mysqli_fetch_assoc($result)) {
+										$storeArray[] =  $row['year'];  
+										echo '<td>'.$storeArray[$x++].'</td>';
+									}	
+								?>
 								</tr>
 								<tr>
-								<td>Sales</td>
+								<td>Sales $</td>
+								<?php
+									$q = "SELECT sales FROM annual_financial WHERE StpID='$id'"; 
+									$result = mysqli_query($db, $q);
+									$storeArray = Array();
+									$x=0;
+									while ($row = mysqli_fetch_assoc($result)) {
+										$storeArray[] =  $row['sales'];  
+										echo '<td>'.$storeArray[$x++].'</td>';
+									}	
+								?>
 								</tr>
 								<tr>
 								<td>Revenue $</td>
+								<?php
+									$q = "SELECT revenue FROM annual_financial WHERE StpID='$id'"; 
+									$result = mysqli_query($db, $q);
+									$storeArray = Array();
+									$x=0;
+									while ($row = mysqli_fetch_assoc($result)) {
+										$storeArray[] =  $row['revenue'];  
+										echo '<td>'.$storeArray[$x++].'</td>';
+									}	
+								?>
 								</tr>
 								<tr>
 								<td>Expenditure $</td>
-								</tr>
-								<tr>
-								<td>Profit (Loss) $</td>
+								<?php
+									$q = "SELECT expenditure FROM annual_financial WHERE StpID='$id'"; 
+									$result = mysqli_query($db, $q);
+									$storeArray = Array();
+									$x=0;
+									while ($row = mysqli_fetch_assoc($result)) {
+										$storeArray[] =  $row['expenditure'];  
+										echo '<td>'.$storeArray[$x++].'</td>';
+									}	
+								?>
 								</tr>
 							</table>
 					</div>
@@ -1018,15 +1076,15 @@
 									<br>
 									<label>Sales</label>
 									<br>
-									<input type="number" name="sales" size="54">
+									<input type="number" name="sales[]" size="54">
 									<br><br>
 									<label>Revenue</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="runrate" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="text" name="rev[]" placeholder="Numbers Only" size="54"></i>
 									<br><br>
 									<label>Expenditure</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="text" name="expend[]" placeholder="Numbers Only" size="54"></i>
 									<br><br><hr>
 								</div>
 								<div class="formtext">
@@ -1034,15 +1092,15 @@
 									<br>
 									<label>Sales</label>
 									<br>
-									<input type="number" name="sales" size="54">
+									<input type="number" name="sales[]" size="54">
 									<br><br>
 									<label>Revenue</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="runrate" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="text" name="rev[]" placeholder="Numbers Only" size="54"></i>
 									<br><br>
 									<label>Expenditure</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="text" name="expend[]" placeholder="Numbers Only" size="54"></i>
 									<br><br><hr>
 								</div>
 								<div class="formtext">
@@ -1050,15 +1108,15 @@
 									<br>
 									<label>Sales</label>
 									<br>
-									<input type="number" name="sales" size="54">
+									<input type="number" name="sales[]" size="54">
 									<br><br>
 									<label>Revenue</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="runrate" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="text" name="rev[]" placeholder="Numbers Only" size="54"></i>
 									<br><br>
 									<label>Expenditure</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="text" name="expend[]" placeholder="Numbers Only" size="54"></i>
 									<br><br><hr>
 								</div>
 								<div class="formtext">
@@ -1066,15 +1124,15 @@
 									<br>
 									<label>Sales</label>
 									<br>
-									<input type="number" name="sales" size="54">
+									<input type="number" name="sales[]" size="54">
 									<br><br>
 									<label>Revenue</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="runrate" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="text" name="rev[]" placeholder="Numbers Only" size="54"></i>
 									<br><br>
 									<label>Expenditure</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="text" name="expend[]" placeholder="Numbers Only" size="54"></i>
 									<br><br><hr>
 								</div>
 								<div class="formtext">
@@ -1082,15 +1140,15 @@
 									<br>
 									<label>Sales</label>
 									<br>
-									<input type="number" name="sales" size="54">
+									<input type="number" name="sales[]" size="54">
 									<br><br>
 									<label>Revenue</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="runrate" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="text" name="rev[]" placeholder="Numbers Only" size="54"></i>
 									<br><br>
 									<label>Expenditure</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="text" name="expend[]" placeholder="Numbers Only" size="54"></i>
 									<br><br><hr>
 								</div>
 								<div class="formtext">
@@ -1098,20 +1156,20 @@
 									<br>
 									<label>Sales</label>
 									<br>
-									<input type="number" name="sales" size="54">
+									<input type="number" name="sales[]" size="54">
 									<br><br>
 									<label>Revenue</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="runrate" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="text" name="rev[]" placeholder="Numbers Only" size="54"></i>
 									<br><br>
 									<label>Expenditure</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="text" name="expend[]" placeholder="Numbers Only" size="54"></i>
 									<br><br>
 								</div>
                                 <div class="formtext submits">
                                     <input type="submit" onclick="annualoff()" value="Cancel" name="cancel" class="cancel">
-                                    <input type="submit" value="Save" name="roundsave" class="save">
+                                    <input type="submit" value="Save" name="annualsave" class="save">
                                 </div>
                             </form>
                         </div>
