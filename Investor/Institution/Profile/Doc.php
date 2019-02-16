@@ -154,7 +154,15 @@
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
-												<li><form method="post"><button class="b1" name="make_deal"><?= $transbtn?></button></form></li>
+						<li>
+							<?php
+								$q = "SELECT * FROM current_round WHERE StpID='$id'"; 
+								$results = mysqli_query($db, $q);
+								if(mysqli_num_rows($results) != 0){
+									echo '<form method="post"><button class="b1" name="make_deal">'.$transbtn.'</button></form>';
+								}		
+							?>
+						</li>
                     </ul>
                 </div>
 
