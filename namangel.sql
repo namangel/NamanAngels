@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 15, 2019 at 03:28 PM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- Host: 127.0.0.1:3307:3307
+-- Generation Time: Feb 22, 2019 at 04:32 PM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 7.0.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -62,6 +62,18 @@ CREATE TABLE `annual_financial` (
   `year` year(4) NOT NULL,
   `annual_fin_ID` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `annual_financial`
+--
+
+INSERT INTO `annual_financial` (`StpID`, `revenue_rate`, `burn_rate`, `financial_annotation`, `revenue_driver`, `sales`, `revenue`, `expenditure`, `year`, `annual_fin_ID`) VALUES
+(1, 12, 11, 'sdda', 'ddf', 1, 21, 234, 2017, 1),
+(1, 12, 11, 'sdda', 'ddf', 2, 123, 234, 2018, 2),
+(1, 12, 11, 'sdda', 'ddf', 3, 123, 213, 2019, 3),
+(1, 12, 11, 'sdda', 'ddf', 4, 123, 213, 2020, 4),
+(1, 12, 11, 'sdda', 'ddf', 5, 123, 234, 2021, 5),
+(1, 12, 11, 'sdda', 'ddf', 3, 123, 234, 2022, 6);
 
 -- --------------------------------------------------------
 
@@ -285,17 +297,16 @@ CREATE TABLE `requests` (
   `ReqID` int(10) NOT NULL,
   `Inv_ID` varchar(20) NOT NULL,
   `St_ID` varchar(20) NOT NULL,
-  `Deal` binary(1) NOT NULL DEFAULT '\0'
+  `Deal` binary(1) NOT NULL DEFAULT '\0',
+  `Round` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `requests`
 --
 
-INSERT INTO `requests` (`ReqID`, `Inv_ID`, `St_ID`, `Deal`) VALUES
-(1, '1', '1', 0x00),
-(2, '1', '1', 0x00),
-(3, '1', '1', 0x00);
+INSERT INTO `requests` (`ReqID`, `Inv_ID`, `St_ID`, `Deal`, `Round`) VALUES
+(4, '1', '1', 0x31, 'Friends and Family');
 
 -- --------------------------------------------------------
 
@@ -311,6 +322,14 @@ CREATE TABLE `round_history` (
   `Capital_raised` int(30) NOT NULL,
   `Close_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `round_history`
+--
+
+INSERT INTO `round_history` (`HistID`, `StpID`, `Round`, `Security_type`, `Capital_raised`, `Close_date`) VALUES
+(1, 1, 'Founder', 'Preferred Equity', 3124, '2019-02-16'),
+(2, 1, 'Friends and Family', 'Preferred Equity', 3124, '2019-02-23');
 
 -- --------------------------------------------------------
 
@@ -351,6 +370,13 @@ CREATE TABLE `st_advisors` (
   `Name` varchar(200) NOT NULL,
   `Email` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `st_advisors`
+--
+
+INSERT INTO `st_advisors` (`ID`, `StpID`, `Name`, `Email`) VALUES
+(1, 1, 'asdfghs', 'afg@gjs.com');
 
 -- --------------------------------------------------------
 
@@ -716,7 +742,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `annual_financial`
 --
 ALTER TABLE `annual_financial`
-  MODIFY `annual_fin_ID` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `annual_fin_ID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `inv_group`
@@ -728,7 +754,7 @@ ALTER TABLE `inv_group`
 -- AUTO_INCREMENT for table `inv_previnvestment`
 --
 ALTER TABLE `inv_previnvestment`
-  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `namanteam`
@@ -740,25 +766,25 @@ ALTER TABLE `namanteam`
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `ReqID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ReqID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `round_history`
 --
 ALTER TABLE `round_history`
-  MODIFY `HistID` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `HistID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `st_advisors`
 --
 ALTER TABLE `st_advisors`
-  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `st_previnvestment`
 --
 ALTER TABLE `st_previnvestment`
-  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `st_team`

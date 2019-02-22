@@ -29,7 +29,11 @@
 	{
 		if (mysqli_num_rows($req) == 0)
 		{
-			$q = "INSERT into requests(Inv_ID,St_ID) values ('$invid','$id')";
+			$qu = "SELECT * FROM current_round WHERE StpID='$id'"; 
+            $res3 = mysqli_query($db, $qu);
+            $row3 = mysqli_fetch_assoc($res3);
+
+			$q = "INSERT into requests(Inv_ID,St_ID,Round) values ('$invid','$id','$r')";
 			mysqli_query($db, $q);
 		}
 		header('location: index.php?searchquery='.$id);
@@ -168,6 +172,9 @@
 								$results = mysqli_query($db, $q);
 								if(mysqli_num_rows($results) == 1){
 									echo '<form method="post"><button class="b1" name="make_deal">'.$transbtn.'</button></form>';
+								}
+								else{
+									echo '<p>Funding Round Closed. Invest when open.</p>';
 								}		
 							?>
 						</li>

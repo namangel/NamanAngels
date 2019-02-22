@@ -169,6 +169,9 @@
 								if(mysqli_num_rows($results) != 0){
 									echo '<form method="post"><button class="b1" name="make_deal">'.$transbtn.'</button></form>';
 								}		
+								else{
+									echo '<p>Funding Round closed. Invest when open.</p>';
+								}
 							?>
 						</li>
                     </ul>

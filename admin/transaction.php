@@ -120,7 +120,9 @@
                     <tr>
                         <th>Investor</th>
                         <th>Startup</th>
-                        <th>Status</th>
+                        <th>Deal Status</th>
+                        <th>Round Status</th>
+                        <th>Round</th>
                     </tr>
                     <?php
                     $qu = "SELECT * FROM requests";
@@ -130,6 +132,7 @@
                         $deal = $row['Deal'];
                         $stpid = $row['St_ID'];
                         $invid = $row['Inv_ID'];
+                        $r=$row['Round'];
 
                         $qu1= "SELECT * FROM st_details WHERE StpID = '$stpid'";
                         $res1 = mysqli_query($db, $qu1);
@@ -139,16 +142,29 @@
                         $res2 = mysqli_query($db, $qu2);
                         $row2 = mysqli_fetch_assoc($res2);
 
+                        $q = "SELECT * FROM round_history WHERE StpID='$stpid' AND Round='$r'"; 
+                        $res3 = mysqli_query($db, $q);
+                        $row3 = mysqli_fetch_assoc($res3);
+
                         echo '<tr>
                         <td>'.$row1['Stname'].'</td>
                         <td>'.$row2['CName'].'</td>'
                         ;
                         if($deal == 0)
-                            echo '<td>Investor Interested</td>
-                                </tr>';
+                            echo '<td>Investor Interested</td>';
                         if($deal == 1)
-                            echo '<td>Deal Completed</td>
-                                </tr>';
+                            echo '<td>Deal Completed</td>';
+
+                        if(mysqli_num_rows($res3) == 1){
+                            echo '<td>Round closed</td>
+                            <td>'.$row3['Round'].'</td>';
+                        }
+                        else{
+                            echo '<td>Round open</td>
+                            <td>'.$row['Round'].'</td>';
+                        }
+                        echo '</tr>'
+                        ;
                     }
                     ?>
                 </table>
