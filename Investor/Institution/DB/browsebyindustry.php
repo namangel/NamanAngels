@@ -16,6 +16,7 @@
 
     <?php require "../include/header/inv_db.php"?>
     <?php require "../include/nav/nav.php"?>
+
     <div class="browsesearch">
         <div class="bsearch">
             <form class="searchform" action="browsebyindustry.php" method="post">

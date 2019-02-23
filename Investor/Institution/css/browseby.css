@@ -5,7 +5,8 @@ body{
 .main{
     display: grid;
     grid-template-columns: 1fr,1fr;
-    margin: 10px 10px;
+    margin-top: 50px;
+    margin-bottom: 50px;
     margin-right: 150px;
     margin-left: 150px;
     min-height: 600px;
