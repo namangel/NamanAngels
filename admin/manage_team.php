@@ -1,7 +1,8 @@
 <?php
   require "../server.php";
 
-  if (isset($_POST["addmem"])){
+  if (isset($_POST["addmem"]))
+  {
     $MemName = mysqli_real_escape_string($db, $_POST['mem_name']);
     $MemDesc = mysqli_real_escape_string($db, $_POST['mem_desc']);
     $MemLink = mysqli_real_escape_string($db, $_POST['mem_link']);
@@ -10,49 +11,56 @@
     $result = mysqli_query($db, $member_check_query);
     $user = mysqli_fetch_assoc($result);
 
-    if (mysqli_num_rows($result) > 0) {
+    if (mysqli_num_rows($result) > 0) 
+    {
         echo "<script>alert('Member already exists')</script>";
         header('location:manage_team.php');
     }
-    else{
-    $q = "INSERT INTO namanteam (Image, Link, Name, Description) VALUES (null ,'$MemLink','$MemName','$MemDesc')";
-    mysqli_query($db, $q);
-    echo "<script>alert('Member added successfully!')</script>";
-    header('location:manage_team.php');
+    else
+    {
+      // echo "<script>alert('Member added successfully!')</script>";
+      $check = getimagesize($_FILES["mem_img"]["tmp_name"]);
+      if($check != false)
+      {
+        $file_name = $_FILES['mem_img']['name'];
+        $file_size = $_FILES['mem_img']['size'];
+        $file_tmp = $_FILES['mem_img']['tmp_name'];
+        $file_type = $_FILES['mem_img']['type'];
+        $file_ext = strtolower(end(explode('.',$_FILES['mem_img']['name'])));
 
-    // $check = getimagesize($_FILES["mem_img"]["tmp_name"]);
-		// if($check != false)
-		// {
-		// 	$file_name = $_FILES['mem_img']['name'];
-		// 	$file_size = $_FILES['mem_img']['size'];
-		// 	$file_tmp = $_FILES['mem_img']['tmp_name'];
-		// 	$file_type = $_FILES['mem_img']['type'];
-		// 	$file_ext=strtolower(end(explode('.',$_FILES['mem_img']['name'])));
+        $extensions= array("jpeg","jpg","png");
 
-		// 	$extensions= array("jpeg","jpg","png");
-
-		// 	if(in_array($file_ext,$extensions)=== false)
-		// 	{
-		// 		echo "<script>alert('Extension not allowed, please choose a JPEG or PNG file.')</script>";
-		// 	}
-		// 	else
-		// 	{
-		// 		if($file_size > 5242880)
-		// 		{
-		// 			echo "<script>alert('File size must be less than 5 MB')</script>";
-		// 		}
-		// 		else
-		// 		{
-		// 			$upload = "/NamanAngels_Admin/Uploads/".$file_name;
-		// 			move_uploaded_file($file_tmp,$upload);
-		// 			$q = "UPDATE admin set mem_imgPic='$upload' where adminID='$id';";
-		// 			mysqli_query($db, $q);
-		// 			echo "<script>alert('Successfully Uploaded')</script>";
-		// 		}
-		// 	}
-		// }
+        if(in_array($file_ext,$extensions)=== false)
+        {
+          echo "<script>alert('Extension not allowed, please choose a JPEG or PNG file.')</script>";
+        }
+        else
+        {
+          if($file_size > 5242880)
+          {
+            echo "<script>alert('File size must be less than 5 MB')</script>";
+          }
+          else
+          {
+            $uploadas = "Uploads/team/".$file_name;
+            $upload = "../Uploads/team/".$file_name;
+            if(move_uploaded_file($file_tmp,$upload))
+            {
+              $q = "INSERT INTO namanteam (Image, Link, Name, Description) VALUES ('$uploadas','$MemLink','$MemName','$MemDesc');";
+              mysqli_query($db, $q);
+              echo "<script>alert('Member added successfully!')</script>";
+              header('location:manage_team.php');
+            }
+          }
+        }
+      }
+      else
+      {
+      $q = "INSERT INTO namanteam (Link, Name, Description) VALUES ('$MemLink','$MemName','$MemDesc');";
+      mysqli_query($db, $q);
+      }
+    }
   }
-}
 
   if (isset($_POST["delmem"])){
     $MemName = mysqli_real_escape_string($db, $_POST['mem_name']);
