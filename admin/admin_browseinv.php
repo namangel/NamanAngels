@@ -258,12 +258,12 @@
                                     <img src='.$row['CImg'].' alt="John" style="width:30%; align:middle">
                                     <h1 style="color:#FF8C00;text-align:center">'.$row['CName'].'</h1>
                                    
-                                    <p>'.$row['FName'].'</p>
-                                    <p>'.$row['LName'].'</p>
-                                    <p>'.$row['WebLink'].'</p>
-                                    <p>'.$row['AvgInv'].'</p>
+                                    <p><i class="fa fa-user"></i> &nbsp;'.$row['FName'].'</p>
+                                    <p><i class="fa fa-globe"></i> &nbsp;'.$row['LName'].'</p>
+                                    <p><i class="fa fa-link"></i> &nbsp;'.$row['WebLink'].'</p>
+                                    <p><i class="fa fa-angellist" aria-hidden="true"></i> &nbsp;'.$row['AvgInv'].'</p>
 
-                                    <a href=../Investor/Profile/index.php?searchquery='.$row['InvID'].' target=_blank>
+                                    <a href=../Investor/Individual/Profile/index.php?searchquery='.$row['InvID'].' target=_blank>
                                     <button type= submit name=subinv class=viewprofile value=View Profile action=index.php><h4>View Profile</h4></button></a>
                                 </div>
                             </div>
