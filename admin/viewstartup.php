@@ -255,11 +255,13 @@
                         <div class="col-md-6">
                             <div class="box">
                                 <div class="admin">
-                                    <img src='.$row['StpImg'].' alt="John" style="width:30%; align:middle">
+                                    <img src="../'.$row['StpImg'].'" alt="John" style="width:30%; align:middle">
+                                    <center>
                                     <h1 style="color:#FF8C00;text-align:center">'.$row['StpName'].'</h1>
                                     <p class="title"><i class="fa fa-building-o" aria-hidden="true"></i>&nbsp;'.$row['Type'].'</p>
                                     <p><i class="fa fa-user"></i> &nbsp;'.$row['FName'].'</p>
                                     <p><i class="fa fa-circle"></i> &nbsp;'.$row['SName'].'</p>
+                                    </center>
                                     <a href=../StartUp/Profile/index.php?searchquery='.$row['StpID'].' target=_blank>
                                     <button type= submit name=subinv class=viewprofile value=View Profile action=index.php><h4>View Profile</h4></button></a>
                                 </div>

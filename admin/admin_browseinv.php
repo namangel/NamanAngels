@@ -233,7 +233,7 @@
         $no_of_records_per_page = 3;
         $offset = ($pageno - 1) * $no_of_records_per_page;
         if(isset($_SESSION['search'])){
-            $sname = $_SESSION['search'];
+            $cpname = $_SESSION['search'];
         }
 
    $total_pages_sql = "SELECT COUNT(*) FROM CProfile where CName LIKE '%{$cpname}%'";
@@ -255,13 +255,15 @@
                         <div class="col-md-6">
                             <div class="box">
                                 <div class="admin">
-                                    <img src='.$row['CImg'].' alt="John" style="width:30%; align:middle">
+                                    <img src="../'.$row['CImg'].'" alt="John" style="width:30%; align:middle">
+                                    <center>
                                     <h1 style="color:#FF8C00;text-align:center">'.$row['CName'].'</h1>
-                                   
+
                                     <p><i class="fa fa-user"></i> &nbsp;'.$row['FName'].'</p>
                                     <p><i class="fa fa-globe"></i> &nbsp;'.$row['LName'].'</p>
                                     <p><i class="fa fa-link"></i> &nbsp;'.$row['WebLink'].'</p>
                                     <p><i class="fa fa-angellist" aria-hidden="true"></i> &nbsp;'.$row['AvgInv'].'</p>
+                                    </center>
 
                                     <a href=../Investor/Individual/Profile/index.php?searchquery='.$row['InvID'].' target=_blank>
                                     <button type= submit name=subinv class=viewprofile value=View Profile action=index.php><h4>View Profile</h4></button></a>

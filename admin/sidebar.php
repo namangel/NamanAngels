@@ -352,7 +352,7 @@
                   <li><a href="changepassword.php"><i class="fa fa-lock fw"></i> Password</a></li>
                   <!-- <li><a href="#"><i class="fa fa-question-circle-o fw"></i> Help</a></li> -->
                   <li role="separator" class="divider"></li>
-                  <li><a href="login.php"><i class="fa fa-sign-out"></i> Log out</a></li>
+                  <li><a href="logout.php"><i class="fa fa-sign-out"></i> Log out</a></li>
                 </ul>
               </li>
            <!--   <li><a href="#"><i class="fa fa-comments"></i><span>23</span></a></li>

@@ -186,7 +186,7 @@
                   echo '<div class="box">';
                       echo '<div class="admin">';
                           echo '<div class="img">';
-                              echo '<img class="img-responsive" src="'.$row["Image"].'"/>';
+                              echo '<img class="img-responsive" src="../'.$row["Image"].'"/>';
                               echo '<center><a class="linkedin" href='.$row["Link"].'>My LinkedIn Account</a></center><br><br>';
                           echo '</div>';
                           echo '<div class="info"><br><br>';

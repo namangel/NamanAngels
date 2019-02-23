@@ -8,7 +8,7 @@
 <body>
     <div class="login">
         <center><h1>Admin Login</h1></center>
-        <form method="post" action="login.php">
+        <form method="post" action="index.php">
             <input type="text" name="username" placeholder="Enter Username">
             <br>
             <!-- <input type="text" name="designation" placeholder="Enter Designation">
