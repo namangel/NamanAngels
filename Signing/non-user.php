@@ -63,13 +63,44 @@ if (phone.length != 10) {
       <input type="text" name="lname" required>
     </div>
     <div class="input-group">
+      <label>City</label>
+      <input type="text" name="city" required>
+    </div>
+    <div class="input-group">
+      <label>State</label>
+      <input type="text" name="state" required>
+    </div>
+    <div class="input-group">
+        <label>Country</label>
+      <select name="country"required>
+        <option value="NULL"></option>
+        <option value="AU">Australia</option>
+        <option value="BD">Bangladesh</option>
+        <option value="BT">Bhutan</option>n>
+        <option value="CA">Canada</option>
+        <option value="CN">China</option>
+        <option value="FR">France</option>
+        <option value="DE">Germany</option>
+        <option value="HK">Hong Kong</option>
+        <option value="IN">India</option>
+        <option value="JP">Japan</option>
+        <option value="KP">Democratic People's Republic of Korea</option>
+        <option value="MY">Malaysia</option>
+        <option value="NP">Nepal</option>
+        <option value="NZ">New Zealand</option>
+        <option value="RU">Russian Federation</option>
+        <option value="SG">Singapore</option>
+        <option value="LK">Sri Lanka</option>
+        <option value="AE">United Arab Emirates</option>
+        <option value="GB">United Kingdom</option>
+        <option value="US">United States</option>
+      </select>
+      </div>
+    <div class="input-group">
       <label>Phone</label>
       <input type="number" name="phone" required>
     </div>
-
-  
-    
-  
+</div>
 <div class="contbot">
       <div class="input-group">
         <button type="submit" onclick="validateForm()"class="btn" name="dir_mem" style="background-color: #0e3c58;">Request Membership</button>
@@ -83,102 +114,3 @@ if (phone.length != 10) {
 <?php require "../include/footer/footer.php"?>
 </body>
 </html>
-<style>
- /* body {
-  background: white;
-  margin: 0px;
-  padding: 0px;
-}
-
-.header {
-  width: 30%;
-  margin: 10px auto 0px;
-  text-align: center;
-  padding: 10px;
-}
-.content{
-  width: 90%;
-  margin: 0px auto;
-  padding: 20px;
-  border: 1px solid #B0C4DE;
-  background: white;
-  text-align: center;
-}
-.input-group{
-  position: relative;
-  display: inline-block;
-  width:48%;
-}
-
-.input-group label, .input-group input, .input-group select{
-  margin: 10px 0px 10px 0px;
-  display: inline-block;
-  width: 40%;
-  padding: 10px;
-  font-size: 16px;
-  text-align: left;
-}
-
-
-.input-group .tooltiptext {
-  visibility: hidden;
-  width: 275px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 60%;
-  margin-left: -60px;
-  opacity: 0;
-  transition: opacity 0.3s;
-  }
-
-  .input-group .tooltiptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
-  }
-
-  .input-group:hover .tooltiptext {
-  visibility: visible;
-  opacity: 1;
-  }
-.contbot{
-    display: block;
-    text-align: right;
-    margin: 50px;
-}
-.contbot .btn {
-  padding: 10px;
-  font-size: 15px;
-  color: white;
-  border: none;
-  border-radius: 5px;
-}
-#individual, #insitution{
-  display: none;
-}
-.type{
-    display: inline-block;
-    width:40%;
-}
-
-.type label, .type input, .type select{
-  margin: 0px 0px 10px 0px;
-  display: inline-block;
-  width: 40%;
-  padding: 10px;
-  font-size: 16px;
-  text-align: left;
-}
-
-  </style>
