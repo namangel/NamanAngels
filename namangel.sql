@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2019 at 12:46 PM
+-- Generation Time: Feb 23, 2019 at 02:01 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -243,7 +243,7 @@ CREATE TABLE `namanteam` (
   `Name` varchar(30) NOT NULL,
   `Link` varchar(25) NOT NULL,
   `Description` varchar(100) NOT NULL,
-  `Image` varchar(200) DEFAULT NULL
+  `Image` varchar(200) DEFAULT '/NamanAngels/uploads/default/default.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -251,25 +251,24 @@ CREATE TABLE `namanteam` (
 --
 
 INSERT INTO `namanteam` (`SR`, `Name`, `Link`, `Description`, `Image`) VALUES
-(1, 'Shweta Shalini', 'link1', 'Official Spokesperson - Bhartiya Janta Party | Chief Evangelist - The Billennium Divas Thought Leade', '\\NamanAngels\\include\\img\\team\\shweta-shalini.png'),
-(2, 'Miten Mehta', 'link2', 'Co-Founder of Spinta Global Accelerato', '\\NamanAngels\\include\\img\\team\\miten-mehta.png'),
-(3, 'Sandeep Sehgal', 'link3', 'CEO and Co-Founder of Global ScaleUp | HQ in Singapore', '\\NamanAngels\\include\\img\\team\\sandeep-sehgal.png'),
-(4, 'Nilesh Gandhi', 'link4', 'Managing Director at Unid Finance Consultancy Pvt. Ltd.', '\\NamanAngels\\include\\img\\team\\nilesh-gandhi.png'),
-(5, 'Tapaswi Patel', 'link5', 'Serial Entrepreneur Startup Investor Founder: Naman Angels India Foundation, ZoomStart India', '\\NamanAngels\\include\\img\\team\\tapaswi-patel.png'),
-(6, 'Dinesh Israni', 'link6', 'Co-Founder | CEO ', '\\NamanAngels\\include\\img\\team\\dinesh-israni.png'),
-(7, 'Bhavesh Kothari', 'link7', 'Co-Founder | CBO ', '\\NamanAngels\\include\\img\\team\\bhavesh-kothari.png'),
-(8, 'Ankit Buti', 'link8', 'Entrepreneur in Residence with NAMAN Angels India Foundation | Founder & CEO at StartupEd', '\\NamanAngels\\include\\img\\team\\ankit-buti.png'),
-(9, 'Pratik Lalani', 'link', 'Principal Evangelist', '\\NamanAngels\\include\\img\\team\\pratik-lalani.png'),
-(10, 'Purvang Joshi', 'link', 'Principal Evangelist', '\\NamanAngels\\include\\img\\team\\purvang-joshi.png'),
-(11, 'Deep Patel', 'link11', 'Principal Evangelist', '\\NamanAngels\\include\\img\\team\\deep-patel.png'),
-(12, 'Sonali Shah', 'link12', 'Design & Marketing Support', '\\NamanAngels\\include\\img\\team\\sonali-shah.png'),
-(13, 'Bharti Keswani', 'link', 'Financial Analyst', '\\NamanAngels\\include\\img\\team\\bharti-keswani.png'),
-(14, 'Harsha Therani', 'link13', 'Financial Analyst', '\\NamanAngels\\include\\img\\team\\harsha-therani.png'),
-(15, 'Sunny Tiwari', 'link', 'Financial Analyst', '\\NamanAngels\\include\\img\\team\\sunny-tiwari.png'),
-(16, 'Yash Thakkar', 'link', 'Investment Fund Manager', '\\NamanAngels\\include\\img\\team\\yash-thakkar.png'),
-(17, 'Nikita Tilak', 'link', 'Investment Fund Manager', '\\NamanAngels\\include\\img\\team\\nikita-tilak.png'),
-(18, 'Vidisha Dholkhedia', 'link', 'Digital Marketing', '\\NamanAngels\\include\\img\\team\\vidisha.png'),
-(19, 'Aayush', 'linkedin.in/aayush', 'Chairman', NULL);
+(1, 'Shweta Shalini', 'link1', 'Official Spokesperson - Bhartiya Janta Party | Chief Evangelist - The Billennium Divas Thought Leade', '\\NamanAngels\\Uploads\\team\\shweta-shalini.png'),
+(2, 'Miten Mehta', 'link2', 'Co-Founder of Spinta Global Accelerato', '\\NamanAngels\\Uploads\\team\\miten-mehta.png'),
+(3, 'Sandeep Sehgal', 'link3', 'CEO and Co-Founder of Global ScaleUp | HQ in Singapore', '\\NamanAngels\\Uploads\\team\\sandeep-sehgal.png'),
+(4, 'Nilesh Gandhi', 'link4', 'Managing Director at Unid Finance Consultancy Pvt. Ltd.', '\\NamanAngels\\Uploads\\team\\nilesh-gandhi.png'),
+(5, 'Tapaswi Patel', 'link5', 'Serial Entrepreneur Startup Investor Founder: Naman Angels India Foundation, ZoomStart India', '\\NamanAngels\\Uploads\\team\\tapaswi-patel.png'),
+(6, 'Dinesh Israni', 'link6', 'Co-Founder | CEO ', '\\NamanAngels\\Uploads\\team\\dinesh-israni.png'),
+(7, 'Bhavesh Kothari', 'link7', 'Co-Founder | CBO ', '\\NamanAngels\\Uploads\\team\\bhavesh-kothari.png'),
+(8, 'Ankit Buti', 'link8', 'Entrepreneur in Residence with NAMAN Angels India Foundation | Founder & CEO at StartupEd', '\\NamanAngels\\Uploads\\team\\ankit-buti.png'),
+(9, 'Pratik Lalani', 'link', 'Principal Evangelist', '\\NamanAngels\\Uploads\\team\\pratik-lalani.png'),
+(10, 'Purvang Joshi', 'link', 'Principal Evangelist', '\\NamanAngels\\Uploads\\team\\purvang-joshi.png'),
+(11, 'Deep Patel', 'link11', 'Principal Evangelist', '\\NamanAngels\\Uploads\\team\\deep-patel.png'),
+(12, 'Sonali Shah', 'link12', 'Design & Marketing Support', '\\NamanAngels\\Uploads\\team\\sonali-shah.png'),
+(13, 'Bharti Keswani', 'link', 'Financial Analyst', '\\NamanAngels\\Uploads\\team\\bharti-keswani.png'),
+(14, 'Harsha Therani', 'link13', 'Financial Analyst', '\\NamanAngels\\Uploads\\team\\harsha-therani.png'),
+(15, 'Sunny Tiwari', 'link', 'Financial Analyst', '\\NamanAngels\\Uploads\\team\\sunny-tiwari.png'),
+(16, 'Yash Thakkar', 'link', 'Investment Fund Manager', '\\NamanAngels\\Uploads\\team\\yash-thakkar.png'),
+(17, 'Nikita Tilak', 'link', 'Investment Fund Manager', '\\NamanAngels\\Uploads\\team\\nikita-tilak.png'),
+(18, 'Vidisha Dholkhedia', 'link', 'Digital Marketing', '\\NamanAngels\\Uploads\\team\\vidisha.png');
 
 -- --------------------------------------------------------
 
@@ -760,7 +759,7 @@ ALTER TABLE `inv_previnvestment`
 -- AUTO_INCREMENT for table `namanteam`
 --
 ALTER TABLE `namanteam`
-  MODIFY `SR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `SR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `requests`
