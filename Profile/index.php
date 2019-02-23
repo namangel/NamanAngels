@@ -153,10 +153,10 @@
                 </div>
 
                 <div class="nav">
-                    <div><a href="index.php" style="color:black;">Overview</a></div>
-                    <div><a href="Exec.php">Executive summary</a></div>
-                    <div><a href="Finance.php">Financials</a></div>
-                    <div><a href="Doc.php">Documents</a></div>
+                    <div><a href="index.php?s=<?= $id?>" style="color:black;">Overview</a></div>
+                    <div><a href="Exec.php?s=<?= $id?>">Executive summary</a></div>
+                    <div><a href="Finance.php?s=<?= $id?>">Financials</a></div>
+                    <div><a href="Doc.php?s=<?= $id?>">Documents</a></div>
                 </div>
                 <div class="summary">
                     <div class="databox">
