@@ -1,0 +1,52 @@
+body {
+  background: white;
+  margin: 0px;
+  padding: 0px;
+}
+
+.header {
+  width: 30%;
+  margin: 10px auto 0px;
+  text-align: center;
+  padding: 10px;
+}
+.content{
+  width: 90%;
+  margin: 0px auto;
+  padding: 20px;
+  border: 1px solid #B0C4DE;
+  background: white;
+  text-align: center;
+}
+.input-group{
+  position: relative;
+}
+
+.input-group label, .input-group input, .input-group textarea{
+  margin: 10px 0px 10px 0px;
+  display: inline-block;
+  padding: 10px;
+  font-size: 16px;
+  text-align: left;
+}
+.input-group label{
+  width: 15%;
+}
+.input-group input{
+  width: 60%;
+}
+.input-group textarea{
+  width: 77%;
+}  
+.contbot{
+    display: block;
+    text-align: right;
+    margin: 50px;
+}
+.contbot .btn {
+  padding: 10px;
+  font-size: 15px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
