@@ -8,7 +8,7 @@ if(isset($_SESSION['InvID'])){
     if($row['Type'] == 'Institution'){
         header('location: ../Investor/Institution/index.php');
     }
-    elseif ($row['Type'] == 'Institution') {
+    elseif ($row['Type'] == 'Individual') {
         header('location: ../Investor/Individual/index.php');
     }
 }
