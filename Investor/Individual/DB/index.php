@@ -36,14 +36,14 @@
 	if(isset($_POST["cbsave"])){
         $cbfname = mysqli_real_escape_string($db, $_POST['cbfname']);
         $cblname = mysqli_real_escape_string($db, $_POST['cblname']);
-				$cbcomp = mysqli_real_escape_string($db, $_POST['cbcomp']);
-				$cbcity = mysqli_real_escape_string($db, $_POST['cbcity']);
-				$cbcountry = mysqli_real_escape_string($db, $_POST['cbcountry']);
-				$cbrole = mysqli_real_escape_string($db, $_POST['cbrole']);
-        $cbpartner = mysqli_real_escape_string($db, $_POST['cbpartner']);
-        $cbioi = mysqli_real_escape_string($db, $_POST['cbioi']);
-				$cbrange = mysqli_real_escape_string($db, $_POST['cbrange']);
-				$cbweb = mysqli_real_escape_string($db, $_POST['cbweb']);
+		$cbcomp = mysqli_real_escape_string($db, $_POST['cbcomp']);
+		$cbcity = mysqli_real_escape_string($db, $_POST['cbcity']);
+		$cbcountry = mysqli_real_escape_string($db, $_POST['cbcountry']);
+		$cbrole = mysqli_real_escape_string($db, $_POST['cbrole']);
+		$cbpartner = mysqli_real_escape_string($db, $_POST['cbpartner']);
+		$cbioi = mysqli_real_escape_string($db, $_POST['cbioi']);
+		$cbrange = mysqli_real_escape_string($db, $_POST['cbrange']);
+		$cbweb = mysqli_real_escape_string($db, $_POST['cbweb']);
 
 
 		if($cbfname != "")
@@ -88,10 +88,11 @@
 			$q = "UPDATE inv_details set Website='$cbweb' where InvID='$u';";
 			mysqli_query($db, $q);
 		}
+
 		$check = getimagesize($_FILES["cbpic"]["tmp_name"]);
 		if($check != false)
 		{
-			$file_name = $_FILES['cbpic']['name'];
+			$file_name = $fname."_".$lname."_".$_FILES['cbpic']['name'];
 			$file_size = $_FILES['cbpic']['size'];
 			$file_tmp = $_FILES['cblpic']['tmp_name'];
 			$file_type = $_FILES['cbpic']['type'];
@@ -111,11 +112,13 @@
 				}
 				else
 				{
-					$upload = "/NamanAngels/Uploads/".$file_name;
-					move_uploaded_file($file_tmp,$upload);
-					$q = "UPDATE inv_uploads set ProfilePic='$upload' where InvID='$u';";
-					mysqli_query($db, $q);
-					echo "<script>alert('Successfully Uploaded')</script>";
+					$uploadas = "uploads/investor/".$file_name;
+					$upload = "../../uploads/investor/".$file_name;
+					if(move_uploaded_file($file_tmp, $upload)){
+						$q = "UPDATE inv_uploads set ProfilePic='$uploadas' where InvID='$u';";
+						mysqli_query($db, $q);
+						echo "<script>alert('Successfully Uploaded')</script>";
+					}
 				}
 			}
 		}
@@ -266,9 +269,7 @@
 			</div>
             <div class="upload">
 				<div>
-
-
-					<?= "<img src=".$img."  />";?></div><br><br>
+					<?= "<img src='../../../".$img."'  />";?></div><br><br>
                 <b><?= $fname ?>&nbsp;<?= $lname ?></b><br>
               <b> Location: </b><?= $city ?>&nbsp;,<?= $state ?>&nbsp;,<?= $country ?><br><br>
             </div>
@@ -680,7 +681,7 @@
 				}
 				?>
             </div>
-    		
+
 			<div class="databox">
 			<button onclick="addpion()" class="add"><i class="fa fa-plus"></i></button>
                 <h4>Previous Investment <div class="limit_inv" id="limit_inv">(maximum 3 previous investors can be added!)</div></h4>

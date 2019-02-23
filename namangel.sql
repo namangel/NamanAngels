@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3307:3307
--- Generation Time: Feb 22, 2019 at 04:32 PM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 7.0.31
+-- Host: localhost
+-- Generation Time: Feb 23, 2019 at 10:20 AM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -206,7 +206,7 @@ CREATE TABLE `inv_previnvestment` (
 
 CREATE TABLE `inv_uploads` (
   `InvID` int(20) NOT NULL,
-  `ProfilePic` varchar(200) NOT NULL DEFAULT '/NamanAngels/uploads/default/default.png'
+  `ProfilePic` varchar(200) DEFAULT 'uploads/default/default.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -214,7 +214,7 @@ CREATE TABLE `inv_uploads` (
 --
 
 INSERT INTO `inv_uploads` (`InvID`, `ProfilePic`) VALUES
-(1, '../../uploads/investor/Tony_Stark_Tools.jpg'),
+(1, '	\r\nuploads/default/default.png'),
 (2, '/NamanAngels/uploads/default/default.png'),
 (3, '/NamanAngels/uploads/default/default.png'),
 (4, '/NamanAngels/uploads/default/default.png');
@@ -483,8 +483,8 @@ CREATE TABLE `st_team` (
 
 CREATE TABLE `st_uploads` (
   `StpID` int(20) NOT NULL,
-  `Logo` varchar(200) DEFAULT '/NamanAngels/uploads/default/default.png',
-  `BackImg` varchar(200) DEFAULT '/NamanAngels/uploads/default/defaultbackimg.jpg',
+  `Logo` varchar(200) DEFAULT 'uploads/default/default.png',
+  `BackImg` varchar(200) DEFAULT 'uploads/default/defaultbackimg.jpg',
   `PitchName` varchar(200) DEFAULT NULL,
   `PitchExt` varchar(10) DEFAULT NULL,
   `BPlan` varchar(200) DEFAULT NULL,
@@ -500,7 +500,7 @@ CREATE TABLE `st_uploads` (
 --
 
 INSERT INTO `st_uploads` (`StpID`, `Logo`, `BackImg`, `PitchName`, `PitchExt`, `BPlan`, `BPlanExt`, `FProjection`, `FProjectionExt`, `AdDocs`, `AdDocsExt`) VALUES
-(1, '../../uploads/startup/Spacex_ProfilePic2.png', '../../uploads/startup/Spacex_backimgdownload.jpg', '../../uploads/startup/Spacex_pitch_VID-20181209-WA0003.mp4', 'mp4', '../../uploads/startup/Spacex_bplan_naman-todo.pdf', 'pdf', '../../uploads/startup/Spacex_fproj_Aayush Singh.pdf', 'pdf', NULL, NULL),
+(1, 'uploads/startup/Spacex_ProfilePic2.png', 'uploads/startup/Spacex_backimg_Spacex_backimg_Hero-5.jpg', 'uploads/startup/Spacex_pitch_VID-20181209-WA0003.mp4', 'mp4', 'uploads/startup/Spacex_bplan_naman-todo.pdf', 'pdf', 'uploads/startup/Spacex_fproj_Aayush Singh.pdf', 'pdf', NULL, NULL),
 (4, '/NamanAngels/uploads/default/default.jpg', '/NamanAngels/uploads/default/defaultbackimg.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------

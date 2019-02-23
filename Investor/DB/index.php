@@ -36,15 +36,14 @@
 	if(isset($_POST["cbsave"])){
         $cbfname = mysqli_real_escape_string($db, $_POST['cbfname']);
         $cblname = mysqli_real_escape_string($db, $_POST['cblname']);
-				$cbcomp = mysqli_real_escape_string($db, $_POST['cbcomp']);
-				$cbcity = mysqli_real_escape_string($db, $_POST['cbcity']);
-				$cbcountry = mysqli_real_escape_string($db, $_POST['cbcountry']);
-				$cbrole = mysqli_real_escape_string($db, $_POST['cbrole']);
-        $cbpartner = mysqli_real_escape_string($db, $_POST['cbpartner']);
-        $cbioi = mysqli_real_escape_string($db, $_POST['cbioi']);
-				$cbrange = mysqli_real_escape_string($db, $_POST['cbrange']);
-				$cbweb = mysqli_real_escape_string($db, $_POST['cbweb']);
-
+		$cbcomp = mysqli_real_escape_string($db, $_POST['cbcomp']);
+		$cbcity = mysqli_real_escape_string($db, $_POST['cbcity']);
+		$cbcountry = mysqli_real_escape_string($db, $_POST['cbcountry']);
+		$cbrole = mysqli_real_escape_string($db, $_POST['cbrole']);
+		$cbpartner = mysqli_real_escape_string($db, $_POST['cbpartner']);
+		$cbioi = mysqli_real_escape_string($db, $_POST['cbioi']);
+		$cbrange = mysqli_real_escape_string($db, $_POST['cbrange']);
+		$cbweb = mysqli_real_escape_string($db, $_POST['cbweb']);
 
 		if($cbfname != "")
 		{
@@ -127,9 +126,10 @@
 				}
 				else
 				{
+					$uploadas = "uploads/investor/".$file_name;
 					$upload = "../../uploads/investor/".$file_name;
 					if(move_uploaded_file($file_tmp, $upload)){
-						$q = "UPDATE inv_uploads set ProfilePic='$upload' where InvID='$u';";
+						$q = "UPDATE inv_uploads set ProfilePic='$uploadas' where InvID='$u';";
 						mysqli_query($db, $q);
 						echo "<script>alert('Successfully Uploaded')</script>";
 					}
@@ -244,25 +244,25 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../css/invprof.css" type="text/css">
         <script src="js/invprofform.js"></script>
-				<title>Investor Profile - NamanAngels</title>
+		<title>Investor Profile - NamanAngels</title>
 
-<style media="screen">
-.limit_grp,.limit_inv{
-	color:red;
-	display: none;
-	font-weight: lighter;
-}
+		<style media="screen">
+			.limit_grp,.limit_inv{
+				color:red;
+				display: none;
+				font-weight: lighter;
+			}
 
-.member, .advisor, .prev_inv{
-	display: none;
-}
+			.member, .advisor, .prev_inv{
+				display: none;
+			}
 
-.rem_mem,.rem_inv{
-	margin-top: 10px;
-	border: none;
-	background-color: white;
-}
-</style>
+			.rem_mem,.rem_inv{
+				margin-top: 10px;
+				border: none;
+				background-color: white;
+			}
+		</style>
 
 
 		</head>
@@ -319,7 +319,7 @@
 				<div>
 
 
-					<?= "<img src=".$img."  />";?></div><br><br>
+					<?= "<img src='../../".$img."'  />";?></div><br><br>
                 <b><?= $fname ?>&nbsp;<?= $lname ?></b><br>
                 <?= $cname ?><br>
                 Role: <?= $role ?><br>
