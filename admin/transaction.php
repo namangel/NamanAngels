@@ -6,6 +6,18 @@
         $inid = mysqli_real_escape_string($db, $_POST['inv']);
         $stupid = mysqli_real_escape_string($db, $_POST['stup']);
         $status = mysqli_real_escape_string($db, $_POST['stat']);
+        $amount = mysqli_real_escape_string($db, $_POST['amt']);
+        $stakehold = mysqli_real_escape_string($db, $_POST['stake']);
+        $ddate = mysqli_real_escape_string($db, $_POST['dealdate']);
+
+        $q = "UPDATE requests SET Date = '$ddate' WHERE St_ID='$stupid' AND Inv_ID='$inid';";
+        mysqli_query($db, $q);
+        
+        $q = "UPDATE requests SET Stakehold = '$stakehold' WHERE St_ID='$stupid' AND Inv_ID='$inid';";
+        mysqli_query($db, $q);
+        
+        $q = "UPDATE requests SET Amount = '$amount' WHERE St_ID='$stupid' AND Inv_ID='$inid';";
+		mysqli_query($db, $q);
 
 		if ($status == 'done')
 		{
@@ -32,7 +44,7 @@
 		{
             $q = "DELETE FROM requests WHERE St_ID='$stupid' AND Inv_ID='$inid'";
 			mysqli_query($db, $q);
-		}
+        }
 		header('location: transaction.php');
 	}
 
@@ -69,16 +81,26 @@
                 margin:20px 0px;
                 background-color:white;
                 padding:20px;
+                border-left: 15px solid  #ff8533;
             }
-            .tab input,select{
-                margin:0px 20px;
+            .tab div{
+                width: 48%;
+                display: inline-block;
+                margin: 5px;
+            }
+            .tab label{
+                width: 50%;
+            }
+            .tab input[type=text],input[type=number],input[type=date],select{
+                width: 50%;
             }
             .butn{
                 background-color: #ff8533;
                 border: none;
                 color: white;
                 cursor: pointer;
-                padding:5px 20px;
+                padding:10px 20px;
+                width: 50%;
             }
         </style>
     </head>
@@ -88,6 +110,7 @@
             <div class="tab">
                 <center>
                 <form method="post" action="transaction.php">
+                    <div>
                     <label>Startup Name: </label>
                     <select name="stup">
                         <?php
@@ -98,6 +121,8 @@
                             }
                         ?>
                     </select>
+                    </div>
+                    <div>
                     <label>Investor Name: </label>
                     <select name="inv">
                         <?php
@@ -108,12 +133,28 @@
                             }
                         ?>
                     </select>
+                    </div>
+                    <div>
                     <label>Status: </label>
                     <select name="stat">
                         <option value="interest">Investor Interested</option>
                         <option value="done">Deal Complete</option>
                         <option value="cancel">Deal Canceled</option>
                     </select>
+                    </div>
+                    <div>
+                    <label>Amount:</label>
+                    <input type="number" name="amt">
+                    </div>
+                    <div>
+                    <label>Stake holding:</label>
+                    <input type="number" name="stake">
+                    </div>
+                    <div>
+                    <label>Date:</label>
+                    <input type="date" name="dealdate">
+                    </div>
+                    <br><br>
                     <input type="submit" name="transact" value="Update" class="butn">
                 </form>
                 <table>
@@ -123,6 +164,9 @@
                         <th>Deal Status</th>
                         <th>Round Status</th>
                         <th>Round</th>
+                        <th>Amount</th>
+                        <th>Stake holding</th>
+                        <th>Investment Date</th>
                     </tr>
                     <?php
                     $qu = "SELECT * FROM requests";
@@ -150,10 +194,6 @@
                         <td>'.$row1['Stname'].'</td>
                         <td>'.$row2['CName'].'</td>'
                         ;
-                        if($deal == 0)
-                            echo '<td>Investor Interested</td>';
-                        if($deal == 1)
-                            echo '<td>Deal Completed</td>';
 
                         if(mysqli_num_rows($res3) == 1){
                             echo '<td>Round closed</td>
@@ -163,6 +203,21 @@
                             echo '<td>Round open</td>
                             <td>'.$row['Round'].'</td>';
                         }
+
+                        if($deal == 0)
+                        {
+                            echo '<td>Investor Interested</td>';
+                            echo '<td>--</td>';
+                            echo '<td>--</td>';
+                            echo '<td>--</td>';
+                        }
+                        if($deal == 1){
+                            echo '<td>Deal Completed</td>';
+                            echo '<td>'.$row['Amount'].'</td>';
+                            echo '<td>'.$row['Stakehold'].'%</td>';
+                            echo '<td>'.$row['Date'].'</td>';   
+                        }
+
                         echo '</tr>'
                         ;
                     }

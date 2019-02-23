@@ -844,7 +844,10 @@
 					echo '<table class="tables">';
 					echo "<tr>";
     				echo "<th>Startup Name</th>";
-					echo "<th>Status</th>";
+					echo "<th>Status</th>
+						<th>Amount</th>
+                        <th>Stake holding</th>
+                        <th>Investment Date</th>";
 					echo "</th>";
 				    while($row = mysqli_fetch_assoc($results)) {
 
@@ -856,9 +859,15 @@
 						echo '<td>'.$row1['Stname'].'</td>';
 						if($row['Deal'] == 0){
 							echo '<td>Transaction in progress</td>';
+							echo '<td>--</td>';
+                            echo '<td>--</td>';
+                            echo '<td>--</td>';
 						}
 						if($row['Deal'] == 1){
 							echo '<td>Invested</td>';
+							echo '<td>'.$row['Amount'].'</td>';
+                            echo '<td>'.$row['Stakehold'].'%</td>';
+                            echo '<td>'.$row['Date'].'</td>'; 
 						}
 						echo "</tr>";
 				    }

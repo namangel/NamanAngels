@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Feb 23, 2019 at 06:26 PM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.10
+-- Host: 127.0.0.1:3307:3307
+-- Generation Time: Feb 23, 2019 at 06:33 PM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 7.0.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -297,15 +297,18 @@ CREATE TABLE `requests` (
   `Inv_ID` varchar(20) NOT NULL,
   `St_ID` varchar(20) NOT NULL,
   `Deal` binary(1) NOT NULL DEFAULT '\0',
-  `Round` varchar(30) NOT NULL
+  `Round` varchar(30) NOT NULL,
+  `Amount` int(50) NOT NULL,
+  `Date` varchar(30) NOT NULL,
+  `Stakehold` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `requests`
 --
 
-INSERT INTO `requests` (`ReqID`, `Inv_ID`, `St_ID`, `Deal`, `Round`) VALUES
-(4, '1', '1', 0x31, 'Friends and Family');
+INSERT INTO `requests` (`ReqID`, `Inv_ID`, `St_ID`, `Deal`, `Round`, `Amount`, `Date`, `Stakehold`) VALUES
+(4, '1', '1', 0x31, 'Friends and Family', 12345, '2019-02-23', 13);
 
 -- --------------------------------------------------------
 
