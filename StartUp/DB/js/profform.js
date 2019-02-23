@@ -1,7 +1,9 @@
 function off() {
     document.getElementById("overlay").style.display = "none";
 }
-
+function off() {
+    document.getElementById("overlay").style.display = "block";
+}
 
 function socialon() {
     document.getElementById("socialformov").style.display = "block";

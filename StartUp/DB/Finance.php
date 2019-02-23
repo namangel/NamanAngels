@@ -107,11 +107,11 @@
 
 		$check = getimagesize($_FILES["cblogo"]["tmp_name"]);
 	    if($check != false){
-			$file_name = $_FILES['cblogo']['name'];
+			$file_name = $Stname.'_'.$_FILES['cblogo']['name'];
 			$file_size = $_FILES['cblogo']['size'];
 			$file_tmp = $_FILES['cblogo']['tmp_name'];
 			$file_type = $_FILES['cblogo']['type'];
-			$file_ext=strtolower(end(explode('.',$_FILES['cblogo']['name'])));
+			$file_ext = strtolower(end(explode('.',$_FILES['cblogo']['name'])));
 
 			$extensions= array("jpeg","jpg","png");
 
@@ -123,14 +123,17 @@
 					echo "<script>alert('File size must be less than 5 MB')</script>";
 				}
 				else{
-					$upload = "/NamanAngels/Uploads/".$file_name;
-					move_uploaded_file($file_tmp,$upload);
-					$q = "UPDATE st_uploads set Logo='$upload' where StpID='$id';";
-					mysqli_query($db, $q);
-					echo "<script>alert('Successfully Uploaded')</script>";
+					$uploadas = "uploads/startup/".$file_name;
+					$upload = "../../uploads/startup/".$file_name;
+					if(move_uploaded_file($file_tmp,$upload)){
+						$q = "UPDATE st_uploads set Logo='$uploadas' where StpID='$id';";
+						mysqli_query($db, $q);
+						echo "<script>alert('Successfully Uploaded')</script>";
+					}
 				}
 			}
 		}
+
 
 		header('location: Finance.php');
 	}
@@ -177,7 +180,7 @@
 
 	if(isset($_POST['BIsave'])){
 
-		$file_name = $_FILES['backimg']['name'];
+		$file_name = $Stname."_backimg_".$_FILES['backimg']['name'];
 		$file_size = $_FILES['backimg']['size'];
 		$file_tmp = $_FILES['backimg']['tmp_name'];
 		$file_type = $_FILES['backimg']['type'];
@@ -193,14 +196,15 @@
 				echo "<script>alert('File size must be less than 5 MB')</script>";
 			}
 			else{
-				$upload = "/NamanAngels/Uploads/".$file_name;
+				$uploadas = "uploads/startup/".$file_name;
+				$upload = "../../uploads/startup/".$file_name;
 				move_uploaded_file($file_tmp,$upload);
-				$q = "UPDATE st_uploads set BackImg='$upload' where StpID='$id';";
+				$q = "UPDATE st_uploads set BackImg='$uploadas' where StpID='$id';";
 				mysqli_query($db, $q);
 				echo "<script>alert('Successfully Uploaded')</script>";
 			}
 		}
-		header('location:Finance.php');
+		header('location:Exec.php');
 	}
 
 	if(isset($_POST['roundsave'])){
@@ -214,12 +218,12 @@
 		$Term = mysqli_real_escape_string($db, $_POST['term']);
 
 		if( $Sec_type == 'Preferred Equity' || $Sec_type == 'Common Equity' ){
-			$q = "INSERT INTO current_round(StpId,Round,Seeking,Security_type,Premoney_val) values('$id','$Round','$Seek','$Sec_type',$Premoney_val)"; 
+			$q = "INSERT INTO current_round(StpId,Round,Seeking,Security_type,Premoney_val) values('$id','$Round','$Seek','$Sec_type',$Premoney_val)";
 			mysqli_query($db, $q);
 		}
 		if( $Sec_type == 'Convertible Notes' ){
 			$q = "INSERT INTO current_round(StpId,Round,Seeking,Security_type,Val_cap,Conversion_disc,Interest_rate,Term_len) values('$id','$Round','$Seek','$Sec_type','$Val_cap','$Discount','$Interest','$Term')";
-			mysqli_query($db, $q); 
+			mysqli_query($db, $q);
 		}
 		header('location:Finance.php');
 	}
@@ -227,7 +231,7 @@
 	if(isset($_POST['clroundsave'])){
 		$Capraised = mysqli_real_escape_string($db, $_POST['capraise']);
 		$Cldate = mysqli_real_escape_string($db, $_POST['cal']);
-		
+
 		$q= "SELECT Round,Security_type FROM current_round WHERE StpID = '$id';";
 		$results = mysqli_query($db, $q);
 		$row=mysqli_fetch_array($results);
@@ -235,20 +239,20 @@
 		$q1= "INSERT INTO round_history(StpID,Round,Security_type,Capital_raised,Close_date) values('$id','$row[0]','$row[1]','$Capraised','$Cldate')";
 		mysqli_query($db, $q1);
 
-		$q2 = "DELETE FROM current_round WHERE StpId='$id'"; 
+		$q2 = "DELETE FROM current_round WHERE StpId='$id'";
 		mysqli_query($db, $q2);
-	
+
 		header('location:Finance.php');
 	}
 
 	if(isset($_POST['histdel'])){
 		$Hid= mysqli_real_escape_string($db, $_POST['hid']);
-		$q2 = "DELETE FROM round_history WHERE HistID='$Hid'"; 
+		$q2 = "DELETE FROM round_history WHERE HistID='$Hid'";
 		mysqli_query($db, $q2);
 
 		header('location:Finance.php');
 	}
-	
+
 	if(isset($_POST['annualsave'])){
 		$rr = mysqli_real_escape_string($db, $_POST['runrate']);
 		$br = mysqli_real_escape_string($db, $_POST['burnrate']);
@@ -260,7 +264,7 @@
 			$reven = mysqli_real_escape_string($db, $_POST['rev'][$i]);
 			$exp = mysqli_real_escape_string($db, $_POST['expend'][$i]);
 			$year= $year+1;
-			$q = "INSERT INTO annual_financial(StpID,revenue_rate,burn_rate,financial_annotation,revenue_driver,sales,revenue,expenditure,year) values('$id','$rr','$br','$fa','$rd','$sale','$reven','$exp','$year')"; 
+			$q = "INSERT INTO annual_financial(StpID,revenue_rate,burn_rate,financial_annotation,revenue_driver,sales,revenue,expenditure,year) values('$id','$rr','$br','$fa','$rd','$sale','$reven','$exp','$year')";
 			mysqli_query($db, $q);
 		}
 		header('location:Finance.php');
@@ -272,7 +276,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
         <link rel="stylesheet" href="../css/financial.css" type="text/css">
-        <!-- <script src="js/profform.js"></script> -->
+        <script src="js/profform.js"></script>
 				<title>StartUp Profile - NamanAngels</title>
 
     </head>
@@ -285,7 +289,7 @@
 				<div><button class="back-button" onclick="backimgon()" ><i class="fa fa-camera"></i>&nbsp;Upload Background</button></div>
 				<?php
 						if($Backimg != ""){
-							echo "<img src=".$Backimg." />";
+							echo "<img src='../../".$Backimg."' />";
 						}
 						else{
 							echo '<div class="back">';
@@ -300,7 +304,7 @@
 						<br>
 					</div>
                     <div class="upload">
-						<div><?= "<img src=".$Logo." />";?></div>
+						<div><?= "<img src='../../".$Logo."' />";?></div>
                     </div>
                     <ul class="proflist">
                         <li class="item">Name <span class="value"><?= $Stname?></span></li>
@@ -696,7 +700,7 @@
                                 <label for="inc">Incorporation Type</label><br>
                                 <select name="cbinc" placeholder="<?= $IncType?>">
                                     <option><?= $IncType?></option>
-																		<option>Not Incorporated</option>
+									<option>Not Incorporated</option>
                                     <option>Proprietorship</option>
                                     <option>Partnership</option>
                                     <option>LLP</option>
@@ -790,7 +794,7 @@
 
 							Detail your stage of funding, the capital you're seeking and your pre-money valuation.<br><br>
 							<?php
-								$q = "SELECT * FROM current_round"; 
+								$q = "SELECT * FROM current_round";
 								$results = mysqli_query($db, $q);
 								while($row = mysqli_fetch_assoc($results)){
 									if($row['StpID'] == $id){
@@ -809,7 +813,7 @@
 										echo '<button class="btnfund" onclick="clroundon()">Close Funding Round</button>';
 									}
 								}
-								$q = "SELECT * FROM current_round WHERE StpID='$id'"; 
+								$q = "SELECT * FROM current_round WHERE StpID='$id'";
 								$results = mysqli_query($db, $q);
 								if(mysqli_num_rows($results)== 0){
 									echo '<button class="btnfund" onclick="roundon()">Open Funding Round</button>';
@@ -828,7 +832,7 @@
 								echo '<span style="float:left">Capital raised</span><span style="float:right">$ '.$row['Capital_raised'].'</span><br/><hr>';
 								echo '<span style="float:left">Close Date</span><span style="float:right">'.$row['Close_date'].'</span><br/><hr style="height:1px; background-color:black;">';
 							}
-						?>	
+						?>
 					</div>
 					<div class="databox">
 						<button class="pencil" onclick="annualon()"><i class="fa fa-pencil"></i></button>
@@ -839,7 +843,7 @@
 						<p>Investors like to compare and evaluate financial performance over this timeframe, so do your best to complete it.</p>
 					<?php
 						$y=date("Y");
-						$q = "SELECT revenue_rate,burn_rate FROM annual_financial WHERE StpId='$id' AND year= '$y' "; 
+						$q = "SELECT revenue_rate,burn_rate FROM annual_financial WHERE StpId='$id' AND year= '$y' ";
 						$results = mysqli_query($db, $q);
 						$row=mysqli_fetch_array($results);
 						$revrr= $row[0];
@@ -849,53 +853,53 @@
 							<table>
 								<td>Year</td>
 								<?php
-									$q = "SELECT year FROM annual_financial WHERE StpID='$id'"; 
+									$q = "SELECT year FROM annual_financial WHERE StpID='$id'";
 									$result = mysqli_query($db, $q);
 									$storeArray = Array();
 									$x=0;
 									while ($row = mysqli_fetch_assoc($result)) {
-										$storeArray[] =  $row['year'];  
+										$storeArray[] =  $row['year'];
 										echo '<td>'.$storeArray[$x++].'</td>';
-									}	
+									}
 								?>
 								</tr>
 								<tr>
 								<td>Sales $</td>
 								<?php
-									$q = "SELECT sales FROM annual_financial WHERE StpID='$id'"; 
+									$q = "SELECT sales FROM annual_financial WHERE StpID='$id'";
 									$result = mysqli_query($db, $q);
 									$storeArray = Array();
 									$x=0;
 									while ($row = mysqli_fetch_assoc($result)) {
-										$storeArray[] =  $row['sales'];  
+										$storeArray[] =  $row['sales'];
 										echo '<td>'.$storeArray[$x++].'</td>';
-									}	
+									}
 								?>
 								</tr>
 								<tr>
 								<td>Revenue $</td>
 								<?php
-									$q = "SELECT revenue FROM annual_financial WHERE StpID='$id'"; 
+									$q = "SELECT revenue FROM annual_financial WHERE StpID='$id'";
 									$result = mysqli_query($db, $q);
 									$storeArray = Array();
 									$x=0;
 									while ($row = mysqli_fetch_assoc($result)) {
-										$storeArray[] =  $row['revenue'];  
+										$storeArray[] =  $row['revenue'];
 										echo '<td>'.$storeArray[$x++].'</td>';
-									}	
+									}
 								?>
 								</tr>
 								<tr>
 								<td>Expenditure $</td>
 								<?php
-									$q = "SELECT expenditure FROM annual_financial WHERE StpID='$id'"; 
+									$q = "SELECT expenditure FROM annual_financial WHERE StpID='$id'";
 									$result = mysqli_query($db, $q);
 									$storeArray = Array();
 									$x=0;
 									while ($row = mysqli_fetch_assoc($result)) {
-										$storeArray[] =  $row['expenditure'];  
+										$storeArray[] =  $row['expenditure'];
 										echo '<td>'.$storeArray[$x++].'</td>';
-									}	
+									}
 								?>
 								</tr>
 								<tr>
@@ -903,13 +907,13 @@
 								<?php
 									$yr= date("Y") -2;
 									for($i=0;$i<6;$i++){
-										$q = "SELECT revenue,expenditure FROM annual_financial WHERE StpID='$id' AND year='$yr'"; 
+										$q = "SELECT revenue,expenditure FROM annual_financial WHERE StpID='$id' AND year='$yr'";
 										$result = mysqli_query($db, $q);
 										$row = mysqli_fetch_array($result);
 										$prof=$row[0]-$row[1];
 										$yr=$yr+1;
 										echo '<td>'.$prof.'</td>';
-									}	
+									}
 								?>
 								</tr>
 							</table>
@@ -996,15 +1000,15 @@
                         <div class="formtext">
                             <form method="post" action="Finance.php">
                                 <div class="formtext">
-									
+
 									<?php
-										
+
 										$q= "SELECT Round FROM current_round WHERE StpID = '$id';";
 										$results = mysqli_query($db, $q);
 										$row=mysqli_fetch_array($results);
 										// $row= mysqli_result($results);
 										// echo $row[0];
-										
+
 									?>
 									<p><label>Round: </label><?= $row[0]?></p>
 									<label>Capital Raised</label>
@@ -1019,7 +1023,7 @@
 								<div class="formtext submits">
                                     <input type="submit" onclick="clroundoff()" value="Cancel" name="cancel" class="cancel">
                                     <input type="submit" value="Save" name="clroundsave" class="save">
-                                </div>	
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -1052,12 +1056,12 @@
 											</div><br><br>';
 										}
 									?>
-								</div>	
+								</div>
                             </form>
                         </div>
                     </div>
 				</div>
-				
+
 				<div id="annualfin">
                     <div class="form">
                         <div class="formhead">

@@ -130,9 +130,10 @@
 					echo "<script>alert('File size must be less than 5 MB')</script>";
 				}
 				else{
+					$uploadas = "uploads/startup/".$file_name;
 					$upload = "../../uploads/startup/".$file_name;
 					if(move_uploaded_file($file_tmp,$upload)){
-						$q = "UPDATE st_uploads set Logo='$upload' where StpID='$id';";
+						$q = "UPDATE st_uploads set Logo='$uploadas' where StpID='$id';";
 						mysqli_query($db, $q);
 						echo "<script>alert('Successfully Uploaded')</script>";
 					}
@@ -185,19 +186,6 @@
 
 	if(isset($_POST['sumsave'])){
 		$summaryform = mysqli_real_escape_string($db, $_POST['summaryform']);
-		// $count=str_word_count($summaryform);
-		// if ($count > 5)
-		// {
-		// 	echo "<script type='text/javascript'>";
-		// 	echo "alert('Word limit exceeded')";
-		// 	echo "</script>";
-		// 	echo '<div id="overlayerror" >';
-		// 	echo "Word limit exceeded";
-		// 	echo "</div>";
-		//
-		// }
-		// else
-		// {
 		$q = "UPDATE st_description set Summary='$summaryform' where StpID='$id';";
 		mysqli_query($db, $q);
 		header('location:index.php');
@@ -212,6 +200,7 @@
 		$fileextension= strtolower($fileextension);
 		$success= -1;
 		if (isset($name)){
+			$pathas= 'uploads/startup/'.$name;
 			$path= '../../uploads/startup/'.$name;
 			if (!empty($name)){
 				if (($fileextension !== "mp4") && ($fileextension !== "ogg") && ($fileextension !== "webm") && ($fileextension !== "pdf")){
@@ -222,7 +211,7 @@
 					$success=1;
 					if (copy($tmp_name, $path)) {
 						echo '<script> alert("Uploaded!")</script>';
-						$q = "UPDATE st_uploads SET PitchName='$path', PitchExt='$fileextension' where StpID='$id';";
+						$q = "UPDATE st_uploads SET PitchName='$pathas', PitchExt='$fileextension' where StpID='$id';";
 						mysqli_query($db, $q);
 					}
 				}
@@ -294,18 +283,18 @@
 				echo "<script>alert('File size must be less than 5 MB')</script>";
 			}
 			else{
+				$uploadas = "uploads/startup/".$file_name;
 				$upload = "../../uploads/startup/".$file_name;
 				move_uploaded_file($file_tmp,$upload);
-				$q = "UPDATE st_uploads set BackImg='$upload' where StpID='$id';";
+				$q = "UPDATE st_uploads set BackImg='$uploadas' where StpID='$id';";
 				mysqli_query($db, $q);
 				echo "<script>alert('Successfully Uploaded')</script>";
 			}
 		}
 		header('location:index.php');
 	}
-
-
 ?>
+
 <html>
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -344,42 +333,38 @@
 					background-color: white;
 				}
 		</style>
-
     </head>
 	<script type="text/javascript">
+	<?php
+		$q = "SELECT * FROM st_team;";
+		$results=mysqli_query($db, $q);
+		if (mysqli_num_rows($results) >= 6)
+		{
+			echo 'function addteamon() {
+				document.getElementById("addteam").style.display = "none";
+					document.getElementById("limit_mem").style.display = "inline";
+			}';
+		}
+		else{
+			echo 'function addteamon() {
+				document.getElementById("addteam").style.display = "block";
+			}';
+		}
 
-		<?php
-			$q = "SELECT * FROM st_team;";
-			$results=mysqli_query($db, $q);
-			if (mysqli_num_rows($results) >= 6)
-			{
-				echo 'function addteamon() {
-				    document.getElementById("addteam").style.display = "none";
-						document.getElementById("limit_mem").style.display = "inline";
-				}';
-			}
-			else{
-				echo 'function addteamon() {
-				    document.getElementById("addteam").style.display = "block";
-				}';
-			}
-
-			$q = "SELECT * FROM st_advisors;";
-			$results=mysqli_query($db, $q);
-			if (mysqli_num_rows($results) >= 3)
-			{
-				echo 'function advon() {
-						document.getElementById("adv").style.display = "none";
-						document.getElementById("limit_adv").style.display = "inline";
-				}';
-			}
-			else{
-				echo 'function advon() {
-						document.getElementById("adv").style.display = "block";
-				}';
-			}
-
-
+		$q = "SELECT * FROM st_advisors;";
+		$results=mysqli_query($db, $q);
+		if (mysqli_num_rows($results) >= 3)
+		{
+			echo 'function advon() {
+					document.getElementById("adv").style.display = "none";
+					document.getElementById("limit_adv").style.display = "inline";
+			}';
+		}
+		else{
+			echo 'function advon() {
+					document.getElementById("adv").style.display = "block";
+			}';
+		}
 
 		$q = "SELECT * FROM st_previnvestment;";
 		$results=mysqli_query($db, $q);
@@ -423,7 +408,7 @@
 
 			header('location:index.php');
 		}
-		?>
+	?>
 		function addteamoff() {
 				document.getElementById("addteam").style.display = "none";
 		}
@@ -434,25 +419,30 @@
         <div class="container">
             <div class="main">
             	<div class="backimg">
-					<div><button class="back-button" onclick="backimgon()" ><i class="fa fa-camera"></i>&nbsp;Upload Background</button></div>
+					<div>
+						<button class="back-button" onclick="backimgon()" >
+							<i class="fa fa-camera"></i>
+							&nbsp;Upload Background
+						</button>
+					</div>
 					<?php
 						if($Backimg != ""){
-							echo "<img src=".$Backimg." />";
+							echo "<img src='../../".$Backimg."' />";
 						}
 						else{
 							echo '<div class="back">';
 							echo 'Upload a background image!!';
 							echo '</div>';
-						}
-					?>
+						}?>
                 </div>
                 <div class="sideprof">
 					<div class="pen">
-						<button class="pencil" onclick="on()"><i class="fa fa-pencil"></i></button>
-						<br>
+						<button class="pencil" onclick="on()">
+							<i class="fa fa-pencil"></i>
+						</button><br>
 					</div>
                     <div class="upload">
-                        <div><?= "<img src=".$Logo." />";?></div>
+                        <div><?= "<img src='../../".$Logo."' />";?></div>
                     </div>
                     <ul class="proflist">
                         <li class="item">Name <span class="value"><?= $Stname?></span></li>
@@ -537,7 +527,8 @@
 	                    </li>
                     </ul>
                 </div>
-                <div id="overlay">
+
+			    <div id="overlay">
                     <div class="compbasics">
                         <form class="profform" method="post" action='index.php' enctype="multipart/form-data">
                             <button class="close" onclick="off()"><i class="fa fa-close"></i></button>
@@ -889,7 +880,12 @@
                     </div>
                     <div class="databox" style="padding:10px;">
 						<h3>Pitch</h3>
-						<div style="float:right"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>
+						<div style="float:right">
+							<a href="Consult.php" target="_blank">
+								<i class="fa fa-question-circle-o"></i>
+								&nbsp;Need help
+							</a>
+						</div>
 						<?php
 							if($PitchName == ""){
 		                        echo '<label>Increase the impact of your profile by uploading a short pitch</label>';
@@ -906,7 +902,7 @@
 									echo '<input type="submit" name="pitchsub" value="Upload">';
 									// echo '<div float=right align=right><a href="#"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
 								echo '</form>';
-								echo "<div align=center><video controls><source src='$PitchName' type='video/$PitchExt'>Your browser does not support the video tag.</video></div>";
+								echo "<div align=center><video controls><source src='../../$PitchName' type='video/$PitchExt'>Your browser does not support the video tag.</video></div>";
 							}
 						?>
                     </div>

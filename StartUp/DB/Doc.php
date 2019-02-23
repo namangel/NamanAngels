@@ -130,9 +130,10 @@
 					echo "<script>alert('File size must be less than 5 MB')</script>";
 				}
 				else{
+					$uploadas = "uploads/startup/".$file_name;
 					$upload = "../../uploads/startup/".$file_name;
 					if(move_uploaded_file($file_tmp,$upload)){
-						$q = "UPDATE st_uploads set Logo='$upload' where StpID='$id';";
+						$q = "UPDATE st_uploads set Logo='$uploadas' where StpID='$id';";
 						mysqli_query($db, $q);
 						echo "<script>alert('Successfully Uploaded')</script>";
 					}
@@ -202,6 +203,7 @@
 				echo "<script>alert('File size must be less than 5 MB')</script>";
 			}
 			else{
+				$uploadas = "uploads/startup/".$file_name;
 				$upload = "../../uploads/startup/".$file_name;
 				move_uploaded_file($file_tmp,$upload);
 				$q = "UPDATE st_uploads set BackImg='$upload' where StpID='$id';";
@@ -223,6 +225,7 @@
 		$fileextension= strtolower($fileextension);
 		$success= -1;
 		if (isset($name)){
+			$pathas = 'uploads/startup/'.$name;
 			$path= '../../uploads/startup/'.$name;
 			if (!empty($name)){
 				if ($fileextension !== "pdf"){
@@ -233,7 +236,7 @@
 					$success=1;
 					if (copy($tmp_name, $path)) {
 						echo '<script> alert("Uploaded!")</script>';
-						$q = "UPDATE st_uploads SET BPlan='$path', BPlanExt='$fileextension' where StpID='$id';";
+						$q = "UPDATE st_uploads SET BPlan='$pathas', BPlanExt='$fileextension' where StpID='$id';";
 						mysqli_query($db, $q);
 					}
 				}
@@ -251,6 +254,7 @@
 		$fileextension= strtolower($fileextension);
 		$success= -1;
 		if (isset($name)){
+			$pathas = 'uploads/startup/'.$name;
 			$path= '../../uploads/startup/'.$name;
 			if (!empty($name)){
 				if ($fileextension !== "pdf"){
@@ -261,7 +265,7 @@
 					$success=1;
 					if (copy($tmp_name, $path)) {
 						echo '<script> alert("Uploaded!")</script>';
-						$q = "UPDATE st_uploads SET FProjection='$path', FProjectionExt='$fileextension' where StpID='$id';";
+						$q = "UPDATE st_uploads SET FProjection='$pathas', FProjectionExt='$fileextension' where StpID='$id';";
 						mysqli_query($db, $q);
 					}
 				}
@@ -279,6 +283,7 @@
 		$fileextension= strtolower($fileextension);
 		$success= -1;
 		if (isset($name)){
+			$pathas = 'uploads/startup/'.$name;
 			$path= '../../uploads/startup/'.$name;
 			if (!empty($name)){
 				if ($fileextension !== "pdf"){
@@ -289,7 +294,7 @@
 					$success=1;
 					if (copy($tmp_name, $path)) {
 						echo '<script> alert("Uploaded!")</script>';
-						$q = "UPDATE st_uploads SET AdDocs='$path', AdDocsExt='$fileextension' where StpID='$id';";
+						$q = "UPDATE st_uploads SET AdDocs='$pathas', AdDocsExt='$fileextension' where StpID='$id';";
 						mysqli_query($db, $q);
 					}
 				}
@@ -316,7 +321,7 @@
 					<div><button class="back-button" onclick="backimgon()" ><i class="fa fa-camera"></i>&nbsp;Upload Background</button></div>
 					<?php
 							if($Backimg != ""){
-								echo "<img src=".$Backimg." />";
+								echo "<img src='../../".$Backimg."' />";
 							}
 							else{
 								echo '<div class="back">';
@@ -331,7 +336,7 @@
 						<br>
 					</div>
 	                <div class="upload">
-						<div><?= "<img src=".$Logo." />";?></div>
+						<div><?= "<img src='../../".$Logo."' />";?></div>
 	                </div>
 	                <ul class="proflist">
 	                    <li class="item">Name <span class="value"><?= $Stname?></span></li>
@@ -832,7 +837,7 @@
 									echo '<input type="file" name="businessplan" value="Select File">';
 									echo '<input type="submit" name="subbusinessplan" value="Submit">';
 								echo '</form>';
-								echo '<iframe src="'.$BPlan.'" height=500px width=100%></iframe>';
+								echo '<iframe src="../../'.$BPlan.'" height=500px width=100%></iframe>';
 							}
 						?>
 					</div>
@@ -855,13 +860,11 @@
 									echo '<input type="file" name="financialprojection" value="Select File">';
 									echo '<input type="submit" name="subfinancialprojection" value="Submit">';
 								echo '</form>';
-								echo '<iframe src="'.$FProjection.'" height=500px width=100%></iframe>';
+								echo '<iframe src="../../'.$FProjection.'" height=500px width=100%></iframe>';
 							}
 						?>
 	    			</div>
 					<div class="databox">
-
-
 						<?php
 							if($AdDocs == ""){
 		                        echo '<h3>Additional Documents</h3>';
@@ -880,7 +883,7 @@
 									echo '<input type="file" name="add_doc" value="Select File">';
 									echo '<input type="submit" name="sub_add_docs" value="Submit">';
 								echo '</form>';
-								echo '<iframe src="'.$AdDocs.'" height=500px width=100%></iframe>';
+								echo '<iframe src="../../'.$AdDocs.'" height=500px width=100%></iframe>';
 							}
 						?>
 					</div>
