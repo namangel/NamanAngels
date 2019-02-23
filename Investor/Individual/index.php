@@ -1,4 +1,7 @@
-<?php require('../../server.php') ?>
+<?php require('../../server.php');
+if(!isset($_SESSION['InvID'])){
+    header('location: pageerror.php');
+} ?>
 <html>
 <head>
   <title>Investor Profile - NamanAngels</title>

@@ -220,7 +220,7 @@ if (isset($_POST['login_inv'])) {
         else{
           header('location: ../Investor/Institution/index.php');
         }
-        
+
   	}else {
         echo "<script>alert('Wrong username/password combination')</script>";
   	}

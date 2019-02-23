@@ -1,6 +1,9 @@
-<?php 
-  
+<?php
+
   require '../../server.php';
+  if(!isset($_SESSION['StpID'])){
+      header('location: ../pageerror.php');
+  }
 
   $u = $_SESSION['StpID'];
   $qu = "SELECT * FROM st_details WHERE StpID='$u'";
@@ -11,7 +14,7 @@
 	$Ffname = $row['Ffname'];
 	$Sfname = $row['Sfname'];
   $Email = $row['Email'];
-  
+
   $qu = "SELECT * FROM userstp WHERE StpID='$u'";
 	$results = mysqli_query($db, $qu);
 	$row = mysqli_fetch_assoc($results);
@@ -116,7 +119,7 @@
 
             <label for="email">Email</label>
             <br>
-            <input type="email" id="email" name="email" placeholder="Enter your email.." 
+            <input type="email" id="email" name="email" placeholder="Enter your email.."
             style="border: 1px solid rgb(133, 166, 194); width:100%; padding: 12px; border-radius: 4px;
                   box-sizing: border-box;
                   margin-top: 6px;

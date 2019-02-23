@@ -1,8 +1,11 @@
-<?php 
+<?php
     require '../../../server.php';
+    if(!isset($_SESSION['InvID'])){
+        header('location: ../pageerror.php');
+    }
 
     $u = $_SESSION['InvID'];
-    
+
     if(isset($_POST["upload"]))
 	{
         $cname = mysqli_real_escape_string($db, $_POST['cname']);

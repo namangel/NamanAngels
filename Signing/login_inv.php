@@ -1,4 +1,19 @@
-<?php require('../server.php') ?>
+<?php require('../server.php');
+if(isset($_SESSION['InvID'])){
+    $u = $_SESSION['InvID'];
+    $q = "SELECT * FROM inv_details WHERE InvID = '$u'";
+    $result = mysqli_query($db, $q);
+    $row = mysqli_fetch_assoc($result);
+
+    if($row['Type'] == 'Institution'){
+        header('location: ../Investor/Institution/index.php');
+    }
+    elseif ($row['Type'] == 'Institution') {
+        header('location: ../Investor/Individual/index.php');
+    }
+}
+
+?>
 
 <html>
 <head>

@@ -1,5 +1,8 @@
 <?php
 require '../../server.php';
+if(!isset($_SESSION['StpID'])){
+    header('location: ../pageerror.php');
+}
 ?>
 <html>
     <head>
@@ -29,7 +32,7 @@ require '../../server.php';
 
             }
             input[type=submit] {
-                background-color:#0A2B40;   
+                background-color:#0A2B40;
                 color: white;
                 padding: 12px 20px;
                 border: none;
@@ -56,7 +59,7 @@ require '../../server.php';
                     <label>Subject:</label>
                         <textarea name="consult_subject" placeholder="Enter subject.." maxlength="250"></textarea>
                     <br><label>Query:</label>
-                        <textarea rows="10" name="consult_query" id="consult_query" placeholder="Enter your qurey in detail.."></textarea>   
+                        <textarea rows="10" name="consult_query" id="consult_query" placeholder="Enter your qurey in detail.."></textarea>
                     <script>
                         function check_words(e) {
                             var BACKSPACE   = 8;

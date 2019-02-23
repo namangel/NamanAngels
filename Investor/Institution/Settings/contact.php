@@ -1,6 +1,9 @@
-<?php 
-  
+<?php
+
   require '../../../server.php';
+  if(!isset($_SESSION['InvID'])){
+      header('location: ../pageerror.php');
+  }
 
   $u = $_SESSION['InvID'];
   $qu = "SELECT * FROM inv_details WHERE InvID='$u'";
@@ -114,7 +117,7 @@
 
             <label for="email">Email</label>
             <br>
-            <input type="email" id="email" name="email" placeholder="Enter your email.." 
+            <input type="email" id="email" name="email" placeholder="Enter your email.."
             style="border: 1px solid rgb(133, 166, 194); width:100%; padding: 12px; border-radius: 4px;
                   box-sizing: border-box;
                   margin-top: 6px;

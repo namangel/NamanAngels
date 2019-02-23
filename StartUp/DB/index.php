@@ -1,5 +1,8 @@
 <?php
 	require '../../server.php';
+	if(!isset($_SESSION['StpID'])){
+        header('location: ../pageerror.php');
+    }
 
 	$id = $_SESSION['StpID'];
 	$qu = "SELECT * FROM st_details WHERE StpID = '$id'";
@@ -1046,7 +1049,7 @@
 					else{
 						echo '<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
 						echo '<p>Ramp up your profile</p>';
-					} 
+					}
 				?>
             </div>
                 </div>

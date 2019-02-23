@@ -1,5 +1,8 @@
 <?php
     require '../../../server.php';
+    if(!isset($_SESSION['InvID'])){
+        header('location: ../pageerror.php');
+    }
 
     $u = $_SESSION['InvID'];
     $qu = "SELECT * FROM userinv WHERE InvID='$u'";
@@ -13,7 +16,7 @@
         $curr_pwd=sha1($curr_pw);
         $pw_1 = mysqli_real_escape_string($db, $_POST['pw_1']);
         $pw_2 = mysqli_real_escape_string($db, $_POST['pw_2']);
-        $error=0;       
+        $error=0;
 
         if ($Password != $curr_pwd) {
             echo "<script>alert('Your Password is incorrect')</script>";

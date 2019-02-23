@@ -1,5 +1,8 @@
 <?php
     require('../../../server.php');
+    if(!isset($_SESSION['InvID'])){
+        header('location: ../pageerror.php');
+    }
     if(isset($_POST['submit'])){
         $_SESSION['search'] = mysqli_real_escape_string($db, $_POST['searchkey']);
         header('location: browsebyname.php?pageno=1');

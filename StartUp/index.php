@@ -1,5 +1,9 @@
 <?php require('../server.php');
 
+    if(!isset($_SESSION['StpID'])){
+        header('location: pageerror.php');
+    }
+
     $id = $_SESSION['StpID'];
     $qu = "SELECT * FROM st_details WHERE StpID = '$id'";
     $results = mysqli_query($db, $qu);

@@ -1,4 +1,8 @@
-<?php require('../../server.php') ?>
+<?php require('../../server.php');
+if(!isset($_SESSION['StpID'])){
+    header('location: ../pageerror.php');
+}
+ ?>
 
 <html>
 <head>

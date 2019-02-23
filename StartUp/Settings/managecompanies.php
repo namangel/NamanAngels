@@ -1,8 +1,11 @@
-<?php 
+<?php
     require '../../server.php';
+    if(!isset($_SESSION['StpID'])){
+        header('location: ../pageerror.php');
+    }
 
     $u = $_SESSION['StpID'];
-    
+
     if(isset($_POST["upload"]))
 	{
         $cname = mysqli_real_escape_string($db, $_POST['cname']);
@@ -124,7 +127,7 @@
 <?php require "../../include/footer/footer.php" ?>
 </body>
 </html>
-<!-- 
+<!--
 <script>
         var newPassword = document.getElementById("new_password");
         var confirmPassword = document.getElementById("confirm_password");

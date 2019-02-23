@@ -11,7 +11,7 @@
           <button class="dropbtn">Investor</button>
           <div class="dropdown-content">
               <a href="Settings/contact.php">Account settings</a>
-              <a href="../index.php">Sign out</a>
+              <a href="../../logout.php">Sign out</a>
           </div>
       </div>
     </div>

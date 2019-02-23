@@ -1,12 +1,9 @@
 <?php
     require('../../../server.php');
-    if(isset($_POST['indsubmit'])){
-        $_SESSION['search'] = mysqli_real_escape_string($db, $_POST['indsearchkey']);
-        header('location: browse.php?pageno=1');
+    if(!isset($_SESSION['InvID'])){
+        header('location: ../pageerror.php');
     }
-    else{
-        $_SESSION['search'] = "";
-    }
+
 ?>
 <html>
 <head>
@@ -45,7 +42,5 @@
   </div>
 
     <?php require "../../../include/footer/footer.php"?>
-
-
 </body>
 </html>

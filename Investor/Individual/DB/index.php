@@ -1,5 +1,8 @@
 <?php
 	require '../../../server.php';
+	if(!isset($_SESSION['InvID'])){
+        header('location: ../pageerror.php');
+    }
 	$u = $_SESSION['InvID'];
 	$qu = "SELECT * FROM inv_details WHERE InvID='$u'";
   	$results = mysqli_query($db, $qu);
@@ -752,7 +755,7 @@
 					}
 					else{
 						echo '<a href="browse.php" style="text-decoration: none;">Start investing</a>';
-					} 
+					}
 				?>
             </div>
 		</div>
