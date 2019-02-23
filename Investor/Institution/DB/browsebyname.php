@@ -51,7 +51,7 @@
             $res_data = mysqli_query($db,$sql);
             while($row = mysqli_fetch_array($res_data)){
                 echo '<div class="card">';
-                echo '<img src='.$row['StpImg'].' alt="John" style="width:100%">';
+                echo '<img src="../../../'.$row['StpImg'].'" alt="StartUp Logo" style="width:100%">';
                       echo '<h1>'.$row['StpName'].'</h1>';
                     echo '<p class="title">'.$row['Type'].'</p>';
                     echo '<p>'.$row['FName'].'</p>';

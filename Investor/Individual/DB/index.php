@@ -94,7 +94,7 @@
 		{
 			$file_name = $fname."_".$lname."_".$_FILES['cbpic']['name'];
 			$file_size = $_FILES['cbpic']['size'];
-			$file_tmp = $_FILES['cblpic']['tmp_name'];
+			$file_tmp = $_FILES['cbpic']['tmp_name'];
 			$file_type = $_FILES['cbpic']['type'];
 			$file_ext=strtolower(end(explode('.',$_FILES['cbpic']['name'])));
 
@@ -113,7 +113,7 @@
 				else
 				{
 					$uploadas = "uploads/investor/".$file_name;
-					$upload = "../../uploads/investor/".$file_name;
+					$upload = "../../../uploads/investor/".$file_name;
 					if(move_uploaded_file($file_tmp, $upload)){
 						$q = "UPDATE inv_uploads set ProfilePic='$uploadas' where InvID='$u';";
 						mysqli_query($db, $q);

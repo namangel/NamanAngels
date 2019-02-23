@@ -144,7 +144,7 @@
 
                 $stid = $row['StpID'];
                 echo '<div class="card">';
-                echo '<img src='.$row['StpImg'].' alt="John" style="width:100%">';
+                echo '<img src="../../../'.$row['StpImg'].'" alt="Startup Logo" style="width:100%">';
                 echo '<h1>'.$row['StpName'].'</h1>';
                     echo '<p class="title">'.$row['Type'].'</p>';
                     echo '<p>'.$row['FName'].'</p>';
