@@ -38,7 +38,7 @@ if(!isset($_SESSION['StpID'])){
               </div>
               </li>
 
-              <li class="var_nav">
+              <!-- <li class="var_nav">
               <div class="link_bg"></div>
               <div class="link_title">
                   <a href="managecompanies.php" class="five"><span><i class="fa fa-fw fa-user" style="font-size:24px" ></i> Manage Companies</span></a>
@@ -50,7 +50,7 @@ if(!isset($_SESSION['StpID'])){
               <div class="link_title">
                   <a href="privacy.php" class="five"><span> <i class="fa fa-fw fa-wrench" style="font-size:24px"></i>Privacy Settings</span></a>
               </div>
-              </li>
+              </li> -->
 
               <li class="var_nav">
               <div class="link_bg"></div>
