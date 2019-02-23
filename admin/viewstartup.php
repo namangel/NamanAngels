@@ -140,8 +140,12 @@
       .admins h3{
         color: white;
       }
-      .admins .box .info h3 {font-size: 19px}
-      .admins .box .info p {color: #BBB}
+      .admins .box .admin h3 {font-size: 19px}
+      .admins .box .admin p {
+          color: #BBB;
+          font-size: 15px;
+          padding:2px;
+      }
 
       /* End users */
       /* Start statis */
@@ -247,6 +251,7 @@
             <section class="admins">
                 <div class="container-fluid">
                     <div class="row">
+                    <center>
                         <h3 style="text-align:center;font-size:bold">  &nbsp;&nbsp;&nbsp;BROWSE STARTUPS</h3>
             ';
             while($row = mysqli_fetch_array($res_data))
@@ -255,20 +260,21 @@
                         <div class="col-md-6">
                             <div class="box">
                                 <div class="admin">
-                                    <img src="../'.$row['StpImg'].'" alt="John" style="width:30%; align:middle">
+                                    <img src="../'.$row['StpImg'].'" alt="StartUp Logo" style="width:30%; align:middle">
                                     <center>
                                     <h1 style="color:#FF8C00;text-align:center">'.$row['StpName'].'</h1>
-                                    <p class="title"><i class="fa fa-building-o" aria-hidden="true"></i>&nbsp;'.$row['Type'].'</p>
-                                    <p><i class="fa fa-user"></i> &nbsp;'.$row['FName'].'</p>
-                                    <p><i class="fa fa-circle"></i> &nbsp;'.$row['SName'].'</p>
+                                    <p class="title"><i class="fa fa-building-o" aria-hidden="true"></i>&nbsp;&nbsp;'.$row['Type'].'</p>
+                                    <p><i class="fa fa-user"></i> &nbsp;&nbsp;'.$row['FName'].'</p>
+                                    <p><i class="fa fa-circle"></i> &nbsp;&nbsp;'.$row['SName'].'</p>
                                     </center>
-                                    <a href=../StartUp/Profile/index.php?searchquery='.$row['StpID'].' target=_blank>
-                                    <button type= submit name=subinv class=viewprofile value=View Profile action=index.php><h4>View Profile</h4></button></a>
+                                    <a href="../Profile/index.php?s='.$row['StpID'].'" target=_blank style="text-decoration:none;">
+                                    <button type="submit" name=subinv class="viewprofile" value="View Profile" action=index.php style="padding:5px;"><h4>View Profile</h4></button></a>
                                 </div>
                             </div>
                         </div>';
             }
             echo '
+                    </center>
                     </div>
                 </div>
                 </section>

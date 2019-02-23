@@ -247,7 +247,8 @@
             <section class="admins">
                 <div class="container-fluid">
                     <div class="row">
-                        <h3 style="text-align:center;font-size:bold">  &nbsp;&nbsp;&nbsp;BROWSE STARTUPS</h3>
+                    <center>
+                        <h3 style="text-align:center;font-size:bold">  &nbsp;&nbsp;&nbsp;BROWSE INVESTOR</h3>
             ';
             while($row = mysqli_fetch_array($res_data))
             {
@@ -255,23 +256,24 @@
                         <div class="col-md-6">
                             <div class="box">
                                 <div class="admin">
-                                    <img src="../'.$row['CImg'].'" alt="John" style="width:30%; align:middle">
+                                    <img src="../'.$row['CImg'].'" alt="Investor Image" style="width:30%; align:middle">
                                     <center>
                                     <h1 style="color:#FF8C00;text-align:center">'.$row['CName'].'</h1>
 
-                                    <p><i class="fa fa-user"></i> &nbsp;'.$row['FName'].'</p>
-                                    <p><i class="fa fa-globe"></i> &nbsp;'.$row['LName'].'</p>
-                                    <p><i class="fa fa-link"></i> &nbsp;'.$row['WebLink'].'</p>
-                                    <p><i class="fa fa-angellist" aria-hidden="true"></i> &nbsp;'.$row['AvgInv'].'</p>
+                                    <p><i class="fa fa-user"></i> &nbsp;&nbsp;'.$row['FName'].'</p>
+                                    <p><i class="fa fa-globe"></i> &nbsp;&nbsp;'.$row['LName'].'</p>
+                                    <p><i class="fa fa-link"></i> &nbsp;&nbsp;<a href="'.$row['WebLink'].'">'.$row['WebLink'].' </p>
+                                    <p><i class="fa fa-angellist" aria-hidden="true"></i> &nbsp;&nbsp;'.$row['AvgInv'].'</p>
                                     </center>
 
-                                    <a href=../Investor/Individual/Profile/index.php?searchquery='.$row['InvID'].' target=_blank>
+                                    <a href="../Investor/Individual/Profile/index.php?searchquery='.$row['InvID'].'" target=_blank style="text-decoration:none;" >
                                     <button type= submit name=subinv class=viewprofile value=View Profile action=index.php><h4>View Profile</h4></button></a>
                                 </div>
                             </div>
                         </div>';
             }
             echo '
+                    </center>
                     </div>
                 </div>
                 </section>

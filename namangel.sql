@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 23, 2019 at 02:01 PM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- Host: localhost
+-- Generation Time: Feb 23, 2019 at 05:58 PM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -251,24 +251,24 @@ CREATE TABLE `namanteam` (
 --
 
 INSERT INTO `namanteam` (`SR`, `Name`, `Link`, `Description`, `Image`) VALUES
-(1, 'Shweta Shalini', 'link1', 'Official Spokesperson - Bhartiya Janta Party | Chief Evangelist - The Billennium Divas Thought Leade', '\\NamanAngels\\Uploads\\team\\shweta-shalini.png'),
-(2, 'Miten Mehta', 'link2', 'Co-Founder of Spinta Global Accelerato', '\\NamanAngels\\Uploads\\team\\miten-mehta.png'),
-(3, 'Sandeep Sehgal', 'link3', 'CEO and Co-Founder of Global ScaleUp | HQ in Singapore', '\\NamanAngels\\Uploads\\team\\sandeep-sehgal.png'),
-(4, 'Nilesh Gandhi', 'link4', 'Managing Director at Unid Finance Consultancy Pvt. Ltd.', '\\NamanAngels\\Uploads\\team\\nilesh-gandhi.png'),
-(5, 'Tapaswi Patel', 'link5', 'Serial Entrepreneur Startup Investor Founder: Naman Angels India Foundation, ZoomStart India', '\\NamanAngels\\Uploads\\team\\tapaswi-patel.png'),
-(6, 'Dinesh Israni', 'link6', 'Co-Founder | CEO ', '\\NamanAngels\\Uploads\\team\\dinesh-israni.png'),
-(7, 'Bhavesh Kothari', 'link7', 'Co-Founder | CBO ', '\\NamanAngels\\Uploads\\team\\bhavesh-kothari.png'),
-(8, 'Ankit Buti', 'link8', 'Entrepreneur in Residence with NAMAN Angels India Foundation | Founder & CEO at StartupEd', '\\NamanAngels\\Uploads\\team\\ankit-buti.png'),
-(9, 'Pratik Lalani', 'link', 'Principal Evangelist', '\\NamanAngels\\Uploads\\team\\pratik-lalani.png'),
-(10, 'Purvang Joshi', 'link', 'Principal Evangelist', '\\NamanAngels\\Uploads\\team\\purvang-joshi.png'),
-(11, 'Deep Patel', 'link11', 'Principal Evangelist', '\\NamanAngels\\Uploads\\team\\deep-patel.png'),
-(12, 'Sonali Shah', 'link12', 'Design & Marketing Support', '\\NamanAngels\\Uploads\\team\\sonali-shah.png'),
-(13, 'Bharti Keswani', 'link', 'Financial Analyst', '\\NamanAngels\\Uploads\\team\\bharti-keswani.png'),
-(14, 'Harsha Therani', 'link13', 'Financial Analyst', '\\NamanAngels\\Uploads\\team\\harsha-therani.png'),
-(15, 'Sunny Tiwari', 'link', 'Financial Analyst', '\\NamanAngels\\Uploads\\team\\sunny-tiwari.png'),
-(16, 'Yash Thakkar', 'link', 'Investment Fund Manager', '\\NamanAngels\\Uploads\\team\\yash-thakkar.png'),
-(17, 'Nikita Tilak', 'link', 'Investment Fund Manager', '\\NamanAngels\\Uploads\\team\\nikita-tilak.png'),
-(18, 'Vidisha Dholkhedia', 'link', 'Digital Marketing', '\\NamanAngels\\Uploads\\team\\vidisha.png');
+(1, 'Shweta Shalini', 'link1', 'Official Spokesperson - Bhartiya Janta Party | Chief Evangelist - The Billennium Divas Thought Leade', 'uploads\\team\\shweta-shalini.png'),
+(2, 'Miten Mehta', 'link2', 'Co-Founder of Spinta Global Accelerato', 'uploads\\team\\miten-mehta.png'),
+(3, 'Sandeep Sehgal', 'link3', 'CEO and Co-Founder of Global ScaleUp | HQ in Singapore', 'uploads\\team\\sandeep-sehgal.png'),
+(4, 'Nilesh Gandhi', 'link4', 'Managing Director at Unid Finance Consultancy Pvt. Ltd.', 'uploads\\team\\nilesh-gandhi.png'),
+(5, 'Tapaswi Patel', 'link5', 'Serial Entrepreneur Startup Investor Founder: Naman Angels India Foundation, ZoomStart India', 'uploads\\team\\tapaswi-patel.png'),
+(6, 'Dinesh Israni', 'link6', 'Co-Founder | CEO ', 'uploads\\team\\dinesh-israni.png'),
+(7, 'Bhavesh Kothari', 'link7', 'Co-Founder | CBO ', 'uploads\\team\\bhavesh-kothari.png'),
+(8, 'Ankit Buti', 'link8', 'Entrepreneur in Residence with NAMAN Angels India Foundation | Founder & CEO at StartupEd', 'uploads\\team\\ankit-buti.png'),
+(9, 'Pratik Lalani', 'link', 'Principal Evangelist', 'uploads\\team\\pratik-lalani.png'),
+(10, 'Purvang Joshi', 'link', 'Principal Evangelist', 'uploads\\team\\purvang-joshi.png'),
+(11, 'Deep Patel', 'link11', 'Principal Evangelist', 'uploads\\team\\deep-patel.png'),
+(12, 'Sonali Shah', 'link12', 'Design & Marketing Support', 'uploads\\team\\sonali-shah.png'),
+(13, 'Bharti Keswani', 'link', 'Financial Analyst', 'uploads\\team\\bharti-keswani.png'),
+(14, 'Harsha Therani', 'link13', 'Financial Analyst', 'uploads\\team\\harsha-therani.png'),
+(15, 'Sunny Tiwari', 'link', 'Financial Analyst', 'uploads\\team\\sunny-tiwari.png'),
+(16, 'Yash Thakkar', 'link', 'Investment Fund Manager', 'uploads\\team\\yash-thakkar.png'),
+(17, 'Nikita Tilak', 'link', 'Investment Fund Manager', 'uploads\\team\\nikita-tilak.png'),
+(18, 'Vidisha Dholkhedia', 'link', 'Digital Marketing', 'uploads\\team\\vidisha.png');
 
 -- --------------------------------------------------------
 
