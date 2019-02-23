@@ -1,5 +1,5 @@
 <?php
-	require '../../server.php';
+	require '../server.php';
 
 	$id = $_SESSION['StpID'];
 	$qu = "SELECT * FROM st_details WHERE StpID = '$id'";
@@ -37,53 +37,49 @@
 	$PitchName = $row['PitchName'];
 	$PitchExt = $row['PitchExt'];
 	$Logo = $row['Logo'];
-  $Backimg = $row['BackImg'];
+  	$Backimg = $row['BackImg'];
+
 
 	$qu = "SELECT * FROM st_description WHERE StpID = '$id';";
 	$results = mysqli_query($db, $qu);
 	$row = mysqli_fetch_assoc($results);
 
-	// $MTeam = $row['MTeam'];
 	$CProb = $row['CustomerProblem'];
 	$ProdSer = $row['ProductService'];
 	$TarMar = $row['TargetMarket'];
 	$BModel = $row['BusinessModel'];
-	// $Market = $row['Market'];
 	$CSegments = $row['CustomerSegments'];
 	$SMStrat = $row['SaleMarketStrat'];
 	$Competitors = $row['Competitors'];
 	$CompAdv = $row['CompAdvantage'];
 
-
 ?>
 <html>
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
-        <script src="js\profform.js"></script>
+        <link rel="stylesheet" href="css/companyprof.css" type="text/css">
 		<title>StartUp Profile - NamanAngels</title>
-
-	    </head>
+		<style>
+			.member_name{
+				width: 50%;
+				margin-bottom: 20px;
+			}
+		</style>
+	</head>
     <body>
-	<?php require '../include/header/stp_profile.php'; ?>
+		<?php include('header.php') ?>
 		<div class="container">
             <div class="main">
 			<div class="backimg">
-
 				<?php
 						if($Backimg != ""){
-							echo "<img src=".$Backimg." />";
-						}
-						else{
-							echo '<div class="back">';
-							echo 'No a background image!!';
-							echo '</div>';
+							echo "<img src='../".$Backimg."' />";
 						}
 				?>
 				</div>
 				<div class="sideprof">
 					<div class="upload">
-						<div><?= "<img src=".$Logo." />";?></div>
+						<div><?= "<img src='../".$Logo."' />";?></div>
 					</div>
 					<ul class="proflist">
 						<li class="item">Name <span class="value"><?= $Stname?></span></li>
@@ -130,41 +126,7 @@
 						<li style="list-style: none; display: inline">
 							<hr>
 						</li>
-					</ul>
-				</div>
-
-				<div class="contact sideprof">
-
-					<h3>Contact</h3>
-					<ul class="proflist">
-						<li class="item">Phone :  <span class="value"><?= $Phone?></span></li>
-						<li style="list-style: none; display: inline">
-							<hr>
-						</li>
-						<li class="item">Email ID : <span class="value"><?= $Email?></span></li>
-						<li style="list-style: none; display: inline">
-							<hr>
-						</li>
-					</ul>
-
-				</div>
-
-				<div class="social sideprof">
-
-					<h3>Social presence</h3>
-					<ul class="proflist">
-						<li class="item">LinkedIn <span class="value"><?= $LinkedInLink?></span></li>
-						<li style="list-style: none; display: inline">
-							<hr>
-						</li>
-						<li class="item">Twitter <span class="value"><?= $TwitterLink?></span></li>
-						<li style="list-style: none; display: inline">
-							<hr>
-						</li>
-						<li class="item">Facebook <span class="value"><?= $FBLink?></span></li>
-						<li style="list-style: none; display: inline">
-							<hr>
-						</li>
+						<li><button class="b1" name="requestbtn" onclick="">Download One Pager</button></li>
 					</ul>
 				</div>
 
@@ -173,89 +135,72 @@
 					<div><a href="Exec.php" style="color:black;">Executive summary</a></div>
 					<div><a href="Finance.php">Financials</a></div>
 					<div><a href="Doc.php">Documents</a></div>
-
 				</div>
 
 				<div class="summary">
 					<div class="databox">
-
 						<h3>Management Team</h3>
-						<p>Who are the members of your management team and how will their experience aid in your success?</p>
 						<div>
-							<!-- //MTeam -->
+							<?php
+								$q = "SELECT * FROM st_team where StpID = '$id' AND expertise != '';";
+								$results=mysqli_query($db, $q);
+								if (mysqli_num_rows($results) > 0) {
+									echo '<table class="tables">';
+									echo "<tr>";
+									echo "<th>Name</th>";
+									echo "<th>Expertise</th>";
+									echo "</th>";
+								    while($row = mysqli_fetch_assoc($results)) {
+								        echo '<tr>';
+										echo '<td>'.$row["FName"].'&nbsp;'.$row["LName"].'</td>';
+										echo '<td>'.$row["Expertise"].'</td>';
+										echo "</tr>";
+								    }
+									echo '</table>';
+								}
+							?>
 						</div>
 					</div>
 					<div class="databox">
-
 						<h3>Customer Problem</h3>
-						<p>What customer problem does your product and/or service solve?</p>
 						<div><?php echo $CProb ?></div>
 
 					</div>
 					<div class="databox">
-
 						<h3>Products & Services</h3>
-						<p>Describe the product or service that you will sell and how it solves the customer problem, listing the main value proposition for each product/service.</p>
 						<div><?php echo $ProdSer?></div>
 					</div>
 					<div class="databox">
-
 						<h3>Target Market</h3>
-						<p>Define the important geographic, demographic, and/or psychographic characteristics of the market within which your customer segments exist.</p>
 						<div><?php echo $TarMar?></div>
-
 					</div>
 					<div class="databox">
-
 						<h3>Business Model</h3>
-						<p>What strategy will you employ to build, deliver, and retain company value (e.g., profits)?</p>
-
-						<div><?php echo $BModel?></div>
-					</div><script>
-					function marketon() {
-					    document.getElementById("market").style.display = "block";
-					}
-
-					function marketoff() {
-					    document.getElementById("market").style.display = "none";
-					}
-					</script>
-
-					<div class="databox">
-
-						<h3>Market Sizing</h3>
-						<p>Estimate and realize the potential of you Market.</p>
 						<div><?php echo $BModel?></div>
 					</div>
-
 					<div class="databox">
-
+						<h3>Market Sizing</h3>
+						<div><?php echo $BModel?></div>
+					</div>
+					<div class="databox">
 						<h3>Customer Segments</h3>
-						<p>Outline your targeted customer segments. These are the specific subsets of your target market that you will focus on to gain traction.</p>
 						<div><?php echo $CSegments?></div>
 					</div>
 					<div class="databox">
-
 						<h3>Sales & Marketing Strategy</h3>
-						<p>What is your customer acquisition and retention strategy? Detail how you will promote, sell and create customer loyalty for your products and services.</p>
 						<div><?php echo $SMStrat?></div>
 					</div>
 					<div class="databox">
-
 						<h3>Competitors</h3>
-						<p>Describe the competitive landscape and your competitors strengths and weaknesses. If direct competitors don't exist, describe the existing alternatives.</p>
 						<div><?php echo $Competitors?></div>
 					</div>
 					<div class="databox">
-
 						<h3>Competitive Advantage</h3>
-						<p>What is your company's competitive or unfair advantage? This can include patents, first mover advantage, unique expertise, or proprietary processes/technology.</p>
 						<div><?php echo $CompAdv?></div>
 					</div>
 				</div>
-
 		</div>
-<?php require "../../include/footer/footer.php" ?>
+		<?php require "../include/footer/footer.php" ?>
 	    </div>
 
     </body>

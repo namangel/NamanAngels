@@ -1,41 +1,7 @@
 <?php
-	require '../../../server.php';
-	// $_SESSION['username'] = 'xyz123';//predefine -- nikalo mujhe
-	$id = "";
-	if (isset($_GET['searchquery'])) {
-		$id = $_GET['searchquery'];
-	}
+	require '../server.php';
 
-	$invid =	$_SESSION['InvID'];
-
-	$transbtn = "Invest";
-
-	$qr = "SELECT * FROM requests WHERE Inv_ID='$invid' AND St_ID='$id'";
-	$req = mysqli_query($db, $qr);
-	if (mysqli_num_rows($req) == 1)
-	{
-		$row1 = mysqli_fetch_assoc($req);
-		$deal = $row1['Deal'];
-		if($deal == 1)
-		{
-			$transbtn = "Invested";
-		}
-		if($deal == 0)
-		{
-			$transbtn = "Transaction In Progress";
-		}
-	}
-
-	if(isset($_POST["make_deal"]))
-	{
-		if (mysqli_num_rows($req) == 0)
-		{
-			$q = "INSERT into requests(Inv_ID,St_ID) values ('$invid','$id')";
-			mysqli_query($db, $q);
-		}
-		header('location: Finance.php?searchquery='.$id);
-	}
-
+	$id = $_SESSION['StpID'];
 	$qu = "SELECT * FROM st_details WHERE StpID = '$id'";
 	$results = mysqli_query($db, $qu);
 	$row = mysqli_fetch_assoc($results);
@@ -71,40 +37,31 @@
 	$PitchName = $row['PitchName'];
 	$PitchExt = $row['PitchExt'];
 	$Logo = $row['Logo'];
-  $Backimg = $row['BackImg'];
+  	$Backimg = $row['BackImg'];
 
-	?>
-	<html>
-	    <head>
-	        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	        <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
-	        <link rel="stylesheet" href="../css/financial.css" type="text/css">
-	        <script src="js/profform.js"></script>
-					<title>StartUp Profile - NamanAngels</title>
+?>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/companyprof.css" type="text/css">
+        <link rel="stylesheet" href="css/financial.css" type="text/css">
+		<title>StartUp Profile - NamanAngels</title>
 
-	    </head>
-	    <body>
-			<?php require '../include/header/stp_profile.php'; ?>
-			<?php require '../include/nav/nav.php'; ?>
-	        <div class="container">
-	            <div class="main">
-				<div class="backimg">
-
-					<?php
-							if($Backimg != ""){
-								echo "<img src=".$Backimg." />";
-							}
-							else{
-								echo '<div class="back">';
-								echo 'Upload a background image!!';
-								echo '</div>';
-							}
+    </head>
+    <body>
+		<?php include('header.php') ?>
+        <div class="container">
+            <div class="main">
+			<div class="backimg">
+				<?php
+						if($Backimg != ""){
+							echo "<img src='../".$Backimg."' />";
+						}
 				?>
 			</div>
                 <div class="sideprof">
-
                     <div class="upload">
-						<div><?= "<img src=".$Logo." />";?></div>
+						<div><?= "<img src='../".$Logo."' />";?></div>
                     </div>
                     <ul class="proflist">
                         <li class="item">Name <span class="value"><?= $Stname?></span></li>
@@ -151,68 +108,25 @@
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
-                        <li>
-							<?php
-								$q = "SELECT * FROM current_round WHERE StpID='$id'"; 
-								$results = mysqli_query($db, $q);
-								if(mysqli_num_rows($results) != 0){
-									echo '<form method="post"><button class="b1" name="make_deal">'.$transbtn.'</button></form>';
-								}		
-							?>
-						</li>
+                        <li><button class="b1" name="requestbtn" onclick="">Download One Pager</button></li>
                     </ul>
                 </div>
-
-                <div class="contact sideprof">
-
-                    <h3>Contact</h3>
-					<ul class="proflist">
-						<li class="item">Phone :  <span class="value"><?= $Phone?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                        <li class="item">Email ID : <span class="value"><?= $Email?></span></li>
-                        <li style="list-style: none; display: inline">
-                            <hr>
-                        </li>
-                    </ul>
-
-                </div>
-
-				<div class="social sideprof">
-
-                    <h3>Social presence</h3>
-					<ul class="proflist">
-						<li class="item">LinkedIn <span class="value"><?= $LinkedInLink?></span></li>
-	                    <li style="list-style: none; display: inline">
-	                        <hr>
-	                    </li>
-						<li class="item">Twitter <span class="value"><?= $TwitterLink?></span></li>
-	                    <li style="list-style: none; display: inline">
-	                        <hr>
-	                    </li>
-	                    <li class="item">Facebook <span class="value"><?= $FBLink?></span></li>
-	                    <li style="list-style: none; display: inline">
-	                        <hr>
-	                    </li>
-                    </ul>
-                </div>
-
 				<div class="nav">
-						<div><a href="index.php?searchquery=<?=$id?>" >Overview</a></div>
-						<div><a href="Exec.php?searchquery=<?=$id?>" >Executive summary</a></div>
-						<div><a href="Finance.php?searchquery=<?=$id?>" style="color:black;">Financials</a></div>
-						<div><a href="Doc.php?searchquery=<?=$id?>" >Documents</a></div>
-
+					<div><a href="index.php">Overview</a></div>
+					<div><a href="Exec.php">Executive summary</a></div>
+					<div><a href="Finance.php" style="color:black;">Financials</a></div>
+					<div><a href="Doc.php">Documents</a></div>
 				</div>
 
 				<div class="summary">
+					<center><i class="fa fa-lock icsize">Only NamanAngels users who have been granted access can view this content.</i></center>
 					<div class="databox">
+						<div style="float:right;margin-top:20px;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>
 						<h3>Current Funding Round (USD)</h3>
 
 							Detail your stage of funding, the capital you're seeking and your pre-money valuation.<br><br>
 							<?php
-								$q = "SELECT * FROM current_round"; 
+								$q = "SELECT * FROM current_round";
 								$results = mysqli_query($db, $q);
 								while($row = mysqli_fetch_assoc($results)){
 									if($row['StpID'] == $id){
@@ -228,14 +142,9 @@
 											echo '<span style="float:left">Interest Rate</span><span style="float:right">'.$row['Interest_rate'].' %</span><br/><hr>';
 											echo '<span style="float:left">Term Length</span><span style="float:right">'.$row['Term_len'].' Months</span><br/><hr>';
 										}
-										// echo '<button class="btnfund" onclick="clroundon()">Close Funding Round</button>';
+										echo '<button class="btnfund" onclick="clroundon()">Close Funding Round</button>';
 									}
 								}
-								// $q = "SELECT * FROM current_round WHERE StpID='$id'"; 
-								// $results = mysqli_query($db, $q);
-								// if(mysqli_num_rows($results)== 0){
-								// 	echo '<button class="btnfund" onclick="roundon()">Open Funding Round</button>';
-								// }
 							?>
 					</div>
 					<div class="databox">
@@ -244,14 +153,16 @@
 							$q= "SELECT * FROM round_history WHERE StpID = '$id';";
 							$results = mysqli_query($db, $q);
 							while($row=mysqli_fetch_assoc($results)){
+								echo '<br>';
 								echo '<span style="float:left">Round</span><span style="float:right">'.$row['Round'].'</span><br/><hr>';
 								echo '<span style="float:left"></span>Security Type<span style="float:right">'.$row['Security_type'].'</span><br/><hr>';
 								echo '<span style="float:left">Capital raised</span><span style="float:right">$ '.$row['Capital_raised'].'</span><br/><hr>';
 								echo '<span style="float:left">Close Date</span><span style="float:right">'.$row['Close_date'].'</span><br/><hr style="height:1px; background-color:black;">';
 							}
-						?>	
+						?>
 					</div>
 					<div class="databox">
+						<button class="pencil" onclick="annualon()"><i class="fa fa-pencil"></i></button>
 						<h3>Annual Financials (USD)</h3>
 						<div class="p2">
 						</div>
@@ -259,91 +170,87 @@
 						<p>Investors like to compare and evaluate financial performance over this timeframe, so do your best to complete it.</p>
 					<?php
 						$y=date("Y");
-						$q = "SELECT revenue_rate,burn_rate FROM annual_financial WHERE StpId='$id' AND year= '$y' "; 
+						$q = "SELECT revenue_rate,burn_rate FROM annual_financial WHERE StpId='$id' AND year= '$y' ";
 						$results = mysqli_query($db, $q);
 						$row=mysqli_fetch_array($results);
 						$revrr= $row[0];
 						$mbr= $row[1];
 					?>
-						<pre>Annual Revenue Run Rate: <?=$revrr?>                        Monthly Burn Rate: <?=$mbr?><pre>
+						<h4>Annual Revenue Run Rate: <?=$revrr?></h4>
+						<h4>Monthly Burn Rate: <?=$mbr?></h4>
 							<table>
 								<td>Year</td>
 								<?php
-									$q = "SELECT year FROM annual_financial WHERE StpID='$id'"; 
+									$q = "SELECT year FROM annual_financial WHERE StpID='$id'";
 									$result = mysqli_query($db, $q);
 									$storeArray = Array();
 									$x=0;
 									while ($row = mysqli_fetch_assoc($result)) {
-										$storeArray[] =  $row['year'];  
+										$storeArray[] =  $row['year'];
 										echo '<td>'.$storeArray[$x++].'</td>';
-									}	
+									}
 								?>
 								</tr>
 								<tr>
 								<td>Sales $</td>
 								<?php
-									$q = "SELECT sales FROM annual_financial WHERE StpID='$id'"; 
+									$q = "SELECT sales FROM annual_financial WHERE StpID='$id'";
 									$result = mysqli_query($db, $q);
 									$storeArray = Array();
 									$x=0;
 									while ($row = mysqli_fetch_assoc($result)) {
-										$storeArray[] =  $row['sales'];  
+										$storeArray[] =  $row['sales'];
 										echo '<td>'.$storeArray[$x++].'</td>';
-									}	
+									}
 								?>
 								</tr>
 								<tr>
 								<td>Revenue $</td>
 								<?php
-									$q = "SELECT revenue FROM annual_financial WHERE StpID='$id'"; 
+									$q = "SELECT revenue FROM annual_financial WHERE StpID='$id'";
 									$result = mysqli_query($db, $q);
 									$storeArray = Array();
 									$x=0;
 									while ($row = mysqli_fetch_assoc($result)) {
-										$storeArray[] =  $row['revenue'];  
+										$storeArray[] =  $row['revenue'];
 										echo '<td>'.$storeArray[$x++].'</td>';
-									}	
+									}
 								?>
 								</tr>
 								<tr>
-								<td>Expenditure $</td>
-								<?php
-									$q = "SELECT expenditure FROM annual_financial WHERE StpID='$id'"; 
-									$result = mysqli_query($db, $q);
-									$storeArray = Array();
-									$x=0;
-									while ($row = mysqli_fetch_assoc($result)) {
-										$storeArray[] =  $row['expenditure'];  
-										echo '<td>'.$storeArray[$x++].'</td>';
-									}	
-								?>
+									<td>Expenditure $</td>
+									<?php
+										$q = "SELECT expenditure FROM annual_financial WHERE StpID='$id'";
+										$result = mysqli_query($db, $q);
+										$storeArray = Array();
+										$x=0;
+										while ($row = mysqli_fetch_assoc($result)) {
+											$storeArray[] =  $row['expenditure'];
+											echo '<td>'.$storeArray[$x++].'</td>';
+										}
+									?>
 								</tr>
 								<tr>
 								<td>Profit $</td>
 								<?php
 									$yr= date("Y") -2;
 									for($i=0;$i<6;$i++){
-										$q = "SELECT revenue,expenditure FROM annual_financial WHERE StpID='$id' AND year='$yr'"; 
+										$q = "SELECT revenue,expenditure FROM annual_financial WHERE StpID='$id' AND year='$yr'";
 										$result = mysqli_query($db, $q);
 										$row = mysqli_fetch_array($result);
 										$prof=$row[0]-$row[1];
 										$yr=$yr+1;
 										echo '<td>'.$prof.'</td>';
-									}	
+									}
 								?>
 								</tr>
 							</table>
+						</div>
 					</div>
-				</div>
 
 				</div>
-			<?php require "../../../include/footer/footer.php" ?>
+			<?php require "../include/footer/footer.php" ?>
         </div>
 
     </body>
 </html>
-<script>
-	if ( window.history.replaceState ) {
-		window.history.replaceState( null, null, window.location.href );
-	}
-</script>
