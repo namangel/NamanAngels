@@ -11,7 +11,7 @@
       <?php
       include "../header/sign.php"
       ?>
-      
+
         <font class="adv"><center>Our Chief Advisory & Team</center></font>
         <?php
         $qu = "SELECT * FROM namanteam";
@@ -21,8 +21,8 @@
         {
                 echo '<div class="member">
                         <center>
-                        <img src="'.$row['Image'].'"/>
-                        <a class="linkedin" ahref="#">'.$row['Link'].'</a><br><br>
+                        <img src="../../'.$row['Image'].'"/><br>
+                        <a class="linkedin" href="'.$row['Link'].'">My LinkedIn</a><br><br>
                         <font class="name">'.$row['Name'].'</font><br>
                         <p class="designation">'.$row['Description'].'</p></center>
                     </div>';
