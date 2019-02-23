@@ -1044,8 +1044,8 @@
 					echo '</table>';
 					}
 					else{
-						echo '<p>Ramp up your profile</p>';
 						echo '<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
+						echo '<p>Ramp up your profile</p>';
 					} 
 				?>
             </div>

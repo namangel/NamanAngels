@@ -862,7 +862,7 @@
 					echo '</table>';
 					} 
 					else{
-						echo '<a href="browse.php">Start investing</a>';
+						echo '<a href="browse.php" style="text-decoration: none;">Start investing</a>';
 					}
 				?>
             </div>
