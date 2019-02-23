@@ -1032,8 +1032,8 @@
 				<div id="hist">
                     <div class="form">
                         <div class="formhead">
-                            <button onclick="clroundoff()" class="close"><i class="fa fa-close"></i></button>
-							<b>Financial Hitory</b>
+                            <button onclick="historyoff()" class="close"><i class="fa fa-close"></i></button>
+							<b>Financial History</b>
 							<p>Provide information about previous funding rounds that your company has raised.</p>
                         </div>
                         <div class="formtext">

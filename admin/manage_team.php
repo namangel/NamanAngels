@@ -11,10 +11,10 @@
     $result = mysqli_query($db, $member_check_query);
     $user = mysqli_fetch_assoc($result);
 
-    if (mysqli_num_rows($result) > 0) 
+    if (mysqli_num_rows($result) > 0)
     {
         echo "<script>alert('Member already exists')</script>";
-        header('location:manage_team.php');
+        // header('location:manage_team.php');
     }
     else
     {
@@ -58,6 +58,8 @@
       {
       $q = "INSERT INTO namanteam (Link, Name, Description) VALUES ('$MemLink','$MemName','$MemDesc');";
       mysqli_query($db, $q);
+      echo "<script>alert('Member added successfully!')</script>";
+
       }
     }
   }
@@ -74,12 +76,12 @@
       $q = "DELETE FROM namanteam WHERE Name='$MemName' AND Description='$MemDesc';";
       mysqli_query($db, $q);
       echo "<script>alert('Member deleted successfully!')</script>";
-      header('location:manage_team.php');
+      // header('location:manage_team.php');
     }
 
     else{
       echo "<script>alert('Member does not exists!')</script>";
-      header('location:manage_team.php');
+      // header('location:manage_team.php');
     }
   }
 

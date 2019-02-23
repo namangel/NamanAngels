@@ -1,4 +1,4 @@
-function off() {
+function on() {
     document.getElementById("overlay").style.display = "none";
 }
 function off() {
