@@ -9,7 +9,7 @@
     $AdminName = $row['AdminName'];
     $AdminDesgn = $row['AdminDesgn'];
     $Username = $row['Username'];
-    $ProfilePic = $row['ProfilePic']==""? 'img/default.png':$row['ProfilePic'];
+    $ProfilePic = $row['ProfilePic'];
 
 
     if(isset($_POST["adminsave"])){
@@ -33,11 +33,11 @@
         $check = getimagesize($_FILES["profile"]["tmp_name"]);
 		if($check != false)
 		{
-			$file_name = $_FILES['profile']['name'];
+			$file_name = $AdminName.'_'.$_FILES['profile']['name'];
 			$file_size = $_FILES['profile']['size'];
 			$file_tmp = $_FILES['profile']['tmp_name'];
 			$file_type = $_FILES['profile']['type'];
-			$file_ext=strtolower(end(explode('.',$_FILES['profile']['name'])));
+			$file_ext = strtolower(end(explode('.',$_FILES['profile']['name'])));
 
 			$extensions= array("jpeg","jpg","png");
 
@@ -53,12 +53,14 @@
 				}
 				else
 				{
-					$upload = "/NamanAngels/Uploads/".$file_name;
-					move_uploaded_file($file_tmp,$upload);
-					$q = "UPDATE admin set ProfilePic='$upload' where adminID='$id';";
-					mysqli_query($db, $q);
-					echo "<script>alert('Successfully Uploaded')</script>";
-				}
+                    $uploadas = "uploads/admin/".$file_name;
+					$upload = "../uploads/admin/".$file_name;
+					if(move_uploaded_file($file_tmp,$upload)){
+					    $q = "UPDATE admin set ProfilePic='$uploadas' where adminID='$id';";
+					    mysqli_query($db, $q);
+					    echo "<script>alert('Successfully Uploaded')</script>";
+                    }
+                }
 			}
 		}
 		header('location: profile.php');
@@ -203,7 +205,7 @@
 <body>
 <?php require "sidebar.php" ?>
   <div class="profile">
-    <?= "<img src=".$ProfilePic." />";?>
+    <?= "<img src='../".$ProfilePic."' />";?>
     <div class="detail">
         <div class="labell">Name:</div><div class="details"><?php echo $AdminName; ?></div><br>
         <div class="labell">Designation:</div><div class="details"><?php echo $AdminDesgn; ?></div><br>
@@ -219,15 +221,16 @@
                 </div>
                 <div class="i2">
                     <label>Profile Image</label><br>
-                    <input type="file" name="profile"><span class="tooltiptext">Choose file of type .jpeg, .png, .jpg of size less than 5MB!</span>
+                    <input type="file" name="profile">
+                    <span class="tooltiptext">Choose file of type .jpeg, .png, .jpg of size less than 5MB!</span>
                 </div>
                 <div class="i2">
                     <label>Name</label><br>
-                    <input type="text" name="adminname">
+                    <input type="text" name="adminname" placeholder="<?=$AdminName?>" value="<?=$AdminName?>">
                 </div>
                 <div class="i5">
                     <label>Designation</label><br>
-                    <input type="text" name="admindesgn">
+                    <input type="text" name="admindesgn" placeholder="<?=$AdminDesgn?>">
                 </div>
                 <div class="butn">
                     <button class="cancel" onclick="off()">Cancel</button> <button class="save" name="adminsave">Save</button>

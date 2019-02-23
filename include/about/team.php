@@ -21,10 +21,10 @@
         {
                 echo '<div class="member">
                         <center>
-                        <img src="'.$row['image'].'"/>
-                        <a class="linkedin" ahref="#">'.$row['member_link'].'</a><br><br>
-                        <font class="name">'.$row['member_name'].'</font><br>
-                        <p class="designation">'.$row['description'].'</p></center>
+                        <img src="'.$row['Image'].'"/>
+                        <a class="linkedin" ahref="#">'.$row['Link'].'</a><br><br>
+                        <font class="name">'.$row['Name'].'</font><br>
+                        <p class="designation">'.$row['Description'].'</p></center>
                     </div>';
         }
         echo '</div>';

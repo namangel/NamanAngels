@@ -252,7 +252,7 @@
                       <div class="box">
                             <div class="admin">
                               <div class="img">
-                              <img class="img-responsive" src="'.$row['ProfilePic'].'"/>
+                              <img class="img-responsive" src="../'.$row['ProfilePic'].'"/>
                               </div>
                               <div class="info"><br><br>
                               <font class="name">'.$row['AdminName'].'</font><br><br>
