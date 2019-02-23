@@ -26,6 +26,6 @@
         <center><img src="/NamanAngels/img/HeaderLogo.png" style="height:50px;width:135px; margin: 5px;"></center>
     </div>
     <div class="topfor">
-        <button type="button" onclick="self.close()">CLOSE</button>
+         <a href="javascript:window.open('','_self').close();" class="cs1"><center>CLOSE</center></a>
     </div>
 </div>

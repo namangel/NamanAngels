@@ -56,7 +56,7 @@
                     echo '<p class="title">'.$row['Type'].'</p>';
                     echo '<p>'.$row['FName'].'</p>';
                     echo '<p>'.$row['SName'].'</p>';
-                    echo "<a href='../Profile/index.php?searchquery=".$row['StpID']."' target='_blank'>
+                    echo "<a href='../../../Profile/index.php?s=".$row['StpID']."' target='_blank'>
                     <button type='submit' name='subinv' class='viewprofile' value='View Profile' action='index.php'>View Profile</button></a>";
 
                 echo '</div>';
