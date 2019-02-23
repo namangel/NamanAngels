@@ -956,8 +956,9 @@
             </div>
         </div>
         <!-- </div> -->
-        <?php require "../../../include/footer/footer.php" ?>
+
     </div>
+	<?php require "../../../include/footer/footer.php" ?>
 
 </body>
 <script>
