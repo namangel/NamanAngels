@@ -720,6 +720,41 @@
 					}
 				?>
             </div>
+
+			<div class="databox">
+                <h4>Investments through NamanAngels</h4>
+    			<?php
+    				$q = "SELECT * FROM requests where Inv_ID='$u';";
+					$results=mysqli_query($db, $q);
+	    			if (mysqli_num_rows($results) > 0) {
+					echo '<table class="tables">';
+					echo "<tr>";
+    				echo "<th>Startup Name</th>";
+					echo "<th>Status</th>";
+					echo "</th>";
+				    while($row = mysqli_fetch_assoc($results)) {
+
+						$stid=$row['St_ID'];
+						$qu = "SELECT Stname FROM st_details where StpID='$stid';";
+						$result = mysqli_query($db, $qu);
+						$row1= mysqli_fetch_assoc($result);
+				        echo '<tr>';
+						echo '<td>'.$row1['Stname'].'</td>';
+						if($row['Deal'] == 0){
+							echo '<td>Transaction in progress</td>';
+						}
+						if($row['Deal'] == 1){
+							echo '<td>Invested</td>';
+						}
+						echo "</tr>";
+				    }
+					echo '</table>';
+					}
+					else{
+						echo '<a href="browse.php">Start investing</a>';
+					} 
+				?>
+            </div>
 		</div>
 
 		<div id="sumformov">
@@ -765,13 +800,8 @@
 										<option>Product in Development</option>
 										<option>Prototype ready</option>
 										<option>Full Product Ready</option>
-										<option>$500K in TTM Revenue</option>
-										<option>$1M in TTM Revenue</option>
-										<option>$5M in TTM Revenue</option>
-										<option>$10M in TTM Revenue</option>
-										<option>$20M in TTM Revenue</option>
-										<option>$50M in TTM Revenue</option>
-										<option>$50M+ in TTM Revenue</option>
+										<option>Early Revenue Stage</option>
+										<option>Growth Stage</option>
 									</select><br><br>
 								<label>Stake holding(%)</label><br>
 								<input type="number" size="3" name="pistake" required><br><br>

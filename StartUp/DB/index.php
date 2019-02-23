@@ -1009,6 +1009,46 @@
 							}
 						?>
 					</div>
+					<div class="databox">
+                <h4>Investors from NamanAngels</h4>
+    			<?php
+    				$q = "SELECT * FROM requests where Inv_ID='$id';";
+					$results=mysqli_query($db, $q);
+	    			if (mysqli_num_rows($results) > 0) {
+					echo '<table class="tables">';
+					echo "<tr>";
+    				echo "<th>Investor Name</th>";
+					echo "<th>Status</th>";
+					echo "</th>";
+				    while($row = mysqli_fetch_assoc($results)) {
+
+						$invid=$row['Inv_ID'];
+						$qu = "SELECT CName,FName,LName FROM inv_details where InvID='$invid';";
+						$result = mysqli_query($db, $qu);
+						$row1= mysqli_fetch_assoc($result);
+						echo '<tr>';
+						if($row1['CName'] == NULL){
+							echo '<td>'.$row1['FName'].'&nbsp'.$row1['LName'].'</td>';
+						}
+						else{
+							echo '<td>'.$row1['CName'].'</td>';
+						}
+						if($row['Deal'] == 0){
+							echo '<td>Interested</td>';
+						}
+						if($row['Deal'] == 1){
+							echo '<td>Invested</td>';
+						}
+						echo "</tr>";
+				    }
+					echo '</table>';
+					}
+					else{
+						echo '<p>Ramp up your profile</p>';
+						echo '<div style="float:right;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>';
+					} 
+				?>
+            </div>
                 </div>
                 <div id="backimg">
                     <div class="form">
