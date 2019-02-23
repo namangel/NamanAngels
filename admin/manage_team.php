@@ -42,8 +42,8 @@
           }
           else
           {
-            $uploadas = "Uploads/team/".$file_name;
-            $upload = "../Uploads/team/".$file_name;
+            $uploadas = "uploads/team/".$file_name;
+            $upload = "../uploads/team/".$file_name;
             if(move_uploaded_file($file_tmp,$upload))
             {
               $q = "INSERT INTO namanteam (Image, Link, Name, Description) VALUES ('$uploadas','$MemLink','$MemName','$MemDesc');";
