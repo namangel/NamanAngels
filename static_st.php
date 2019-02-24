@@ -1,3 +1,4 @@
+<?php require('server.php');?>
 <html>
     <head>
       <title>Get Started With NamanAngels</title>
@@ -8,7 +9,15 @@
 
     </head>
     <body>
-      <?php require 'include/header/staticst.php'; ?>
+      <?php
+      if(isset($_SESSION['StpID'])){
+          require 'include/header/staticstlogin.php';
+      }
+      else{
+          require 'include/header/staticst.php';
+      }
+
+      ?>
       <div class="container">
         <div class="ss">
           <center>

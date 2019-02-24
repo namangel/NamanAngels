@@ -1,3 +1,4 @@
+<?php require "server.php"; ?>
 <html>
 <head>
   <title>Get Started With NamanAngels</title>
@@ -7,7 +8,13 @@
 <link type="text/css" rel="stylesheet" href="css\sticky.css">
 </head>
 <body>
-    <?php require 'include/header/staticinv.php'; ?>
+    <?php
+    if(isset($_SESSION['InvID'])){
+        require 'include/header/staticinvlogin.php';
+    }
+    else{
+        require 'include/header/staticinv.php';
+    } ?>
 <div class="container">
 
   <div class="start1" style=" background-color: #7ec5fd;" >

@@ -5,7 +5,7 @@
 <body>
   <div class="topnav">
     <div class="toplogo1">
-       <center><img src="/NamanAngels/img/HeaderLogo.png" style="height:50px;width:135px; margin: 5px;"></center>
+       <center><a href='../index.php'><img src="/NamanAngels/img/HeaderLogo.png" style="height:50px;width:135px; margin: 5px;"></a></center>
     </div>
       <div class="dropdown">
           <button class="dropbtn">Entrepreneur</button>

@@ -1,3 +1,4 @@
+<?php require("server.php") ?>
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -7,7 +8,16 @@
     </head>
 
     <body>
-      <?php require "include/header/mainheader.php" ?>
+
+      <?php
+      if(isset($_SESSION['StpID']) || isset($_SESSION['InvID'])){
+          require "include/header/mainheaderlogin.php";
+      }
+      else{
+        require "include/header/mainheader.php" ;
+    }
+
+        ?>
         <div class="grid-container">
 
             <div class="item2">
