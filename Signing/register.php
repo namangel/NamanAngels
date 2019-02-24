@@ -1,5 +1,5 @@
 <?php
-require("")
+require('../server.php');
 if(isset($_SESSION['StpID'])){
 	header('location: ../StartUp/index.php');
 }
