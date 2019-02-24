@@ -910,7 +910,6 @@
 						?>
                     </div>
                     <div class="databox">
-                        <!-- <button onclick="teamon()" class="pencil"><i class="fa fa-pencil"></i></button> -->
                         <button onclick="addteamon()" class="add"><i class="fa fa-plus"></i></button>
                         <h4>Team	<div class="limit_mem" id="limit_mem">(maximum 6 members can be added!)</div>
 						</h4>
@@ -1089,7 +1088,6 @@
                         </div>
                         <div class="formtext">
                             <form method="post">
-                                <!-- <div class="formtext"><textarea rows="10" cols="150" name="summaryform" required><?= $Summary?></textarea></div> -->
 								<div class="formtext"><textarea rows="10" cols="150" name="summaryform" id="summ" required><?= $Summary?></textarea></div>
 								<script>
 									function check_words(e) {
@@ -1188,11 +1186,11 @@
                                 <br>
                                 <label for="email">Email</label>
                                 <br>
-                                <input type="text" name="cfemail" placeholder="<?= $Email?>" size="40">
+                                <input type="email" name="cfemail" placeholder="<?= $Email?>" size="40">
                                 <br><br>
                             <div class="formtext submits">
-                                    <input type="submit" onclick="contactoff()" value="Cancel" name="cancel" class="cancel">
-                                    <input type="submit" value="Save" name="cfsave" class="save">
+                                <input type="submit" onclick="contactoff()" value="Cancel" name="cancel" class="cancel">
+                                <input type="submit" value="Save" name="cfsave" class="save">
                             </div>
                         </div>
                     </form>
@@ -1237,16 +1235,16 @@
 								<div class="formtext">
 									<label>First Name</label><br>
 									<input type="text" name="tmfname" size="50" required><br><br>
-																			<label>Last Name</label><br>
+									<label>Last Name</label><br>
 									<input type="text" name="tmlname" size="50" required><br><br>
 									<label>Designation</label><br>
 									<input type="text" name="tmdsgn" size="50" required><br><br>
 									<label>Experience and Expertise(in yrs)</label><br>
-																			<input type="number" name="tmexp" size="50" required><br><br>
+									<input type="number" name="tmexp" size="50" required><br><br>
 									<label>Email</label><br>
 									<input type="email" name="tmemail" size="50" required><br><br>
-																			<label>LinkedIn</label><br>
-																			<input type="text" name="tmlinkedin" size="50" required><br><br>
+									<label>LinkedIn</label><br>
+									<input type="text" name="tmlinkedin" size="50" required><br><br>
 									</div>
 								<div class="formtext submits">
 									<input type="submit" onclick="addteamoff()"value="Cancel" name="cancel" class="cancel">
@@ -1269,7 +1267,7 @@
                                     <label>Name</label><br>
                                     <input type="text" name="caname" size="50" required><br><br>
                                     <label>Email</label><br>
-                                    <input type="text" name="caemail" size="50" required><br><br>
+                                    <input type="email" name="caemail" size="50" required><br><br>
                                 </div>
                                 <div class="formtext submits">
                                     <input type="submit" onclick="advoff()" value="Cancel" name="cancel" class="cancel">
@@ -1293,7 +1291,7 @@
 									<label>Name</label><br>
 									<input type="text" size="50" name="piname" required><br><br>
 									<label>Email</label><br>
-									<input type="text" size="50" name="piemail" required><br><br>
+									<input type="email" size="50" name="piemail" required><br><br>
 								</div>
 								<div class="formtext submits">
 									<input type="submit" onclick="invoff()" value="Cancel" name="cancel" class="cancel">

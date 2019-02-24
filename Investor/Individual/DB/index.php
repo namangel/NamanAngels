@@ -234,29 +234,29 @@
 </style>
 
 
-		</head>
-		<script type="text/javascript">
-		<?php
+</head>
+<script type="text/javascript">
+<?php
 
-			$q = "SELECT * FROM inv_previnvestment;";
-			$results=mysqli_query($db, $q);
-			if (mysqli_num_rows($results) >= 3)
-			{
-				echo 'function addpion() {
-						document.getElementById("inv").style.display = "none";
-						document.getElementById("limit_inv").style.display = "inline";
-				}';
-			}
-			else{
-				echo 'function addpion() {
-						document.getElementById("inv").style.display = "block";
-				}';
-			}
+	$q = "SELECT * FROM inv_previnvestment;";
+	$results=mysqli_query($db, $q);
+	if (mysqli_num_rows($results) >= 3)
+	{
+		echo 'function addpion() {
+				document.getElementById("inv").style.display = "none";
+				document.getElementById("limit_inv").style.display = "inline";
+		}';
+	}
+	else{
+		echo 'function addpion() {
+				document.getElementById("inv").style.display = "block";
+		}';
+	}
 
 
-		?>
+?>
 
-		</script>
+</script>
 
     <body>
     <?php require '../include/header/inv_db.php'; ?>
@@ -562,10 +562,6 @@
 												<option value="Zimbabwe">Zimbabwe</option>
 												</select>
 					</div>
-					<!-- <div class="i5">
-						<label for="cbioi">Industry Of Interest</label><br>
-						<input name="cbioi" type="text" placeholder="<?=$indOfInt?>">
-					</div> -->
 					<div class="i3">
 						<label for="cbrange">Investment Range</label><br>
 						<select name="cbrange" placeholder=">">
@@ -588,12 +584,9 @@
         <div class="mainright">
             <div class="info">
                 <ul class="proflist">
-                        <!-- <li class="item"><b>Industry Of Interest : </b> <span class="value"><?= $indOfInt ?></span></li>
-                        <li style="list-style: none; display: inline">
-                        </li> -->
-                        <li class="item"><b>Investment Range : </b> <span class="value"><?= $invrange ?></span></li>
-                        <li style="list-style: none; display: inline">
-                        </li>
+					<li class="item"><b>Investment Range : </b> <span class="value"><?= $invrange ?></span></li>
+					<li style="list-style: none; display: inline">
+					</li>
                 </ul>
             </div>
             <div class="social">
@@ -628,8 +621,8 @@
 								<div class="socialic"><i class="fa fa-instagram"> <input type="text" name="sfinstagram" size="30" placeholder="<?=$instagram?>"></i></div><br>
                                 <br>
                                 <div class="formtext submits">
-                                        <input type="submit" value="Cancel" name="cancel" class="cancel">
-                                        <input type="submit" value="Save" name="sfsave" class="save">
+                                    <input type="submit" value="Cancel" name="cancel" class="cancel">
+                                    <input type="submit" value="Save" name="sfsave" class="save">
                                 </div>
                             </form>
                         </div>
@@ -660,7 +653,7 @@
                         <br>
                         <label for="email">Email</label>
                         <br>
-                        <input type="text" name="cfemail" size="40" placeholder="<?= $email?>">
+                        <input type="email" name="cfemail" size="40" placeholder="<?= $email?>">
                         <br><br>
                         <div class="formtext submits">
                         <input type="submit" value="Cancel" name="cancel" class="cancel">

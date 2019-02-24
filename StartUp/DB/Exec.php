@@ -937,21 +937,21 @@
 	                            </div>
 	                            <div class="formtext">
 	                                <form method="post">
-																		<label>Member Name: </label>
-																		<select class="member_name" name="member_name">
-																				<?php
-																						$qu1= "SELECT * FROM st_team;";
-																						$res1 = mysqli_query($db, $qu1);
-																						while($row1 = mysqli_fetch_assoc($res1)){
-																								echo '<option value="'.$row1["FName"].'">'.$row1["FName"].'&nbsp;'.$row1["LName"].'</option>';
-																						}
-																				?>
-																		</select>
+										<label>Member Name: </label>
+										<select class="member_name" name="member_name">
+											<?php
+												$qu1= "SELECT * FROM st_team;";
+												$res1 = mysqli_query($db, $qu1);
+												while($row1 = mysqli_fetch_assoc($res1)){
+														echo '<option value="'.$row1["FName"].'">'.$row1["FName"].'&nbsp;'.$row1["LName"].'</option>';
+												}
+											?>
+										</select>
 
-	                                    <div class="formtext">
-																				<label>Expertise: </label>
-																				<textarea autofocus rows="5" cols="75" name="manageform"></textarea>
-																			</div>
+										<div class="formtext">
+											<label>Expertise: </label>
+											<textarea autofocus rows="5" cols="75" name="manageform"></textarea>
+										</div>
 
 	                                    <div class="formtext submits">
 	                                        <input type="submit" value="Cancel" name="cancel" class="cancel">

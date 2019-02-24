@@ -198,7 +198,7 @@
             <div class="col-md-12">
               <div class="content">
                 <h2>Manage your team!</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                <p>Add a new team member or remove a member.</p>
               </div>
             </div>
           </div>

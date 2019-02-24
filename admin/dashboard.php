@@ -1,5 +1,12 @@
 <?php
   require "../server.php" ;
+
+  $id = $_SESSION['adminID'];
+	$qu = "SELECT * FROM admin WHERE adminID = '$id'";
+	$results = mysqli_query($db, $qu);
+	$row = mysqli_fetch_assoc($results);
+  $AdminName = $row['AdminName'];
+  
   $q = "SELECT * FROM userstp;";
 	$results=mysqli_query($db, $q);
   $startup=mysqli_num_rows($results);
@@ -192,8 +199,8 @@
           <div class="row">
             <div class="col-md-12">
               <div class="content">
-                <h2>Welcome to Dashboard</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                <h2>Welcome <?php echo $AdminName;?>!</h2>
+                <p>Manage your website through the dashboard and view the progress.</p>
               </div>
             </div>
           </div>

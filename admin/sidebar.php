@@ -1,11 +1,11 @@
 <?php
-    $id = $_SESSION['adminID'];
+  $id = $_SESSION['adminID'];
 	$qu = "SELECT * FROM admin WHERE adminID = '$id'";
 	$results = mysqli_query($db, $qu);
 	$row = mysqli_fetch_assoc($results);
 	$AdminName = $row['AdminName'];
-    $AdminDesgn = $row['AdminDesgn'];
-    $ProfilePic = $row['ProfilePic'];
+  $AdminDesgn = $row['AdminDesgn'];
+  $ProfilePic = $row['ProfilePic'];
 ?>
 <html lang="en">
   <head>

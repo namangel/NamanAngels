@@ -70,27 +70,6 @@
                     <a href="changepassword.php" class="five" ><span><i class="fa fa-fw fa-lock"style="font-size:24px"></i> Password</span></a>
                 </div>
                 </li>
-
-                <!-- <li class="var_nav">
-                <div class="link_bg"></div>
-                <div class="link_title">
-                    <a href="managecompanies.php" class="five"><span><i class="fa fa-fw fa-user" style="font-size:24px" ></i> Manage Companies</span></a>
-                </div>
-                </li>
-
-                <li class="var_nav">
-                <div class="link_bg"></div>
-                <div class="link_title">
-                    <a href="privacy.php" class="five"><span> <i class="fa fa-fw fa-wrench" style="font-size:24px"></i>Privacy Settings</span></a>
-                </div>
-                </li> -->
-
-                <li class="var_nav">
-                <div class="link_bg"></div>
-                <div class="link_title">
-                    <a href="email.php" class="five"><span>  <i class="fa fa-fw fa-envelope" style="font-size:24px" ></i> Email Settings</span></a>
-                </div>
-                </li>
             </UL>
         </nav>
   </div>
@@ -121,18 +100,3 @@
 <?php require "../../../include/footer/footer.php" ?>
 </body>
 </html>
-<!-- <script>
-        var newPassword = document.getElementById("new_password");
-        var confirmPassword = document.getElementById("confirm_password");
-
-        function validatePassword() {
-            if (newPassword.value != confirmPassword.value) {
-                document.getElementById("confirm_password").setCustomValidity("Passwords do not match!");
-            } else {
-                //empty string means no validation error
-                document.getElementById("confirm_password").setCustomValidity('');
-            }
-        }
-        newPassword.addEventListener("change", validatePassword);
-        confirmPassword.addEventListener("change", validatePassword);
-      </script> -->

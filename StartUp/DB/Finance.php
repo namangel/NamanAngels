@@ -697,7 +697,7 @@
                             </div>
                             <div class="i8">
                                 <label for="cbempnum">Number of Employees</label><br>
-                                <input name="cbempnum" type="text" placeholder="<?= $EmpNum?>">
+                                <input name="cbempnum" type="number" placeholder="<?= $EmpNum?>">
                             </div>
                             <div class="i3">
                                 <label for="inc">Incorporation Type</label><br>
