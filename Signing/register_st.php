@@ -1,4 +1,9 @@
-<?php require('../server.php') ?>
+<?php require('../server.php');
+
+if(isset($_SESSION['StpID'])){
+	header('location: ../StartUp/index.php');
+}
+ ?>
 <html>
 <head>
   <title>Register Start Up</title>

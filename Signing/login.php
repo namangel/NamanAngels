@@ -1,3 +1,14 @@
+<?php
+require('../server.php');
+if(isset($_SESSION['StpID'])){
+	header('location: ../StartUp/index.php');
+}
+if(isset($_SESSION['InvID'])){
+	header('location: ../Investor/index.php');
+}
+
+?>
+
 <html>
 <head>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

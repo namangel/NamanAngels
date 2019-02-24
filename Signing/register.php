@@ -1,3 +1,14 @@
+<?php
+require("")
+if(isset($_SESSION['StpID'])){
+	header('location: ../StartUp/index.php');
+}
+elseif(isset($_SESSION['InvID'])){
+	header('location: ../Investor/index.php');
+}
+
+
+?>
 <html>
 	<head>
 		<title>Registor Yourself</title>

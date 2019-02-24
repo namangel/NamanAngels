@@ -165,7 +165,11 @@
                     <br><br><br>
                     <center>
                     Leverage the power of the India's largest startup network<br><br>
-                    <button class="button1" onclick="location.href='Signing/register.php'">GET STARTED FOR FREE</button>
+                    <?php
+                    if(!(isset($_SESSION['StpID']) || isset($_SESSION['InvID']))){
+                        echo '<button class="button1" onclick="location.href=\'Signing/register.php\'">GET STARTED FOR FREE</button>';
+                  }
+                     ?>
                     <br><br><br>
                     </center>
                 </div>
