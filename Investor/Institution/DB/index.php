@@ -26,6 +26,7 @@
 	$twitter=$row['Twitter']==""? '--':$row['Twitter'];
 	$linkedin=$row['LinkedIn']==""? '--':$row['LinkedIn'];
 	$instagram=$row['Instagram']==""? '--':$row['Instagram'];
+	$others=$row['Others']==""? '--':$row['Others'];
 	$role = $row['Role']==""? '--':$row['Role'];
 	$partner = $row['Partner']==""? '--':$row['Partner'];
 	$invrange = $row['InvRange']==""? '--':$row['InvRange'];
@@ -150,6 +151,8 @@
 		$sltwit = mysqli_real_escape_string($db, $_POST['sftwitter']);
 		$slfb = mysqli_real_escape_string($db, $_POST['sffacebook']);
 		$slinst = mysqli_real_escape_string($db, $_POST['sfinstagram']);
+		$sloth = mysqli_real_escape_string($db, $_POST['sfothers']);
+
 
 		if($sllinkin != NULL)
 		{
@@ -169,6 +172,11 @@
 		if($slinst != NULL)
 		{
 			$q = "UPDATE inv_addetails set Instagram='$slinst' where InvID='$u'";
+			mysqli_query($db, $q);
+		}
+		if($sloth != NULL)
+		{
+			$q = "UPDATE inv_addetails set Others='$sloth' where InvID='$u'";
 			mysqli_query($db, $q);
         }
 		header('location: index.php');
@@ -250,26 +258,6 @@
         <link rel="stylesheet" href="../css/invprof.css" type="text/css">
         <script src="js/invprofform.js"></script>
 		<title>Investor Profile - NamanAngels</title>
-
-		<style media="screen">
-		.limit_grp,.limit_inv{
-			color:red;
-			display: none;
-			font-weight: lighter;
-		}
-
-		.member, .advisor, .prev_inv{
-			display: none;
-		}
-
-		.rem_mem,.rem_inv{
-			margin-top: 10px;
-			border: none;
-			background-color: white;
-		}
-		</style>
-
-
 		</head>
 		<script type="text/javascript">
 		<?php
@@ -305,6 +293,31 @@
 
 
 		?>
+	function social() {
+				var x = document.getElementById("soc").value;
+				if (x== "Facebook")
+				{
+					document.getElementById("Facebook").style.display = "block";
+				}
+				if (x== "LinkedIn")
+				{
+					document.getElementById("LinkedIn").style.display = "block";
+				}
+				if (x== "Instagram")
+				{
+					document.getElementById("Instagram").style.display = "block";
+				}
+				if (x== "Twitter")
+				{
+					document.getElementById("Twitter").style.display = "block";
+				}
+				if (x== "Others")
+				{
+					document.getElementById("Others").style.display = "block";
+				}
+
+			}
+
 
 		</script>
 
@@ -326,7 +339,7 @@
                 <b><?= $fname ?>&nbsp;<?= $lname ?></b><br>
                 <?= $cname ?><br>
                 Role: <?= $role ?><br>
-              <b> Location: </b><?= $city ?>&nbsp;,<?= $state ?>&nbsp;,<?= $country ?><br><br>
+              <b> Location: </b><?= $city ?>&nbsp;,<br><?= $state ?>&nbsp;,<br><?= $country ?><br><br>
             </div>
         </div>
 
@@ -665,22 +678,54 @@
             </div>
             <div class="social">
                 <button class="pencil" onclick="socialon()"><i class="fa fa-pencil"></i></button>
+				<h3>Social Presence</h3>
         		<ul class="proflist">
-    			<li class="item"><i class="fa fa-linkedin" style="color: #36a6fc"></i><span class="value">&nbsp;&nbsp;<?=$linkedin?></span></li>
-                <li style="list-style: none; display: inline">
-                </li>
-    			<li class="item"><i class="fa fa-twitter" style="color: #36a6fc"></i><span class="value">&nbsp;&nbsp;<?=$twitter?></span></li>
-                <li style="list-style: none; display: inline">
-                </li>
-                <li class="item"><i class="fa fa-facebook" style="color: #36a6fc"></i><span class="value">&nbsp;&nbsp;<?=$facebook?></span></li>
+				<li class="item"><i class="fa fa-globe" style="color: #36a6fc"></i><span class="value">&nbsp;&nbsp;<?=$website?></span></li>
                 <li style="list-style: none; display: inline">
 				</li>
-				<li class="item"><i class="fa fa-instagram" style="color: #36a6fc"></i><span class="value">&nbsp;&nbsp;<?=$instagram?></span></li>
-                <li style="list-style: none; display: inline">
-                </li>
-                <li class="item"><i class="fa fa-globe" style="color: #36a6fc"></i><span class="value">&nbsp;&nbsp;<?= $website ?></span></li>
-                <li style="list-style: none; display: inline">
-                </li>
+				<?php
+						$q = "SELECT * FROM inv_addetails WHERE InvID='$u'";
+					$results = mysqli_query($db, $q);
+					$row = mysqli_fetch_assoc($results);
+
+			if($row['LinkedIn'] != NULL){
+
+				echo '<li class="item li" id="li"><i class="fa fa-linkedin" style="color: #36a6fc"></i><span class="value">&nbsp;&nbsp;';
+				echo $linkedin;
+				echo '</span></li><li style="list-style: none; display: inline"></li>';
+				
+			}
+
+			if($row['Facebook'] != NULL){
+
+				echo '<li class="item li" id="li"><i class="fa fa-facebook" style="color: #36a6fc"></i><span class="value">&nbsp;&nbsp;';
+				echo $facebook;
+				echo '</span></li><li style="list-style: none; display: inline"></li>';
+				
+			}
+			if($row['Twitter'] != NULL){
+
+				echo '<li class="item li" id="li"><i class="fa fa-twitter" style="color: #36a6fc"></i><span class="value">&nbsp;&nbsp;';
+				echo $twitter;
+				echo '</span></li><li style="list-style: none; display: inline"></li>';
+				
+			}
+			if($row['Instagram'] != NULL){
+
+				echo '<li class="item li" id="li"><i class="fa fa-instagram" style="color: #36a6fc"></i><span class="value">&nbsp;&nbsp;';
+				echo $instagram;
+				echo '</span></li><li style="list-style: none; display: inline"></li>';
+				
+			}
+			if($row['Others'] != NULL){
+
+				echo '<li class="item li" id="li"><i class="fa fa-globe" style="color: #36a6fc"></i><span class="value">&nbsp;&nbsp;';
+				echo $others;
+				echo '</span></li><li style="list-style: none; display: inline"></li>';
+				
+			}
+			?>
+    			
                 </ul>
             </div>
             <div id="socialformov">
@@ -691,16 +736,32 @@
 						<p>Add your social media links.</p>
 					</div>
 					<div class="formtext">
-						<form method="post">
-							<div class="socialic"><i class="fa fa-linkedin"><input type="text" name="sflinkedin" size="30" placeholder="<?=$linkedin?>"></i></div><br>
-							<div class="socialic"><i class="fa fa-twitter"><input type="text" name="sftwitter" size="30" placeholder="<?=$twitter?>"></i></div><br>
-							<div class="socialic"><i class="fa fa-facebook"> <input type="text" name="sffacebook" size="30" placeholder="<?=$facebook?>"></i></div><br>
-							<div class="socialic"><i class="fa fa-instagram"> <input type="text" name="sfinstagram" size="30" placeholder="<?=$instagram?>"></i></div><br>
-							<div class="i9">
-							<label for="cbweb">Website</label><br>
-							<input name="cbweb" type="text" placeholder="<?=$website?>">
-							</div>
-							<br>
+                            <form method="post">
+							<label>Social Media</label><br>
+	    							<select name="sfsocialmedia" id="soc" required onchange="social()">
+										<option>Select Social media</option>
+										<option value="LinkedIn">LinkedIn</option>
+										<option value="Facebook">Facebook</option>
+										<option value="Instagram">Instagram</option>
+										<option value="Twitter">Twitter</option>
+										<option value="Others">Others</option>
+									</select><br><br>
+                                <div id="LinkedIn" class="LinkedIn">
+								<i class="fa fa-linkedin">&nbsp;&nbsp;<input type="text" name="sflinkedin" size="30" placeholder="<?=$linkedin?>"></i><br>
+								</div>
+								<div id="Facebook" class="Facebook">
+								<i class="fa fa-facebook">&nbsp;&nbsp;<input type="text" name="sffacebook" size="30" placeholder="<?=$facebook?>"></i><br>							
+								</div>
+								<div id="Instagram" class="Instagram">
+								<i class="fa fa-instagram">&nbsp;&nbsp;<input type="text" name="sfinstagram" size="30" placeholder="<?=$instagram?>"></i><br>
+								</div>
+								<div id="Twitter" class="Twitter">
+								<i class="fa fa-twitter">&nbsp;&nbsp;<input type="text" name="sftwitter" size="30" placeholder="<?=$twitter?>"></i><br>
+								</div>
+								<div id="Others" class="Others">
+                                <i class="fa fa-globe">&nbsp;&nbsp;<input type="text" name="sfothers" size="30" placeholder="<?=$others?>"></i><br>
+                                </div>
+            
 							<div class="formtext submits">
 									<input type="submit" value="Cancel" name="cancel" class="cancel">
 									<input type="submit" value="Save" name="sfsave" class="save">
@@ -711,6 +772,7 @@
 			</div>
             <div class="contact">
                 <button class="pencil" onclick="contacton()"><i class="fa fa-pencil"></i></button>
+				<h3>Contact</h3>
         		<ul class="proflist">
 				<li class="item"><i class="fa fa-phone" style="color: #36a6fc"></i><span class="value">&nbsp;&nbsp;<?=$phone?></span></li>
                 <li style="list-style: none; display: inline">

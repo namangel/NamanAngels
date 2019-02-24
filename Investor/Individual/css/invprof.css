@@ -33,7 +33,7 @@ body {
     margin-left: 40px;
     margin-right: 80px;
     margin-top: 10px;
-    height: 450px;
+    height: 550px;
 }
 
 .backimg{
@@ -83,7 +83,7 @@ body {
 .social:hover .pencil{
   display: inline;
 }
-.info{
+/* .info{
     grid-column: 2;
     grid-row: 1;
     margin-left: 1em;
@@ -91,10 +91,10 @@ body {
     align-content: center;
     background-color: white;
     line-height: 2;
-}
+} */
 .contact{
     grid-column: 2;
-    grid-row: 2;
+    grid-row: 1;
     margin-left: 1em;
     margin-right: 80px;
     align-content: center;
@@ -104,7 +104,7 @@ body {
 
 .social{
     grid-column: 2;
-    grid-row: 3;
+    grid-row: 2;
     margin-left: 1em;
     margin-right: 80px;
     align-content: center;
@@ -289,6 +289,26 @@ body {
     text-align: left;
     background-color: #7ec5fd;
     color: white;
+}
+
+.limit_inv{
+	color:red;
+	display: none;
+	font-weight: lighter;
+}
+
+.prev_inv{
+	display: none;
+}
+
+.rem_inv{
+	margin-top: 10px;
+	border: none;
+	background-color: white;
+}
+.LinkedIn, .Facebook, .Twitter, .Instagram, .Others{
+	display: none;
+	margin-bottom: 10px;
 }
 .tooltip label, .tooltip input, .tooltip select{
   display: inline-block;
