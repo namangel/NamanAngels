@@ -1,0 +1,33 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+.main{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 10px 10px;
+    margin-right: 150px;
+    margin-left: 150px;
+    min-height: 600px;
+}
+.name{
+    grid-column: 1;
+    background-color:inherit;
+    padding: 10px;
+    text-align: center;
+}
+.ind{
+    grid-column: 2;
+    background-color:inherit;
+    padding: 10px;
+    text-align: center;
+}
+
+.image img{
+    height: 350px;
+    width: 350px;
+}
+
+.image:hover{
+  opacity:0.85;
+}

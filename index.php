@@ -85,6 +85,7 @@
                 <br>
                 <font style="font-family:Arial;">BROWSE THROUGH INDUSTRIES</font>
                 <div class="wrapper-child2">
+                  <a href="investor/binv" class="nolink">
                     <div>
                         <div class="polaroid" style="margin-left:20px;margin-top:70px;">
                             <img src="img/Internet.png" alt="Web Services" style="width:60% ; margin-top:20px;">
@@ -93,6 +94,8 @@
                             </div>
                         </div>
                     </div>
+                  </a>
+                  <a href="investor/binv" class="nolink">
                     <div>
                         <div class="polaroid" style="margin-left:20px;margin-top:70px;">
                             <img src="img/Food.png" alt="Food and Drink" style="width:67% ; margin-top:20px;">
@@ -101,6 +104,8 @@
                             </div>
                         </div>
                     </div>
+                    </a>
+                    <a href="investor/binv" class="nolink">
                     <div>
                         <div class="polaroid" style="margin-left:20px;margin-top:70px;">
                             <img src="img/Media.png" alt="Chennai" style="width:65% ; margin-top:20px;">
@@ -109,6 +114,8 @@
                             </div>
                         </div>
                     </div>
+                    </a>
+                    <a href="investor/binv" class="nolink">
                     <div>
                         <div class="polaroid" style="margin-left:20px;margin-top:70px;">
                             <img src="img/Education.png" alt="Education" style="width:65% ; margin-top:20px;">
@@ -117,6 +124,8 @@
                             </div>
                         </div>
                     </div>
+                  </a>
+                  <a href="investor/binv" class="nolink">
                     <div>
                         <div class="polaroid" style="margin-left:20px;margin-top:70px;">
                             <img src="img/Software.png" alt="Software" style="width:65% ; margin-top:20px;">
@@ -125,6 +134,7 @@
                             </div>
                         </div>
                     </div>
+                  </a>
 
                 </div>
 

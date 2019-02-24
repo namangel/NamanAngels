@@ -22,7 +22,7 @@ body{
   display: grid;
   grid-template-columns: repeat(5,20%) ;
 }
-.wrapper-child2 > div {
+.wrapper-child2 >  div {
   margin:20px;
 }
 .wrapper-child3{
@@ -247,6 +247,10 @@ body{
   padding-top: 15%;
   text-decoration: none;
   font-size: 20px;
+}
+
+.nolink{
+  color:black;
 }
 .button {
   border-radius: 4px;

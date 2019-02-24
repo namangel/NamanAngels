@@ -1,0 +1,51 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    background-image: linear-gradient(to bottom, rgba(178, 220, 255,0.5), rgba(178, 220, 255,0.5) 50%, white 50%, white);
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Droid Sans', sans-serif;
+}
+.login{
+    /* position: fixed; */
+    border: 1px solid lightgray;
+    background-color: white;
+    width    : 400px;
+    /* left     : 50%; */
+    /* top      : 70%; */
+    align-items: center;/* half of the width  */
+    /* margin-top  : -200px; */
+    padding: 30px;
+    box-sizing: border-box;
+}
+input{
+    width: 100%;
+    padding: 20px;
+    margin-top:20px;
+    box-sizing: border-box;
+}
+button{
+    width: 100%;
+    padding: 20px;
+    margin-top:20px;
+    box-sizing: border-box;
+}
+.log{
+    background-color: rgba(178, 220, 255,0.5);
+    border: none;
+    color: black;
+}
+
+.log:hover{
+    opacity: 0.6;
+}
+
+.mem{
+    background-color: #0A2B40;
+    border: none;
+    color: white;
+}
+
+.mem:hover{
+    opacity: 0.6;
+}
