@@ -17,11 +17,11 @@ body {
    border-radius: 5px;
    }
 
-  .one {
+  /* .one {
    grid-column: 1/8;
    grid-row: 1/2;
    background-color:lightgray;
-  }
+  } */
   .two{
       margin-left: 50px;
    grid-column: 1;
@@ -38,11 +38,11 @@ body {
     grid-row: 2/6;
     background-color:transparent;
   }
-  .four{
+  /* .four{
       grid-column: 1/8;
    grid-row: 8/10;
    background-color:steelblue;
-  }
+  } */
   ul
   {
   margin:0px;
@@ -159,13 +159,13 @@ body {
       float:left;
       align-content: center;
   }
-  .prii{
+  /* .prii{
       background:url(images/capture.png),25%;
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
 
-  }
+  } */
   input[type=file] {
       background-color: transparent;
       color: white;
@@ -251,7 +251,7 @@ body {
     /* move the element down by 5px (it will stay in place because it's attached to the element that also moves up 5px) */
   }
 
-  #set {
+  /* #set {
       font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
       border-collapse: collapse;
       width: 100%;
@@ -274,4 +274,4 @@ body {
 
       color:black;
       size: 50px;
-  }
+  } */
