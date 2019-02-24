@@ -51,6 +51,6 @@ body{
   font-size: 18px;
 }
 .price{
-  text-decoration: bold;
+font-weight:bold;
   font-size: 25px;
 }

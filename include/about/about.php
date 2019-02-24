@@ -51,10 +51,10 @@
         padding-right: 50px;
         padding-left: 50px;
         padding-top: 20px;
-        } 
+        }
 
         .top{
-          font-size: 30;
+          font-size: 30px;
           color: blue;
         }
 
@@ -141,7 +141,7 @@
           opacity: 0.8;
           transition: background 2s ease-out;
         }
-         @media(min-width:700px) { 
+         @media(min-width:700px) {
         .wrapper{
           display: grid;
           grid-template-columns: 1fr 2fr;
@@ -228,7 +228,7 @@
           transform: skewY(4deg);
 
         }
-       
+
         .c3:after{
           position: absolute;
           width: 100%;
