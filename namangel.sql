@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Feb 23, 2019 at 06:53 PM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.10
+-- Host: 127.0.0.1
+-- Generation Time: Feb 24, 2019 at 05:10 PM
+-- Server version: 10.1.33-MariaDB
+-- PHP Version: 7.2.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -496,7 +496,7 @@ CREATE TABLE `st_uploads` (
 
 INSERT INTO `st_uploads` (`StpID`, `Logo`, `BackImg`, `PitchName`, `PitchExt`, `BPlan`, `BPlanExt`, `FProjection`, `FProjectionExt`, `AdDocs`, `AdDocsExt`) VALUES
 (1, 'uploads/startup/Spacex_ProfilePic2.png', 'uploads/startup/Spacex_backimg_Spacex_backimg_Hero-5.jpg', 'uploads/startup/Spacex_pitch_VID-20181209-WA0003.mp4', 'mp4', 'uploads/startup/Spacex_bplan_naman-todo.pdf', 'pdf', 'uploads/startup/Spacex_fproj_Aayush Singh.pdf', 'pdf', NULL, NULL),
-(4, 'uploads/default/default.jpg', 'uploads/default/defaultbackimg.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(4, 'uploads/default/default.png', 'uploads/default/defaultbackimg.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -517,12 +517,12 @@ CREATE TABLE `tools` (
 --
 
 INSERT INTO `tools` (`tool_id`, `tl_name`, `tl_img`, `tl_cost`, `tl_desc`) VALUES
-(1, 'Tool1', '/NamanAngels/Uploads/Tools.jpg', '100', 'Tool1 Description\r\n Hello World 1\r\n ABC  1\r\n'),
-(2, 'Tool2', '/NamanAngels/Uploads/Tools.jpg', '200', 'Tool2 Description\r\n Hello World 2\r\n ABC  2'),
-(3, 'Tool3', '/NamanAngels/Uploads/Tools.jpg', '300', 'Tool3 Description\r\n Hello World 3\r\n ABC  3'),
-(4, 'Tool4', '/NamanAngels/Uploads/Tools.jpg', '400', 'Tool4 Description\r\n Hello World 4\r\n ABC  4'),
-(5, 'Tool5', '/NamanAngels/Uploads/Tools.jpg', '500', 'Tool5 Description\r\n Hello World 5\r\n ABC  5'),
-(6, 'Tool6', '/NamanAngels/Uploads/Tools.jpg', '600', 'Tool6 Description\r\n Hello World 6\r\n ABC  6');
+(1, 'Tool1', '/NamanAngels/uploads/tools/tool.png', '100', 'Tool1 Description\r\n Hello World 1\r\n ABC  1\r\n'),
+(2, 'Tool2', '/NamanAngels/uploads/tools/tool.png', '200', 'Tool2 Description\r\n Hello World 2\r\n ABC  2'),
+(3, 'Tool3', '/NamanAngels/uploads/tools/tool.png', '300', 'Tool3 Description\r\n Hello World 3\r\n ABC  3'),
+(4, 'Tool4', '/NamanAngels/uploads/tools/tool.png', '400', 'Tool4 Description\r\n Hello World 4\r\n ABC  4'),
+(5, 'Tool5', '/NamanAngels/uploads/tools/tool.png', '500', 'Tool5 Description\r\n Hello World 5\r\n ABC  5'),
+(6, 'Tool6', '/NamanAngels/uploads/tools/tool.png', '600', 'Tool6 Description\r\n Hello World 6\r\n ABC  6');
 
 -- --------------------------------------------------------
 
