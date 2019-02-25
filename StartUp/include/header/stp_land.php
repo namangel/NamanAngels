@@ -10,7 +10,7 @@
       <div class="dropdown">
           <button class="dropbtn">Startup</button>
           <div class="dropdown-content">
-              <a href="Profile/index.php">Profile</a>
+              <a href="../Profile/index.php?s=<?= $_SESSION['StpID']?>" target='_blank'>Profile</a>
               <a href="Settings/contact.php">Account settings</a>
               <a href="../logout.php">Sign out</a>
           </div>

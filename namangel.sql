@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2019 at 01:55 AM
+-- Generation Time: Feb 25, 2019 at 02:31 AM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -145,6 +145,7 @@ CREATE TABLE `inv_addetails` (
   `Twitter` varchar(200) DEFAULT NULL,
   `LinkedIn` varchar(200) DEFAULT NULL,
   `Instagram` varchar(200) DEFAULT NULL,
+  `Others` varchar(200) DEFAULT NULL,
   `Role` varchar(200) DEFAULT NULL,
   `Partner` varchar(200) DEFAULT NULL,
   `InvRange` varchar(200) DEFAULT NULL,
@@ -155,8 +156,8 @@ CREATE TABLE `inv_addetails` (
 -- Dumping data for table `inv_addetails`
 --
 
-INSERT INTO `inv_addetails` (`InvID`, `IOI`, `Facebook`, `Twitter`, `LinkedIn`, `Instagram`, `Role`, `Partner`, `InvRange`, `Summary`) VALUES
-(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `inv_addetails` (`InvID`, `IOI`, `Facebook`, `Twitter`, `LinkedIn`, `Instagram`, `Others`, `Role`, `Partner`, `InvRange`, `Summary`) VALUES
+(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 

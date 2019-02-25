@@ -3,7 +3,6 @@
 
 	$id = $_SESSION['StpID'];
 
-
 ?>
 <html>
     <head>
