@@ -52,7 +52,7 @@ if(isset($_SESSION['InvID'])){
         </div>
     </div>
 
-    <?php require "../include/footer/footer.php"?>
+    <?php require "../include/footer/footersmall.php"?>
 
 </body>
 </html>

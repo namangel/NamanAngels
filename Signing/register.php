@@ -43,6 +43,6 @@ elseif(isset($_SESSION['InvID'])){
 			Already registered? <a href="login.php" class="a1">Sign In</a>
 		</div>
 		</div>
-		<?php require "../include/footer/footer.php"?>
+		<?php require "../include/footer/footersmall.php"?>
 	</body>
 </html>

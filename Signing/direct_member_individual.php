@@ -77,6 +77,6 @@ if (phone.length != 10) {
     </div>
   </form>
 </div>
-<?php require "../include/footer/footer.php"?>
+<?php require "../include/footer/footersmall.php"?>
 </body>
 </html>

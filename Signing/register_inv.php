@@ -64,7 +64,7 @@ function show(){
 
 <body>
 <?php require 'include/header/sign.php'; ?>
-
+<div style="min-height:500px;">
   <div class="header"><h2>Register - Invester</h2><hr></div>
               <center>
                   <div class="type">
@@ -718,8 +718,8 @@ function show(){
                 </div>
               </form>
           </div>
+</div>
 
-
-<?php require "../include/footer/footer.php"?>
+<?php require "../include/footer/footersmall.php"?>
 </body>
 </html>

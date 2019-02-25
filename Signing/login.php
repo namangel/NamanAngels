@@ -40,6 +40,6 @@ if(isset($_SESSION['InvID'])){
 		<hr style="align:center;size:10px;width:30%">
 	</div>
 </div>
-<?php require "../include/footer/footer.php"?>
+<?php require "../include/footer/footersmall.php"?>
 </body>
 </html>
