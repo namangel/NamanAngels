@@ -292,12 +292,13 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
         <link rel="stylesheet" href="../css/financial.css" type="text/css">
-		<title>StartUp Profile - NamanAngels</title>
+		<title>Startup-Finance | NAMAN</title>
+  		<link rel="icon" href="../../img/favicon.jpg" type="image/jpg" sizes="16x16">
 	<style>
 		.LinkedIn, .Facebook, .Twitter, .Instagram, .Others{
-				display: none;
-				margin-bottom: 10px;
-				}
+			display: none;
+			margin-bottom: 10px;
+		}
 	</style>
     </head>
 	<script type="text/javascript">
@@ -334,14 +335,14 @@
 			<div class="backimg">
 				<div><button class="back-button" onclick="backimgon()" ><i class="fa fa-camera"></i>&nbsp;Upload Background</button></div>
 				<?php
-						if($Backimg != ""){
-							echo "<img src='../../".$Backimg."' />";
-						}
-						else{
-							echo '<div class="back">';
-							echo 'Upload a background image!!';
-							echo '</div>';
-						}
+					if($Backimg != ""){
+						echo "<img src='../../".$Backimg."' />";
+					}
+					else{
+						echo '<div class="back">';
+						echo 'Upload a background image!!';
+						echo '</div>';
+					}
 				?>
 			</div>
                 <div class="sideprof">
