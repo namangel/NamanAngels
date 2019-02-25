@@ -257,7 +257,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../css/invprof.css" type="text/css">
         <script src="js/invprofform.js"></script>
-		<title>Investor Profile - NamanAngels</title>
+		<title><?= $cname ?>'s Profile | NAMAN</title>
+  		<link rel="icon" href="../../img/favicon.jpg" type="image/jpg" sizes="16x16">
 		</head>
 		<script type="text/javascript">
 		<?php

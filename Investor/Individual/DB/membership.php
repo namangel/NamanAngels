@@ -3,13 +3,20 @@
 	if(!isset($_SESSION['InvID'])){
         header('location: ../pageerror.php');
     }
+    $u = $_SESSION['InvID'];
+	$qu = "SELECT * FROM inv_details WHERE InvID='$u'";
+  	$results = mysqli_query($db, $qu);
+	$row = mysqli_fetch_assoc($results);
+	$fname = $row['FName'];
+    $lname = $row['LName'];
 ?>
 <html>
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../css/member.css" type="text/css">
         <script src="js/invprofform.js"></script>
-				<title>Investor Profile - NamanAngels</title>
+		<title><?= $fname ?> <?= $lname ?>'s Membership | NAMAN</title>
+        <link rel="icon" href="../../img/favicon.jpg" type="image/jpg" sizes="16x16">
     </head>
     <body>
 		<?php require '../include/header/inv_db.php'; ?>

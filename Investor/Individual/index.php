@@ -1,13 +1,20 @@
 <?php require('../../server.php');
 if(!isset($_SESSION['InvID'])){
     header('location: pageerror.php');
-} ?>
+} 
+$u = $_SESSION['InvID'];
+$qu = "SELECT * FROM inv_details WHERE InvID='$u'";
+$results = mysqli_query($db, $qu);
+$row = mysqli_fetch_assoc($results);
+$fname = $row['FName'];
+$lname = $row['LName'];
+?>
 <html>
 <head>
-  <title>Investor Profile - NamanAngels</title>
   <link rel="stylesheet" type="text/css" href="css/inv_landing.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <title>Investor Profile - NamanAngels</title>
+  <title><?= $fname ?> <?= $lname ?>'s Dashboard | NAMAN</title>
+  <link rel="icon" href="../../img/favicon.jpg" type="image/jpg" sizes="16x16">
 </head>
 
 <body>
