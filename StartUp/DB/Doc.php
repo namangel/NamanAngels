@@ -383,7 +383,7 @@
 						<br>
 					</div>
 	                <div class="upload">
-						<div><?= "<img src='../../".$Logo."' />";?></div>
+						<div><?= "<img style='border-radius:50%' src='../../".$Logo."' />";?></div>
 	                </div>
 	                <ul class="proflist">
 	                    <li class="item">Name <span class="value"><?= $Stname?></span></li>
