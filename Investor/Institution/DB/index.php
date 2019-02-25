@@ -258,7 +258,7 @@
         <link rel="stylesheet" href="../css/invprof.css" type="text/css">
         <script src="js/invprofform.js"></script>
 		<title><?= $cname ?>'s Profile | NAMAN</title>
-  		<link rel="icon" href="../../img/favicon.jpg" type="image/jpg" sizes="16x16">
+  		<link rel="icon" href="../../../img/favicon.jpg" type="image/jpg" sizes="16x16">
 		</head>
 		<script type="text/javascript">
 		<?php

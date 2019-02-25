@@ -10,7 +10,7 @@
       grid-column: 3/6;
     }
     .topfor{
-      grid-column: 16/20;
+      grid-column: 20/24;
     }
     .cs1 {
       color: #727171;

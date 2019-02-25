@@ -221,7 +221,7 @@
         <link rel="stylesheet" href="../css/invprof.css" type="text/css">
         <script src="js/invprofform.js"></script>
 		<title><?= $fname ?> <?= $lname ?>'s Profile | NAMAN</title>
-  		<link rel="icon" href="../../img/favicon.jpg" type="image/jpg" sizes="16x16">
+  		<link rel="icon" href="../../../img/favicon.jpg" type="image/jpg" sizes="16x16">
 
 <style media="screen">
 .limit_inv{

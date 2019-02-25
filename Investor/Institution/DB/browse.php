@@ -17,7 +17,7 @@
       }
   </style>
   <title>Browse Startups | NAMAN</title>
-  <link rel="icon" href="../../img/favicon.jpg" type="image/jpg" sizes="16x16">
+  <link rel="icon" href="../../../img/favicon.jpg" type="image/jpg" sizes="16x16">
 </head>
 <body>
 

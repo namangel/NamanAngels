@@ -299,6 +299,13 @@
 			display: none;
 			margin-bottom: 10px;
 		}
+		.annual_table , .annual_head{
+			width: 100%;
+			border: 2px solid silver;
+			border-collapse: collapse;
+			padding: 10px 10px 10px 10px;
+		}
+		
 	</style>
     </head>
 	<script type="text/javascript">
@@ -940,8 +947,8 @@
 						$mbr= $row[1];
 					?>
 						<pre>Annual Revenue Run Rate: <?=$revrr?>                        Monthly Burn Rate: <?=$mbr?><pre>
-							<table>
-								<td>Year</td>
+							<table class="annual_table">
+								<td class="annual_head">Year</td>
 								<?php
 									$q = "SELECT year FROM annual_financial WHERE StpID='$id'";
 									$result = mysqli_query($db, $q);
@@ -954,7 +961,7 @@
 								?>
 								</tr>
 								<tr>
-								<td>Sales $</td>
+								<td class="annual_head">Sales $</td>
 								<?php
 									$q = "SELECT sales FROM annual_financial WHERE StpID='$id'";
 									$result = mysqli_query($db, $q);
@@ -967,7 +974,7 @@
 								?>
 								</tr>
 								<tr>
-								<td>Revenue $</td>
+								<td class="annual_head">Revenue $</td>
 								<?php
 									$q = "SELECT revenue FROM annual_financial WHERE StpID='$id'";
 									$result = mysqli_query($db, $q);
@@ -980,7 +987,7 @@
 								?>
 								</tr>
 								<tr>
-								<td>Expenditure $</td>
+								<td class="annual_head">Expenditure $</td>
 								<?php
 									$q = "SELECT expenditure FROM annual_financial WHERE StpID='$id'";
 									$result = mysqli_query($db, $q);
@@ -993,7 +1000,7 @@
 								?>
 								</tr>
 								<tr>
-								<td>Profit $</td>
+								<td class="annual_head">Profit $</td>
 								<?php
 									$yr= date("Y") -2;
 									for($i=0;$i<6;$i++){

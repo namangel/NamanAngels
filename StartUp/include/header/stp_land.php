@@ -8,7 +8,7 @@
        <center><a href='../index.php'><img src="/NamanAngels/img/HeaderLogo.png" style="height:50px;width:135px; margin: 5px;"></a></center>
     </div>
       <div class="dropdown">
-          <button class="dropbtn">Startup</button>
+          <button class="dropbtn"><?= $Stname ?>'s Startup</button>
           <div class="dropdown-content">
               <a href="../Profile/index.php?s=<?= $_SESSION['StpID']?>" target='_blank'>Profile</a>
               <a href="Settings/contact.php">Account settings</a>

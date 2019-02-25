@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="../css/member.css" type="text/css">
         <script src="js/invprofform.js"></script>
 		<title><?= $fname ?> <?= $lname ?>'s Membership | NAMAN</title>
-        <link rel="icon" href="../../img/favicon.jpg" type="image/jpg" sizes="16x16">
+        <link rel="icon" href="../../../img/favicon.jpg" type="image/jpg" sizes="16x16">
     </head>
     <body>
 		<?php require '../include/header/inv_db.php'; ?>
