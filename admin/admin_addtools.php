@@ -67,7 +67,7 @@
       }
 
     }
-    header('location:admin_addtools.php');
+    header('location: admin_addtools.php');
   }
 
   if (isset($_POST["deltool"])){
@@ -272,3 +272,9 @@
       </script>
       </body>
     </html>
+
+    <script>
+    	if ( window.history.replaceState ) {
+    		window.history.replaceState( null, null, window.location.href );
+    	}
+    </script>
