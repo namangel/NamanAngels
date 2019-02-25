@@ -251,6 +251,7 @@ body{
 
 .nolink{
   color:black;
+  text-decoration: none;
 }
 .button {
   border-radius: 4px;

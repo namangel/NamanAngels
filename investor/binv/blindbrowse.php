@@ -4,7 +4,7 @@
     //     header('location: ../pageerror.php');
     // }
 
-    // $_SESSION['search'] = "";
+    $_SESSION['search'] = "";
     if(isset($_POST['indsubmit'])){
         $_SESSION['search'] = mysqli_real_escape_string($db, $_POST['indsearchkey']);
         header('location: blindbrowse.php?pageno=1');
