@@ -157,17 +157,17 @@
 		}
 		if($sftwitter != "")
 		{
-			$q = "UPDATE st_addetails set TwitterLink='$sftwitter' WHERE StpID = '$id';";
+			$q = "UPDATE st_addetails set Twitter='$sftwitter' WHERE StpID = '$id';";
 			mysqli_query($db, $q);
 		}
 		if($sflinkedin != "")
 		{
-			$q = "UPDATE st_addetails set LinkedInLink='$sflinkedin' WHERE StpID = '$id';";
+			$q = "UPDATE st_addetails set LinkedIn='$sflinkedin' WHERE StpID = '$id';";
 			mysqli_query($db, $q);
 		}
 		if($sffacebook != "")
 		{
-			$q = "UPDATE st_addetails set FBLink='$sffacebook' WHERE StpID = '$id';";
+			$q = "UPDATE st_addetails set Facebook='$sffacebook' WHERE StpID = '$id';";
 			mysqli_query($db, $q);
 		}
 		if($sfothers != "")
