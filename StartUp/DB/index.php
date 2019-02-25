@@ -315,7 +315,7 @@
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
-		<title>Startup-Overview | NAMAN</title>
+		<title><?= $Stname?>-Overview | NAMAN</title>
   		<link rel="icon" href="../../img/favicon.jpg" type="image/jpg" sizes="16x16">
 		<style media="screen">
 				.databox div video{

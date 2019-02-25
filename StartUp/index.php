@@ -30,7 +30,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="css\stp_landing.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Startup-Home | NAMAN</title>
+    <title><?= $Stname?>-Home | NAMAN</title>
   	<link rel="icon" href="../img/favicon.jpg" type="image/jpg" sizes="16x16">
 </head>
 <body>
