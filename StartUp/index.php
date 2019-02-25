@@ -17,10 +17,12 @@
     if($row['Verified'] == 0){
         $verify = "RED";
         $acctype = "Verify Yourself";
+        $message = 'Your Account is not yet verified By Naman Angels. Please continue to complete your profile and have an early verification.';
     }
     else{
         $verify = "Green";
         $acctype = "Verified Account";
+        $message = 'Verified';
     }
 
 
@@ -38,7 +40,8 @@
       <?php require 'include/nav/nav.php'; ?>
   <div class="outer-grid">
          <div class="item3">
-            <h2><i class="fa fa-user-circle-o" aria-hidden="true" style="color:<?= $verify?>" title="<?= $acctype?>"></i>&nbsp;&nbsp;<b>Hello <?= $Stname?>!!</b></h2>
+            <h2><i class="fa fa-user-circle-o" aria-hidden="true" style="color:<?= $verify?>" title="<?= $acctype?>"></i>&nbsp;&nbsp;<b>Hello <?= $Stname?>!!</b><p style="color:gray; font-size:10px"><?=$message?></p></h2>
+
           </div>
 
             <div class="eval">

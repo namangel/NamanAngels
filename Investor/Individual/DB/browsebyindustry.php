@@ -180,7 +180,7 @@
             echo '</ul>';
         echo '</div>';
         ?>
-        <?php require "../../../include/footer/footer.php"?>
+        <?php require "../../../include/footer/footersmall.php"?>
     </div>
 
 

@@ -15,40 +15,67 @@
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/browseby.css" type="text/css">
+  <link rel="stylesheet" href="../css/browseby.css" type="text/css">
   <style media="screen">
       .sbname{
         text-align: center;
         font-size: 50px;
       }
+      body{
+          margin: 0px;
+          padding: 0px;
+      }
+      .main{
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          padding-top: 100px;
+          margin-right: 150px;
+          margin-left: 150px;
+          min-height: 600px;
+      }
+      .name{
+          grid-column: 1;
+          background-color:inherit;
+          padding: 10px;
+          text-align: center;
+      }
+      .ind{
+          grid-column: 2;
+          background-color:inherit;
+          padding: 10px;
+          text-align: center;
+      }
+
+      .image img{
+          height: 350px;
+          width: 350px;
+      }
+
+      .image:hover{
+        opacity:0.85;
+      }
   </style>
   <title>Find Your StartUp - NamanAngels</title>
 </head>
 <body>
-
     <?php require "../include/header/inv_db.php"?>
     <?php require "../include/nav/nav.php"?>
-  <div class="main">
-      <div class="name">
-
-          <div class="image">
-            <a href="browsebyname.php" title="Browse by name"><img src="../img/Name.png"></a>
-          </div>
-            <h3>BROWSE BY STARTUP NAME</h3>
-          <br>
-      </div>
-      <div class="ind">
-
-          <div class="image">
-            <a href="browsebyindustry.php" title="Browse by industry"><img src="../img/IndCluster.png"></a>
-          </div>
-          <h3>BROWSE BY INDUSTRY TYPE</h3>
-          <br>
-      </div>
-  </div>
-
-    <?php require "../../../include/footer/footer.php"?>
-
-
+    <div class="main">
+        <div class="name">
+            <div class="image">
+                <a href="browsebyname.php" title="Browse by name"><img src="../img/Name.png"></a>
+                <h3>BROWSE BY STARTUP NAME</h3>
+            </div>
+            <br>
+        </div>
+        <div class="ind">
+            <div class="image">
+                <a href="browsebyindustry.php" title="Browse by industry"><img src="../img/IndCluster.png"></a>
+                <h3>BROWSE BY INDUSTRY TYPE</h3>
+            </div>
+            <br>
+        </div>
+    </div>
+    <?php require "../../../include/footer/footersmall.php"?>
 </body>
 </html>
