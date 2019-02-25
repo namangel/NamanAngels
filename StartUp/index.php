@@ -48,7 +48,7 @@
                         startup. Our automated fundraising coach<br>
                         will help you understan and maximize<br>
                         you project's chaneces of raising money.</font><br><br>
-                        <a href="#" class="button"><b>EVALUATE</b></a>
+                        <a href="DB/evaluate.php" class="button" target="blank"><b>EVALUATE</b></a>
                         </center>
                     </div>
                     <div class="eval-img">
