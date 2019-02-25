@@ -19,7 +19,8 @@
 
 <html>
 <head>
-
+    <title>Existing Investors| NAMAN</title>
+    <link rel="icon" href="../img/favicon.jpg" type="image/jpg" sizes="16x16">
 <style>
     .card {
       font-family: "Segoe UI", "Roboto";
@@ -32,63 +33,63 @@
    background-color:white;
   
 }
-.teamform{
-        background-color: #ccc4d4;
-        float: center;
-        border: 2px solid black;
-        margin-top: 10px;
-        margin-left:350px;
-        padding: 20px;
-        width: 60%;
-        color:black;
-        }
-        .butn button{
-        background-color: #ff8533;
-        width: 60%;
+  .teamform{
+    background-color: #ccc4d4;
+    float: center;
+    border: 2px solid black;
+    margin-top: 10px;
+    margin-left:350px;
+    padding: 20px;
+    width: 60%;
+    color:black;
+    }
+    .butn button{
+    background-color: #ff8533;
+    width: 60%;
+    border: none;
+    color: white;
+    cursor: pointer;
+    
+  }
+  input[type=submit]{
+        background-color:  #ff8533;
         border: none;
         color: white;
-        cursor: pointer;
-        
-      }
-      input[type=submit]{
-            background-color:  #ff8533;
-            border: none;
-            color: white;
-            padding: 10px;
-        }
-</style>
-</head>
+        padding: 10px;
+    }
+  </style>
+  </head>
 <body>
 <div class="teamform">
                    
-                    <form method="POST" action="estmem.php">
-                        <label>Inv Id:</label><br>
-                        <input type="text" name="inv_id"><br><br>
-                        <input type="submit" name="get_details" value="getdetails">
-                    </form>
-            </div>
+    <form method="POST" action="estmem.php">
+        <label>Inv Id:</label><br>
+        <input type="text" name="inv_id"><br><br>
+        <input type="submit" name="get_details" value="getdetails">
+    </form>
+  </div>
 <br>
-            <?php 
-                if (isset($_POST["get_details"]))
-                {
-                  
-                  $InvID = mysqli_real_escape_string($db, $_POST['inv_id']);
-                  $check_query = "SELECT * FROM aview WHERE InvID='$InvID' ;";
-                  $result = mysqli_query($db, $check_query);
-                  $row=mysqli_fetch_assoc($result);
-                     echo '<div class="card"><br>';
-                     
-                            echo '<h3 style="color:#ff8533";>'.$row['CName'].'</h3>';
-                            echo '<h3><i class="fa fa-id-card-o" aria-hidden="true"></i>&nbsp;'.$row['FName'].'</h3>';
-                            echo '<h3><i class="fa fa-user" aria-hidden="true"></i>&nbsp;'.$row['LName'].'</h3>';
-                          echo '<h3> <i class="fa fa-circle" aria-hidden="true"></i>&nbsp;'.$row['Type'].'</h3>';
-                         echo '<a href="#?s='.$row['InvID'].'" target=_blank style="text-decoration:none;">Accept Membership</a>';
-                       echo '</div>';
-                
-              }         
+  <?php 
+      if (isset($_POST["get_details"]))
+      {
+        
+        $InvID = mysqli_real_escape_string($db, $_POST['inv_id']);
+        $check_query = "SELECT * FROM aview WHERE InvID='$InvID' ;";
+        $result = mysqli_query($db, $check_query);
+        $row=mysqli_fetch_assoc($result);
+            echo '<div class="card"><br>';
             
-            
-            ?>
+            echo '<h3 style="color:#ff8533";>'.$row['CName'].'</h3>';
+            echo '<h3><i class="fa fa-id-card-o" aria-hidden="true"></i>&nbsp;'.$row['FName'].'</h3>';
+            echo '<h3><i class="fa fa-user" aria-hidden="true"></i>&nbsp;'.$row['LName'].'</h3>';
+            echo '<h3> <i class="fa fa-circle" aria-hidden="true"></i>&nbsp;'.$row['Type'].'</h3>';
+            echo '<a href="#?s='.$row['InvID'].'" target=_blank style="text-decoration:none;">Accept Membership</a>';
+            echo '</div>';
+      
+    }         
+  
+  
+  ?>
 
 </body>
 

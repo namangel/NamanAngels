@@ -56,7 +56,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link rel="stylesheet" href="../css/settings.css" type="text/css">
-<title>Startup-Contact | NAMAN</title>
+<title>Account- Contact | NAMAN</title>
 <link rel="icon" href="../../img/favicon.jpg" type="image/jpg" sizes="16x16">
 </head>
 
