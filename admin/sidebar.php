@@ -342,8 +342,8 @@ if(!isset($_SESSION['adminID'])){
 
         <li><i class="fa fa-money"></i><a href="#">Investor Membership</a>
           <ul class="side-nav-dropdown">
-            <li><a href="admin_estmem.php">Existing Investors</a></li>
-            <li><a href="admin_newmem.php">New Investors</a></li>
+            <li><a href="estmem.php">Existing Investors</a></li>
+            <li><a href="newmem.php">New Investors</a></li>
           </ul>
         </li>
         <!-- <li><i class="fa fa-envelope-open-o fa-fw"></i><a href="#"> Inbox <span class="num dang">56</span></a></li> -->
