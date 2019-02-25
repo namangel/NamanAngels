@@ -32,7 +32,7 @@ if(!isset($_SESSION['StpID'])){
                 resize: vertical;
 
             }
-            input[type=submit] {
+            input[type=submit],input[type=reset] {
                 background-color:#0A2B40;
                 color: white;
                 padding: 12px 20px;
@@ -46,6 +46,9 @@ if(!isset($_SESSION['StpID'])){
             input[type=submit]:hover {
                 opacity: 0.6;
             }
+            input[type=reset]:hover {
+                opacity: 0.6;
+            }
         </style>
     </head>
     <body>
@@ -54,13 +57,13 @@ if(!isset($_SESSION['StpID'])){
             <div class="container">
                 <h3>Evaluation Form</h3>
                 <p>Fill out the form and receive help from our team to evaluate your<p>
-                <form>
+                <form method="post" action="/NamanAngels/Signing/mem_email.php">
                     <label>Email:</label>
-                        <input type="email" name="evaluate_from" placeholder="Enter your email..">
+                        <input type="email" name="evaluate_from" placeholder="Enter your email.." required>
                     <label>Subject:</label>
-                        <textarea name="evaluate_subject" placeholder="Enter subject.." maxlength="250"></textarea>
+                        <textarea name="evaluate_subject" placeholder="Enter subject.." maxlength="250" required></textarea>
                     <br><label>Query:</label>
-                        <textarea rows="10" name="evaluate_query" id="evaluate_query" placeholder="Enter your qurey in detail.."></textarea>
+                        <textarea rows="10" name="evaluate_query" id="evaluate_query" placeholder="Enter your qurey in detail.." required></textarea>
                     <script>
                         function check_words(e) {
                             var BACKSPACE   = 8;
@@ -80,7 +83,7 @@ if(!isset($_SESSION['StpID'])){
                         textarea.addEventListener('keyup', check_words);
                     </script>
                     <div>
-                        <input type="submit" onclick="evaluateoff()"value="Cancel" name="cancel" class="cancel">
+                        <input type="reset" onclick="evaluateoff()"value="Cancel" name="cancel" class="cancel">
                         <input type="submit" value="Send" name="sumsave" class="save">
                     </div>
                 </form>

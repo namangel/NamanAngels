@@ -33,7 +33,7 @@ if(!isset($_SESSION['StpID'])){
                 resize: vertical;
 
             }
-            input[type=submit] {
+            input[type=submit],input[type=reset] {
                 background-color:#0A2B40;
                 color: white;
                 padding: 12px 20px;
@@ -47,6 +47,9 @@ if(!isset($_SESSION['StpID'])){
             input[type=submit]:hover {
                 opacity: 0.6;
             }
+            input[type=reset]:hover {
+                opacity: 0.6;
+            }
         </style>
     </head>
     <body>
@@ -55,13 +58,13 @@ if(!isset($_SESSION['StpID'])){
             <div class="container">
                 <h3>Consultancy Form</h3>
                 <p>Fill out the form and receive help from our team<p>
-                <form>
+                <form method="post" action="/NamanAngels/Signing/mem_email.php">
                     <label>Email:</label>
-                        <input type="email" name="consult_from" placeholder="Enter your email..">
+                        <input type="email" name="consult_from" placeholder="Enter your email.." required>
                     <label>Subject:</label>
-                        <textarea name="consult_subject" placeholder="Enter subject.." maxlength="250"></textarea>
+                        <textarea name="consult_subject" placeholder="Enter subject.." maxlength="250" required></textarea>
                     <br><label>Query:</label>
-                        <textarea rows="10" name="consult_query" id="consult_query" placeholder="Enter your qurey in detail.."></textarea>
+                        <textarea rows="10" name="consult_query" id="consult_query" placeholder="Enter your qurey in detail.." required></textarea>
                     <script>
                         function check_words(e) {
                             var BACKSPACE   = 8;
@@ -81,7 +84,7 @@ if(!isset($_SESSION['StpID'])){
                         textarea.addEventListener('keyup', check_words);
                     </script>
                     <div>
-                        <input type="submit" onclick="consultoff()"value="Cancel" name="cancel" class="cancel">
+                        <input type="reset" onclick="consultoff()" value="Cancel" name="cancel" class="cancel">
                         <input type="submit" value="Send" name="sumsave" class="save">
                     </div>
                 </form>
