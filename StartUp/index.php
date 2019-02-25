@@ -77,7 +77,7 @@
                 <p>Most investor Groups focus on industries with which they're familiar.<br>
                 Selecting your industry will help us put you in front of the right investors.<br><br></p>
                 <br>
-                <button type="button" onclick="window.location.href='DB/index.php'" style="width:30%; height:40px; background:#B2DCFF;">Build Your Profile</button>
+                <button type="button" onclick="window.location.href='DB/index.php'" class="button" style="width:30%"><b>Build Your Profile</b></button>
                 <br>
         </div>
       </div>

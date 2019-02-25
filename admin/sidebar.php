@@ -339,6 +339,13 @@ if(!isset($_SESSION['adminID'])){
         </li>
         <li><i class="fa fa-handshake-o fa-fw"></i><a href="transaction.php"> Deals </a></li>
         <li><i class="fa fa-check-circle"></i><a href="verify.php"> Verify StartUps</a></li>
+
+        <li><i class="fa fa-money"></i><a href="#">Investor Membership</a>
+          <ul class="side-nav-dropdown">
+            <li><a href="admin_estmem.php">Existing Investors</a></li>
+            <li><a href="admin_newmem.php">New Investors</a></li>
+          </ul>
+        </li>
         <!-- <li><i class="fa fa-envelope-open-o fa-fw"></i><a href="#"> Inbox <span class="num dang">56</span></a></li> -->
         <!-- <li><i class="fa fa-wrench fa-fw"></i><a href="#"> Settings </span></a>
         </li> -->
