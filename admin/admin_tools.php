@@ -5,8 +5,8 @@ if(!isset($_SESSION['adminID'])){
 
 
 ?>
-<?php require "sidebar.php" ?>
 <html>
+<?php require "sidebar.php" ?>
 <head>
     <title>View Tools & Services| NAMAN</title>
     <link rel="icon" href="../img/favicon.jpg" type="image/jpg" sizes="16x16">
@@ -15,8 +15,7 @@ if(!isset($_SESSION['adminID'])){
             margin: 0px;
             padding: 0px;
         }
-
-        .container{
+        .container1{
             display: grid;
             color:black;
             grid-template-columns: 1fr 1fr 1fr;
@@ -27,22 +26,6 @@ if(!isset($_SESSION['adminID'])){
             margin-right: 150px;
             margin-top: 50px;
         }
-        .pricebtn {
-          border: none;
-          outline: 0;
-          display: inline-block;
-          padding: 8px;
-          color: white;
-          background-color: #2fa29d;
-          text-align: center;
-          cursor: pointer;
-          width: 100%;
-          font-size: 18px;
-          height: 50px;
-        }
-        /* .pricebtn:hover{
-          opacity: 0.7;
-        } */
 
         .card {
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -72,7 +55,8 @@ if(!isset($_SESSION['adminID'])){
     </style>
 </head>
 <body>
-    <div class="container">
+
+    <div class="container1">
         <?php
         $qu = "SELECT * FROM tools;";
         $results = mysqli_query($db, $qu);
