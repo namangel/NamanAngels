@@ -335,7 +335,7 @@
 			</div>
             <div class="upload">
 				<div>
-					<?= "<img src='../../../".$img."'  />";?></div><br><br>
+					<?= "<img style='border-radius:50%' src='../../../".$img."'  />";?></div><br><br>
                 <b><?= $fname ?>&nbsp;<?= $lname ?></b><br>
                 <?= $cname ?><br>
                 Role: <?= $role ?><br>
