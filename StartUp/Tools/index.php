@@ -22,12 +22,13 @@
 			$results = mysqli_query($db, $qu);
 			while($row = mysqli_fetch_array($results)){
 					echo '<div class="card">';
-					echo '<img src='.$row['tl_img'].' alt="John">';
-					echo '<h1>'.$row['tl_name'].'</h1>';
-					echo '<p class="title">'.$row['tl_desc'].'</p>';
-					echo '<p class="price">'.$row['tl_cost'].'</p>';
-					echo "<a href='#' target='_blank'>
-					<button type='submit' name='subinv' class='pricebtn' value='Price' action='index.php'>BUY</button></a>";
+					echo '<img src="../../'.$row['Image'].'" alt="John">';
+								echo '<h1>'.$row['Name'].'</h1>';
+							echo '<p class="title">'.$row['Description'].'</p>';
+							echo '<p class="price">'.$row['Cost'].'</p>';
+							echo "<a href='#' target='_blank'>
+							<button type='submit' name='subinv' class='pricebtn' value='Price' action='index.php'>BUY</button></a>";
+
 					echo '</div>';
 			}
 			?>

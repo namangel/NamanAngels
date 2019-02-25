@@ -17,7 +17,7 @@ if(!isset($_SESSION['adminID'])){
         .container{
             display: grid;
             color:black;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             grid-auto-rows: auto;
             grid-gap: 20px;
             text-align: center;
@@ -74,19 +74,15 @@ if(!isset($_SESSION['adminID'])){
         <?php
         $qu = "SELECT * FROM tools;";
         $results = mysqli_query($db, $qu);
-        while($row = mysqli_fetch_array($results)){
+        while($row = mysqli_fetch_assoc($results)){
             echo '<div class="card">';
-            echo '<img src="../'.$row['Image'].'" alt="John">';
-                        echo '<h1>'.$row['Name'].'</h1>';
-                    echo '<p class="title">'.$row['Description'].'</p>';
-                    echo '<p class="price">'.$row['Cost'].'</p>';
-                    echo "
-                    <button type='submit' name='subinv' class='pricebtn' value='Price'>BUY</button>";
-
+                echo '<img src="../'.$row['Image'].'" alt="John">';
+                echo '<h1>'.$row['Name'].'</h1>';
+                echo '<p class="title">'.$row['Description'].'</p>';
+                echo '<p class="price">'.$row['Cost'].'</p>';
             echo '</div>';
         }
         ?>
-        <br>
-        <br>
+        <br><br>
     </div>
 </body>
