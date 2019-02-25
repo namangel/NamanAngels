@@ -1,4 +1,11 @@
-<?php require("server.php") ?>
+<?php require("server.php");
+if(isset($_SESSION['StpID']) || isset($_SESSION['InvID'])){
+    $link = '#';
+}
+else{
+    $link = "investor/binv";
+}
+?>
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -85,7 +92,7 @@
                 <br>
                 <font style="font-family:Arial;">BROWSE THROUGH INDUSTRIES</font>
                 <div class="wrapper-child2">
-                  <a href="investor/binv" class="nolink">
+                  <a href="<?php $link ?>" class="nolink">
                     <div>
                         <div class="polaroid" style="margin-left:20px;margin-top:70px;">
                             <img src="img/Internet.png" alt="Web Services" style="width:60% ; margin-top:20px;">
@@ -95,7 +102,7 @@
                         </div>
                     </div>
                   </a>
-                  <a href="investor/binv" class="nolink">
+                  <a href="<?php $link ?>" class="nolink">
                     <div>
                         <div class="polaroid" style="margin-left:20px;margin-top:70px;">
                             <img src="img/Food.png" alt="Food and Drink" style="width:67% ; margin-top:20px;">
@@ -105,7 +112,7 @@
                         </div>
                     </div>
                     </a>
-                    <a href="investor/binv" class="nolink">
+                    <a href="<?php $link ?>" class="nolink">
                     <div>
                         <div class="polaroid" style="margin-left:20px;margin-top:70px;">
                             <img src="img/Media.png" alt="Chennai" style="width:65% ; margin-top:20px;">
@@ -115,7 +122,7 @@
                         </div>
                     </div>
                     </a>
-                    <a href="investor/binv" class="nolink">
+                    <a href="<?php $link ?>" class="nolink">
                     <div>
                         <div class="polaroid" style="margin-left:20px;margin-top:70px;">
                             <img src="img/Education.png" alt="Education" style="width:65% ; margin-top:20px;">
@@ -125,7 +132,7 @@
                         </div>
                     </div>
                   </a>
-                  <a href="investor/binv" class="nolink">
+                  <a href="<?php $link ?>" class="nolink">
                     <div>
                         <div class="polaroid" style="margin-left:20px;margin-top:70px;">
                             <img src="img/Software.png" alt="Software" style="width:65% ; margin-top:20px;">

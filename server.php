@@ -41,15 +41,20 @@ if (isset($_POST['reginv_ind'])) {
         echo "<script>alert('Username already exists')</script>";
     }
     else{
+        $user_check_query = "SELECT * FROM userinv WHERE Entry = (SELECT max(Entry) from userinv)";
+        $result = mysqli_query($db, $user_check_query);
+        $user = mysqli_fetch_assoc($result);
+
+        $newid = (int)(substr($user['InvID'], 5,7)) + 1;
+        $userid = 'NAMIN'.str_pad($newid, 7, '0', STR_PAD_LEFT);
+
+
+
         $fpass = sha1($password_1);
-        $query = "INSERT INTO userinv (InvID, Username, Password) VALUES (NULL, '$username', '$fpass')";
+        $query = "INSERT INTO userinv (InvID, Username, Password) VALUES ('$userid', '$username', '$fpass')";
         mysqli_query($db, $query);
 
-        $user_query = "SELECT * FROM userinv WHERE Username='$username'";
-        $result = mysqli_query($db, $user_query);
-        $user = mysqli_fetch_assoc($result);
-        $userid = $user['InvID'];
-        $_SESSION['InvID'] = $user['InvID'];
+        $_SESSION['InvID'] = $userid;
 
         $query = "INSERT INTO inv_details (InvID,CName,FName,LName,Email,Phone,Website,City,State,Country,AvgInvestment,Type)
         VALUES('$userid', null , '$fname', '$lname', '$email', '$phone', null , '$city', '$state', '$country', '$avg', '$type')";
@@ -91,15 +96,19 @@ if (isset($_POST['reginv_inst'])) {
       echo "<script>alert('Username already exists')</script>";
   }
   else{
+
+      $user_check_query = "SELECT * FROM userinv WHERE Entry = (SELECT max(Entry) from userinv)";
+      $result = mysqli_query($db, $user_check_query);
+      $user = mysqli_fetch_assoc($result);
+
+      $newid = (int)(substr($user['InvID'], 5,7)) + 1;
+      $userid = 'NAMIN'.str_pad($newid, 7, '0', STR_PAD_LEFT);
+
       $fpass = sha1($password_1);
-      $query = "INSERT INTO userinv (InvID, Username, Password) VALUES (NULL, '$username', '$fpass')";
+      $query = "INSERT INTO userinv (InvID, Username, Password) VALUES ('$userid', '$username', '$fpass')";
       mysqli_query($db, $query);
 
-      $user_query = "SELECT * FROM userinv WHERE Username='$username'";
-      $result = mysqli_query($db, $user_query);
-      $user = mysqli_fetch_assoc($result);
-      $userid = $user['InvID'];
-      $_SESSION['InvID'] = $user['InvID'];
+      $_SESSION['InvID'] = $userid;
 
       $query = "INSERT INTO inv_details (InvID,CName,FName,LName,Email,Phone,Website,City,State,Country,AvgInvestment,Type)
       VALUES('$userid', '$cname' , '$fname', '$lname', '$email', '$phone', '$website' , '$city', '$state', '$country', '$avg', '$type')";
@@ -158,16 +167,18 @@ if (isset($_POST['reg_st'])) {
         echo "<script>alert('Username already exists')</script>";
     }
     else{
+        $user_check_query = "SELECT * FROM userstp WHERE Entry = (SELECT max(Entry) from userstp)";
+        $result = mysqli_query($db, $user_check_query);
+        $user = mysqli_fetch_assoc($result);
+
+        $newid = (int)(substr($user['StpID'], 5,7)) + 1;
+        $userid = 'NAMST'.str_pad($newid, 7, '0', STR_PAD_LEFT);
+
         $fpass = sha1($password_1);
-        $query = "INSERT INTO userstp (StpID, Username, Password)
-        VALUES(NULL, '$username', '$fpass')";
+        $query = "INSERT INTO userstp (StpID, Username, Password) VALUES ('$userid', '$username', '$fpass')";
         mysqli_query($db, $query);
 
-        $user_query = "SELECT * FROM userstp WHERE Username='$username'";
-        $result = mysqli_query($db, $user_query);
-        $user = mysqli_fetch_assoc($result);
-        $userid = $user['StpID'];
-        $_SESSION['StpID'] = $user['StpID'];
+        $_SESSION['StpID'] = $userid;
 
         $query = "INSERT INTO st_details (StpID, Stname,Ffname,Sfname,Email,Phone,Type,Address,Country,State,City,Website,Investment)
         VALUES('$userid','$stname','$ffname','$sfname','$email','$phone','$type','$address','$country','$state','$city','$website','$inv')";

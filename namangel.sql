@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 25, 2019 at 02:31 AM
--- Server version: 10.1.33-MariaDB
--- PHP Version: 7.2.6
+-- Host: localhost
+-- Generation Time: Feb 25, 2019 at 07:19 AM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -51,7 +51,7 @@ INSERT INTO `admin` (`adminID`, `AdminName`, `AdminDesgn`, `Username`, `Password
 --
 
 CREATE TABLE `annual_financial` (
-  `StpID` int(20) NOT NULL,
+  `StpID` varchar(20) NOT NULL,
   `revenue_rate` int(20) NOT NULL,
   `burn_rate` int(20) NOT NULL,
   `financial_annotation` varchar(200) NOT NULL,
@@ -68,12 +68,12 @@ CREATE TABLE `annual_financial` (
 --
 
 INSERT INTO `annual_financial` (`StpID`, `revenue_rate`, `burn_rate`, `financial_annotation`, `revenue_driver`, `sales`, `revenue`, `expenditure`, `year`, `annual_fin_ID`) VALUES
-(1, 12, 11, 'sdda', 'ddf', 1, 21, 234, 2017, 1),
-(1, 12, 11, 'sdda', 'ddf', 2, 123, 234, 2018, 2),
-(1, 12, 11, 'sdda', 'ddf', 3, 123, 213, 2019, 3),
-(1, 12, 11, 'sdda', 'ddf', 4, 123, 213, 2020, 4),
-(1, 12, 11, 'sdda', 'ddf', 5, 123, 234, 2021, 5),
-(1, 12, 11, 'sdda', 'ddf', 3, 123, 234, 2022, 6);
+('NAMST0000001', 12, 11, 'sdda', 'ddf', 1, 21, 234, 2017, 1),
+('NAMST0000001', 12, 11, 'sdda', 'ddf', 2, 123, 234, 2018, 2),
+('NAMST0000001', 12, 11, 'sdda', 'ddf', 3, 123, 213, 2019, 3),
+('NAMST0000001', 12, 11, 'sdda', 'ddf', 4, 123, 213, 2020, 4),
+('NAMST0000001', 12, 11, 'sdda', 'ddf', 5, 123, 234, 2021, 5),
+('NAMST0000001', 12, 11, 'sdda', 'ddf', 3, 123, 234, 2022, 6);
 
 -- --------------------------------------------------------
 
@@ -82,7 +82,7 @@ INSERT INTO `annual_financial` (`StpID`, `revenue_rate`, `burn_rate`, `financial
 -- (See below for the actual view)
 --
 CREATE TABLE `bprofile` (
-`StpID` int(20)
+`StpID` varchar(20)
 ,`Type` varchar(200)
 ,`Stage` varchar(200)
 ,`Round` varchar(30)
@@ -97,7 +97,7 @@ CREATE TABLE `bprofile` (
 -- (See below for the actual view)
 --
 CREATE TABLE `cprofile` (
-`InvID` int(20)
+`InvID` varchar(20)
 ,`CName` varchar(200)
 ,`FName` varchar(200)
 ,`WebLink` varchar(200)
@@ -113,7 +113,7 @@ CREATE TABLE `cprofile` (
 --
 
 CREATE TABLE `current_round` (
-  `StpID` int(20) NOT NULL,
+  `StpID` varchar(20) NOT NULL,
   `Round` varchar(30) NOT NULL,
   `Seeking` int(30) NOT NULL,
   `Security_type` varchar(30) NOT NULL,
@@ -129,8 +129,8 @@ CREATE TABLE `current_round` (
 --
 
 INSERT INTO `current_round` (`StpID`, `Round`, `Seeking`, `Security_type`, `Premoney_val`, `Val_cap`, `Conversion_disc`, `Interest_rate`, `Term_len`) VALUES
-(1, 'Friends and Family', 12345, 'Common Equity', 123, 0, 0, 0, 0),
-(4, 'Preseries A', 3423, 'Preferred Equity', 233, 0, 0, 0, 0);
+('NAMST0000001', 'Friends and Family', 12345, 'Common Equity', 123, 0, 0, 0, 0),
+('NAMST0000002', 'Preseries A', 3423, 'Preferred Equity', 233, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -139,7 +139,7 @@ INSERT INTO `current_round` (`StpID`, `Round`, `Seeking`, `Security_type`, `Prem
 --
 
 CREATE TABLE `inv_addetails` (
-  `InvID` int(20) NOT NULL,
+  `InvID` varchar(20) NOT NULL,
   `IOI` varchar(200) DEFAULT NULL,
   `Facebook` varchar(200) DEFAULT NULL,
   `Twitter` varchar(200) DEFAULT NULL,
@@ -157,7 +157,8 @@ CREATE TABLE `inv_addetails` (
 --
 
 INSERT INTO `inv_addetails` (`InvID`, `IOI`, `Facebook`, `Twitter`, `LinkedIn`, `Instagram`, `Others`, `Role`, `Partner`, `InvRange`, `Summary`) VALUES
-(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+('NAMIN0000001', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('NAMIN0000003', NULL, NULL, 'mukeshambani.com/twitter', 'mukeshambani.com/linkedin', 'mukeshambani.com/instagram', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -166,7 +167,7 @@ INSERT INTO `inv_addetails` (`InvID`, `IOI`, `Facebook`, `Twitter`, `LinkedIn`, 
 --
 
 CREATE TABLE `inv_details` (
-  `InvID` int(20) NOT NULL,
+  `InvID` varchar(20) NOT NULL,
   `CName` varchar(200) DEFAULT NULL,
   `FName` varchar(200) NOT NULL,
   `LName` varchar(200) NOT NULL,
@@ -185,7 +186,8 @@ CREATE TABLE `inv_details` (
 --
 
 INSERT INTO `inv_details` (`InvID`, `CName`, `FName`, `LName`, `Email`, `Phone`, `Website`, `City`, `State`, `Country`, `AvgInvestment`, `Type`) VALUES
-(1, 'Stark Enterprise', 'Tony', 'Stark', 'tony@stark.in', '9999999999', 'stark.in', 'New York City', 'Manhattan', 'United States', '100', 'Institution');
+('NAMIN0000001', 'Stark Enterprise', 'Tony', 'Stark', 'tony@stark.in', '9999999999', 'stark.in', 'New York City', 'Manhattan', 'United States', '100', 'Institution'),
+('NAMIN0000003', NULL, 'Mukesh', 'Ambani', 'mambani@reliance.com', '9000000000', NULL, 'Mumbai', 'Maharashtra', 'India', '150', 'Individual');
 
 -- --------------------------------------------------------
 
@@ -195,7 +197,7 @@ INSERT INTO `inv_details` (`InvID`, `CName`, `FName`, `LName`, `Email`, `Phone`,
 
 CREATE TABLE `inv_group` (
   `ID` int(50) NOT NULL,
-  `InvID` int(20) NOT NULL,
+  `InvID` varchar(20) NOT NULL,
   `Name` varchar(200) NOT NULL,
   `Designation` varchar(200) NOT NULL,
   `Experience` varchar(200) NOT NULL
@@ -209,7 +211,7 @@ CREATE TABLE `inv_group` (
 
 CREATE TABLE `inv_previnvestment` (
   `ID` int(50) NOT NULL,
-  `InvID` int(20) NOT NULL,
+  `InvID` varchar(20) NOT NULL,
   `Name` varchar(200) NOT NULL,
   `Year` varchar(200) NOT NULL,
   `Amount` varchar(200) NOT NULL,
@@ -225,7 +227,7 @@ CREATE TABLE `inv_previnvestment` (
 --
 
 CREATE TABLE `inv_uploads` (
-  `InvID` int(20) NOT NULL,
+  `InvID` varchar(20) NOT NULL,
   `ProfilePic` varchar(200) DEFAULT 'uploads/default/default.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -234,7 +236,8 @@ CREATE TABLE `inv_uploads` (
 --
 
 INSERT INTO `inv_uploads` (`InvID`, `ProfilePic`) VALUES
-(1, '	\r\nuploads/default/default.png');
+('NAMIN0000001', '	\r\nuploads/default/default.png'),
+('NAMIN0000003', 'uploads/default/default.png');
 
 -- --------------------------------------------------------
 
@@ -243,7 +246,7 @@ INSERT INTO `inv_uploads` (`InvID`, `ProfilePic`) VALUES
 --
 
 CREATE TABLE `membership` (
-  `InvID` int(20) NOT NULL,
+  `InvID` varchar(20) NOT NULL,
   `MemID` varchar(20) NOT NULL,
   `StDate` date NOT NULL,
   `ExpDate` date NOT NULL
@@ -294,7 +297,7 @@ INSERT INTO `namanteam` (`SR`, `Name`, `Link`, `Description`, `Image`) VALUES
 -- (See below for the actual view)
 --
 CREATE TABLE `profile` (
-`StpID` int(20)
+`StpID` varchar(20)
 ,`StpName` varchar(200)
 ,`StpImg` varchar(200)
 ,`FName` varchar(200)
@@ -325,7 +328,7 @@ CREATE TABLE `requests` (
 --
 
 INSERT INTO `requests` (`ReqID`, `Inv_ID`, `St_ID`, `Deal`, `Round`, `Amount`, `Date`, `Stakehold`) VALUES
-(4, '1', '1', 0x31, 'Friends and Family', 12345, '2019-02-23', 13);
+(4, 'NAMIN0000001', 'NAMST0000001', 0x31, 'Friends and Family', 12345, '2019-02-23', 13);
 
 -- --------------------------------------------------------
 
@@ -335,7 +338,7 @@ INSERT INTO `requests` (`ReqID`, `Inv_ID`, `St_ID`, `Deal`, `Round`, `Amount`, `
 
 CREATE TABLE `round_history` (
   `HistID` int(20) NOT NULL,
-  `StpID` int(20) NOT NULL,
+  `StpID` varchar(20) NOT NULL,
   `Round` varchar(30) NOT NULL,
   `Security_type` varchar(50) NOT NULL,
   `Capital_raised` int(30) NOT NULL,
@@ -347,8 +350,8 @@ CREATE TABLE `round_history` (
 --
 
 INSERT INTO `round_history` (`HistID`, `StpID`, `Round`, `Security_type`, `Capital_raised`, `Close_date`) VALUES
-(1, 1, 'Founder', 'Preferred Equity', 3124, '2019-02-16'),
-(2, 1, 'Friends and Family', 'Preferred Equity', 3124, '2019-02-23');
+(1, 'NAMST0000001', 'Founder', 'Preferred Equity', 3124, '2019-02-16'),
+(2, 'NAMST0000001', 'Friends and Family', 'Preferred Equity', 3124, '2019-02-23');
 
 -- --------------------------------------------------------
 
@@ -357,7 +360,7 @@ INSERT INTO `round_history` (`HistID`, `StpID`, `Round`, `Security_type`, `Capit
 --
 
 CREATE TABLE `st_addetails` (
-  `StpID` int(20) NOT NULL,
+  `StpID` varchar(20) NOT NULL,
   `Stage` varchar(200) DEFAULT NULL,
   `DOF` varchar(200) DEFAULT NULL,
   `EmpNum` varchar(200) DEFAULT NULL,
@@ -374,8 +377,9 @@ CREATE TABLE `st_addetails` (
 --
 
 INSERT INTO `st_addetails` (`StpID`, `Stage`, `DOF`, `EmpNum`, `IncType`, `LinkedIn`, `Twitter`, `Facebook`, `Instagram`, `Youtube`) VALUES
-(1, 'Prototype ready', '2014-12-12', '12', 'LLP', 'spacex/linkedin', 'spacex/twitter', 'spacex/fb', NULL, NULL),
-(4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+('NAMST0000001', 'Prototype ready', '2014-12-12', '12', 'LLP', 'spacex/linkedin', 'spacex/twitter', 'spacex/fb', NULL, NULL),
+('NAMST0000002', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('NAMST0000003', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -385,7 +389,7 @@ INSERT INTO `st_addetails` (`StpID`, `Stage`, `DOF`, `EmpNum`, `IncType`, `Linke
 
 CREATE TABLE `st_advisors` (
   `ID` int(50) NOT NULL,
-  `StpID` int(20) NOT NULL,
+  `StpID` varchar(20) NOT NULL,
   `Name` varchar(200) NOT NULL,
   `Email` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -395,7 +399,7 @@ CREATE TABLE `st_advisors` (
 --
 
 INSERT INTO `st_advisors` (`ID`, `StpID`, `Name`, `Email`) VALUES
-(1, 1, 'asdfghs', 'afg@gjs.com');
+(1, 'NAMST0000001', 'asdfghs', 'afg@gjs.com');
 
 -- --------------------------------------------------------
 
@@ -404,7 +408,7 @@ INSERT INTO `st_advisors` (`ID`, `StpID`, `Name`, `Email`) VALUES
 --
 
 CREATE TABLE `st_description` (
-  `StpID` int(20) NOT NULL,
+  `StpID` varchar(20) NOT NULL,
   `Summary` varchar(500) DEFAULT NULL,
   `OLP` varchar(200) DEFAULT NULL,
   `CustomerProblem` varchar(500) DEFAULT NULL,
@@ -423,8 +427,9 @@ CREATE TABLE `st_description` (
 --
 
 INSERT INTO `st_description` (`StpID`, `Summary`, `OLP`, `CustomerProblem`, `ProductService`, `TargetMarket`, `BusinessModel`, `MarketSizing`, `CustomerSegments`, `SaleMarketStrat`, `Competitors`, `CompAdvantage`) VALUES
-(1, 'Space X is an awesome project', 'Lets go to Mars', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+('NAMST0000001', 'Space X is an awesome project', 'Lets go to Mars', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('NAMST0000002', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('NAMST0000003', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -433,7 +438,7 @@ INSERT INTO `st_description` (`StpID`, `Summary`, `OLP`, `CustomerProblem`, `Pro
 --
 
 CREATE TABLE `st_details` (
-  `StpID` int(20) NOT NULL,
+  `StpID` varchar(20) NOT NULL,
   `Stname` varchar(200) NOT NULL,
   `Ffname` varchar(200) NOT NULL,
   `Sfname` varchar(200) NOT NULL,
@@ -453,8 +458,9 @@ CREATE TABLE `st_details` (
 --
 
 INSERT INTO `st_details` (`StpID`, `Stname`, `Ffname`, `Sfname`, `Email`, `Phone`, `Type`, `Address`, `City`, `State`, `Country`, `Website`, `Investment`) VALUES
-(1, 'Spacex', 'Elon Musk', 'Bill Gates', 'spacex@spx.com', '8169163192', 'Technology', 'Near Launch Pad', 'CC', 'Florida', 'United States', 'spacex.com', '100000000'),
-(4, 'akdbis', 'baiubai', 'bibiyv', 'qsbiab@in.in', '9090909090', 'B2B', 'vjh', 'jv', 'jv', 'Jamaica', 'vui.in', '1222');
+('NAMST0000001', 'Spacex', 'Elon Musk', 'Bill Gates', 'spacex@spx.com', '8169163192', 'Technology', 'Near Launch Pad', 'CC', 'Florida', 'United States', 'spacex.com', '100000000'),
+('NAMST0000002', 'akdbis', 'baiubai', 'bibiyv', 'qsbiab@in.in', '9090909090', 'B2B', 'vjh', 'jv', 'jv', 'Jamaica', 'vui.in', '1222'),
+('NAMST0000003', 'BroStore', 'Aayush Singh', 'Nitish Talekar', 'admin@brostore.in', '8082189671', 'E-Commerce', 'Bandra-West', 'Mumbai', 'Maharashtra', 'India', 'brostore.in', '30000');
 
 -- --------------------------------------------------------
 
@@ -464,7 +470,7 @@ INSERT INTO `st_details` (`StpID`, `Stname`, `Ffname`, `Sfname`, `Email`, `Phone
 
 CREATE TABLE `st_previnvestment` (
   `ID` int(50) NOT NULL,
-  `StpID` int(20) NOT NULL,
+  `StpID` varchar(20) NOT NULL,
   `Name` varchar(200) NOT NULL,
   `Email` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -474,7 +480,7 @@ CREATE TABLE `st_previnvestment` (
 --
 
 INSERT INTO `st_previnvestment` (`ID`, `StpID`, `Name`, `Email`) VALUES
-(1, 1, 'ABC', 'abc12@123.com');
+(1, 'NAMST0000001', 'ABC', 'abc12@123.com');
 
 -- --------------------------------------------------------
 
@@ -484,7 +490,7 @@ INSERT INTO `st_previnvestment` (`ID`, `StpID`, `Name`, `Email`) VALUES
 
 CREATE TABLE `st_team` (
   `ID` int(50) NOT NULL,
-  `StpID` int(20) NOT NULL,
+  `StpID` varchar(20) NOT NULL,
   `FName` varchar(200) NOT NULL,
   `LName` varchar(200) NOT NULL,
   `Designation` varchar(200) NOT NULL,
@@ -501,7 +507,7 @@ CREATE TABLE `st_team` (
 --
 
 CREATE TABLE `st_uploads` (
-  `StpID` int(20) NOT NULL,
+  `StpID` varchar(20) NOT NULL,
   `Logo` varchar(200) DEFAULT 'uploads/default/default.png',
   `BackImg` varchar(200) DEFAULT 'uploads/default/defaultbackimg.jpg',
   `PitchName` varchar(200) DEFAULT NULL,
@@ -519,8 +525,9 @@ CREATE TABLE `st_uploads` (
 --
 
 INSERT INTO `st_uploads` (`StpID`, `Logo`, `BackImg`, `PitchName`, `PitchExt`, `BPlan`, `BPlanExt`, `FProjection`, `FProjectionExt`, `AdDocs`, `AdDocsExt`) VALUES
-(1, 'uploads/startup/Spacex_ProfilePic2.png', 'uploads/startup/Spacex_backimg_Spacex_backimg_Hero-5.jpg', 'uploads/startup/Spacex_pitch_VID-20181209-WA0003.mp4', 'mp4', 'uploads/startup/Spacex_bplan_naman-todo.pdf', 'pdf', 'uploads/startup/Spacex_fproj_Aayush Singh.pdf', 'pdf', NULL, NULL),
-(4, 'uploads/default/default.png', 'uploads/default/defaultbackimg.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+('NAMST0000001', 'uploads/startup/Spacex_ProfilePic2.png', 'uploads/startup/Spacex_backimg_Spacex_backimg_Hero-5.jpg', 'uploads/startup/Spacex_pitch_VID-20181209-WA0003.mp4', 'mp4', 'uploads/startup/Spacex_bplan_naman-todo.pdf', 'pdf', 'uploads/startup/Spacex_fproj_Aayush Singh.pdf', 'pdf', NULL, NULL),
+('NAMST0000002', 'uploads/default/default.png', 'uploads/default/defaultbackimg.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('NAMST0000003', 'uploads/default/default.png', 'uploads/default/defaultbackimg.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -555,7 +562,8 @@ INSERT INTO `tools` (`tool_id`, `tl_name`, `tl_img`, `tl_cost`, `tl_desc`) VALUE
 --
 
 CREATE TABLE `userinv` (
-  `InvID` int(20) NOT NULL,
+  `Entry` int(100) NOT NULL,
+  `InvID` varchar(20) NOT NULL,
   `MemID` varchar(20) NOT NULL,
   `Username` varchar(50) NOT NULL,
   `Password` varchar(200) NOT NULL
@@ -565,9 +573,10 @@ CREATE TABLE `userinv` (
 -- Dumping data for table `userinv`
 --
 
-INSERT INTO `userinv` (`InvID`, `MemID`, `Username`, `Password`) VALUES
-(1, '', 'xyz123', '5f2b8374d197548aa0c1bd765ffc3464605cf51c'),
-(2, '', 'admin', '7fe54080e26dd169ccbffba947dbc5958e26ecea');
+INSERT INTO `userinv` (`Entry`, `InvID`, `MemID`, `Username`, `Password`) VALUES
+(1, 'NAMIN0000001', '', 'xyz123', '5f2b8374d197548aa0c1bd765ffc3464605cf51c'),
+(2, 'NAMIN0000002', '', 'admin', '7fe54080e26dd169ccbffba947dbc5958e26ecea'),
+(3, 'NAMIN0000003', '', 'ambani', '02b1f3c5352c6b4884d7bbda007e2c323e3c5fe2');
 
 -- --------------------------------------------------------
 
@@ -576,7 +585,8 @@ INSERT INTO `userinv` (`InvID`, `MemID`, `Username`, `Password`) VALUES
 --
 
 CREATE TABLE `userstp` (
-  `StpID` int(20) NOT NULL,
+  `Entry` int(100) NOT NULL,
+  `StpID` varchar(20) NOT NULL,
   `Username` varchar(200) NOT NULL,
   `Password` varchar(200) NOT NULL,
   `Verified` int(1) NOT NULL DEFAULT '0'
@@ -586,9 +596,10 @@ CREATE TABLE `userstp` (
 -- Dumping data for table `userstp`
 --
 
-INSERT INTO `userstp` (`StpID`, `Username`, `Password`, `Verified`) VALUES
-(1, 'abc123', '370194ff6e0f93a7432e16cc9badd9427e8b4e13', 1),
-(4, 'vivi', 'ed42785ca24ae8fa2d9fd131401e44c3c86519ae', 1);
+INSERT INTO `userstp` (`Entry`, `StpID`, `Username`, `Password`, `Verified`) VALUES
+(1, 'NAMST0000001', 'abc123', '370194ff6e0f93a7432e16cc9badd9427e8b4e13', 1),
+(2, 'NAMST0000002', 'vivi', 'ed42785ca24ae8fa2d9fd131401e44c3c86519ae', 1),
+(4, 'NAMST0000003', 'brostore', '614a00dc6516aa60dd7c8f12a4bc74a98210fb28', 0);
 
 -- --------------------------------------------------------
 
@@ -747,14 +758,16 @@ ALTER TABLE `tools`
 --
 ALTER TABLE `userinv`
   ADD PRIMARY KEY (`InvID`),
-  ADD UNIQUE KEY `Username` (`Username`);
+  ADD UNIQUE KEY `Username` (`Username`),
+  ADD UNIQUE KEY `Entry` (`Entry`);
 
 --
 -- Indexes for table `userstp`
 --
 ALTER TABLE `userstp`
   ADD PRIMARY KEY (`StpID`),
-  ADD UNIQUE KEY `Username` (`Username`);
+  ADD UNIQUE KEY `Username` (`Username`),
+  ADD UNIQUE KEY `Entry` (`Entry`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -824,13 +837,13 @@ ALTER TABLE `st_team`
 -- AUTO_INCREMENT for table `userinv`
 --
 ALTER TABLE `userinv`
-  MODIFY `InvID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Entry` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `userstp`
 --
 ALTER TABLE `userstp`
-  MODIFY `StpID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Entry` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
