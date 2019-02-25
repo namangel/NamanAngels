@@ -42,6 +42,8 @@
 ?>
 <html>
 <head>
+    <title>Account- Change Password| NAMAN</title>
+    <link rel="icon" href="../img/favicon.jpg" type="image/jpg" sizes="16x16">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

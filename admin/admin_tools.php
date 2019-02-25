@@ -8,6 +8,8 @@ if(!isset($_SESSION['adminID'])){
 <?php require "sidebar.php" ?>
 <html>
 <head>
+    <title>View Tools & Services| NAMAN</title>
+    <link rel="icon" href="../img/favicon.jpg" type="image/jpg" sizes="16x16">
     <style>
         body{
             margin: 0px;

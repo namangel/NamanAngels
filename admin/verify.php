@@ -10,7 +10,8 @@
 ?>
 <html>
     <head>
-        <title>Verification</title>
+    <title>Verify Startup| NAMAN</title>
+    <link rel="icon" href="../img/favicon.jpg" type="image/jpg" sizes="16x16">
         <link rel="stylesheet" href="css/transaction.css">
         <style>
             .cont{
