@@ -308,7 +308,7 @@ if(!isset($_SESSION['adminID'])){
         <h2>Naman Angels</h2><br>
         <?= "<img src='../".$ProfilePic."' style='border-radius:50%;'/>";?>
         <div class="info">
-          <h3><a href="admin.php"><?php echo $AdminName;?></a></h3>
+          <h3><a href="profile.php"><?php echo $AdminName;?></a></h3>
           <p><?php echo $AdminDesgn; ?></p>
         </div>
       </div>
