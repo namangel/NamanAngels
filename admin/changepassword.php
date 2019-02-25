@@ -1,5 +1,8 @@
 <?php
     require '../server.php';
+    if(!isset($_SESSION['adminID'])){
+        header('location: index.php');
+    }
 
     $u = $_SESSION['adminID'];
     $qu = "SELECT * FROM admin WHERE adminID='$u'";

@@ -1,9 +1,14 @@
-<?php require('../server.php'); ?>
-<?if(isset($_POST['submit'])){
+<?php
+    require('../server.php');
+    if(!isset($_SESSION['adminID'])){
+        header('location: index.php');
+    }
+
+    if(isset($_POST['submit'])){
         $_SESSION['search'] = mysqli_real_escape_string($db, $_POST['searchkey']);
         header('location: admin_browseinv.php?pageno=1');
     }
-    ?>
+?>
 <html lang="en">
     <head>
         <meta charset="UTF-8">

@@ -1,4 +1,9 @@
-<?php require('../server.php'); ?>
+<?php require('../server.php');
+if(!isset($_SESSION['adminID'])){
+    header('location: index.php');
+}
+
+?>
 <?if(isset($_POST['submit'])){
         $_SESSION['search'] = mysqli_real_escape_string($db, $_POST['searchkey']);
         header('location: viewstartup.php?pageno=1');

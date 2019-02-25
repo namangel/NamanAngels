@@ -1,5 +1,8 @@
 <?php
     require "../server.php";
+    if(!isset($_SESSION['adminID'])){
+        header('location: index.php');
+    }
     if(isset($_GET['add'])){
         $qu = 'UPDATE userstp SET Verified = 1 where StpID = '.$_GET['add'];
         mysqli_query($db,$qu);

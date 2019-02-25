@@ -1,4 +1,9 @@
-<?php require "../server.php" ?>
+<?php require "../server.php"
+if(!isset($_SESSION['adminID'])){
+    header('location: index.php');
+}
+
+?>
 <html lang="en">
   <head>
     <meta charset="UTF-8">

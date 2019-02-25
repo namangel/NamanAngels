@@ -1,6 +1,9 @@
 <?php
 
     require "../server.php";
+    if(!isset($_SESSION['adminID'])){
+        header('location: index.php');
+    }
     if(isset($_POST["transact"]))
 	{
         $inid = mysqli_real_escape_string($db, $_POST['inv']);
@@ -12,10 +15,10 @@
 
         $q = "UPDATE requests SET Date = '$ddate' WHERE St_ID='$stupid' AND Inv_ID='$inid';";
         mysqli_query($db, $q);
-        
+
         $q = "UPDATE requests SET Stakehold = '$stakehold' WHERE St_ID='$stupid' AND Inv_ID='$inid';";
         mysqli_query($db, $q);
-        
+
         $q = "UPDATE requests SET Amount = '$amount' WHERE St_ID='$stupid' AND Inv_ID='$inid';";
 		mysqli_query($db, $q);
 
@@ -186,7 +189,7 @@
                         $res2 = mysqli_query($db, $qu2);
                         $row2 = mysqli_fetch_assoc($res2);
 
-                        $q = "SELECT * FROM round_history WHERE StpID='$stpid' AND Round='$r'"; 
+                        $q = "SELECT * FROM round_history WHERE StpID='$stpid' AND Round='$r'";
                         $res3 = mysqli_query($db, $q);
                         $row3 = mysqli_fetch_assoc($res3);
 
@@ -215,7 +218,7 @@
                             echo '<td>Deal Completed</td>';
                             echo '<td>'.$row['Amount'].'</td>';
                             echo '<td>'.$row['Stakehold'].'%</td>';
-                            echo '<td>'.$row['Date'].'</td>';   
+                            echo '<td>'.$row['Date'].'</td>';
                         }
 
                         echo '</tr>'

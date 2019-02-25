@@ -1,5 +1,8 @@
 <?php
   require "../server.php";
+  if(!isset($_SESSION['adminID'])){
+      header('location: index.php');
+  }
 
   if (isset($_POST["addmem"]))
   {

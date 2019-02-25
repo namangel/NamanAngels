@@ -1,4 +1,7 @@
 <?php
+if(!isset($_SESSION['adminID'])){
+    header('location: index.php');
+}
   $id = $_SESSION['adminID'];
 	$qu = "SELECT * FROM admin WHERE adminID = '$id'";
 	$results = mysqli_query($db, $qu);

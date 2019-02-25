@@ -1,4 +1,10 @@
-<?php require('../server.php'); ?>
+<?php require('../server.php');
+if(!isset($_SESSION['adminID'])){
+    header('location: index.php');
+}
+
+
+?>
 <?php require "sidebar.php" ?>
 <html>
 <head>

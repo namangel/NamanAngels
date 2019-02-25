@@ -1,12 +1,15 @@
 <?php
   require "../server.php" ;
+  if(!isset($_SESSION['adminID'])){
+      header('location: index.php');
+  }
 
   $id = $_SESSION['adminID'];
 	$qu = "SELECT * FROM admin WHERE adminID = '$id'";
 	$results = mysqli_query($db, $qu);
 	$row = mysqli_fetch_assoc($results);
   $AdminName = $row['AdminName'];
-  
+
   $q = "SELECT * FROM userstp;";
 	$results=mysqli_query($db, $q);
   $startup=mysqli_num_rows($results);
@@ -165,8 +168,8 @@
       .danger {background-color: #d9534f}
       .success {background-color: #5cb85c}
       .inf {background-color: #5bc0de}
-      
-      
+
+
       /* Start media query */
 
       @media (max-width: 767px) {
