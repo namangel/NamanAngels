@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 25, 2019 at 03:16 PM
+-- Generation Time: Feb 25, 2019 at 03:29 PM
 -- Server version: 5.7.23
 -- PHP Version: 5.6.38
 
@@ -273,20 +273,6 @@ CREATE TABLE IF NOT EXISTS `inv_uploads` (
 INSERT INTO `inv_uploads` (`InvID`, `ProfilePic`) VALUES
 ('NAMIN0000001', '	\r\nuploads/default/default.png'),
 ('NAMIN0000003', 'uploads/default/default.png');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `justdummy`
---
-
-DROP TABLE IF EXISTS `justdummy`;
-CREATE TABLE IF NOT EXISTS `justdummy` (
-  `id` int(5) NOT NULL,
-  `name` int(20) NOT NULL,
-  `price` int(15) NOT NULL,
-  `contact` int(10) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
