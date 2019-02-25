@@ -355,104 +355,104 @@
 		</style>
     </head>
 	<script type="text/javascript">
-	function social() {
-	var x = document.getElementById("soc").value;
-	if (x== "Facebook")
-	{
-		document.getElementById("Facebook").style.display = "block";
-	}
-	if (x== "LinkedIn")
-	{
-		document.getElementById("LinkedIn").style.display = "block";
-	}
-	if (x== "Instagram")
-	{
-		document.getElementById("Instagram").style.display = "block";
-	}
-	if (x== "Twitter")
-	{
-		document.getElementById("Twitter").style.display = "block";
-	}
-	if (x== "Others")
-	{
-		document.getElementById("Others").style.display = "block";
-	}
+		function social() {
+			var x = document.getElementById("soc").value;
+			if (x== "Facebook")
+			{
+				document.getElementById("Facebook").style.display = "block";
+			}
+			if (x== "LinkedIn")
+			{
+				document.getElementById("LinkedIn").style.display = "block";
+			}
+			if (x== "Instagram")
+			{
+				document.getElementById("Instagram").style.display = "block";
+			}
+			if (x== "Twitter")
+			{
+				document.getElementById("Twitter").style.display = "block";
+			}
+			if (x== "Others")
+			{
+				document.getElementById("Others").style.display = "block";
+			}
 
-}
-	<?php
-		$q = "SELECT * FROM st_team;";
-		$results=mysqli_query($db, $q);
-		if (mysqli_num_rows($results) >= 6)
-		{
-			echo 'function addteamon() {
-				document.getElementById("addteam").style.display = "none";
-					document.getElementById("limit_mem").style.display = "inline";
-			}';
 		}
-		else{
-			echo 'function addteamon() {
-				document.getElementById("addteam").style.display = "block";
-			}';
-		}
-
-		$q = "SELECT * FROM st_advisors;";
-		$results=mysqli_query($db, $q);
-		if (mysqli_num_rows($results) >= 3)
-		{
-			echo 'function advon() {
-					document.getElementById("adv").style.display = "none";
-					document.getElementById("limit_adv").style.display = "inline";
-			}';
-		}
-		else{
-			echo 'function advon() {
-					document.getElementById("adv").style.display = "block";
-			}';
-		}
-
-		$q = "SELECT * FROM st_previnvestment;";
-		$results=mysqli_query($db, $q);
-		if (mysqli_num_rows($results) >= 3)
-		{
-			echo 'function invon() {
-					document.getElementById("inv").style.display = "none";
-					document.getElementById("limit_pre").style.display = "inline";
-			}';
-		}
-		else{
-			echo 'function invon() {
-					document.getElementById("inv").style.display = "block";
+		<?php
+			$q = "SELECT * FROM st_team;";
+			$results=mysqli_query($db, $q);
+			if (mysqli_num_rows($results) >= 6)
+			{
+				echo 'function addteamon() {
+					document.getElementById("addteam").style.display = "none";
+						document.getElementById("limit_mem").style.display = "inline";
 				}';
-		}
+			}
+			else{
+				echo 'function addteamon() {
+					document.getElementById("addteam").style.display = "block";
+				}';
+			}
+
+			$q = "SELECT * FROM st_advisors;";
+			$results=mysqli_query($db, $q);
+			if (mysqli_num_rows($results) >= 3)
+			{
+				echo 'function advon() {
+						document.getElementById("adv").style.display = "none";
+						document.getElementById("limit_adv").style.display = "inline";
+				}';
+			}
+			else{
+				echo 'function advon() {
+						document.getElementById("adv").style.display = "block";
+				}';
+			}
+
+			$q = "SELECT * FROM st_previnvestment;";
+			$results=mysqli_query($db, $q);
+			if (mysqli_num_rows($results) >= 3)
+			{
+				echo 'function invon() {
+						document.getElementById("inv").style.display = "none";
+						document.getElementById("limit_pre").style.display = "inline";
+				}';
+			}
+			else{
+				echo 'function invon() {
+						document.getElementById("inv").style.display = "block";
+					}';
+			}
 
 
-		if(isset($_POST['rem_mem'])){
-			$mem_id = mysqli_real_escape_string($db, $_POST['member']);
+			if(isset($_POST['rem_mem'])){
+				$mem_id = mysqli_real_escape_string($db, $_POST['member']);
 
-			$q = "DELETE FROM st_team where ID = $mem_id;";
-			mysqli_query($db, $q);
+				$q = "DELETE FROM st_team where ID = $mem_id;";
+				mysqli_query($db, $q);
 
-			header('location:index.php');
-		}
+				header('location:index.php');
+			}
 
-		if(isset($_POST['rem_adv'])){
-			$mem_id = mysqli_real_escape_string($db, $_POST['advisor']);
+			if(isset($_POST['rem_adv'])){
+				$mem_id = mysqli_real_escape_string($db, $_POST['advisor']);
 
-			$q = "DELETE FROM st_advisors where ID = $mem_id;";
-			mysqli_query($db, $q);
+				$q = "DELETE FROM st_advisors where ID = $mem_id;";
+				mysqli_query($db, $q);
 
-			header('location:index.php');
-		}
+				header('location:index.php');
+			}
 
-		if(isset($_POST['rem_inv'])){
-			$mem_id = mysqli_real_escape_string($db, $_POST['prev_inv']);
+			if(isset($_POST['rem_inv'])){
+				$mem_id = mysqli_real_escape_string($db, $_POST['prev_inv']);
 
-			$q = "DELETE FROM st_previnvestment where ID = $mem_id;";
-			mysqli_query($db, $q);
+				$q = "DELETE FROM st_previnvestment where ID = $mem_id;";
+				mysqli_query($db, $q);
 
-			header('location:index.php');
-		}
-	?>
+				header('location:index.php');
+			}
+		?>
 		function addteamoff() {
 				document.getElementById("addteam").style.display = "none";
 		}
@@ -469,15 +469,15 @@
 							&nbsp;Upload Background
 						</button>
 					</div>
-					<?php
-						if($Backimg != ""){
-							echo "<img src='../../".$Backimg."' />";
-						}
-						else{
-							echo '<div class="back">';
-							echo 'Upload a background image!!';
-							echo '</div>';
-						}?>
+						<?php
+							if($Backimg != ""){
+								echo "<img src='../../".$Backimg."' />";
+							}
+							else{
+								echo '<div class="back">';
+								echo 'Upload a background image!!';
+								echo '</div>';
+							}?>
                 </div>
                 <div class="sideprof">
 					<div class="pen">
@@ -533,7 +533,7 @@
                         <li style="list-style: none; display: inline">
                             <hr>
                         </li>
-                        <li><button class="b1" name="requestbtn" onclick="">Download One Pager</button></li>
+                        <li><button class="b1" name="requestbtn" onclick="location.href = 'generateonepager.php?mypager=<?= $id?>';">Download One Pager</button></li>
                     </ul>
                 </div>
 
@@ -567,7 +567,7 @@
 						echo '<li class="item">LinkedIn	 <span class="value">';
 						echo $LinkedInLink;
 	                    echo '<li style="list-style: none; display: inline"><hr></li>';
-				
+
 					}
 					if($row['Facebook'] != NULL){
 
@@ -576,25 +576,25 @@
 	                    echo '<li style="list-style: none; display: inline"><hr></li>';
 					}
 					if($row['Twitter'] != NULL){
-		
+
 						echo '<li class="item">Twitter	 <span class="value">';
 						echo $TwitterLink;
 	                    echo '<li style="list-style: none; display: inline"><hr></li>';
-						
+
 					}
 					if($row['Instagram'] != NULL){
-		
+
 						echo '<li class="item">Instagram	 <span class="value">';
 						echo $InstaLink;
 						echo '<li style="list-style: none; display: inline"><hr></li>';
-						
+
 					}
 					if($row['Others'] != NULL){
-		
+
 						echo '<li class="item">Others	 <span class="value">';
 						echo $others;
 	                    echo '<li style="list-style: none; display: inline"><hr></li>';
-						
+
 					}
                 ?>
             </div>
@@ -1241,7 +1241,7 @@
 							<i class="fa fa-linkedin">&nbsp;&nbsp;<input type="text" name="sflinkedin" size="30" placeholder="<?=$LinkedInLink?>"></i><br>
 							</div>
 							<div id="Facebook" class="Facebook">
-							<i class="fa fa-facebook">&nbsp;&nbsp;<input type="text" name="sffacebook" size="30" placeholder="<?=$FBLink?>"></i><br>							
+							<i class="fa fa-facebook">&nbsp;&nbsp;<input type="text" name="sffacebook" size="30" placeholder="<?=$FBLink?>"></i><br>
 							</div>
 							<div id="Instagram" class="Instagram">
 							<i class="fa fa-instagram">&nbsp;&nbsp;<input type="text" name="sfinstagram" size="30" placeholder="<?=$InstaLink?>"></i><br>
@@ -1252,7 +1252,7 @@
 							<div id="Others" class="Others">
 							<i class="fa fa-globe">&nbsp;&nbsp;<input type="text" name="sfothers" size="30" placeholder="<?=$others?>"></i><br>
 							</div>
-		
+
                                 <div class="formtext submits">
                                         <input type="submit" onclick="socialoff()" value="Cancel" name="cancel" class="cancel">
                                         <input type="submit" value="Save" name="sfsave" class="save">
