@@ -19,8 +19,14 @@
   $investor=mysqli_num_rows($results);
 
   $q1 = "SELECT * FROM requests WHERE Deal=1;";
-	$results=mysqli_query($db, $q1);
+  $results=mysqli_query($db, $q1);
   $transactions=mysqli_num_rows($results);
+
+  $q = "SELECT * FROM siteinfo where ID = '1'";
+  $results=mysqli_query($db, $q);
+  $row = mysqli_fetch_array($results);
+  $pagehit = $row['Counter'];
+
 ?>
 <html lang="en">
   <head>
@@ -29,8 +35,7 @@
     <link rel="icon" href="../img/favicon.jpg" type="image/jpg" sizes="16x16">
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/dashboard.css">  -->
-
+    <link rel="stylesheet" href="css/dashboard.css">
     <style>
       * {
         padding: 0;
@@ -215,7 +220,7 @@
             <div class="col-md-3">
               <div class="box bg-primary">
                 <i class="fa fa-eye"></i>
-                <h3>5,154</h3>
+                <h3><?= $pagehit?></h3>
                 <p class="lead">Page views</p>
               </div>
             </div>

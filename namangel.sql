@@ -2,10 +2,10 @@
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Feb 25, 2019 at 03:29 PM
--- Server version: 5.7.23
--- PHP Version: 5.6.38
+-- Host: localhost
+-- Generation Time: Feb 25, 2019 at 05:07 PM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,17 +28,14 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE IF NOT EXISTS `admin` (
-  `adminID` int(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `admin` (
+  `adminID` int(20) NOT NULL,
   `AdminName` varchar(100) NOT NULL,
   `AdminDesgn` varchar(100) NOT NULL,
   `Username` varchar(50) NOT NULL,
   `Password` varchar(50) NOT NULL,
-  `ProfilePic` varchar(200) DEFAULT 'uploads/default/default.png	',
-  PRIMARY KEY (`adminID`),
-  UNIQUE KEY `Username` (`Username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `ProfilePic` varchar(200) DEFAULT 'uploads/default/default.png	'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
@@ -53,8 +50,7 @@ INSERT INTO `admin` (`adminID`, `AdminName`, `AdminDesgn`, `Username`, `Password
 -- Table structure for table `annual_financial`
 --
 
-DROP TABLE IF EXISTS `annual_financial`;
-CREATE TABLE IF NOT EXISTS `annual_financial` (
+CREATE TABLE `annual_financial` (
   `StpID` varchar(20) NOT NULL,
   `revenue_rate` int(20) NOT NULL,
   `burn_rate` int(20) NOT NULL,
@@ -64,9 +60,8 @@ CREATE TABLE IF NOT EXISTS `annual_financial` (
   `revenue` int(30) NOT NULL,
   `expenditure` int(30) NOT NULL,
   `year` year(4) NOT NULL,
-  `annual_fin_ID` int(20) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`annual_fin_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `annual_fin_ID` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `annual_financial`
@@ -86,8 +81,7 @@ INSERT INTO `annual_financial` (`StpID`, `revenue_rate`, `burn_rate`, `financial
 -- Stand-in structure for view `aview`
 -- (See below for the actual view)
 --
-DROP VIEW IF EXISTS `aview`;
-CREATE TABLE IF NOT EXISTS `aview` (
+CREATE TABLE `aview` (
 `InvID` varchar(20)
 ,`CName` varchar(200)
 ,`FName` varchar(200)
@@ -102,8 +96,7 @@ CREATE TABLE IF NOT EXISTS `aview` (
 -- Stand-in structure for view `bprofile`
 -- (See below for the actual view)
 --
-DROP VIEW IF EXISTS `bprofile`;
-CREATE TABLE IF NOT EXISTS `bprofile` (
+CREATE TABLE `bprofile` (
 `StpID` varchar(20)
 ,`Type` varchar(200)
 ,`Stage` varchar(200)
@@ -118,8 +111,7 @@ CREATE TABLE IF NOT EXISTS `bprofile` (
 -- Stand-in structure for view `cprofile`
 -- (See below for the actual view)
 --
-DROP VIEW IF EXISTS `cprofile`;
-CREATE TABLE IF NOT EXISTS `cprofile` (
+CREATE TABLE `cprofile` (
 `InvID` varchar(20)
 ,`CName` varchar(200)
 ,`FName` varchar(200)
@@ -135,8 +127,7 @@ CREATE TABLE IF NOT EXISTS `cprofile` (
 -- Table structure for table `current_round`
 --
 
-DROP TABLE IF EXISTS `current_round`;
-CREATE TABLE IF NOT EXISTS `current_round` (
+CREATE TABLE `current_round` (
   `StpID` varchar(20) NOT NULL,
   `Round` varchar(30) NOT NULL,
   `Seeking` int(30) NOT NULL,
@@ -145,8 +136,7 @@ CREATE TABLE IF NOT EXISTS `current_round` (
   `Val_cap` int(30) NOT NULL,
   `Conversion_disc` int(5) NOT NULL,
   `Interest_rate` int(5) NOT NULL,
-  `Term_len` int(5) NOT NULL,
-  PRIMARY KEY (`StpID`)
+  `Term_len` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -163,8 +153,7 @@ INSERT INTO `current_round` (`StpID`, `Round`, `Seeking`, `Security_type`, `Prem
 -- Table structure for table `inv_addetails`
 --
 
-DROP TABLE IF EXISTS `inv_addetails`;
-CREATE TABLE IF NOT EXISTS `inv_addetails` (
+CREATE TABLE `inv_addetails` (
   `InvID` varchar(20) NOT NULL,
   `IOI` varchar(200) DEFAULT NULL,
   `Facebook` varchar(200) DEFAULT NULL,
@@ -175,8 +164,7 @@ CREATE TABLE IF NOT EXISTS `inv_addetails` (
   `Role` varchar(200) DEFAULT NULL,
   `Partner` varchar(200) DEFAULT NULL,
   `InvRange` varchar(200) DEFAULT NULL,
-  `Summary` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`InvID`)
+  `Summary` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -193,8 +181,7 @@ INSERT INTO `inv_addetails` (`InvID`, `IOI`, `Facebook`, `Twitter`, `LinkedIn`, 
 -- Table structure for table `inv_details`
 --
 
-DROP TABLE IF EXISTS `inv_details`;
-CREATE TABLE IF NOT EXISTS `inv_details` (
+CREATE TABLE `inv_details` (
   `InvID` varchar(20) NOT NULL,
   `CName` varchar(200) DEFAULT NULL,
   `FName` varchar(200) NOT NULL,
@@ -206,8 +193,7 @@ CREATE TABLE IF NOT EXISTS `inv_details` (
   `State` varchar(200) NOT NULL,
   `Country` varchar(200) NOT NULL,
   `AvgInvestment` varchar(200) NOT NULL,
-  `Type` varchar(50) NOT NULL,
-  PRIMARY KEY (`InvID`)
+  `Type` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -224,14 +210,12 @@ INSERT INTO `inv_details` (`InvID`, `CName`, `FName`, `LName`, `Email`, `Phone`,
 -- Table structure for table `inv_group`
 --
 
-DROP TABLE IF EXISTS `inv_group`;
-CREATE TABLE IF NOT EXISTS `inv_group` (
-  `ID` int(50) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `inv_group` (
+  `ID` int(50) NOT NULL,
   `InvID` varchar(20) NOT NULL,
   `Name` varchar(200) NOT NULL,
   `Designation` varchar(200) NOT NULL,
-  `Experience` varchar(200) NOT NULL,
-  PRIMARY KEY (`ID`)
+  `Experience` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -240,17 +224,15 @@ CREATE TABLE IF NOT EXISTS `inv_group` (
 -- Table structure for table `inv_previnvestment`
 --
 
-DROP TABLE IF EXISTS `inv_previnvestment`;
-CREATE TABLE IF NOT EXISTS `inv_previnvestment` (
-  `ID` int(50) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `inv_previnvestment` (
+  `ID` int(50) NOT NULL,
   `InvID` varchar(20) NOT NULL,
   `Name` varchar(200) NOT NULL,
   `Year` varchar(200) NOT NULL,
   `Amount` varchar(200) NOT NULL,
   `Stage` varchar(200) NOT NULL,
   `Stake` varchar(200) NOT NULL,
-  `Website` varchar(200) NOT NULL,
-  PRIMARY KEY (`ID`)
+  `Website` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -259,11 +241,9 @@ CREATE TABLE IF NOT EXISTS `inv_previnvestment` (
 -- Table structure for table `inv_uploads`
 --
 
-DROP TABLE IF EXISTS `inv_uploads`;
-CREATE TABLE IF NOT EXISTS `inv_uploads` (
+CREATE TABLE `inv_uploads` (
   `InvID` varchar(20) NOT NULL,
-  `ProfilePic` varchar(200) DEFAULT 'uploads/default/default.png',
-  PRIMARY KEY (`InvID`)
+  `ProfilePic` varchar(200) DEFAULT 'uploads/default/default.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -280,13 +260,11 @@ INSERT INTO `inv_uploads` (`InvID`, `ProfilePic`) VALUES
 -- Table structure for table `membership`
 --
 
-DROP TABLE IF EXISTS `membership`;
-CREATE TABLE IF NOT EXISTS `membership` (
+CREATE TABLE `membership` (
   `InvID` varchar(20) NOT NULL,
   `MemID` varchar(20) NOT NULL,
   `StDate` date NOT NULL,
-  `ExpDate` date NOT NULL,
-  PRIMARY KEY (`InvID`)
+  `ExpDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -295,15 +273,13 @@ CREATE TABLE IF NOT EXISTS `membership` (
 -- Table structure for table `namanteam`
 --
 
-DROP TABLE IF EXISTS `namanteam`;
-CREATE TABLE IF NOT EXISTS `namanteam` (
-  `SR` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `namanteam` (
+  `SR` int(11) NOT NULL,
   `Name` varchar(30) NOT NULL,
   `Link` varchar(100) NOT NULL,
   `Description` varchar(100) NOT NULL,
-  `Image` varchar(200) DEFAULT '/NamanAngels/uploads/default/default.png',
-  PRIMARY KEY (`SR`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+  `Image` varchar(200) DEFAULT '/NamanAngels/uploads/default/default.png'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `namanteam`
@@ -335,8 +311,7 @@ INSERT INTO `namanteam` (`SR`, `Name`, `Link`, `Description`, `Image`) VALUES
 -- Stand-in structure for view `profile`
 -- (See below for the actual view)
 --
-DROP VIEW IF EXISTS `profile`;
-CREATE TABLE IF NOT EXISTS `profile` (
+CREATE TABLE `profile` (
 `StpID` varchar(20)
 ,`StpName` varchar(200)
 ,`StpImg` varchar(200)
@@ -352,18 +327,16 @@ CREATE TABLE IF NOT EXISTS `profile` (
 -- Table structure for table `requests`
 --
 
-DROP TABLE IF EXISTS `requests`;
-CREATE TABLE IF NOT EXISTS `requests` (
-  `ReqID` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `requests` (
+  `ReqID` int(10) NOT NULL,
   `Inv_ID` varchar(20) NOT NULL,
   `St_ID` varchar(20) NOT NULL,
   `Deal` binary(1) NOT NULL DEFAULT '\0',
   `Round` varchar(30) NOT NULL,
   `Amount` int(50) NOT NULL,
   `Date` varchar(30) NOT NULL,
-  `Stakehold` int(10) NOT NULL,
-  PRIMARY KEY (`ReqID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `Stakehold` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `requests`
@@ -378,16 +351,14 @@ INSERT INTO `requests` (`ReqID`, `Inv_ID`, `St_ID`, `Deal`, `Round`, `Amount`, `
 -- Table structure for table `round_history`
 --
 
-DROP TABLE IF EXISTS `round_history`;
-CREATE TABLE IF NOT EXISTS `round_history` (
-  `HistID` int(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `round_history` (
+  `HistID` int(20) NOT NULL,
   `StpID` varchar(20) NOT NULL,
   `Round` varchar(30) NOT NULL,
   `Security_type` varchar(50) NOT NULL,
   `Capital_raised` int(30) NOT NULL,
-  `Close_date` date NOT NULL,
-  PRIMARY KEY (`HistID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `Close_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `round_history`
@@ -400,11 +371,28 @@ INSERT INTO `round_history` (`HistID`, `StpID`, `Round`, `Security_type`, `Capit
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `siteinfo`
+--
+
+CREATE TABLE `siteinfo` (
+  `ID` int(100) NOT NULL,
+  `Counter` int(100) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `siteinfo`
+--
+
+INSERT INTO `siteinfo` (`ID`, `Counter`) VALUES
+(1, 3);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `st_addetails`
 --
 
-DROP TABLE IF EXISTS `st_addetails`;
-CREATE TABLE IF NOT EXISTS `st_addetails` (
+CREATE TABLE `st_addetails` (
   `StpID` varchar(20) NOT NULL,
   `Stage` varchar(200) DEFAULT NULL,
   `DOF` varchar(200) DEFAULT NULL,
@@ -415,8 +403,7 @@ CREATE TABLE IF NOT EXISTS `st_addetails` (
   `Facebook` varchar(200) DEFAULT NULL,
   `Instagram` varchar(200) DEFAULT NULL,
   `Others` varchar(200) DEFAULT NULL,
-  `Youtube` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`StpID`)
+  `Youtube` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -434,14 +421,12 @@ INSERT INTO `st_addetails` (`StpID`, `Stage`, `DOF`, `EmpNum`, `IncType`, `Linke
 -- Table structure for table `st_advisors`
 --
 
-DROP TABLE IF EXISTS `st_advisors`;
-CREATE TABLE IF NOT EXISTS `st_advisors` (
-  `ID` int(50) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `st_advisors` (
+  `ID` int(50) NOT NULL,
   `StpID` varchar(20) NOT NULL,
   `Name` varchar(200) NOT NULL,
-  `Email` varchar(200) NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `Email` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `st_advisors`
@@ -456,8 +441,7 @@ INSERT INTO `st_advisors` (`ID`, `StpID`, `Name`, `Email`) VALUES
 -- Table structure for table `st_description`
 --
 
-DROP TABLE IF EXISTS `st_description`;
-CREATE TABLE IF NOT EXISTS `st_description` (
+CREATE TABLE `st_description` (
   `StpID` varchar(20) NOT NULL,
   `Summary` varchar(500) DEFAULT NULL,
   `OLP` varchar(200) DEFAULT NULL,
@@ -469,8 +453,7 @@ CREATE TABLE IF NOT EXISTS `st_description` (
   `CustomerSegments` varchar(500) DEFAULT NULL,
   `SaleMarketStrat` varchar(500) DEFAULT NULL,
   `Competitors` varchar(500) DEFAULT NULL,
-  `CompAdvantage` varchar(500) DEFAULT NULL,
-  PRIMARY KEY (`StpID`)
+  `CompAdvantage` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -488,8 +471,7 @@ INSERT INTO `st_description` (`StpID`, `Summary`, `OLP`, `CustomerProblem`, `Pro
 -- Table structure for table `st_details`
 --
 
-DROP TABLE IF EXISTS `st_details`;
-CREATE TABLE IF NOT EXISTS `st_details` (
+CREATE TABLE `st_details` (
   `StpID` varchar(20) NOT NULL,
   `Stname` varchar(200) NOT NULL,
   `Ffname` varchar(200) NOT NULL,
@@ -502,8 +484,7 @@ CREATE TABLE IF NOT EXISTS `st_details` (
   `State` varchar(200) NOT NULL,
   `Country` varchar(200) NOT NULL,
   `Website` varchar(200) NOT NULL,
-  `Investment` varchar(200) NOT NULL,
-  PRIMARY KEY (`StpID`)
+  `Investment` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -521,14 +502,12 @@ INSERT INTO `st_details` (`StpID`, `Stname`, `Ffname`, `Sfname`, `Email`, `Phone
 -- Table structure for table `st_previnvestment`
 --
 
-DROP TABLE IF EXISTS `st_previnvestment`;
-CREATE TABLE IF NOT EXISTS `st_previnvestment` (
-  `ID` int(50) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `st_previnvestment` (
+  `ID` int(50) NOT NULL,
   `StpID` varchar(20) NOT NULL,
   `Name` varchar(200) NOT NULL,
-  `Email` varchar(200) NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `Email` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `st_previnvestment`
@@ -543,9 +522,8 @@ INSERT INTO `st_previnvestment` (`ID`, `StpID`, `Name`, `Email`) VALUES
 -- Table structure for table `st_team`
 --
 
-DROP TABLE IF EXISTS `st_team`;
-CREATE TABLE IF NOT EXISTS `st_team` (
-  `ID` int(50) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `st_team` (
+  `ID` int(50) NOT NULL,
   `StpID` varchar(20) NOT NULL,
   `FName` varchar(200) NOT NULL,
   `LName` varchar(200) NOT NULL,
@@ -553,8 +531,7 @@ CREATE TABLE IF NOT EXISTS `st_team` (
   `Experience` varchar(200) NOT NULL,
   `Expertise` varchar(200) NOT NULL,
   `Email` varchar(200) NOT NULL,
-  `LinkedIn` varchar(200) NOT NULL,
-  PRIMARY KEY (`ID`)
+  `LinkedIn` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -563,8 +540,7 @@ CREATE TABLE IF NOT EXISTS `st_team` (
 -- Table structure for table `st_uploads`
 --
 
-DROP TABLE IF EXISTS `st_uploads`;
-CREATE TABLE IF NOT EXISTS `st_uploads` (
+CREATE TABLE `st_uploads` (
   `StpID` varchar(20) NOT NULL,
   `Logo` varchar(200) DEFAULT 'uploads/default/default.png',
   `BackImg` varchar(200) DEFAULT 'uploads/default/defaultbackimg.jpg',
@@ -575,8 +551,7 @@ CREATE TABLE IF NOT EXISTS `st_uploads` (
   `FProjection` varchar(200) DEFAULT NULL,
   `FProjectionExt` varchar(200) DEFAULT NULL,
   `AdDocs` varchar(200) DEFAULT NULL,
-  `AdDocsExt` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`StpID`)
+  `AdDocsExt` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -594,15 +569,13 @@ INSERT INTO `st_uploads` (`StpID`, `Logo`, `BackImg`, `PitchName`, `PitchExt`, `
 -- Table structure for table `tools`
 --
 
-DROP TABLE IF EXISTS `tools`;
-CREATE TABLE IF NOT EXISTS `tools` (
-  `ID` int(50) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tools` (
+  `ID` int(50) NOT NULL,
   `Name` varchar(200) NOT NULL,
   `Image` varchar(200) NOT NULL DEFAULT 'uploads/tools/tool.png',
   `Cost` varchar(200) NOT NULL,
-  `Description` varchar(200) NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  `Description` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tools`
@@ -624,17 +597,13 @@ INSERT INTO `tools` (`ID`, `Name`, `Image`, `Cost`, `Description`) VALUES
 -- Table structure for table `userinv`
 --
 
-DROP TABLE IF EXISTS `userinv`;
-CREATE TABLE IF NOT EXISTS `userinv` (
-  `Entry` int(100) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `userinv` (
+  `Entry` int(100) NOT NULL,
   `InvID` varchar(20) NOT NULL,
   `MemID` varchar(20) NOT NULL,
   `Username` varchar(50) NOT NULL,
-  `Password` varchar(200) NOT NULL,
-  PRIMARY KEY (`InvID`),
-  UNIQUE KEY `Username` (`Username`),
-  UNIQUE KEY `Entry` (`Entry`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `Password` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `userinv`
@@ -651,17 +620,13 @@ INSERT INTO `userinv` (`Entry`, `InvID`, `MemID`, `Username`, `Password`) VALUES
 -- Table structure for table `userstp`
 --
 
-DROP TABLE IF EXISTS `userstp`;
-CREATE TABLE IF NOT EXISTS `userstp` (
-  `Entry` int(100) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `userstp` (
+  `Entry` int(100) NOT NULL,
   `StpID` varchar(20) NOT NULL,
   `Username` varchar(200) NOT NULL,
   `Password` varchar(200) NOT NULL,
-  `Verified` int(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`StpID`),
-  UNIQUE KEY `Username` (`Username`),
-  UNIQUE KEY `Entry` (`Entry`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `Verified` int(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `userstp`
@@ -707,6 +672,241 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `profile`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `profile`  AS  select `a`.`StpID` AS `StpID`,`b`.`Stname` AS `StpName`,`a`.`Logo` AS `StpImg`,`b`.`Ffname` AS `FName`,`b`.`Sfname` AS `SName`,`b`.`Type` AS `Type`,`c`.`Verified` AS `Verified` from ((`st_uploads` `a` join `st_details` `b`) join `userstp` `c`) where ((`a`.`StpID` = `c`.`StpID`) and (`b`.`StpID` = `c`.`StpID`)) ;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`adminID`),
+  ADD UNIQUE KEY `Username` (`Username`);
+
+--
+-- Indexes for table `annual_financial`
+--
+ALTER TABLE `annual_financial`
+  ADD PRIMARY KEY (`annual_fin_ID`);
+
+--
+-- Indexes for table `current_round`
+--
+ALTER TABLE `current_round`
+  ADD PRIMARY KEY (`StpID`);
+
+--
+-- Indexes for table `inv_addetails`
+--
+ALTER TABLE `inv_addetails`
+  ADD PRIMARY KEY (`InvID`);
+
+--
+-- Indexes for table `inv_details`
+--
+ALTER TABLE `inv_details`
+  ADD PRIMARY KEY (`InvID`);
+
+--
+-- Indexes for table `inv_group`
+--
+ALTER TABLE `inv_group`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `inv_previnvestment`
+--
+ALTER TABLE `inv_previnvestment`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `inv_uploads`
+--
+ALTER TABLE `inv_uploads`
+  ADD PRIMARY KEY (`InvID`);
+
+--
+-- Indexes for table `membership`
+--
+ALTER TABLE `membership`
+  ADD PRIMARY KEY (`InvID`);
+
+--
+-- Indexes for table `namanteam`
+--
+ALTER TABLE `namanteam`
+  ADD PRIMARY KEY (`SR`);
+
+--
+-- Indexes for table `requests`
+--
+ALTER TABLE `requests`
+  ADD PRIMARY KEY (`ReqID`);
+
+--
+-- Indexes for table `round_history`
+--
+ALTER TABLE `round_history`
+  ADD PRIMARY KEY (`HistID`);
+
+--
+-- Indexes for table `siteinfo`
+--
+ALTER TABLE `siteinfo`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `st_addetails`
+--
+ALTER TABLE `st_addetails`
+  ADD PRIMARY KEY (`StpID`);
+
+--
+-- Indexes for table `st_advisors`
+--
+ALTER TABLE `st_advisors`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `st_description`
+--
+ALTER TABLE `st_description`
+  ADD PRIMARY KEY (`StpID`);
+
+--
+-- Indexes for table `st_details`
+--
+ALTER TABLE `st_details`
+  ADD PRIMARY KEY (`StpID`);
+
+--
+-- Indexes for table `st_previnvestment`
+--
+ALTER TABLE `st_previnvestment`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `st_team`
+--
+ALTER TABLE `st_team`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `st_uploads`
+--
+ALTER TABLE `st_uploads`
+  ADD PRIMARY KEY (`StpID`);
+
+--
+-- Indexes for table `tools`
+--
+ALTER TABLE `tools`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `userinv`
+--
+ALTER TABLE `userinv`
+  ADD PRIMARY KEY (`InvID`),
+  ADD UNIQUE KEY `Username` (`Username`),
+  ADD UNIQUE KEY `Entry` (`Entry`);
+
+--
+-- Indexes for table `userstp`
+--
+ALTER TABLE `userstp`
+  ADD PRIMARY KEY (`StpID`),
+  ADD UNIQUE KEY `Username` (`Username`),
+  ADD UNIQUE KEY `Entry` (`Entry`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `adminID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `annual_financial`
+--
+ALTER TABLE `annual_financial`
+  MODIFY `annual_fin_ID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `inv_group`
+--
+ALTER TABLE `inv_group`
+  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `inv_previnvestment`
+--
+ALTER TABLE `inv_previnvestment`
+  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `namanteam`
+--
+ALTER TABLE `namanteam`
+  MODIFY `SR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `requests`
+--
+ALTER TABLE `requests`
+  MODIFY `ReqID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `round_history`
+--
+ALTER TABLE `round_history`
+  MODIFY `HistID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `siteinfo`
+--
+ALTER TABLE `siteinfo`
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `st_advisors`
+--
+ALTER TABLE `st_advisors`
+  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `st_previnvestment`
+--
+ALTER TABLE `st_previnvestment`
+  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `st_team`
+--
+ALTER TABLE `st_team`
+  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tools`
+--
+ALTER TABLE `tools`
+  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `userinv`
+--
+ALTER TABLE `userinv`
+  MODIFY `Entry` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `userstp`
+--
+ALTER TABLE `userstp`
+  MODIFY `Entry` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -3,6 +3,11 @@
 if(isset($_SESSION['StpID']) || isset($_SESSION['InvID'])){
     $_SESSION['binvlink'] = '#';
 }
+
+$q = "UPDATE siteinfo SET Counter = Counter + 1 WHERE ID = 1";
+mysqli_query($db, $q);
+
+
 ?>
 <html>
     <head>
@@ -15,14 +20,13 @@ if(isset($_SESSION['StpID']) || isset($_SESSION['InvID'])){
 
     <body>
 
-      <?php
-      if(isset($_SESSION['StpID']) || isset($_SESSION['InvID'])){
-          require "include/header/mainheaderlogin.php";
-      }
-      else{
-        require "include/header/mainheader.php" ;
-    }
-
+        <?php
+        if(isset($_SESSION['StpID']) || isset($_SESSION['InvID'])){
+            require "include/header/mainheaderlogin.php";
+        }
+        else{
+            require "include/header/mainheader.php" ;
+        }
         ?>
         <div class="grid-container">
 
