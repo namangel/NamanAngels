@@ -3,80 +3,63 @@
         header('location: index.php');
     }
 
+    if (isset($_POST["addtl"])){
+        $tlName = mysqli_real_escape_string($db, $_POST['tl_name']);
+        $tlDesc = mysqli_real_escape_string($db, $_POST['tl_desc']);
+        $tlPrice = mysqli_real_escape_string($db, $_POST['tl_cost']);
 
+        $tl_check_query = "SELECT * FROM tools WHERE Name='$tlName' AND Description='$tlDesc';";
+        $result = mysqli_query($db, $tl_check_query);
+        $user = mysqli_fetch_assoc($result);
 
-?>
-<?php require "sidebar.php" ?>
-<?php
-
-
-  if (isset($_POST["addtl"])){
-    $tlName = mysqli_real_escape_string($db, $_POST['tl_name']);
-    $tlDesc = mysqli_real_escape_string($db, $_POST['tl_desc']);
-    $tlPrice = mysqli_real_escape_string($db, $_POST['tl_cost']);
-
-    $tl_check_query = "SELECT * FROM tools WHERE tl_name='$tlName' AND tl_desc='$tlDesc';";
-    $result = mysqli_query($db, $tl_check_query);
-    $user = mysqli_fetch_assoc($result);
-
-    if (mysqli_num_rows($result) > 0){
-        echo "<script>alert('Tool already exists')</script>";
-    }
-    else{
-      // echo "<script>alert('Member added successfully!')</script>";
-      $check = getimagesize($_FILES["tl_img"]["tmp_name"]);
-      if($check != false)
-      {
-        $file_name = $_FILES['tl_img']['name'];
-        $file_size = $_FILES['tl_img']['size'];
-        $file_tmp = $_FILES['tl_img']['tmp_name'];
-        $file_type = $_FILES['tl_img']['type'];
-        $file_ext = strtolower(end(explode('.',$_FILES['tl_img']['name'])));
-
-        $extensions= array("jpeg","jpg","png");
-
-        if(in_array($file_ext,$extensions)=== false)
-        {
-          echo "<script>alert('Extension not allowed, please choose a JPEG or PNG file.')</script>";
+        if (mysqli_num_rows($result) > 0){
+            echo "<script>alert('Tool already exists')</script>";
         }
-        else
-        {
-          if($file_size > 5242880)
-          {
-            echo "<script>alert('File size must be less than 5 MB')</script>";
-          }
-          else
-          {
-            $uploadas = "uploads/tools/".$file_name;
-            $upload = "../uploads/tools/".$file_name;
-            if(move_uploaded_file($file_tmp,$upload))
+        else{
+            // echo "<script>alert('Member added successfully!')</script>";
+            $q = "INSERT INTO tools (Name,Description, Cost) VALUES ('$tlName','$tlDesc', '$tlPrice');";
+            mysqli_query($db, $q);
+
+            $check = @getimagesize($_FILES["tl_img"]["tmp_name"]);
+            if($check != false)
             {
-              $q = "INSERT INTO tools (tl_name,tl_img,tl_desc) VALUES ('$uploadas','$tlName','$tlDesc');";
-              mysqli_query($db, $q);
-              echo "<script>alert('Tool added successfully!')</script>";
+                $file_name = $_FILES['tl_img']['name'];
+                $file_size = $_FILES['tl_img']['size'];
+                $file_tmp = $_FILES['tl_img']['tmp_name'];
+                $file_type = $_FILES['tl_img']['type'];
+                $file_ext = strtolower(end(explode('.',$_FILES['tl_img']['name'])));
+
+                $extensions= array("jpeg","jpg","png");
+
+                if(in_array($file_ext,$extensions)=== false){
+                    echo "<script>alert('Extension not allowed, please choose a JPEG or PNG file.')</script>";
+                }
+                else{
+                    if($file_size > 5242880){
+                        echo "<script>alert('File size must be less than 5 MB')</script>";
+                    }
+                    else{
+                        $uploadas = "uploads/tools/".$file_name;
+                        $upload = "../uploads/tools/".$file_name;
+                        if(move_uploaded_file($file_tmp,$upload)){
+                            $q = "UPDATE tools SET Image = '$uploadas' WHERE Name='$tlName' AND Description='$tlDesc';";
+                            mysqli_query($db, $q);
+                        }
+                    }
+                }
             }
-          }
         }
-      }
-      else
-      {
-      $q = "INSERT INTO tools (tl_cost, tl_name, tl_desc) VALUES ('$tlPrice','$tlName','$tlDesc');";
-      mysqli_query($db, $q);
-      echo "<script>alert('Tool added successfully!')</script>";
-
-      }
-
+        echo "<script>alert('Tool added successfully!')</script>";
+        header('location: admin_addtools.php');
     }
-    header('location: admin_addtools.php');
-  }
 
-  if (isset($_POST["deltool"])){
-    $tlid = mysqli_real_escape_string($db, $_POST['tool']);
-      $q = "DELETE FROM tools WHERE tool_id='$tlid';";
-      mysqli_query($db, $q);
-      echo "<script>alert('Tool deleted successfully!')</script>";
-    header('location:admin_addtools.php');
-  }
+    if (isset($_POST["deltool"])){
+        $tlid = mysqli_real_escape_string($db, $_POST['tool']);
+        $q = "DELETE FROM tools WHERE tool_id='$tlid';";
+        mysqli_query($db, $q);
+        echo "<script>alert('Tool deleted successfully!')</script>";
+        header('location: admin_addtools.php');
+    }
 
 ?>
 <html lang="en">
@@ -183,7 +166,7 @@
     </style>
   </head>
   <body>
-
+<?php include "sidebar.php"; ?>
   <div class="cont">
       <div class="welcome">
         <div class="container-fluid">

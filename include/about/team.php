@@ -9,7 +9,7 @@
 
     <body>
       <?php
-      include "../header/sign.php"
+      include "../header/sign.php";
       ?>
 
         <font class="adv"><center>Our Chief Advisory & Team</center></font>

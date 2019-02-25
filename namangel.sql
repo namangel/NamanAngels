@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 25, 2019 at 10:28 AM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- Host: localhost
+-- Generation Time: Feb 25, 2019 at 03:06 PM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -537,24 +537,26 @@ INSERT INTO `st_uploads` (`StpID`, `Logo`, `BackImg`, `PitchName`, `PitchExt`, `
 --
 
 CREATE TABLE `tools` (
-  `tool_id` int(50) NOT NULL,
-  `tl_name` varchar(200) NOT NULL,
-  `tl_img` varchar(200) NOT NULL,
-  `tl_cost` varchar(200) NOT NULL,
-  `tl_desc` varchar(200) NOT NULL
+  `ID` int(50) NOT NULL,
+  `Name` varchar(200) NOT NULL,
+  `Image` varchar(200) NOT NULL DEFAULT 'uploads/tools/tool.png',
+  `Cost` varchar(200) NOT NULL,
+  `Description` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tools`
 --
 
-INSERT INTO `tools` (`tool_id`, `tl_name`, `tl_img`, `tl_cost`, `tl_desc`) VALUES
-(1, 'Tool1', '/NamanAngels/uploads/tools/tool.png', '100', 'Tool1 Description\r\n Hello World 1\r\n ABC  1\r\n'),
-(2, 'Tool2', '/NamanAngels/uploads/tools/tool.png', '200', 'Tool2 Description\r\n Hello World 2\r\n ABC  2'),
-(3, 'Tool3', '/NamanAngels/uploads/tools/tool.png', '300', 'Tool3 Description\r\n Hello World 3\r\n ABC  3'),
-(4, 'Tool4', '/NamanAngels/uploads/tools/tool.png', '400', 'Tool4 Description\r\n Hello World 4\r\n ABC  4'),
-(5, 'Tool5', '/NamanAngels/uploads/tools/tool.png', '500', 'Tool5 Description\r\n Hello World 5\r\n ABC  5'),
-(6, 'Tool6', '/NamanAngels/uploads/tools/tool.png', '600', 'Tool6 Description\r\n Hello World 6\r\n ABC  6');
+INSERT INTO `tools` (`ID`, `Name`, `Image`, `Cost`, `Description`) VALUES
+(1, 'Tool1', 'uploads/tools/tool.png', '100', 'Tool1 Description\r\nHello World 1\r\nABC 1\r\n'),
+(2, 'Tool2', 'uploads/tools/tool.png', '200', 'Tool2 Description\r\nHello World 2\r\nABC 2\r\n'),
+(3, 'Tool3', 'uploads/tools/tool.png', '200', 'Tool3Description\r\nHello World 3\r\nABC 3'),
+(4, 'Tool4', 'uploads/tools/tool.png', '200', 'Tool4 Description\r\nHello World 4\r\nABC 4'),
+(5, 'Tool5', 'uploads/tools/tool.png', '200', 'Tool5 Description\r\nHello World 5\r\nABC 5'),
+(6, 'Tool6', 'uploads/tools/tool.png', '200', 'Tool6 Description\r\nHello World 6\r\nABC 6'),
+(7, 'Tool7', 'uploads/tools/tool.png', '700', 'Tool7 Description  Hello World 7  ABC  7'),
+(8, 'Tool8', 'uploads/tools/tool.png', '800', 'Tool8 Description Hello World 8 ABC 8');
 
 -- --------------------------------------------------------
 
@@ -752,7 +754,7 @@ ALTER TABLE `st_uploads`
 -- Indexes for table `tools`
 --
 ALTER TABLE `tools`
-  ADD PRIMARY KEY (`tool_id`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `userinv`
@@ -833,6 +835,12 @@ ALTER TABLE `st_previnvestment`
 --
 ALTER TABLE `st_team`
   MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tools`
+--
+ALTER TABLE `tools`
+  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `userinv`
