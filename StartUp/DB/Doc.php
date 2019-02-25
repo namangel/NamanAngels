@@ -32,6 +32,7 @@
 	$TwitterLink = $row['Twitter']==""? '--':$row['Twitter'];
 	$FBLink = $row['Facebook']==""? '--':$row['Facebook'];
 	$InstaLink = $row['Instagram']==""? '--':$row['Instagram'];
+	$others = $row['Others']==""? '--':$row['Others'];
 	$YTLink = $row['Youtube']==""? '--':$row['Youtube'];
 
 	$q = "SELECT * FROM st_uploads WHERE StpID = '$id';";
@@ -152,6 +153,14 @@
 		$sftwitter = mysqli_real_escape_string($db, $_POST['sftwitter']);
 		$sflinkedin = mysqli_real_escape_string($db, $_POST['sflinkedin']);
 		$sffacebook = mysqli_real_escape_string($db, $_POST['sffacebook']);
+		$sfinstagram = mysqli_real_escape_string($db, $_POST['sfinstagram']);
+		$sfothers = mysqli_real_escape_string($db, $_POST['sfothers']);
+
+		if($sfinstagram != "")
+		{
+			$q = "UPDATE st_addetails set Instagram='$sfinstagram' where StpID='$id';";
+			mysqli_query($db, $q);
+		}
 
 		if($sftwitter != "")
 		{
@@ -166,6 +175,11 @@
 		if($sffacebook != "")
 		{
 			$q = "UPDATE st_addetails set FBLink='$sffacebook' where StpID='$id';;";
+			mysqli_query($db, $q);
+		}
+		if($sfothers != "")
+		{
+			$q = "UPDATE st_addetails set Others='$sfothers' where StpID='$id';";
 			mysqli_query($db, $q);
 		}
 		header('location: Doc.php');
@@ -312,8 +326,39 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../css/companyprof.css" type="text/css">
 		<title>StartUp Profile - NamanAngels</title>
-
+		<style>
+		.LinkedIn, .Facebook, .Twitter, .Instagram, .Others{
+				display: none;
+				margin-bottom: 10px;
+				}
+		</style>
     </head>
+	<script type="text/javascript">
+	function social() {
+	var x = document.getElementById("soc").value;
+	if (x== "Facebook")
+	{
+		document.getElementById("Facebook").style.display = "block";
+	}
+	if (x== "LinkedIn")
+	{
+		document.getElementById("LinkedIn").style.display = "block";
+	}
+	if (x== "Instagram")
+	{
+		document.getElementById("Instagram").style.display = "block";
+	}
+	if (x== "Twitter")
+	{
+		document.getElementById("Twitter").style.display = "block";
+	}
+	if (x== "Others")
+	{
+		document.getElementById("Others").style.display = "block";
+	}
+
+}
+</script>
     <body>
 		<?php require '../include/header/stp_db.php'; ?>
 		<?php require '../include/nav/nav.php'; ?>
@@ -406,23 +451,50 @@
 	            </div>
 
 				<div class="social sideprof">
-	                <button class="pencil" onclick="socialon()"><i class="fa fa-pencil"></i></button>
-	                <h3>Social presence</h3>
-					<ul class="proflist">
-						<li class="item">LinkedIn <span class="value"><?= $LinkedInLink?></span></li>
-	                    <li style="list-style: none; display: inline">
-	                        <hr>
-	                    </li>
-						<li class="item">Twitter <span class="value"><?= $TwitterLink?></span></li>
-	                    <li style="list-style: none; display: inline">
-	                        <hr>
-	                    </li>
-	                    <li class="item">Facebook <span class="value"><?= $FBLink?></span></li>
-	                    <li style="list-style: none; display: inline">
-	                        <hr>
-	                    </li>
-	                </ul>
-	            </div>
+                <button class="pencil" onclick="socialon()"><i class="fa fa-pencil"></i></button>
+				<h3>Social Presence</h3>
+        		<ul class="proflist">
+				<?php
+					$q = "SELECT * FROM st_addetails WHERE StpID='$id'";
+					$results = mysqli_query($db, $q);
+					$row = mysqli_fetch_assoc($results);
+
+                    if($row['LinkedIn'] != NULL){
+
+						echo '<li class="item">LinkedIn	 <span class="value">';
+						echo $LinkedInLink;
+	                    echo '<li style="list-style: none; display: inline"><hr></li>';
+				
+					}
+					if($row['Facebook'] != NULL){
+
+						echo '<li class="item">Facebook	 <span class="value">';
+						echo $FBLink;
+	                    echo '<li style="list-style: none; display: inline"><hr></li>';
+					}
+					if($row['Twitter'] != NULL){
+		
+						echo '<li class="item">Twitter	 <span class="value">';
+						echo $TwitterLink;
+	                    echo '<li style="list-style: none; display: inline"><hr></li>';
+						
+					}
+					if($row['Instagram'] != NULL){
+		
+						echo '<li class="item">Instagram	 <span class="value">';
+						echo $InstaLink;
+						echo '<li style="list-style: none; display: inline"><hr></li>';
+						
+					}
+					if($row['Others'] != NULL){
+		
+						echo '<li class="item">Others	 <span class="value">';
+						echo $others;
+	                    echo '<li style="list-style: none; display: inline"><hr></li>';
+						
+					}
+                ?>
+            </div>
 
 				<div id="overlay">
 					<div class="compbasics">
@@ -765,17 +837,33 @@
 	                        <h3>Social Presence</h3>
 	                        <p>Add your company's social media links.</p>
 	                    </div>
-	                    <div class="formtext">
-	                        <form method="post">
-	                            <div class="socialic">
-	                                <i class="fa fa-linkedin"></i><input size="30" type="text" name="sflinkedin" placeholder="<?= $LinkedInLink?>">
-	                            </div>
-	                            <div class="socialic">
-	                                <i class="fa fa-twitter"></i><input size="30" type="text" name="sftwitter" placeholder="<?= $TwitterLink?>">
-	                            </div>
-	                            <div class="socialic">
-	                                <i class="fa fa-facebook"></i><input size="30" type="text" name="sffacebook" placeholder="<?= $FBLink?>">
-	                            </div><br>
+						<div class="formtext">
+						<form method="post">
+						<label>Social Media</label><br>
+							<select name="sfsocialmedia" id="soc" required onchange="social()">
+								<option>Select Social media</option>
+								<option value="LinkedIn">LinkedIn</option>
+								<option value="Facebook">Facebook</option>
+								<option value="Instagram">Instagram</option>
+								<option value="Twitter">Twitter</option>
+								<option value="Others">Others</option>
+							</select><br><br>
+							<div id="LinkedIn" class="LinkedIn">
+							<i class="fa fa-linkedin">&nbsp;&nbsp;<input type="text" name="sflinkedin" size="30" placeholder="<?=$LinkedInLink?>"></i><br>
+							</div>
+							<div id="Facebook" class="Facebook">
+							<i class="fa fa-facebook">&nbsp;&nbsp;<input type="text" name="sffacebook" size="30" placeholder="<?=$FBLink?>"></i><br>							
+							</div>
+							<div id="Instagram" class="Instagram">
+							<i class="fa fa-instagram">&nbsp;&nbsp;<input type="text" name="sfinstagram" size="30" placeholder="<?=$InstaLink?>"></i><br>
+							</div>
+							<div id="Twitter" class="Twitter">
+							<i class="fa fa-twitter">&nbsp;&nbsp;<input type="text" name="sftwitter" size="30" placeholder="<?=$TwitterLink?>"></i><br>
+							</div>
+							<div id="Others" class="Others">
+							<i class="fa fa-globe">&nbsp;&nbsp;<input type="text" name="sfothers" size="30" placeholder="<?=$others?>"></i><br>
+							</div>
+		
 	                            <div class="formtext submits">
 	                                <input class="cancel" name="cancel" type="submit" value="Cancel"> <input class="save" name="sfsave" type="submit" value="Save">
 	                            </div>
