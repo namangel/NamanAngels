@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 24, 2019 at 05:10 PM
+-- Generation Time: Feb 25, 2019 at 01:55 AM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -78,6 +78,21 @@ INSERT INTO `annual_financial` (`StpID`, `revenue_rate`, `burn_rate`, `financial
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `bprofile`
+-- (See below for the actual view)
+--
+CREATE TABLE `bprofile` (
+`StpID` int(20)
+,`Type` varchar(200)
+,`Stage` varchar(200)
+,`Round` varchar(30)
+,`Seeking` int(30)
+,`Verified` int(1)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Stand-in structure for view `cprofile`
 -- (See below for the actual view)
 --
@@ -108,6 +123,14 @@ CREATE TABLE `current_round` (
   `Interest_rate` int(5) NOT NULL,
   `Term_len` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `current_round`
+--
+
+INSERT INTO `current_round` (`StpID`, `Round`, `Seeking`, `Security_type`, `Premoney_val`, `Val_cap`, `Conversion_disc`, `Interest_rate`, `Term_len`) VALUES
+(1, 'Friends and Family', 12345, 'Common Equity', 123, 0, 0, 0, 0),
+(4, 'Preseries A', 3423, 'Preferred Equity', 233, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -565,6 +588,15 @@ CREATE TABLE `userstp` (
 INSERT INTO `userstp` (`StpID`, `Username`, `Password`, `Verified`) VALUES
 (1, 'abc123', '370194ff6e0f93a7432e16cc9badd9427e8b4e13', 1),
 (4, 'vivi', 'ed42785ca24ae8fa2d9fd131401e44c3c86519ae', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `bprofile`
+--
+DROP TABLE IF EXISTS `bprofile`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `bprofile`  AS  select `a`.`StpID` AS `StpID`,`a`.`Type` AS `Type`,`b`.`Stage` AS `Stage`,`c`.`Round` AS `Round`,`c`.`Seeking` AS `Seeking`,`d`.`Verified` AS `Verified` from (((`st_details` `a` join `st_addetails` `b`) join `current_round` `c`) join `userstp` `d`) where ((`a`.`StpID` = `b`.`StpID`) and (`a`.`StpID` = `c`.`StpID`) and (`a`.`StpID` = `d`.`StpID`)) ;
 
 -- --------------------------------------------------------
 
