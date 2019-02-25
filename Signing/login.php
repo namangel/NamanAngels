@@ -13,7 +13,8 @@ if(isset($_SESSION['InvID'])){
 <head>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link type="text/css" rel="stylesheet" href="css\sign.css">
-	<title>Login - NamanAngels</title>
+	<title>Login | NAMAN</title>
+  	<link rel="icon" href="../img/favicon.jpg" type="image/jpg" sizes="16x16">
 </head>
 <body>
 

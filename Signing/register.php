@@ -11,7 +11,8 @@ elseif(isset($_SESSION['InvID'])){
 ?>
 <html>
 	<head>
-		<title>Registor Yourself</title>
+		<title>Register | NAMAN</title>
+        <link rel="icon" href="../img/favicon.jpg" type="image/jpg" sizes="16x16">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link type="text/css" rel="stylesheet" href="css/sign.css">
 	</head>
