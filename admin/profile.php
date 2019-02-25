@@ -208,7 +208,7 @@
 <body>
 <?php require "sidebar.php" ?>
   <div class="profile">
-    <?= "<img src='../".$ProfilePic."' />";?>
+    <?= "<img src='../".$ProfilePic."' style='border-radius:50%;'/>";?>
     <div class="detail">
         <div class="labell">Name:</div><div class="details"><?php echo $AdminName; ?></div><br>
         <div class="labell">Designation:</div><div class="details"><?php echo $AdminDesgn; ?></div><br>

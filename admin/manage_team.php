@@ -4,8 +4,8 @@
       header('location: index.php');
   }
 
-  if (isset($_POST["addmem"]))
-  {
+if (isset($_POST["addmem"]))
+{
     $MemName = mysqli_real_escape_string($db, $_POST['mem_name']);
     $MemDesc = mysqli_real_escape_string($db, $_POST['mem_desc']);
     $MemLink = mysqli_real_escape_string($db, $_POST['mem_link']);
@@ -21,51 +21,41 @@
     }
     else
     {
-      // echo "<script>alert('Member added successfully!')</script>";
-      $check = getimagesize($_FILES["mem_img"]["tmp_name"]);
-      if($check != false)
-      {
-        $file_name = $_FILES['mem_img']['name'];
-        $file_size = $_FILES['mem_img']['size'];
-        $file_tmp = $_FILES['mem_img']['tmp_name'];
-        $file_type = $_FILES['mem_img']['type'];
-        $file_ext = strtolower(end(explode('.',$_FILES['mem_img']['name'])));
+        $q = "INSERT INTO namanteam (Link, Name, Description) VALUES ('$MemLink','$MemName','$MemDesc');";
+        mysqli_query($db, $q);
 
-        $extensions= array("jpeg","jpg","png");
+        // $check = getimagesize($_FILES["mem_img"]["tmp_name"]);
+        if(@getimagesize($_FILES["mem_img"]["tmp_name"]))
+        {
+            $file_name = $_FILES['mem_img']['name'];
+            $file_size = $_FILES['mem_img']['size'];
+            $file_tmp = $_FILES['mem_img']['tmp_name'];
+            $file_type = $_FILES['mem_img']['type'];
+            $file_ext = strtolower(end(explode('.',$_FILES['mem_img']['name'])));
 
-        if(in_array($file_ext,$extensions)=== false)
-        {
-          echo "<script>alert('Extension not allowed, please choose a JPEG or PNG file.')</script>";
-        }
-        else
-        {
-          if($file_size > 5242880)
-          {
-            echo "<script>alert('File size must be less than 5 MB')</script>";
-          }
-          else
-          {
-            $uploadas = "uploads/team/".$file_name;
-            $upload = "../uploads/team/".$file_name;
-            if(move_uploaded_file($file_tmp,$upload))
-            {
-              $q = "INSERT INTO namanteam (Image, Link, Name, Description) VALUES ('$uploadas','$MemLink','$MemName','$MemDesc');";
-              mysqli_query($db, $q);
-              echo "<script>alert('Member added successfully!')</script>";
-              header('location:manage_team.php');
+            $extensions= array("jpeg","jpg","png");
+
+            if(in_array($file_ext,$extensions)=== false){
+                echo "<script>alert('Extension not allowed, please choose a JPEG or PNG file.')</script>";
             }
-          }
+            else{
+                if($file_size > 5242880){
+                    echo "<script>alert('File size must be less than 5 MB')</script>";
+                }
+                else{
+                    $uploadas = "uploads/team/".$file_name;
+                    $upload = "../uploads/team/".$file_name;
+                    if(move_uploaded_file($file_tmp,$upload)){
+                        $q = "UPDATE namanteam SET Image = '$uploadas' WHERE Name='$MemName' AND Description='$MemDesc';";
+                        mysqli_query($db, $q);
+                    }
+                }
+            }
+            echo "<script>alert('Member added successfully!')</script>";
+            header('location: manage_team.php');
         }
-      }
-      else
-      {
-      $q = "INSERT INTO namanteam (Link, Name, Description) VALUES ('$MemLink','$MemName','$MemDesc');";
-      mysqli_query($db, $q);
-      echo "<script>alert('Member added successfully!')</script>";
-
-      }
     }
-  }
+ }
 
   if (isset($_POST["delmem"])){
     $MemName = mysqli_real_escape_string($db, $_POST['mem_name']);
@@ -221,13 +211,13 @@
             <center>
             <div class="teamform">
                     <i class="fa fa-close cross" onclick="f1off()"></i><br>
-                    <form method="POST" action="manage_team.php">
+                    <form method="POST" action="manage_team.php" enctype="multipart/form-data">
                         <label>Member Name:</label><br>
-                        <input type="text" name="mem_name"><br><br>
+                        <input type="text" name="mem_name" required><br><br>
                         <label>Member Designation/Description:</label><br>
-                        <input type="text" name="mem_desc"><br><br>
+                        <input type="text" name="mem_desc" required><br><br>
                         <label>Member's LinkedIn:</label><br>
-                        <input type="text" name="mem_link"><br><br>
+                        <input type="text" name="mem_link" required><br><br>
                         <label>Member Image:</label><br>
                         <input type="file" name="mem_img"><br><br>
                         <input type="submit" name="addmem" value="addmem">
@@ -241,9 +231,9 @@
                     <i class="fa fa-close cross" onclick="f2off()"></i><br>
                     <form method="POST" action="manage_team.php">
                         <label>Member Name:</label><br>
-                        <input type="text" name="mem_name"><br><br>
+                        <input type="text" name="mem_name" required><br><br>
                         <label>Member Designation/Description:</label><br>
-                        <input type="text" name="mem_desc"><br><br>
+                        <input type="text" name="mem_desc" required><br><br>
                         <input type="submit" name="delmem">
                     </form>
             </div>
@@ -275,3 +265,11 @@
       </script>
       </body>
     </html>
+
+
+
+    <script>
+    	if ( window.history.replaceState ) {
+    		window.history.replaceState( null, null, window.location.href );
+    	}
+    </script>

@@ -21,7 +21,7 @@
         {
                 echo '<div class="member">
                         <center>
-                        <img src="../../'.$row['Image'].'"/><br>
+                        <img src="../../'.$row['Image'].'" style="border-radius:50%;" /><br>
                         <a class="linkedin" href="'.$row['Link'].'">My LinkedIn</a><br><br>
                         <font class="name">'.$row['Name'].'</font><br>
                         <p class="designation">'.$row['Description'].'</p></center>

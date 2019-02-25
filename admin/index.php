@@ -9,7 +9,7 @@
     <div class="login">
         <center><h1>Admin Login</h1></center>
         <form method="post" action="index.php">
-            <input type="text" name="username" placeholder="Enter Username">
+            <input type="text" name="username" placeholder="Enter Username" autofocus>
             <br>
             <!-- <input type="text" name="designation" placeholder="Enter Designation">
             <br> -->

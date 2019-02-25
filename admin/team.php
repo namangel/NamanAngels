@@ -1,4 +1,4 @@
-<?php require "../server.php"
+<?php require "../server.php";
 if(!isset($_SESSION['adminID'])){
     header('location: index.php');
 }
@@ -191,7 +191,7 @@ if(!isset($_SESSION['adminID'])){
                   echo '<div class="box">';
                       echo '<div class="admin">';
                           echo '<div class="img">';
-                              echo '<img class="img-responsive" src="../'.$row["Image"].'"/>';
+                              echo '<img class="img-responsive" src="../'.$row["Image"].'" style="border-radius:50%;"/>';
                               echo '<center><a class="linkedin" href="'.$row["Link"].'" target=_blank>My LinkedIn Account</a></center><br><br>';
                           echo '</div>';
                           echo '<div class="info"><br><br>';
