@@ -46,8 +46,8 @@
             color:black;
         }
         #map{
-			height:200px;
-			width:inherit;
+			height:100px;
+            width:inherit;
         }
     </style>
 </head>
@@ -104,8 +104,15 @@
             </center>
         </div>
         <div class="grid-item1"><br><center><h1>Address</h1>
-            <div id="map">
-                <script>
+             <div id="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.894091167963!2d73.02922931446696!3d19.024387987117553!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c3b0d6eb86df%3A0x9d4c87cc97d36b36!2sZoomStart+India!5e0!3m2!1sen!2sin!4v1493124603654"
+                        width="100%" height="230" frameborder="0" style="border: 0" allowfullscreen>
+                </iframe>
+                </center> 
+                </div>       
+                <br>
+        </div>        
+               <!-- <script>
                     function initMap() {
                     var uluru = {lat: -25.344, lng: 131.036};
                     var map = new google.maps.Map(
@@ -113,14 +120,11 @@
                     var marker = new google.maps.Marker({position: uluru, map: map});
                     }
                 </script>
-
                 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBT9SkM5dzPSbUvMyJrO3QsiYtRfzWIZkA&callback=initMap">
-                </script>
-                </div></center>
-        </div>
+                </script>-->
+        </body>
+</html>                
 
-        <br>
-    </div>
 
-</body>
-</html>
+
+
