@@ -17,6 +17,7 @@ if(!isset($_SESSION['StpID'])){
                 margin-bottom: 50px;
                 margin-right: 250px;
                 margin-left: 250px;
+                min-height:600px;
             }
             .form_text {
                 max-width: 100%;
