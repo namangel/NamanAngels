@@ -275,7 +275,7 @@
 		$fa = mysqli_real_escape_string($db, $_POST['finannotation']);
 		$rd = mysqli_real_escape_string($db, $_POST['revdriver']);
 		$year = date("Y") -2;
-		
+
 		$q= "SELECT Year FROM annual_financial WHERE StpID = '$id';";
 		$results = mysqli_query($db, $q);
 		$i=0;
@@ -312,8 +312,8 @@
 				$year= $year+1;
 			}
 		}
-		
-		
+
+
 		header('location:Finance.php');
 	}
 
@@ -325,6 +325,8 @@
         <link rel="stylesheet" href="../css/financial.css" type="text/css">
 		<title><?= $Stname?>-Finance | NAMAN</title>
   		<link rel="icon" href="../../img/favicon.jpg" type="image/jpg" sizes="16x16">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 	<style>
 		.LinkedIn, .Facebook, .Twitter, .Instagram, .Others{
 			display: none;
@@ -340,31 +342,38 @@
 	</style>
     </head>
 	<script type="text/javascript">
-	function social() {
-	var x = document.getElementById("soc").value;
-	if (x== "Facebook")
-	{
-		document.getElementById("Facebook").style.display = "block";
-	}
-	if (x== "LinkedIn")
-	{
-		document.getElementById("LinkedIn").style.display = "block";
-	}
-	if (x== "Instagram")
-	{
-		document.getElementById("Instagram").style.display = "block";
-	}
-	if (x== "Twitter")
-	{
-		document.getElementById("Twitter").style.display = "block";
-	}
-	if (x== "Others")
-	{
-		document.getElementById("Others").style.display = "block";
-	}
+		function social() {
+			var x = document.getElementById("soc").value;
+			if (x== "Facebook")
+			{
+				document.getElementById("Facebook").style.display = "block";
+			}
+			if (x== "LinkedIn")
+			{
+				document.getElementById("LinkedIn").style.display = "block";
+			}
+			if (x== "Instagram")
+			{
+				document.getElementById("Instagram").style.display = "block";
+			}
+			if (x== "Twitter")
+			{
+				document.getElementById("Twitter").style.display = "block";
+			}
+			if (x== "Others")
+			{
+				document.getElementById("Others").style.display = "block";
+			}
 
-}
-</script>
+		}
+
+		function triggerlabel(){
+			var x = document.getElementById("revdriver").value;
+
+			document.getElementById("dyname").innerHTML = x;
+		}
+
+	</script>
     <body>
 		<?php require '../include/header/stp_db.php'; ?>
 		<?php require '../include/nav/nav.php'; ?>
@@ -457,49 +466,49 @@
                 </div>
 
 				<div class="social sideprof">
-                <button class="pencil" onclick="socialon()"><i class="fa fa-pencil"></i></button>
-				<h3>Social Presence</h3>
-        		<ul class="proflist">
-				<?php
-					$q = "SELECT * FROM st_addetails WHERE StpID='$id'";
-					$results = mysqli_query($db, $q);
-					$row = mysqli_fetch_assoc($results);
+	                <button class="pencil" onclick="socialon()"><i class="fa fa-pencil"></i></button>
+					<h3>Social Presence</h3>
+	        		<ul class="proflist">
+					<?php
+						$q = "SELECT * FROM st_addetails WHERE StpID='$id'";
+						$results = mysqli_query($db, $q);
+						$row = mysqli_fetch_assoc($results);
 
-                    if($row['LinkedIn'] != NULL){
+	                    if($row['LinkedIn'] != NULL){
 
-						echo '<li class="item">LinkedIn	 <span class="value">';
-						echo $LinkedInLink;
-	                    echo '<li style="list-style: none; display: inline"><hr></li>';
+							echo '<li class="item">LinkedIn	 <span class="value">';
+							echo $LinkedInLink;
+		                    echo '<li style="list-style: none; display: inline"><hr></li>';
 
-					}
-					if($row['Facebook'] != NULL){
+						}
+						if($row['Facebook'] != NULL){
 
-						echo '<li class="item">Facebook	 <span class="value">';
-						echo $FBLink;
-	                    echo '<li style="list-style: none; display: inline"><hr></li>';
-					}
-					if($row['Twitter'] != NULL){
+							echo '<li class="item">Facebook	 <span class="value">';
+							echo $FBLink;
+		                    echo '<li style="list-style: none; display: inline"><hr></li>';
+						}
+						if($row['Twitter'] != NULL){
 
-						echo '<li class="item">Twitter	 <span class="value">';
-						echo $TwitterLink;
-	                    echo '<li style="list-style: none; display: inline"><hr></li>';
+							echo '<li class="item">Twitter	 <span class="value">';
+							echo $TwitterLink;
+		                    echo '<li style="list-style: none; display: inline"><hr></li>';
 
-					}
-					if($row['Instagram'] != NULL){
+						}
+						if($row['Instagram'] != NULL){
 
-						echo '<li class="item">Instagram	 <span class="value">';
-						echo $InstaLink;
-						echo '<li style="list-style: none; display: inline"><hr></li>';
+							echo '<li class="item">Instagram	 <span class="value">';
+							echo $InstaLink;
+							echo '<li style="list-style: none; display: inline"><hr></li>';
 
-					}
-					if($row['Others'] != NULL){
+						}
+						if($row['Others'] != NULL){
 
-						echo '<li class="item">Others	 <span class="value">';
-						echo $others;
-	                    echo '<li style="list-style: none; display: inline"><hr></li>';
+							echo '<li class="item">Others	 <span class="value">';
+							echo $others;
+		                    echo '<li style="list-style: none; display: inline"><hr></li>';
 
-					}
-                ?>
+						}
+	                ?>
             </div>
                 <div id="overlay">
                     <div class="compbasics">
@@ -1042,7 +1051,7 @@
 										$yr=$yr+1;
 										echo '<td>'.$prof.'</td>';
 									}
-									
+
 									$q = "SELECT financial_annotation FROM annual_financial WHERE StpID='$id'";
 									$result = mysqli_query($db, $q);
 									$row = mysqli_fetch_array($result);
@@ -1219,15 +1228,15 @@
 									<br><br>
 									<label>Revenue Driver</label>
 									<br>
-									<input type="text" name="revdriver" size="54" required>
+									<input type="text" id="revdriver" name="revdriver" size="54" required>
 									<br><br><hr>
 								</div>
 								<div class="formtext">
 									<?php echo date("Y")-2; ?>
 									<br>
-									<label>Sales</label>
+									<label id="dyname">Sales</label>
 									<br>
-									<input type="number" name="sales[]" size="54">
+									<input type="number" id="dynamehelper" name="sales[]" size="54" onfocus="triggerlabel()">
 									<br><br>
 									<label>Revenue</label>
 									<br>
@@ -1241,9 +1250,9 @@
 								<div class="formtext">
 									<?php echo date("Y")-1; ?>
 									<br>
-									<label>Sales</label>
+									<label id="dyname">Sales</label>
 									<br>
-									<input type="number" name="sales[]" size="54">
+									<input type="number" id="dynamehelper" name="sales[]" size="54">
 									<br><br>
 									<label>Revenue</label>
 									<br>
@@ -1257,9 +1266,9 @@
 								<div class="formtext">
 									<?php echo date("Y"); ?>
 									<br>
-									<label>Sales</label>
+									<label id="dyname">Sales</label>
 									<br>
-									<input type="number" name="sales[]" size="54">
+									<input type="number" id="dynamehelper" name="sales[]" size="54">
 									<br><br>
 									<label>Revenue</label>
 									<br>
@@ -1273,9 +1282,9 @@
 								<div class="formtext">
 									<?php echo date("Y")+1; ?>
 									<br>
-									<label>Sales</label>
+									<label id="dyname">Sales</label>
 									<br>
-									<input type="number" name="sales[]" size="54">
+									<input type="number" id="dynamehelper" name="sales[]" size="54">
 									<br><br>
 									<label>Revenue</label>
 									<br>
@@ -1289,9 +1298,9 @@
 								<div class="formtext">
 									<?php echo date("Y")+2; ?>
 									<br>
-									<label>Sales</label>
+									<label id="dyname">Sales</label>
 									<br>
-									<input type="number" name="sales[]" size="54">
+									<input type="number" id="dynamehelper" name="sales[]" size="54">
 									<br><br>
 									<label>Revenue</label>
 									<br>
@@ -1305,9 +1314,9 @@
 								<div class="formtext">
 									<?php echo date("Y")+3; ?>
 									<br>
-									<label>Sales</label>
+									<label id="dyname">Sales</label>
 									<br>
-									<input type="number" name="sales[]" size="54">
+									<input type="number" id="dynamehelper" name="sales[]" size="54">
 									<br><br>
 									<label>Revenue</label>
 									<br>
