@@ -1,7 +1,7 @@
 <?php
 
 require('../../server.php');
-$s = $_GET['mypager'];
+$s = $_GET['op'];
 
 $sql1="SELECT * FROM st_details where StpID='$s'";
 $record1= mysqli_query($db,$sql1);
@@ -33,34 +33,37 @@ class PDF extends FPDF {
     //     $this->Cell(0,10,'Page'.$this->PageNo(),0,0,'C');
     // }
 
-    function mycell($w,$h,$x,$t){
-        $height=$h/3;
-        $first=$height+2;
-        $second=$height+$height+$height+3;
-        $len= strlen($t);
-        if($len>60){
-            $txt= str_split($t,50);
-            $this->SetX($x);
-            $this->Cell($w,$first,$txt[0],'','','');
-            $this->SetX($x);
-            $this->Cell($w,$second,$txt[1],'','','');
-        }
-        else {
-            $this->SetX($x);
-            $this->Cell($w,$h,$t,'','0','L','0');
-        }
-    }
+    // function mycell($w,$h,$x,$t){
+    //     $height=$h/3;
+    //     $first=$height+2;
+    //     $second=$height+$height+$height+3;
+    //     $len= strlen($t);
+    //     if($len>60){
+    //         $txt= str_split($t,50);
+    //         $this->SetX($x);
+    //         $this->Cell($w,$first,$txt[0],'','','');
+    //         $this->SetX($x);
+    //         $this->Cell($w,$second,$txt[1],'','','');
+    //     }
+    //     else {
+    //         $this->SetX($x);
+    //         $this->Cell($w,$h,$t,'','0','L','0');
+    //     }
+    // }
 }
 
 
-$pdf= new PDf('p','mm','A4');
+$pdf= new PDF('p','mm','A4');
 
 $pdf->AddPage();
 
-while(($row1= mysqli_fetch_array($record1)) && ($row2= mysqli_fetch_array($record2)) && ($row3= mysqli_fetch_array($record3))
-&& ($row4= mysqli_fetch_array($record4))&& ($row5= mysqli_fetch_array($record5))  ){
-    $pdf->SetFont('Arial','B',25);
 
+
+while(($row1= mysqli_fetch_array($record1)) && ($row2= mysqli_fetch_array($record2)) ){
+    $row3= mysqli_fetch_array($record3);
+    $row4= mysqli_fetch_array($record4);
+    $row5= mysqli_fetch_array($record5);
+    $pdf->SetFont('Arial','B',25);
     $pdf->cell(0,10, $row1['Stname'], 0, 1, 'L');
     $pdf->SetFont('Arial','',11);
     $pdf->cell(25,5,$row1['Type']."," , 0, 0, 'L');
@@ -184,16 +187,23 @@ while(($row1= mysqli_fetch_array($record1)) && ($row2= mysqli_fetch_array($recor
         $pdf->MultiCell(120,5,"The Company has not provided any details concerning the said Point of discussion with aayush in consideration.");
         $pdf->Ln();
     }
+
+
+
     $pdf->SetFont('Arial','B',16);
     $pdf->SetTextColor(135,206,235);
     $pdf->cell(40, 5 , "Startup Anual Financial", 0, 1, 'L');
     $pdf->SetTextColor(0,0,0);
+
+    $x = $pdf->GetX();
+    $y = $pdf->GetY();
     $pdf->SetFont('Arial','',13);
-    $pdf->SetXY(40,180);
+    $pdf->SetXY($x,$y);
+    $pdf->cell(30,10,"    ",0,0,'L');
     while($row6= mysqli_fetch_assoc($record6)){
         $pdf->cell(25,10,$row6['year'],0,0,'L');
     }
-    $pdf->SetXY(10,190);
+    $pdf->SetXY(10,230);
     $pdf->cell(30, 10 , "Sales", 1, 0, 'L');
     while($row10= mysqli_fetch_assoc($record10)){
         $pdf->cell(25,10,$row10['sales'],1,0,'L');

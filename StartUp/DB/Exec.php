@@ -342,31 +342,31 @@
 		</style>
     </head>
 	<script type="text/javascript">
-	function social() {
-	var x = document.getElementById("soc").value;
-	if (x== "Facebook")
-	{
-		document.getElementById("Facebook").style.display = "block";
-	}
-	if (x== "LinkedIn")
-	{
-		document.getElementById("LinkedIn").style.display = "block";
-	}
-	if (x== "Instagram")
-	{
-		document.getElementById("Instagram").style.display = "block";
-	}
-	if (x== "Twitter")
-	{
-		document.getElementById("Twitter").style.display = "block";
-	}
-	if (x== "Others")
-	{
-		document.getElementById("Others").style.display = "block";
-	}
+		function social() {
+			var x = document.getElementById("soc").value;
+			if (x== "Facebook")
+			{
+				document.getElementById("Facebook").style.display = "block";
+			}
+			if (x== "LinkedIn")
+			{
+				document.getElementById("LinkedIn").style.display = "block";
+			}
+			if (x== "Instagram")
+			{
+				document.getElementById("Instagram").style.display = "block";
+			}
+			if (x== "Twitter")
+			{
+				document.getElementById("Twitter").style.display = "block";
+			}
+			if (x== "Others")
+			{
+				document.getElementById("Others").style.display = "block";
+			}
 
-}
-</script>
+		}
+	</script>
     <body>
 		<?php require '../include/header/stp_db.php'; ?>
 		<?php require '../include/nav/nav.php'; ?>
@@ -438,7 +438,7 @@
 						<li style="list-style: none; display: inline">
 							<hr>
 						</li>
-						<li><button class="b1" name="requestbtn" onclick="">Download One Pager</button></li>
+						<li><button class="b1" name="requestbtn" onclick="window.open('generateonepager.php?op=<?= $id?>','_blank')">Download One Pager</button></li>
 					</ul>
 				</div>
 
@@ -472,7 +472,7 @@
 						echo '<li class="item">LinkedIn	 <span class="value">';
 						echo $LinkedInLink;
 	                    echo '<li style="list-style: none; display: inline"><hr></li>';
-				
+
 					}
 					if($row['Facebook'] != NULL){
 
@@ -481,25 +481,25 @@
 	                    echo '<li style="list-style: none; display: inline"><hr></li>';
 					}
 					if($row['Twitter'] != NULL){
-		
+
 						echo '<li class="item">Twitter	 <span class="value">';
 						echo $TwitterLink;
 	                    echo '<li style="list-style: none; display: inline"><hr></li>';
-						
+
 					}
 					if($row['Instagram'] != NULL){
-		
+
 						echo '<li class="item">Instagram	 <span class="value">';
 						echo $InstaLink;
 						echo '<li style="list-style: none; display: inline"><hr></li>';
-						
+
 					}
 					if($row['Others'] != NULL){
-		
+
 						echo '<li class="item">Others	 <span class="value">';
 						echo $others;
 	                    echo '<li style="list-style: none; display: inline"><hr></li>';
-						
+
 					}
                 ?>
             </div>
@@ -860,7 +860,7 @@
 							<i class="fa fa-linkedin">&nbsp;&nbsp;<input type="text" name="sflinkedin" size="30" placeholder="<?=$LinkedInLink?>"></i><br>
 							</div>
 							<div id="Facebook" class="Facebook">
-							<i class="fa fa-facebook">&nbsp;&nbsp;<input type="text" name="sffacebook" size="30" placeholder="<?=$FBLink?>"></i><br>							
+							<i class="fa fa-facebook">&nbsp;&nbsp;<input type="text" name="sffacebook" size="30" placeholder="<?=$FBLink?>"></i><br>
 							</div>
 							<div id="Instagram" class="Instagram">
 							<i class="fa fa-instagram">&nbsp;&nbsp;<input type="text" name="sfinstagram" size="30" placeholder="<?=$InstaLink?>"></i><br>
@@ -871,7 +871,7 @@
 							<div id="Others" class="Others">
 							<i class="fa fa-globe">&nbsp;&nbsp;<input type="text" name="sfothers" size="30" placeholder="<?=$others?>"></i><br>
 							</div>
-		
+
 								<div class="formtext submits">
 									<input class="cancel" name="cancel" type="submit" value="Cancel"> <input class="save" name="sfsave" type="submit" value="Save">
 								</div>
