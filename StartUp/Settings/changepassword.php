@@ -5,6 +5,12 @@
     }
 
     $u = $_SESSION['StpID'];
+    
+    $qu = "SELECT * FROM st_details WHERE StpID='$u'";
+	$results = mysqli_query($db, $qu);
+	$row = mysqli_fetch_assoc($results);
+    $Stname = $row['Stname'];
+    
     $qu = "SELECT * FROM userstp WHERE StpID='$u'";
     $results = mysqli_query($db, $qu);
     $row = mysqli_fetch_assoc($results);

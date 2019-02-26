@@ -1,21 +1,19 @@
-<?php
-    require '../../server.php';
-    if(!isset($_SESSION['StpID'])){
-        header('location: ../pageerror.php');
+<?php require('../../server.php');
+    if(!isset($_SESSION['InvID'])){
+        header('location: pageerror.php');
     }
-    $u = $_SESSION['StpID'];
-        
-    $qu = "SELECT * FROM st_details WHERE StpID='$u'";
-    $results = mysqli_query($db, $qu);
-    $row = mysqli_fetch_assoc($results);
-    $Stname = $row['Stname'];
+    $u = $_SESSION['InvID'];
+	$qu = "SELECT * FROM inv_details WHERE InvID='$u'";
+  	$results = mysqli_query($db, $qu);
+	$row = mysqli_fetch_assoc($results);
+    $cname = $row['CName'];
 ?>
 <html>
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- <link rel="stylesheet" href="../css/companyprof.css" type="text/css"> -->
-        <script src="js/profform.js"></script>
-        <title>Startup-Evaluate | NAMAN</title>
+        <!-- <script src="js/profform.js"></script> -->
+        <title>Demo Request | NAMAN</title>
   		<link rel="icon" href="../../img/favicon.jpg" type="image/jpg" sizes="16x16">
         <style>
             .container{
@@ -23,6 +21,7 @@
                 margin-bottom: 50px;
                 margin-right: 250px;
                 margin-left: 250px;
+                min-height:600px;
             }
             .form_text {
                 max-width: 100%;
@@ -58,18 +57,18 @@
         </style>
     </head>
     <body>
-			<?php require '../include/header/stp_db.php'; ?>
-			<?php require '../include/nav/nav.php'; ?>
+			<?php require 'include/header/inv_db.php'; ?>
+			<?php require 'include/nav/nav.php'; ?>
             <div class="container">
-                <h3>Evaluation Form</h3>
-                <p>Fill out the form and receive help from our team to evaluate your<p>
-                <form method="post" action="/NamanAngels/Signing/mem_email.php">
+                <h3>Schedule a demo</h3>
+                <p>Fill out the form and schedule a demo with our team.<p>
+                <form method="post" action="mem_email.php">
                     <label>Email:</label>
-                        <input type="email" name="evaluate_from" placeholder="Enter your email.." required>
+                        <input type="email" name="demo_from" placeholder="Enter your email.." required>
                     <label>Subject:</label>
-                        <textarea name="evaluate_subject" placeholder="Enter subject.." maxlength="250" required></textarea>
+                        <textarea name="demo_subject" placeholder="Enter subject.." maxlength="250" required></textarea>
                     <br><label>Query:</label>
-                        <textarea rows="10" name="evaluate_query" id="evaluate_query" placeholder="Enter your qurey in detail.." required></textarea>
+                        <textarea rows="10" name="demo_query" id="demo_query" placeholder="Enter your qurey in detail.." required></textarea>
                     <script>
                         function check_words(e) {
                             var BACKSPACE   = 8;
@@ -84,12 +83,12 @@
                                 this.value = words.join(' ');
                             }
                         }
-                        var textarea = document.getElementById('evaluate_query');
+                        var textarea = document.getElementById('demo_query');
                         textarea.addEventListener('keydown', check_words);
                         textarea.addEventListener('keyup', check_words);
                     </script>
                     <div>
-                        <input type="reset" onclick="evaluateoff()"value="Cancel" name="cancel" class="cancel">
+                        <input type="reset" onclick="demooff()" value="Cancel" name="cancel" class="cancel">
                         <input type="submit" value="Send" name="sumsave" class="save">
                     </div>
                 </form>

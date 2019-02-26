@@ -3,6 +3,7 @@
 $db = mysqli_connect('localhost', 'root', '', 'namangel');
 //admin login
 session_start();
+
 if (isset($_POST['login'])) {
   $username = mysqli_real_escape_string($db, $_POST['username']);
   $password = mysqli_real_escape_string($db, $_POST['password']);
@@ -14,6 +15,24 @@ if (isset($_POST['login'])) {
       header('location: dashboard.php');
   }else {
       echo "<script>alert('Wrong username/password combination')</script>";
+  }
+
+}
+
+if (isset($_POST['loginblind'])) {
+
+  $binid = mysqli_real_escape_string($db, $_POST['binid']);
+  $memid = mysqli_real_escape_string($db, $_POST['memid']);
+
+
+  $query = "SELECT * FROM userbinv WHERE BinvID='$binid' AND MemID='$memid'";
+  $results = mysqli_query($db, $query);
+  $row = mysqli_fetch_assoc($results);
+  if (mysqli_num_rows($results) == 1) {
+      $_SESSION['BinvID'] = $row['BinvID'];
+      header('location: blindbrowse.php');
+  }else {
+      echo "<script>alert('Wrong id combination')</script>";
   }
 
 }

@@ -1,8 +1,12 @@
 <?php require('../../server.php');
-if(!isset($_SESSION['InvID'])){
-    header('location: pageerror.php');
-}
-
+    if(!isset($_SESSION['InvID'])){
+        header('location: pageerror.php');
+    }
+    $u = $_SESSION['InvID'];
+	  $qu = "SELECT * FROM inv_details WHERE InvID='$u'";
+  	$results = mysqli_query($db, $qu);
+	  $row = mysqli_fetch_assoc($results);
+    $cname = $row['CName'];
 
 ?>
 <html>
@@ -34,7 +38,7 @@ if(!isset($_SESSION['InvID'])){
                 <h3>Schedule a meeting</h3>
                 <div class="image"><img src="img/Meet.png"></div>
                 <br>
-                <button class="butn">Meet us</button>
+                <button class="butn" onclick="window.open('demo_mail.php','location=no')">Meet us</button>
                 <p style="color: gray; font-size:10pt;">By clicking above, we will be notified of your request to meet.<br>We will contact you shortly.</p>
                 </center>
             </div>

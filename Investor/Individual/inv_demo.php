@@ -8,7 +8,7 @@ $results = mysqli_query($db, $qu);
 $row = mysqli_fetch_assoc($results);
 $fname = $row['FName'];
 $lname = $row['LName'];
- ?>
+?>
 <html>
     <head>
         <title>Demo - NamanAngels</title>
@@ -38,7 +38,7 @@ $lname = $row['LName'];
                 <h3>Schedule a meeting</h3>
                 <div class="image"><img src="img/Meet.png"></div>
                 <br>
-                <button class="butn">Meet us</button>
+                <button class="butn" onclick="window.open('demo_mail.php','location=no')">Meet us</button>
                 <p style="color: gray; font-size:10pt;">By clicking above, we will be notified of your request to meet.<br>We will contact you shortly.</p>
                 </center>
             </div>

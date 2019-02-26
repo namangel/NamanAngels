@@ -1,34 +1,11 @@
 <?php
     require '../../server.php';
-
-    if (isset($_POST['loginmem'])) {
-
-      $mem = mysqli_real_escape_string($db, $_POST['memid']);
-      $pass = mysqli_real_escape_string($db, $_POST['pass']);
-      // $designation = mysqli_real_escape_string($db, $_POST['designation']);
-
-    //     $fpass = sha1($password);
-      // $query = "SELECT * FROM admin WHERE Username='$username' AND Password='$password'";
-      // $results = mysqli_query($db, $query);
-      // $row = mysqli_fetch_assoc($results);
-      if ($mem = "memberabc" && $pass == "mem123") {
-
-          // $_SESSION['adminID'] = $row['adminID'];
-          // $_SESSION['search'] = "";
-
-          header('location: blindbrowse.php');
-
-      }else {
-          echo "<script>alert('Wrong id/password combination')</script>";
-      }
-
-    }
 ?>
 <head>
     <link rel="stylesheet" href="css/login.css" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Investor Membership | NAMAN</title>
-    <link rel="icon" href="../../img/favicon.jpg" type="image/jpg" sizes="16x16"> 
+    <link rel="icon" href="../../img/favicon.jpg" type="image/jpg" sizes="16x16">
 </head>
 <body>
     <?php require "include/header/binv_browse.php"?>
@@ -42,13 +19,13 @@
     <div class="login">
         <center><h1>Membership Login</h1></center>
         <form method="post" action="index.php">
-            <input type="text" name="memid" placeholder="Enter Membership ID">
+            <input type="text" name="binid" placeholder="Enter Investor ID" required>
             <br>
             <!-- <input type="text" name="designation" placeholder="Enter Designation">
             <br> -->
-            <input type="password" name="pass" placeholder="Enter Password">
+            <input type="text" name="memid" placeholder="Enter Membership ID" required>
             <br>
-            <input type="submit" name="loginmem" class="log" value="Login">
+            <input type="submit" name="loginblind" class="log" value="Login">
         </form>
         <p> Not a member yet?</p>
         <p> Create your Investor Profile Now </p>
@@ -62,5 +39,5 @@
     <br>
     </center>
 
-    <?php require "../../include/footer/footer.php"?>
+    <?php require "../../include/footer/footersmall.php"?>
 </body>
