@@ -1,7 +1,10 @@
 <?php
 	require '../../server.php';
-
 	$id = $_SESSION['StpID'];
+	$qu = "SELECT * FROM st_details WHERE StpID = '$id'";
+    $results = mysqli_query($db, $qu);
+    $row = mysqli_fetch_assoc($results);
+    $Stname = $row['Stname'];
 
 ?>
 <html>

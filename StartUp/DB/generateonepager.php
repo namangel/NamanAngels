@@ -63,23 +63,75 @@ while(($row1= mysqli_fetch_array($record1)) && ($row2= mysqli_fetch_array($recor
     $row3= mysqli_fetch_array($record3);
     $row4= mysqli_fetch_array($record4);
     $row5= mysqli_fetch_array($record5);
+    $pdf->SetFont('Arial','B',11);
+    $pdf->SetXY(135,40);
+    $pdf->cell(0,0, "Company ", 0, 1, 'L');
+    $pdf->SetFont('Arial','',11);
+    $pdf->SetXY(135,50);
+    $pdf->cell(0,0 , "URL:", 0, 0, 'L');
+    $pdf->SetXY(135,50);
+    $pdf->cell(0,0,$row1['Website'] , 0, 1, 'R');
+    $pdf->SetXY(135,51);
+    $pdf->cell(0, 10 , "Founder 1:", 0, 0, 'L');
+    $pdf->SetXY(135,51);
+    $pdf->cell(0, 10,$row1['Ffname'] , 0, 1, 'R');
+    $pdf->SetXY(135,56);
+    $pdf->cell(0, 10 , "Founder 2:", 0, 0, 'L');
+    $pdf->SetXY(150,56);
+    $pdf->cell(0, 10,$row1['Sfname'] , 0, 1, 'R');
+    $pdf->SetXY(135,62);
+    $pdf->SetFont('Arial','B',11);
+    $pdf->cell(0, 10 , "Entrepreneur", 0, 0, 'L');
+    $pdf->SetXY(135,70);
+    $pdf->SetFont('Arial','',11);
+    $pdf->cell(0, 10 , $row1['Stname'], 0, 0, 'L');
+    $pdf->SetXY(135,74);
+    $pdf->SetFont('Arial','',11);
+    $pdf->cell(0, 10 , $row1['Email'], 0, 0, 'L');
+    $pdf->SetXY(135,82);
+    $pdf->SetFont('Arial','B',11);
+    $pdf->cell(0, 10 , "Round Overview", 0, 0, 'L');
+    $pdf->SetXY(135,91);
+    $pdf->SetFont('Arial','',11);
+    $pdf->cell(0, 10 , "Funding Stage:", 0, 0, 'L');
+    $pdf->SetXY(135,91);
+    $pdf->cell(0, 10 , $row3['Round'], 0, 0, 'R');
+    $pdf->SetXY(135,96);
+    $pdf->cell(0, 10 , "Capital Raised:", 0, 0, 'L');
+    $pdf->SetXY(135,96);
+    $pdf->cell(0, 10 , $row4['Capital_raised'], 0, 0, 'R');
+    $pdf->SetXY(135,101);
+    $pdf->cell(0, 10 , "Capital Seeking:", 0, 0, 'L');
+    $pdf->SetXY(135,101);
+    $pdf->cell(0, 10 , $row3['Seeking'], 0, 0, 'R');
+    $pdf->SetXY(135,106);
+    $pdf->cell(0, 10 , "Pre-money Valuation:", 0, 0, 'L');
+    $pdf->SetXY(135,106);
+    $pdf->cell(0, 10 , $row3['Premoney_val'], 0, 0, 'R');
+    $pdf->SetXY(135,115);
+    $pdf->SetFont('Arial','B',11);
+    $pdf->cell(0, 10 , "Advisors", 0, 0, 'L');
+    $pdf->SetXY(135,123);
+    $pdf->SetFont('Arial','',11);
+    $pdf->cell(0, 10 , $row5['Name'], 0, 0, 'L');
+
+
+    $pdf->SetXY(10,10);
     $pdf->SetFont('Arial','B',25);
     $pdf->cell(0,10, $row1['Stname'], 0, 1, 'L');
     $pdf->SetFont('Arial','',11);
-    $pdf->cell(25,5,$row1['Type']."," , 0, 0, 'L');
-    $pdf->cell(25, 5,$row1['State']."," , 0, 0, 'L');
-    $pdf->cell(25, 5,$row1['Country'] , 0, 1, 'L');
-    $pdf->cell(1, 10,$row2['OLP'] , 0, 1, 'L');
+    $pdf->cell(100,5,$row1['Type'].", ".$row1['State'].", ".$row1['Country'] , 0, 1, 'L');
+    $pdf->cell(1, 5,$row2['OLP'] , 0, 1, 'L');
     $pdf->SetFont('Arial','B',11);
     $pdf->cell(60, 10 , "Company Summary ", 0, 1, 'L');
     $pdf->SetFont('Arial','',11);
     $x=$pdf->GetX();
     if($row2['Summary']!=''){
-        $pdf->MultiCell(100,5, $row2['Summary']);
+        $pdf->MultiCell(120,5, $row2['Summary']);
         $pdf->Ln();
     }
     else{
-        $pdf->MultiCell(100,5,"The Company has not provided any details concerning the said Point of discussion with aayush in consideration.");
+        $pdf->MultiCell(120,5,"The Company has not provided any details concerning the said Point of discussion with aayush in consideration.");
         $pdf->Ln();
     }
     $pdf->SetFont('Arial','B',11);
@@ -87,7 +139,7 @@ while(($row1= mysqli_fetch_array($record1)) && ($row2= mysqli_fetch_array($recor
     $pdf->SetFont('Arial','',11);
     $x=$pdf->GetX();
     if($row2['CustomerProblem']!=''){
-        $pdf->MultiCell(140,5,$row2['CustomerProblem']);
+        $pdf->MultiCell(120,5,$row2['CustomerProblem']);
         $pdf->Ln();
     }
     else{
@@ -190,6 +242,9 @@ while(($row1= mysqli_fetch_array($record1)) && ($row2= mysqli_fetch_array($recor
 
 
 
+    $x = $pdf->GetX();
+    $y = $pdf->GetY();
+    $pdf->SetXY($x,$y);
     $pdf->SetFont('Arial','B',16);
     $pdf->SetTextColor(135,206,235);
     $pdf->cell(40, 5 , "Startup Anual Financial", 0, 1, 'L');
@@ -198,12 +253,11 @@ while(($row1= mysqli_fetch_array($record1)) && ($row2= mysqli_fetch_array($recor
     $x = $pdf->GetX();
     $y = $pdf->GetY();
     $pdf->SetFont('Arial','',13);
-    $pdf->SetXY($x,$y);
-    $pdf->cell(30,10,"    ",0,0,'L');
+    $pdf->SetXY($x+30,$y);
     while($row6= mysqli_fetch_assoc($record6)){
         $pdf->cell(25,10,$row6['year'],0,0,'L');
     }
-    $pdf->SetXY(10,230);
+    $pdf->SetXY($x,$y+10);
     $pdf->cell(30, 10 , "Sales", 1, 0, 'L');
     while($row10= mysqli_fetch_assoc($record10)){
         $pdf->cell(25,10,$row10['sales'],1,0,'L');
@@ -227,57 +281,7 @@ while(($row1= mysqli_fetch_array($record1)) && ($row2= mysqli_fetch_array($recor
     $pdf->Ln();
 
 
-    $pdf->SetFont('Arial','B',11);
-    $pdf->SetXY(135,40);
-    $pdf->cell(0,0, "Company ", 0, 1, 'L');
-    $pdf->SetFont('Arial','',11);
-    $pdf->SetXY(135,50);
-    $pdf->cell(0,0 , "URL:", 0, 0, 'L');
-    $pdf->SetXY(135,50);
-    $pdf->cell(0,0,$row1['Website'] , 0, 1, 'R');
-    $pdf->SetXY(135,51);
-    $pdf->cell(0, 10 , "Founder 1:", 0, 0, 'L');
-    $pdf->SetXY(135,51);
-    $pdf->cell(0, 10,$row1['Ffname'] , 0, 1, 'R');
-    $pdf->SetXY(135,56);
-    $pdf->cell(0, 10 , "Founder 2:", 0, 0, 'L');
-    $pdf->SetXY(150,56);
-    $pdf->cell(0, 10,$row1['Sfname'] , 0, 1, 'R');
-    $pdf->SetXY(135,62);
-    $pdf->SetFont('Arial','B',11);
-    $pdf->cell(0, 10 , "Entrepreneur", 0, 0, 'L');
-    $pdf->SetXY(135,70);
-    $pdf->SetFont('Arial','',11);
-    $pdf->cell(0, 10 , $row1['Stname'], 0, 0, 'L');
-    $pdf->SetXY(135,74);
-    $pdf->SetFont('Arial','',11);
-    $pdf->cell(0, 10 , $row1['Email'], 0, 0, 'L');
-    $pdf->SetXY(135,82);
-    $pdf->SetFont('Arial','B',11);
-    $pdf->cell(0, 10 , "Round Overview", 0, 0, 'L');
-    $pdf->SetXY(135,91);
-    $pdf->SetFont('Arial','',11);
-    $pdf->cell(0, 10 , "Funding Stage:", 0, 0, 'L');
-    $pdf->SetXY(135,91);
-    $pdf->cell(0, 10 , $row3['Round'], 0, 0, 'R');
-    $pdf->SetXY(135,96);
-    $pdf->cell(0, 10 , "Capital Raised:", 0, 0, 'L');
-    $pdf->SetXY(135,96);
-    $pdf->cell(0, 10 , $row4['Capital_raised'], 0, 0, 'R');
-    $pdf->SetXY(135,101);
-    $pdf->cell(0, 10 , "Capital Seeking:", 0, 0, 'L');
-    $pdf->SetXY(135,101);
-    $pdf->cell(0, 10 , $row3['Seeking'], 0, 0, 'R');
-    $pdf->SetXY(135,106);
-    $pdf->cell(0, 10 , "Pre-money Valuation:", 0, 0, 'L');
-    $pdf->SetXY(135,106);
-    $pdf->cell(0, 10 , $row3['Premoney_val'], 0, 0, 'R');
-    $pdf->SetXY(135,115);
-    $pdf->SetFont('Arial','B',11);
-    $pdf->cell(0, 10 , "Advisors", 0, 0, 'L');
-    $pdf->SetXY(135,123);
-    $pdf->SetFont('Arial','',11);
-    $pdf->cell(0, 10 , $row5['Name'], 0, 0, 'L');
+
 }
 $pdf->OutPut();
 ?>
