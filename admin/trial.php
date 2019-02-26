@@ -13,10 +13,10 @@
     $AdminDesgn = mysqli_real_escape_string($db, $_POST['Admindesgn']);
     $Username = mysqli_real_escape_string($db, $_POST['Adminuser']);
     $Password = mysqli_real_escape_string($db, $_POST['pw_1']);
-    $ProfilePic = mysqli_real_escape_string($db, $_POST['ProfilePic']);
+    // $ProfilePic = mysqli_real_escape_string($db, $_POST['Profile']);
 
-    
-   
+
+
     $member_check_query = "SELECT * FROM admin WHERE AdminName='$AdminName' AND AdminDesgn='$AdminDesgn';";
     $result = mysqli_query($db, $member_check_query);
     $user = mysqli_fetch_assoc($result);
@@ -28,8 +28,8 @@
     }
     else
     {
-        $q = "INSERT INTO admin (AdminName,AdminDesgn,Username,Password, ProfilePic) VALUES ($AdminName, $AdminDesgn,$Username,$Password, $ProfilePic);";
-        mysqli_query($db, $q);
+      $q = "INSERT INTO admin (AdminName,AdminDesgn,Username,Password) VALUES ('$AdminName','$AdminDesgn','$Username','$Password');";
+      mysqli_query($db, $q);
 
         // $check = getimagesize($_FILES["mem_img"]["tmp_name"]);
         if(@getimagesize($_FILES["ProfilePic"]["tmp_name"]))
@@ -53,13 +53,14 @@
                   $uploadas = "uploads/admin/".$file_name;
                   $upload = "../uploads/admin/".$file_name;
                   if(move_uploaded_file($file_tmp,$upload)){
-                      $q = "UPDATE admin set ProfilePic='$uploadas' where adminID='$id';";
+                      $q = "UPDATE admin set ProfilePic='$uploadas' AdminName='$AdminName' AND AdminDesgn='$AdminDesgn';";
                       mysqli_query($db, $q);
                       echo "<script>alert('Successfully Uploaded')</script>";
                     }
                 }
             }
             echo "<script>alert('Admin added successfully!')</script>";
+
             header('location:trial.php');
         }
     }
@@ -89,6 +90,7 @@
 ?>
 <html lang="en">
   <head>
+    <?php require "sidebar.php" ?>
     <meta charset="UTF-8">
     <title>Manage Naman Team| NAMAN</title>
     <link rel="icon" href="../img/favicon.jpg" type="image/jpg" sizes="16x16">
@@ -192,7 +194,7 @@
     </style>
   </head>
   <body>
-  
+
   <div class="cont">
       <div class="welcome">
         <div class="container-fluid">
@@ -234,7 +236,7 @@
                       <br>
                       <br>
                         <input type="submit" name="addadmin" value="addadmin">
-                        
+
                     </form>
             </div>
             </center>
