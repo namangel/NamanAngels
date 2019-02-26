@@ -2,6 +2,12 @@
 if(!isset($_SESSION['InvID'])){
     header('location: pageerror.php');
 }
+$u = $_SESSION['InvID'];
+$qu = "SELECT * FROM inv_details WHERE InvID='$u'";
+$results = mysqli_query($db, $qu);
+$row = mysqli_fetch_assoc($results);
+$fname = $row['FName'];
+$lname = $row['LName'];
  ?>
 <html>
     <head>
