@@ -35,10 +35,19 @@
     	serve entrepreneurs.
       </font>
       </b>
+      <br>
+      <br>
+
+      <center>
+      <button class="button" type="submit" style="width:270px;background-color:#0A2B40;color:white;"  onclick="location.href='Signing/register_inv.php'">
+        <span>CREATE YOUR PROFILE</span></button>
+
+      <button class="button" type="submit" style="width:270px;background-color:#0A2B40;color:white;"  onclick="location.href='investor/binv'">
+      <span>START BROWSING</span></button>
+    </center>
 
     </div>
     <div style="grid-column: span 2; background-color: inherit;"></div>
-      <br>
       <br>
     </center>
   </div>
