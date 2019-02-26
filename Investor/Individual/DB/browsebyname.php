@@ -7,6 +7,12 @@
         $_SESSION['search'] = mysqli_real_escape_string($db, $_POST['searchkey']);
         header('location: browsebyname.php?pageno=1');
     }
+    $u = $_SESSION['InvID'];
+    $qu = "SELECT * FROM inv_details WHERE InvID='$u'";
+    $results = mysqli_query($db, $qu);
+    $row = mysqli_fetch_assoc($results);
+    $fname = $row['FName'];
+    $lname = $row['LName'];
 ?>
 <html>
 <head>
