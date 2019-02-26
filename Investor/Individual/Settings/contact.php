@@ -1,25 +1,27 @@
 <?php
 
-  require '../../../server.php';
-  if(!isset($_SESSION['InvID'])){
-      header('location: ../pageerror.php');
-  }
+    require '../../../server.php';
+    if(!isset($_SESSION['InvID'])){
+        header('location: ../pageerror.php');
+    }
 
-  $u = $_SESSION['InvID'];
-  $qu = "SELECT * FROM inv_details WHERE InvID='$u'";
-	$results = mysqli_query($db, $qu);
-	$row = mysqli_fetch_assoc($results);
-	$Stname = $row['CName'];
-	$Ffname = $row['FName'];
-	$Sfname = $row['LName'];
-  $Email = $row['Email'];
+    $u = $_SESSION['InvID'];
+    $qu = "SELECT * FROM inv_details WHERE InvID='$u'";
+    $results = mysqli_query($db, $qu);
+    $row = mysqli_fetch_assoc($results);
+    $Stname = $row['CName'];
+    $Ffname = $row['FName'];
+    $Sfname = $row['LName'];
+    $Email = $row['Email'];
+    $fname = $row['FName'];
+    $lname = $row['LName'];
 
-  $qu = "SELECT * FROM userinv WHERE InvID='$u'";
-  $results = mysqli_query($db, $qu);
-	$row = mysqli_fetch_assoc($results);
-	$Password = $row['Password'];
+    $qu = "SELECT * FROM userinv WHERE InvID='$u'";
+    $results = mysqli_query($db, $qu);
+    $row = mysqli_fetch_assoc($results);
+    $Password = $row['Password'];
 
-  if(isset($_POST["contactset"]))
+    if(isset($_POST["contactset"]))
 	{
     $fname = mysqli_real_escape_string($db, $_POST['fname']);
     $lname = mysqli_real_escape_string($db, $_POST['lname']);

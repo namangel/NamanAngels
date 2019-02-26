@@ -8,6 +8,11 @@
         $_SESSION['search'] = mysqli_real_escape_string($db, $_POST['indsearchkey']);
         header('location: browsebyindustry.php?pageno=1');
     }
+    $u = $_SESSION['InvID'];
+	$qu = "SELECT * FROM inv_details WHERE InvID='$u'";
+  	$results = mysqli_query($db, $qu);
+	$row = mysqli_fetch_assoc($results);
+    $cname = $row['CName'];
 ?>
 <html>
 <head>

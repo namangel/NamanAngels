@@ -10,6 +10,13 @@
     $row = mysqli_fetch_assoc($results);
     $Password = $row['Password'];
 
+
+    $u = $_SESSION['InvID'];
+	$qu = "SELECT * FROM inv_details WHERE InvID='$u'";
+  	$results = mysqli_query($db, $qu);
+	$row = mysqli_fetch_assoc($results);
+    $cname = $row['CName'];
+
     if(isset($_POST["changepw"]))
 	{
         $curr_pw= mysqli_real_escape_string($db, $_POST['currentpassword']);

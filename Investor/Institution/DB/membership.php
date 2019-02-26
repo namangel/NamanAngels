@@ -8,6 +8,7 @@
   	$results = mysqli_query($db, $qu);
 	$row = mysqli_fetch_assoc($results);
     $cname = $row['CName'];
+
 ?>
 <html>
     <head>
