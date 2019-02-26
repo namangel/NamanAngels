@@ -1,8 +1,14 @@
 <?php
-require '../../server.php';
-if(!isset($_SESSION['StpID'])){
-    header('location: ../pageerror.php');
-}
+    require '../../server.php';
+    if(!isset($_SESSION['StpID'])){
+        header('location: ../pageerror.php');
+    }
+    $u = $_SESSION['StpID'];
+        
+    $qu = "SELECT * FROM st_details WHERE StpID='$u'";
+    $results = mysqli_query($db, $qu);
+    $row = mysqli_fetch_assoc($results);
+    $Stname = $row['Stname'];
 ?>
 <html>
     <head>
