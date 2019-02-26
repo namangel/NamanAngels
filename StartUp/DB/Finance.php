@@ -1006,11 +1006,12 @@
 						<p>Investors like to compare and evaluate financial performance over this timeframe, so do your best to complete it.</p>
 					<?php
 						$y=date("Y");
-						$q = "SELECT revenue_rate,burn_rate FROM annual_financial WHERE StpId='$id' AND year= '$y' ";
+						$q = "SELECT revenue_rate,burn_rate,revenue_driver FROM annual_financial WHERE StpId='$id' AND year= '$y' ";
 						$results = mysqli_query($db, $q);
 						$row=mysqli_fetch_array($results);
 						$revrr= $row[0];
 						$mbr= $row[1];
+						$revdr= $row[2];
 					?>
 						<pre>Annual Revenue Run Rate: <?=$revrr?>                        Monthly Burn Rate: <?=$mbr?><pre>
 							<table class="annual_table">
@@ -1027,7 +1028,7 @@
 								?>
 								</tr>
 								<tr>
-								<td class="annual_head">Sales $</td>
+								<td class="annual_head"><?=$revdr?> $</td>
 								<?php
 									$q = "SELECT sales FROM annual_financial WHERE StpID='$id'";
 									$result = mysqli_query($db, $q);
