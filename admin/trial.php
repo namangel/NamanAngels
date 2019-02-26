@@ -38,8 +38,7 @@
             $file_size = $_FILES['ProfilePic']['size'];
             $file_tmp = $_FILES['ProfilePic']['tmp_name'];
             $file_type = $_FILES['ProfilePic']['type'];
-            $file_ext = strtolower(end(explode('.',$_FILES['ProfilePic']['name'])));
-
+            $file_ext = pathinfo($file_name, PATHINFO_EXTENSION);
             $extensions= array("jpeg","jpg","png");
 
             if(in_array($file_ext,$extensions)=== false){

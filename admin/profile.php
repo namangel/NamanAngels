@@ -40,7 +40,7 @@
 			$file_size = $_FILES['profile']['size'];
 			$file_tmp = $_FILES['profile']['tmp_name'];
 			$file_type = $_FILES['profile']['type'];
-			$file_ext = strtolower(end(explode('.',$_FILES['profile']['name'])));
+			$file_ext = pathinfo($file_name, PATHINFO_EXTENSION);
 
 			$extensions= array("jpeg","jpg","png");
 
