@@ -18,10 +18,6 @@
   mysqli_query($db, $q2);
 
   header('location: estmem.php');
-  // echo "HELOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO";
-  // echo $_POST['stdate'];
-  // echo $_POST['endate'];
-  // echo $_POST['invid'];
 
 }
 ?>
@@ -81,7 +77,7 @@
     <form method="POST" action="estmem.php">
         <label>Inv Id:</label><br>
         <input type="text" name="inv_id" required><br><br>
-        <input type="submit" name="get_details" value="getdetails">
+        <input type="submit" name="get_details" value="GET DETAILS">
     </form>
   </div>
 <br>

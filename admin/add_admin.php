@@ -5,21 +5,29 @@
     }
 
     $id = $_SESSION['adminID'];
+
+    $prq = "SELECT * FROM admin WHERE adminID='$id';";
+    $result = mysqli_query($db, $prq);
+    $row = mysqli_fetch_assoc($result);
+
+    $priv = $row['privilege'];
     ?>
    <?php
     if (isset($_POST["addadmin"]))
-{
+    {
     $AdminName = mysqli_real_escape_string($db, $_POST['Adminname']);
     $AdminDesgn = mysqli_real_escape_string($db, $_POST['Admindesgn']);
     $Username = mysqli_real_escape_string($db, $_POST['Adminuser']);
     $Password = mysqli_real_escape_string($db, $_POST['pw_1']);
+    $Privs = mysqli_real_escape_string($db, $_POST['priv']);
     // $ProfilePic = mysqli_real_escape_string($db, $_POST['Profile']);
-
+    $AdminPriv = (int)$Privs;
 
 
     $member_check_query = "SELECT * FROM admin WHERE AdminName='$AdminName' AND AdminDesgn='$AdminDesgn';";
     $result = mysqli_query($db, $member_check_query);
     $user = mysqli_fetch_assoc($result);
+
 
     if (mysqli_num_rows($result) > 0)
     {
@@ -28,7 +36,9 @@
     }
     else
     {
-      $q = "INSERT INTO admin (AdminName,AdminDesgn,Username,Password) VALUES ('$AdminName','$AdminDesgn','$Username','$Password');";
+      if($priv == 1){
+
+      $q = "INSERT INTO admin (AdminName,AdminDesgn,Username,Password,privilege) VALUES ('$AdminName','$AdminDesgn','$Username','$Password','$AdminPriv');";
       mysqli_query($db, $q);
 
         // $check = getimagesize($_FILES["mem_img"]["tmp_name"]);
@@ -62,8 +72,13 @@
         echo "<script> alert('Admin added successfully!') </script>";
 
         // header('location:trial.php');
+      }
+      else{
+        echo "<script> alert('Necessary Privilage Required !') </script>";
+      }
     }
- }
+  }
+
 
   if (isset($_POST["deladmin"])){
     $AdminName = mysqli_real_escape_string($db, $_POST['Adminname']);
@@ -72,6 +87,8 @@
     $member_check_query = "SELECT * FROM admin WHERE AdminName='$AdminName' AND AdminDesgn='$AdminDesgn';";
     $result = mysqli_query($db, $member_check_query);
     $user = mysqli_fetch_assoc($result);
+
+    if($priv == 1){
 
     if (mysqli_num_rows($result) > 0) {
       $q = "DELETE FROM admin WHERE AdminName='$AdminName' AND AdminDesgn='$AdminDesgn';";
@@ -84,6 +101,10 @@
       echo "<script>alert('Admin does not exists!')</script>";
       // header('location:manage_team.php');
     }
+  }
+  else{
+    echo "<script> alert('Necessary Privilage Required !') </script>";
+  }
   }
 
 ?>
@@ -200,8 +221,8 @@
           <div class="row">
             <div class="col-md-12">
               <div class="content">
-                <h2>Manage your team!</h2>
-                <p>Add a new team member or remove a member.</p>
+                <h2>Manage Admins!</h2>
+                <p>Add or remove an admin.</p>
               </div>
             </div>
           </div>
@@ -209,19 +230,19 @@
       </div>
         <div class="butn">
             <center>
-            <button onclick="f1on()">ADD A TEAM MEMBER</button>
+            <button onclick="f1on()">ADD AN ADMIN</button>
             </center>
         </div>
         <div class="butn">
             <center>
-                <button onclick="f2on()">REMOVE A TEAM MEMBER</button>
+                <button onclick="f2on()">REMOVE AN ADMIN</button>
             </center>
         </div>
         <div class="outer" id="f1">
             <center>
             <div class="teamform">
                     <i class="fa fa-close cross" onclick="f1off()"></i><br>
-                    <form method="POST" action="trial.php" enctype="multipart/form-data">
+                    <form method="POST" action="add_admin.php" enctype="multipart/form-data">
                         <label>Admin Name:</label><br>
                         <input type="text" name="Adminname" required><br><br>
                         <label>Admin Username:</label><br>
@@ -230,11 +251,14 @@
                         <input type="text" name="Admindesgn" required><br><br>
                        <label>Admin Image:</label><br>
                         <input type="file" name="ProfilePic"><br><br>
+                        <label>Admin Managing Privileges:</label><br>
+                        <input type="radio" name="priv" value="1">Yes<br>
+                        <input type="radio" name="priv" value="0" checked>No<br>
                         <label for="new-password">Password:</label>
-                      <input autocomplete="new-password" type="password" id="new-password" name="pw_1" placeholder="Your  new password..">
+                      <input autocomplete="new-password" type="password" id="new-password" name="pw_1" placeholder="Your password">
                       <br>
                       <br>
-                        <input type="submit" name="addadmin" value="addadmin">
+                        <input type="submit" name="addadmin" value="ADD ADMIN">
 
                     </form>
             </div>
@@ -244,12 +268,12 @@
             <center>
             <div class="teamform">
                     <i class="fa fa-close cross" onclick="f2off()"></i><br>
-                    <form method="POST" action="trial.php">
+                    <form method="POST" action="add_admin.php">
                         <label>Admin Name:</label><br>
                         <input type="text" name="Adminname" required><br><br>
                         <label>Admin Designation/Description:</label><br>
                         <input type="text" name="Admindesgn" required><br><br>
-                        <input type="submit" name="deladmin">
+                        <input type="submit" name="deladmin" value="REMOVE ADMIN">
                     </form>
             </div>
             </center>
