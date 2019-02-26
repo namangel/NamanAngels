@@ -266,7 +266,7 @@ if(!isset($_SESSION['adminID'])){
                         <div class="col-md-6">
                             <div class="box">
                                 <div class="admin">
-                                    <img src="../'.$row['StpImg'].'" alt="StartUp Logo" style="width:30%; align:middle">
+                                    <img src="../'.$row['StpImg'].'" alt="StartUp Logo" style="width:30%; align:middle; border-radius:50%">
                                     <center>
                                     <h1 style="color:#FF8C00;text-align:center">'.$row['StpName'].'</h1>
                                     <p class="title"><i class="fa fa-building-o" aria-hidden="true"></i>&nbsp;&nbsp;'.$row['Type'].'</p>

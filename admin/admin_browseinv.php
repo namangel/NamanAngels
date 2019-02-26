@@ -262,7 +262,7 @@
                         <div class="col-md-6">
                             <div class="box">
                                 <div class="admin">
-                                    <img src="../'.$row['CImg'].'" alt="Investor Image" style="width:30%; align:middle">
+                                    <img src="../'.$row['CImg'].'" alt="Investor Image" style="width:30%; align:middle; border-radius:50%">
                                     <center>
                                     <h1 style="color:#FF8C00;text-align:center">'.$row['CName'].'</h1>
 
