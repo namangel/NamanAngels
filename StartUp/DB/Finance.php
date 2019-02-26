@@ -279,6 +279,7 @@
 		$q= "SELECT Year FROM annual_financial WHERE StpID = '$id';";
 		$results = mysqli_query($db, $q);
 		$i=0;
+		$flag =0;
 		while($row=mysqli_fetch_array($results)){
 			if($year == $row['Year']){
 				$sale= mysqli_real_escape_string($db, $_POST['sales'][$i]);
@@ -296,11 +297,12 @@
 					$qu = "UPDATE annual_financial set revenue_rate='$rr', burn_rate= '$br', financial_annotation = '$fa', revenue_driver = '$rd', expenditure = '$exp' WHERE StpID = '$id' AND Year= '$year';";
 					mysqli_query($db, $qu);
 				}
+				$flag= 1;
 			}
 			$year= $year+1;
 			$i=$i+1;
 		}
-		if ($i == 0){
+		if ($flag == 0){
 			for($i=0;$i<6;$i++){
 				$sale= mysqli_real_escape_string($db, $_POST['sales'][$i]);
 				$reven = mysqli_real_escape_string($db, $_POST['rev'][$i]);
