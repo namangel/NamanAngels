@@ -231,7 +231,7 @@
   <div class="reg">
     <center>
     <br><font style="font-size:35px;font-family:Arial;">BE A PART OF OUR NETWORK</font><br><br>
-      <button class="button" type="submit" style="width:270px;background-color:#0A2B40;color:white;"  onclick="location.href='Signing/direct_member.php'">
+      <button class="button" type="submit" style="width:270px;background-color:#0A2B40;color:white;"  onclick="location.href='Signing/register_mem.php'">
         <span>GET A MEMBERSHIP</span></button>
     </center>
     <br>
