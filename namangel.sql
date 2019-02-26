@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2019 at 10:26 AM
+-- Generation Time: Feb 26, 2019 at 02:25 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -270,6 +270,13 @@ CREATE TABLE `membership` (
   `ExpDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `membership`
+--
+
+INSERT INTO `membership` (`InvID`, `MemID`, `StDate`, `ExpDate`) VALUES
+('NAMBIN000001', 'MEM2AD207EC', '2019-02-26', '2019-02-28');
+
 -- --------------------------------------------------------
 
 --
@@ -387,7 +394,7 @@ CREATE TABLE `siteinfo` (
 --
 
 INSERT INTO `siteinfo` (`ID`, `Counter`) VALUES
-(1, 7);
+(1, 8);
 
 -- --------------------------------------------------------
 
@@ -597,6 +604,30 @@ INSERT INTO `tools` (`ID`, `Name`, `Image`, `Cost`, `Description`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `userbinv`
+--
+
+CREATE TABLE `userbinv` (
+  `Entry` int(50) NOT NULL,
+  `BinvID` varchar(20) NOT NULL,
+  `Fname` varchar(200) NOT NULL,
+  `Lname` varchar(200) NOT NULL,
+  `Cname` varchar(200) DEFAULT NULL,
+  `Email` varchar(200) NOT NULL,
+  `Phone` varchar(200) NOT NULL,
+  `MemID` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `userbinv`
+--
+
+INSERT INTO `userbinv` (`Entry`, `BinvID`, `Fname`, `Lname`, `Cname`, `Email`, `Phone`, `MemID`) VALUES
+(1, 'NAMBIN000000', '', '', NULL, '', '', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `userinv`
 --
 
@@ -615,7 +646,7 @@ CREATE TABLE `userinv` (
 INSERT INTO `userinv` (`Entry`, `InvID`, `MemID`, `Username`, `Password`) VALUES
 (1, 'NAMIN0000001', NULL, 'xyz123', '5f2b8374d197548aa0c1bd765ffc3464605cf51c'),
 (3, 'NAMIN0000003', NULL, 'ambani', '02b1f3c5352c6b4884d7bbda007e2c323e3c5fe2'),
-(4, 'NAMIN0000004', 'MEM333BA3E2', 'batman123', 'b09833cec69eff1bb667940a45e311262e85a422');
+(4, 'NAMIN0000004', NULL, 'batman123', 'b09833cec69eff1bb667940a45e311262e85a422');
 
 -- --------------------------------------------------------
 
@@ -808,6 +839,13 @@ ALTER TABLE `tools`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `userbinv`
+--
+ALTER TABLE `userbinv`
+  ADD PRIMARY KEY (`BinvID`),
+  ADD UNIQUE KEY `Entry` (`Entry`);
+
+--
 -- Indexes for table `userinv`
 --
 ALTER TABLE `userinv`
@@ -898,6 +936,12 @@ ALTER TABLE `st_team`
 --
 ALTER TABLE `tools`
   MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `userbinv`
+--
+ALTER TABLE `userbinv`
+  MODIFY `Entry` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `userinv`
