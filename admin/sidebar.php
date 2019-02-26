@@ -329,6 +329,7 @@ if(!isset($_SESSION['adminID'])){
           <ul class="side-nav-dropdown">
             <li><a href="viewstartup.php">Startups</a></li>
             <li><a href="admin_browseinv.php">Investors</a></li>
+
           </ul>
         </li>
         <li><i class="fa fa-cogs fa-fw"></i><a href="#"> Tools</a>
@@ -346,6 +347,7 @@ if(!isset($_SESSION['adminID'])){
             <li><a href="newmem.php">New Investors</a></li>
           </ul>
         </li>
+        <li><a href="Trial.php">Trial</a></li>
         <!-- <li><i class="fa fa-envelope-open-o fa-fw"></i><a href="#"> Inbox <span class="num dang">56</span></a></li> -->
         <!-- <li><i class="fa fa-wrench fa-fw"></i><a href="#"> Settings </span></a>
         </li> -->
