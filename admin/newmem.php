@@ -34,7 +34,7 @@
         mysqli_query($db, $q2);
 
 
-        
+
     }
 
 
@@ -179,9 +179,9 @@
                         <label>Phone No.:</label><br>
                         <input type="text" name="phone" required><br><br>
                         <label>Start Date:</label><br>
-                        <input type="date" name="stdate" required><br><br>
+                        <input type="date" name="stdate" placeholder="yyyy-mm-dd" required><br><br>
                         <label>End Date:</label><br>
-                        <input type="date" name="endate" required><br><br>
+                        <input type="date" name="endate" placeholder="yyyy-mm-dd" required><br><br>
                         <input type="submit" name="addmem" value="SUBMIT">
                     </form>
             </div>

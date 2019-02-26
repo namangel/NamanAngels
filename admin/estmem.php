@@ -111,9 +111,9 @@
                 echo '<h3> <i class="fa fa-circle" aria-hidden="true"></i>&nbsp;'.$row['Type'].'</h3><br>';
                 echo '<form method="POST" action="estmem.php">';
                 echo '<label>Start Date:</label><br>
-                      <input type="date" name="stdate"><br><br>
+                      <input type="date" name="stdate" placeholder="yyyy-mm-dd"><br><br>
                       <label>End Date:</label><br>
-                      <input type="date" name="endate"><br><br>';
+                      <input type="date" name="endate" placeholder="yyyy-mm-dd"><br><br>';
                 // echo '<input type="hidden" name="invid" value="'.$row['InvID'].'">';
                 $_SESSION['newmem'] = $row['InvID'];
                 echo '<input type="submit" name="mem" value="Accept Membership">';
