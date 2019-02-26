@@ -19,6 +19,7 @@
         $AdminName = mysqli_real_escape_string($db, $_POST['adminname']);
         $AdminDesgn = mysqli_real_escape_string($db, $_POST['admindesgn']);
 
+      
 
 
 		if($AdminName != "")
@@ -40,7 +41,7 @@
 			$file_size = $_FILES['profile']['size'];
 			$file_tmp = $_FILES['profile']['tmp_name'];
 			$file_type = $_FILES['profile']['type'];
-			$file_ext = pathinfo($file_name, PATHINFO_EXTENSION);
+			$file_ext = strtolower(end(explode('.',$_FILES['profile']['name'])));
 
 			$extensions= array("jpeg","jpg","png");
 

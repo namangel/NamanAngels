@@ -316,7 +316,11 @@ if(!isset($_SESSION['adminID'])){
         <input type="text" placeholder="Type here"><i class="fa fa-search"></i>
       </div> -->
       <ul class="categories">
+      
       <li><i class="fa fa-dashboard fa-fw"></i><a href="dashboard.php"> Dashboard</span></a>
+      <ul class="side-nav-dropdown">
+            <li><a href="addadmins.php">Add Admin</a></li>
+          </ul>
         </li>
         <li><i class="fa fa-bar-chart-o"></i><a href="analytics.php">Analysis</a></li>
         <li><i class="fa fa-users fa-fw"></i><a href="#"> Our team</a>
@@ -347,7 +351,7 @@ if(!isset($_SESSION['adminID'])){
             <li><a href="newmem.php">New Investors</a></li>
           </ul>
         </li>
-        <li><a href="Trial.php">Trial</a></li>
+        
         <!-- <li><i class="fa fa-envelope-open-o fa-fw"></i><a href="#"> Inbox <span class="num dang">56</span></a></li> -->
         <!-- <li><i class="fa fa-wrench fa-fw"></i><a href="#"> Settings </span></a>
         </li> -->

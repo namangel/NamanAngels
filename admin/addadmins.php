@@ -28,6 +28,9 @@
     }
     else
     {
+      if($user['privileges'] == 1)
+      {
+
       $q = "INSERT INTO admin (AdminName,AdminDesgn,Username,Password) VALUES ('$AdminName','$AdminDesgn','$Username','$Password');";
       mysqli_query($db, $q);
 
@@ -38,7 +41,8 @@
             $file_size = $_FILES['ProfilePic']['size'];
             $file_tmp = $_FILES['ProfilePic']['tmp_name'];
             $file_type = $_FILES['ProfilePic']['type'];
-            $file_ext = pathinfo($file_name, PATHINFO_EXTENSION);
+            $file_ext = strtolower(end(explode('.',$_FILES['ProfilePic']['name'])));
+
             $extensions= array("jpeg","jpg","png");
 
             if(in_array($file_ext,$extensions)=== false){
@@ -52,16 +56,20 @@
                   $uploadas = "uploads/admin/".$file_name;
                   $upload = "../uploads/admin/".$file_name;
                   if(move_uploaded_file($file_tmp,$upload)){
-                      $q = "UPDATE admin set ProfilePic='$uploadas' WHERE AdminName='$AdminName' AND AdminDesgn='$AdminDesgn';";
+                      $q = "UPDATE admin set ProfilePic='$uploadas' AdminName='$AdminName' AND AdminDesgn='$AdminDesgn';";
                       mysqli_query($db, $q);
-                      // echo "<script>alert('Successfully Uploaded')</script>";
+                      echo "<script>alert('Successfully Uploaded')</script>";
                     }
                 }
             }
-        }
-        echo "<script> alert('Admin added successfully!') </script>";
+            echo "<script>alert('Admin added successfully!')</script>";
 
-        // header('location:trial.php');
+            header('location:trial.php');
+        }
+      }
+      else{
+        echo "<script>alert('Sorry Not allowed!')</script>";
+      }
     }
  }
 
@@ -74,10 +82,17 @@
     $user = mysqli_fetch_assoc($result);
 
     if (mysqli_num_rows($result) > 0) {
+
+      if($user['privileges'] == 1)
+      {
       $q = "DELETE FROM admin WHERE AdminName='$AdminName' AND AdminDesgn='$AdminDesgn';";
       mysqli_query($db, $q);
       echo "<script>alert('Admin deleted successfully!')</script>";
       // header('location:manage_team.php');
+      }
+      else{
+        echo "<script>alert('Sorry Not allowed!')</script>";
+      }
     }
 
     else{
@@ -200,8 +215,8 @@
           <div class="row">
             <div class="col-md-12">
               <div class="content">
-                <h2>Manage your team!</h2>
-                <p>Add a new team member or remove a member.</p>
+                <h2> GIVE ADMIN ACCESS</h2>
+                <p>Add a new admin or remove an admin.</p>
               </div>
             </div>
           </div>
@@ -209,19 +224,19 @@
       </div>
         <div class="butn">
             <center>
-            <button onclick="f1on()">ADD A TEAM MEMBER</button>
+            <button onclick="f1on()">ADD ADMIN</button>
             </center>
         </div>
         <div class="butn">
             <center>
-                <button onclick="f2on()">REMOVE A TEAM MEMBER</button>
+                <button onclick="f2on()">REMOVE ADMIN</button>
             </center>
         </div>
         <div class="outer" id="f1">
             <center>
             <div class="teamform">
                     <i class="fa fa-close cross" onclick="f1off()"></i><br>
-                    <form method="POST" action="trial.php" enctype="multipart/form-data">
+                    <form method="POST" action="addadmins.php" enctype="multipart/form-data">
                         <label>Admin Name:</label><br>
                         <input type="text" name="Adminname" required><br><br>
                         <label>Admin Username:</label><br>
@@ -244,7 +259,7 @@
             <center>
             <div class="teamform">
                     <i class="fa fa-close cross" onclick="f2off()"></i><br>
-                    <form method="POST" action="trial.php">
+                    <form method="POST" action="addadmins.php">
                         <label>Admin Name:</label><br>
                         <input type="text" name="Adminname" required><br><br>
                         <label>Admin Designation/Description:</label><br>
