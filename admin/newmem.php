@@ -3,63 +3,40 @@
         header('location: index.php');
     }
 
-    if (isset($_POST["addtl"])){
-        $tlName = mysqli_real_escape_string($db, $_POST['tl_name']);
-        $tlDesc = mysqli_real_escape_string($db, $_POST['tl_desc']);
-        $tlPrice = mysqli_real_escape_string($db, $_POST['tl_cost']);
+    if (isset($_POST["addmem"])){
+        $FName = mysqli_real_escape_string($db, $_POST['f_name']);
+        $LName = mysqli_real_escape_string($db, $_POST['l_name']);
+        $CName = mysqli_real_escape_string($db, $_POST['c_name']);
+        $Email = mysqli_real_escape_string($db, $_POST['email']);
+        $Phno = mysqli_real_escape_string($db, $_POST['phone']);
+        $Std = mysqli_real_escape_string($db, $_POST['stdate']);
+        $End = mysqli_real_escape_string($db, $_POST['endate']);
 
-        $tl_check_query = "SELECT * FROM tools WHERE Name='$tlName' AND Description='$tlDesc';";
-        $result = mysqli_query($db, $tl_check_query);
+
+        $user_check_query = "SELECT * FROM userbinv WHERE Entry = (SELECT max(Entry) from userbinv)";
+        $result = mysqli_query($db, $user_check_query);
         $user = mysqli_fetch_assoc($result);
 
-        if (mysqli_num_rows($result) > 0){
-            echo "<script>alert('Tool already exists')</script>";
-        }
-        else{
-            // echo "<script>alert('Member added successfully!')</script>";
-            $q = "INSERT INTO tools (Name,Description, Cost) VALUES ('$tlName','$tlDesc', '$tlPrice');";
-            mysqli_query($db, $q);
+        $newid = (int)(substr($user['BinvID'], 6,6)) + 1;
+        $userid = 'NAMBIN'.str_pad($newid, 6, '0', STR_PAD_LEFT);
 
-            $check = @getimagesize($_FILES["tl_img"]["tmp_name"]);
-            if($check != false)
-            {
-                $file_name = $_FILES['tl_img']['name'];
-                $file_size = $_FILES['tl_img']['size'];
-                $file_tmp = $_FILES['tl_img']['tmp_name'];
-                $file_type = $_FILES['tl_img']['type'];
-                $file_ext = strtolower(end(explode('.',$_FILES['tl_img']['name'])));
+        $memid = strtoupper('MEM'.substr(sha1($userid, FALSE), 0, 8));
 
-                $extensions= array("jpeg","jpg","png");
-
-                if(in_array($file_ext,$extensions)=== false){
-                    echo "<script>alert('Extension not allowed, please choose a JPEG or PNG file.')</script>";
-                }
-                else{
-                    if($file_size > 5242880){
-                        echo "<script>alert('File size must be less than 5 MB')</script>";
-                    }
-                    else{
-                        $uploadas = "uploads/tools/".$file_name;
-                        $upload = "../uploads/tools/".$file_name;
-                        if(move_uploaded_file($file_tmp,$upload)){
-                            $q = "UPDATE tools SET Image = '$uploadas' WHERE Name='$tlName' AND Description='$tlDesc';";
-                            mysqli_query($db, $q);
-                        }
-                    }
-                }
-            }
-        }
-        echo "<script>alert('Tool added successfully!')</script>";
-        header('location: admin_addtools.php');
-    }
-
-    if (isset($_POST["deltool"])){
-        $tlid = mysqli_real_escape_string($db, $_POST['tool']);
-        $q = "DELETE FROM tools WHERE tool_id='$tlid';";
+        $q = "INSERT INTO userbinv (BinvID,Fname,Lname,Email,Phone,MemID) VALUES ('$userid','$FName','$LName','$Email','$Phno','$memid')";
         mysqli_query($db, $q);
-        echo "<script>alert('Tool deleted successfully!')</script>";
-        header('location: admin_addtools.php');
+
+        if(isset($_POST['c_name'])){
+          $q = "UPDATE userbinv SET Cname = '$CName' WHERE BinvID = '$userid'";
+          mysqli_query($db, $q);
+        }
+
+        $q2 = "INSERT INTO membership (InvID, MemID, StDate, ExpDate) VALUES ('$userid','$memid','$Std','$End');";
+        mysqli_query($db, $q2);
+
+
+        
     }
+
 
 ?>
 <html lang="en">
@@ -182,28 +159,30 @@
       </div>
         <div class="butn">
             <center>
-            <button onclick="f1on()">ADD A TOOL</button>
+            <button onclick="f1on()">NEW MEMBERSHIP</button>
             </center>
         </div>
-        <!-- <div class="butn">
-            <center>
-                <button onclick="f2on()">REMOVE A TOOL</button>
-            </center>
-        </div> -->
+
         <div class="outer" id="f1">
             <center>
             <div class="teamform">
                     <i class="fa fa-close cross" onclick="f1off()"></i><br>
-                    <form method="POST" action="admin_addtools.php">
-                        <label>Tool Name:</label><br>
-                        <input type="text" name="tl_name"><br><br>
-                        <label>Tool Description:</label><br>
-                        <input type="text" name="tl_desc"><br><br>
-                        <label>Tool Price:</label><br>
-                        <input type="text" name="tl_cost"><br><br>
-                        <label>Tool Image:</label><br>
-                        <input type="file" name="tl_img"><br><br>
-                        <input type="submit" name="addtl">
+                    <form method="POST" action="newmem.php">
+                        <label>Company Name (Optional):</label><br>
+                        <input type="text" name="c_name"><br><br>
+                        <label>First Name:</label><br>
+                        <input type="text" name="f_name" required><br><br>
+                        <label>Last Name:</label><br>
+                        <input type="text" name="l_name" required><br><br>
+                        <label>Email:</label><br>
+                        <input type="text" name="email" required><br><br>
+                        <label>Phone No.:</label><br>
+                        <input type="text" name="phone" required><br><br>
+                        <label>Start Date:</label><br>
+                        <input type="date" name="stdate" required><br><br>
+                        <label>End Date:</label><br>
+                        <input type="date" name="endate" required><br><br>
+                        <input type="submit" name="addmem" value="SUBMIT">
                     </form>
             </div>
             </center>
@@ -230,10 +209,7 @@
             </center>
         </div> -->
     </div>
-      <!-- <script src='http://code.jquery.com/jquery-latest.js'></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script> -->
-      <!-- <script src='js/dashboard.js'></script> -->
+
       <script>
           function f1on(){
             document.getElementById("f1").style.visibility = "visible";
@@ -241,17 +217,7 @@
         function f1off(){
             document.getElementById("f1").style.visibility = "hidden";
         }
-        function f2on(){
-            // if(document.getElementById("f1").style.display === 'none')
-            // {
-            //     document.getElementById("f1").removeAttribute("style","display:none;");
-            //     document.getElementById("f1").setAttribute("style","visibility:hidden;");
-            // }
-            document.getElementById("f2").style.visibility = "visible";
-        }
-        function f2off(){
-            document.getElementById("f2").style.visibility = "hidden";
-        }
+
       </script>
       </body>
     </html>

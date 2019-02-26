@@ -1,4 +1,30 @@
-<?php require('../server.php'); ?>
+<?php require('../server.php');
+  if(isset($_POST['mem'])){
+
+
+  $memid = strtoupper('MEM'.substr(sha1($In, FALSE), 0, 8));
+
+  // $In = mysqli_real_escape_string($db, $_POST['inv_id']);
+  $In = $_SESSION['newmem'];
+  $Stdate = mysqli_real_escape_string($db, $_POST['stdate']);
+  $Endate = mysqli_real_escape_string($db, $_POST['endate']);
+
+  // echo $In;
+  // echo $memid;
+  $q = "UPDATE userinv SET MemID = '$memid' WHERE InvID='$In';";
+  mysqli_query($db, $q);
+
+  $q2 = "INSERT INTO membership (InvID, MemID, StDate, ExpDate) VALUES ('$In','$memid','$Stdate','$Endate');";
+  mysqli_query($db, $q2);
+
+  header('location: estmem.php');
+  // echo "HELOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO";
+  // echo $_POST['stdate'];
+  // echo $_POST['endate'];
+  // echo $_POST['invid'];
+
+}
+?>
 <?php require "sidebar.php"; ?>
 
 <html>
@@ -54,7 +80,7 @@
 
     <form method="POST" action="estmem.php">
         <label>Inv Id:</label><br>
-        <input type="text" name="inv_id"><br><br>
+        <input type="text" name="inv_id" required><br><br>
         <input type="submit" name="get_details" value="getdetails">
     </form>
   </div>
@@ -62,10 +88,7 @@
   <?php
       if (isset($_POST["get_details"]))
       {
-        if (empty($_POST['inv_id'])){
-          header('location: estmem.php');
-        }
-        else{
+        if (isset($_POST['inv_id'])){
           $InvID = mysqli_real_escape_string($db, $_POST['inv_id']);
           $check_query = "SELECT * FROM aview WHERE InvID='$InvID' ;";
           $result = mysqli_query($db, $check_query);
@@ -86,7 +109,16 @@
                 echo '<h3><i class="fa fa-id-card-o" aria-hidden="true"></i>&nbsp;'.$row['FName'].'</h3>';
                 echo '<h3><i class="fa fa-user" aria-hidden="true"></i>&nbsp;'.$row['LName'].'</h3>';
                 echo '<h3> <i class="fa fa-circle" aria-hidden="true"></i>&nbsp;'.$row['Type'].'</h3><br>';
-                echo '<a href="estmembership.php?inid='.$row['InvID'].'"target=_blank><button class="btn">Accept Membership</button></a>';
+                echo '<form method="POST" action="estmem.php">';
+                echo '<label>Start Date:</label><br>
+                      <input type="date" name="stdate"><br><br>
+                      <label>End Date:</label><br>
+                      <input type="date" name="endate"><br><br>';
+                // echo '<input type="hidden" name="invid" value="'.$row['InvID'].'">';
+                $_SESSION['newmem'] = $row['InvID'];
+                echo '<input type="submit" name="mem" value="Accept Membership">';
+                echo '</form>';
+                // echo '<a href="estmembership.php?inid='.$row['InvID'].'"target=_blank><button class="btn">Accept Membership</button></a>';
                 // echo '<form method="POST" action="estmem.php">'.'<input type="submit" name="accept" value="Accept Membership">'.'</form>';
                 echo '</div>';
                 // header('location: estmem.php');
