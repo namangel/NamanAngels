@@ -31,8 +31,7 @@ if (isset($_POST["addmem"]))
             $file_size = $_FILES['mem_img']['size'];
             $file_tmp = $_FILES['mem_img']['tmp_name'];
             $file_type = $_FILES['mem_img']['type'];
-            $file_ext = strtolower(end(explode('.',$_FILES['mem_img']['name'])));
-
+            $file_ext = pathinfo($file_name, PATHINFO_EXTENSION);
             $extensions= array("jpeg","jpg","png");
 
             if(in_array($file_ext,$extensions)=== false){
@@ -51,9 +50,11 @@ if (isset($_POST["addmem"]))
                     }
                 }
             }
-            echo "<script>alert('Member added successfully!')</script>";
-            header('location: manage_team.php');
+
         }
+
+        echo "<script>alert('Member added successfully!')</script>";
+        // header('location: manage_team.php');
     }
  }
 

@@ -38,8 +38,7 @@
             $file_size = $_FILES['ProfilePic']['size'];
             $file_tmp = $_FILES['ProfilePic']['tmp_name'];
             $file_type = $_FILES['ProfilePic']['type'];
-            $file_ext = strtolower(end(explode('.',$_FILES['ProfilePic']['name'])));
-
+            $file_ext = pathinfo($file_name, PATHINFO_EXTENSION);
             $extensions= array("jpeg","jpg","png");
 
             if(in_array($file_ext,$extensions)=== false){
@@ -53,16 +52,16 @@
                   $uploadas = "uploads/admin/".$file_name;
                   $upload = "../uploads/admin/".$file_name;
                   if(move_uploaded_file($file_tmp,$upload)){
-                      $q = "UPDATE admin set ProfilePic='$uploadas' AdminName='$AdminName' AND AdminDesgn='$AdminDesgn';";
+                      $q = "UPDATE admin set ProfilePic='$uploadas' WHERE AdminName='$AdminName' AND AdminDesgn='$AdminDesgn';";
                       mysqli_query($db, $q);
-                      echo "<script>alert('Successfully Uploaded')</script>";
+                      // echo "<script>alert('Successfully Uploaded')</script>";
                     }
                 }
             }
-            echo "<script>alert('Admin added successfully!')</script>";
-
-            header('location:trial.php');
         }
+        echo "<script> alert('Admin added successfully!') </script>";
+
+        // header('location:trial.php');
     }
  }
 

@@ -27,7 +27,7 @@
                 $file_size = $_FILES['tl_img']['size'];
                 $file_tmp = $_FILES['tl_img']['tmp_name'];
                 $file_type = $_FILES['tl_img']['type'];
-                $file_ext = strtolower(end(explode('.',$_FILES['tl_img']['name'])));
+                $file_ext = pathinfo($file_name, PATHINFO_EXTENSION);
 
                 $extensions= array("jpeg","jpg","png");
 
