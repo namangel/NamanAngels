@@ -32,7 +32,7 @@
         <button class="mem" type="submit"  onclick="location.href='../../signing/register_inv.php'">
           CREATE INVESTOR PROFILE</button>
         <p> OR Join the Naman Network now </p>
-        <button class="mem" type="submit"  onclick="location.href='../../signing/direct_member.php'">
+        <button class="mem" type="submit"  onclick="location.href='../../Signing/register_mem.php'">
           GET MEMBERSHIP</button>
     </div>
     <br>
