@@ -53,16 +53,16 @@
                   $uploadas = "uploads/admin/".$file_name;
                   $upload = "../uploads/admin/".$file_name;
                   if(move_uploaded_file($file_tmp,$upload)){
-                      $q = "UPDATE admin set ProfilePic='$uploadas' AdminName='$AdminName' AND AdminDesgn='$AdminDesgn';";
+                      $q = "UPDATE admin set ProfilePic='$uploadas' WHERE AdminName='$AdminName' AND AdminDesgn='$AdminDesgn';";
                       mysqli_query($db, $q);
-                      echo "<script>alert('Successfully Uploaded')</script>";
+                      // echo "<script>alert('Successfully Uploaded')</script>";
                     }
                 }
             }
-            echo "<script>alert('Admin added successfully!')</script>";
-
-            header('location:trial.php');
         }
+        echo "<script> alert('Admin added successfully!') </script>";
+
+        // header('location:trial.php');
     }
  }
 

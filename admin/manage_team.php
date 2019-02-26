@@ -51,9 +51,11 @@ if (isset($_POST["addmem"]))
                     }
                 }
             }
-            echo "<script>alert('Member added successfully!')</script>";
-            header('location: manage_team.php');
+
         }
+
+        echo "<script>alert('Member added successfully!')</script>";
+        // header('location: manage_team.php');
     }
  }
 
