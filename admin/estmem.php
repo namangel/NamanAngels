@@ -66,7 +66,6 @@
         border: none;
         color: white;
         padding: 10px;
-        
     }
     .btn{
       background-color:  #ff8533;
@@ -82,7 +81,7 @@
     <form method="POST" action="estmem.php">
         <label>Inv Id:</label><br>
         <input type="text" name="inv_id" required><br><br>
-        <input type="submit" name="get_details" value="GET DETAILS">
+        <input type="submit" name="get_details" value="getdetails">
     </form>
   </div>
 <br>
