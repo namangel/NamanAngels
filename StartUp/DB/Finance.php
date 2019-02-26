@@ -326,19 +326,23 @@
 		<title><?= $Stname?>-Finance | NAMAN</title>
   		<link rel="icon" href="../../img/favicon.jpg" type="image/jpg" sizes="16x16">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
 	<style>
 		.LinkedIn, .Facebook, .Twitter, .Instagram, .Others{
 			display: none;
 			margin-bottom: 10px;
 		}
-		.annual_table , .annual_head{
+		.annual_table{
 			width: 100%;
 			border: 2px solid silver;
 			border-collapse: collapse;
 			padding: 10px 10px 10px 10px;
 		}
-
+		.annual_table td{
+			width: 100%;
+			border: 2px solid silver;
+			border-collapse: collapse;
+			padding: 10px 10px 10px 10px;
+		}
 	</style>
     </head>
 	<script type="text/javascript">
