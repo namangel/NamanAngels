@@ -34,7 +34,13 @@ margin-bottom: 50px;
   padding-top: 20px;
   padding-bottom: 10px;
 }
-table,td{
+.annual_table{
+  width: 100%;
+  border: 2px solid silver;
+  border-collapse: collapse;
+  padding: 10px 10px 10px 10px;
+}
+.annual_table td{
   width: 100%;
   border: 2px solid silver;
   border-collapse: collapse;
