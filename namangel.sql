@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Feb 25, 2019 at 05:07 PM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.10
+-- Host: 127.0.0.1
+-- Generation Time: Feb 26, 2019 at 10:26 AM
+-- Server version: 10.1.33-MariaDB
+-- PHP Version: 7.2.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -173,7 +173,8 @@ CREATE TABLE `inv_addetails` (
 
 INSERT INTO `inv_addetails` (`InvID`, `IOI`, `Facebook`, `Twitter`, `LinkedIn`, `Instagram`, `Others`, `Role`, `Partner`, `InvRange`, `Summary`) VALUES
 ('NAMIN0000001', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('NAMIN0000003', NULL, NULL, 'mukeshambani.com/twitter', 'mukeshambani.com/linkedin', 'mukeshambani.com/instagram', NULL, NULL, NULL, NULL, NULL);
+('NAMIN0000003', NULL, NULL, 'mukeshambani.com/twitter', 'mukeshambani.com/linkedin', 'mukeshambani.com/instagram', NULL, NULL, NULL, NULL, NULL),
+('NAMIN0000004', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -202,7 +203,8 @@ CREATE TABLE `inv_details` (
 
 INSERT INTO `inv_details` (`InvID`, `CName`, `FName`, `LName`, `Email`, `Phone`, `Website`, `City`, `State`, `Country`, `AvgInvestment`, `Type`) VALUES
 ('NAMIN0000001', 'Stark Enterprise', 'Tony', 'Stark', 'tony@stark.in', '9999999999', 'stark.in', 'New York City', 'Manhattan', 'United States', '100', 'Institution'),
-('NAMIN0000003', NULL, 'Mukesh', 'Ambani', 'mambani@reliance.com', '9000000000', NULL, 'Mumbai', 'Maharashtra', 'India', '150', 'Individual');
+('NAMIN0000003', NULL, 'Mukesh', 'Ambani', 'mambani@reliance.com', '9000000000', NULL, 'Mumbai', 'Maharashtra', 'India', '150', 'Individual'),
+('NAMIN0000004', NULL, 'Bruce', 'Wayne', 'batman@gmail.com', '8082189673', NULL, 'Mumbai', 'Maharashtra', 'India', '2', 'Individual');
 
 -- --------------------------------------------------------
 
@@ -252,7 +254,8 @@ CREATE TABLE `inv_uploads` (
 
 INSERT INTO `inv_uploads` (`InvID`, `ProfilePic`) VALUES
 ('NAMIN0000001', '	\r\nuploads/default/default.png'),
-('NAMIN0000003', 'uploads/default/default.png');
+('NAMIN0000003', 'uploads/default/default.png'),
+('NAMIN0000004', 'uploads/default/default.png');
 
 -- --------------------------------------------------------
 
@@ -384,7 +387,7 @@ CREATE TABLE `siteinfo` (
 --
 
 INSERT INTO `siteinfo` (`ID`, `Counter`) VALUES
-(1, 3);
+(1, 7);
 
 -- --------------------------------------------------------
 
@@ -600,7 +603,7 @@ INSERT INTO `tools` (`ID`, `Name`, `Image`, `Cost`, `Description`) VALUES
 CREATE TABLE `userinv` (
   `Entry` int(100) NOT NULL,
   `InvID` varchar(20) NOT NULL,
-  `MemID` varchar(20) NOT NULL,
+  `MemID` varchar(20) DEFAULT NULL,
   `Username` varchar(50) NOT NULL,
   `Password` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -610,9 +613,9 @@ CREATE TABLE `userinv` (
 --
 
 INSERT INTO `userinv` (`Entry`, `InvID`, `MemID`, `Username`, `Password`) VALUES
-(1, 'NAMIN0000001', '', 'xyz123', '5f2b8374d197548aa0c1bd765ffc3464605cf51c'),
-(2, 'NAMIN0000002', '', 'admin', '7fe54080e26dd169ccbffba947dbc5958e26ecea'),
-(3, 'NAMIN0000003', '', 'ambani', '02b1f3c5352c6b4884d7bbda007e2c323e3c5fe2');
+(1, 'NAMIN0000001', NULL, 'xyz123', '5f2b8374d197548aa0c1bd765ffc3464605cf51c'),
+(3, 'NAMIN0000003', NULL, 'ambani', '02b1f3c5352c6b4884d7bbda007e2c323e3c5fe2'),
+(4, 'NAMIN0000004', 'MEM333BA3E2', 'batman123', 'b09833cec69eff1bb667940a45e311262e85a422');
 
 -- --------------------------------------------------------
 
@@ -900,7 +903,7 @@ ALTER TABLE `tools`
 -- AUTO_INCREMENT for table `userinv`
 --
 ALTER TABLE `userinv`
-  MODIFY `Entry` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Entry` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `userstp`
