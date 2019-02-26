@@ -343,6 +343,28 @@
 			border-collapse: collapse;
 			padding: 10px 10px 10px 10px;
 		}
+
+		.formfin{
+		/* display: grid; */
+		/* grid-template-rows:1fr 2fr; */
+		justify-items: center;
+		align-items: center;
+		width: 500px;
+		margin: 100px auto;
+		background-color: #eee;
+		padding: 50px;
+		box-sizing: border-box;
+		}
+		.formtextfin {
+		/* grid-row:2; */
+		max-width: 100%;
+		/* height: 100%; */
+		width: 400px;
+		}
+		.formheadfin {
+		/* grid-row:1; */
+		width: 400px;
+		}
 	</style>
     </head>
 	<script type="text/javascript">
@@ -1209,15 +1231,15 @@
 				</div>
 
 				<div id="annualfin">
-                    <div class="form">
-                        <div class="formhead">
+                    <div class="formfin">
+                        <div class="formheadfin">
                             <button onclick="annualoff()" class="close"><i class="fa fa-close"></i></button>
                             <h3>Annual Financials</h3>
                             <p>Enter your financials for this year and last year, as well as projections for the following three years. Investors like to compare and evaluate financial performance over this timeframe, so do your best to complete it.</p>
                         </div>
-                        <div class="formtext">
+                        <div class="formtextfin">
                             <form method="post">
-                                <div class="formtext">
+                                <div class="formtextfin">
 									<label>Annual Revenue Run Rate</label>
 									<br>
 									<i class="fa fa-dollar"><input type="number" name="runrate" placeholder="Numbers Only" size="54" required></i>
@@ -1235,7 +1257,7 @@
 									<input type="text" id="revdriver" name="revdriver" size="54" required>
 									<br><br><hr>
 								</div>
-								<div class="formtext">
+								<div class="formtextfin">
 									<?php echo date("Y")-2; ?>
 									<br>
 									<label id="dyname">Sales</label>
@@ -1251,7 +1273,7 @@
 									<i class="fa fa-dollar"><input type="number" name="expend[]" placeholder="Numbers Only" size="54"></i>
 									<br><br><hr>
 								</div>
-								<div class="formtext">
+								<div class="formtextfin">
 									<?php echo date("Y")-1; ?>
 									<br>
 									<label id="dyname">Sales</label>
@@ -1267,7 +1289,7 @@
 									<i class="fa fa-dollar"><input type="number" name="expend[]" placeholder="Numbers Only" size="54"></i>
 									<br><br><hr>
 								</div>
-								<div class="formtext">
+								<div class="formtextfin">
 									<?php echo date("Y"); ?>
 									<br>
 									<label id="dyname">Sales</label>
@@ -1283,7 +1305,7 @@
 									<i class="fa fa-dollar"><input type="number" name="expend[]" placeholder="Numbers Only" size="54"></i>
 									<br><br><hr>
 								</div>
-								<div class="formtext">
+								<div class="formtextfin">
 									<?php echo date("Y")+1; ?>
 									<br>
 									<label id="dyname">Sales</label>
@@ -1299,7 +1321,7 @@
 									<i class="fa fa-dollar"><input type="number" name="expend[]" placeholder="Numbers Only" size="54"></i>
 									<br><br><hr>
 								</div>
-								<div class="formtext">
+								<div class="formtextfin">
 									<?php echo date("Y")+2; ?>
 									<br>
 									<label id="dyname">Sales</label>
@@ -1315,7 +1337,7 @@
 									<i class="fa fa-dollar"><input type="number" name="expend[]" placeholder="Numbers Only" size="54"></i>
 									<br><br><hr>
 								</div>
-								<div class="formtext">
+								<div class="formtextfin">
 									<?php echo date("Y")+3; ?>
 									<br>
 									<label id="dyname">Sales</label>
