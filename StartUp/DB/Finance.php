@@ -274,15 +274,44 @@
 		$br = mysqli_real_escape_string($db, $_POST['burnrate']);
 		$fa = mysqli_real_escape_string($db, $_POST['finannotation']);
 		$rd = mysqli_real_escape_string($db, $_POST['revdriver']);
-		$year = date("Y") -3;
-		for($i=0;$i<6;$i++){
-			$sale= mysqli_real_escape_string($db, $_POST['sales'][$i]);
-			$reven = mysqli_real_escape_string($db, $_POST['rev'][$i]);
-			$exp = mysqli_real_escape_string($db, $_POST['expend'][$i]);
+		$year = date("Y") -2;
+		
+		$q= "SELECT Year FROM annual_financial WHERE StpID = '$id';";
+		$results = mysqli_query($db, $q);
+		$i=0;
+		while($row=mysqli_fetch_array($results)){
+			if($year == $row['Year']){
+				$sale= mysqli_real_escape_string($db, $_POST['sales'][$i]);
+				$reven = mysqli_real_escape_string($db, $_POST['rev'][$i]);
+				$exp = mysqli_real_escape_string($db, $_POST['expend'][$i]);
+				if($sale != NULL){
+				$qu = "UPDATE annual_financial set revenue_rate='$rr', burn_rate= '$br', financial_annotation = '$fa', revenue_driver = '$rd', sales = '$sale' WHERE StpID = '$id' AND Year= '$year' ;";
+				mysqli_query($db, $qu);
+				}
+				if($reven !=NULL){
+					$qu = "UPDATE annual_financial set revenue_rate='$rr', burn_rate= '$br', financial_annotation = '$fa', revenue_driver = '$rd', revenue ='$reven' WHERE StpID = '$id' AND Year= '$year';";
+					mysqli_query($db, $qu);
+				}
+				if($exp !=NULL){
+					$qu = "UPDATE annual_financial set revenue_rate='$rr', burn_rate= '$br', financial_annotation = '$fa', revenue_driver = '$rd', expenditure = '$exp' WHERE StpID = '$id' AND Year= '$year';";
+					mysqli_query($db, $qu);
+				}
+			}
 			$year= $year+1;
-			$q = "INSERT INTO annual_financial(StpID,revenue_rate,burn_rate,financial_annotation,revenue_driver,sales,revenue,expenditure,year) values('$id','$rr','$br','$fa','$rd','$sale','$reven','$exp','$year')";
-			mysqli_query($db, $q);
+			$i=$i+1;
 		}
+		if ($i == 0){
+			for($i=0;$i<6;$i++){
+				$sale= mysqli_real_escape_string($db, $_POST['sales'][$i]);
+				$reven = mysqli_real_escape_string($db, $_POST['rev'][$i]);
+				$exp = mysqli_real_escape_string($db, $_POST['expend'][$i]);
+				$q = "INSERT INTO annual_financial(StpID,revenue_rate,burn_rate,financial_annotation,revenue_driver,sales,revenue,expenditure,year) values('$id','$rr','$br','$fa','$rd','$sale','$reven','$exp','$year')";
+				mysqli_query($db, $q);
+				$year= $year+1;
+			}
+		}
+		
+		
 		header('location:Finance.php');
 	}
 
@@ -1011,9 +1040,14 @@
 										$yr=$yr+1;
 										echo '<td>'.$prof.'</td>';
 									}
-								?>
-								</tr>
+									
+									$q = "SELECT financial_annotation FROM annual_financial WHERE StpID='$id'";
+									$result = mysqli_query($db, $q);
+									$row = mysqli_fetch_array($result);
+							echo	'</tr>
 							</table>
+							<p>'.$row['financial_annotation'].'</p>';
+							?>
 					</div>
 				</div>
 
@@ -1171,19 +1205,19 @@
                                 <div class="formtext">
 									<label>Annual Revenue Run Rate</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="runrate" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="number" name="runrate" placeholder="Numbers Only" size="54" required></i>
 									<br><br>
 									<label>Monthly Burn Rate</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="burnrate" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="number" name="burnrate" placeholder="Numbers Only" size="54" required></i>
 									<br><br>
 									<label>Financial Annotation</label>
 									<br>
-									<input type="text" name="finannotation" size="54">
+									<input type="text" name="finannotation" size="54" required>
 									<br><br>
 									<label>Revenue Driver</label>
 									<br>
-									<input type="text" name="revdriver" size="54">
+									<input type="text" name="revdriver" size="54" required>
 									<br><br><hr>
 								</div>
 								<div class="formtext">
@@ -1195,11 +1229,11 @@
 									<br><br>
 									<label>Revenue</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="rev[]" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="number" name="rev[]" placeholder="Numbers Only" size="54"></i>
 									<br><br>
 									<label>Expenditure</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="expend[]" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="number" name="expend[]" placeholder="Numbers Only" size="54"></i>
 									<br><br><hr>
 								</div>
 								<div class="formtext">
@@ -1211,11 +1245,11 @@
 									<br><br>
 									<label>Revenue</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="rev[]" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="number" name="rev[]" placeholder="Numbers Only" size="54"></i>
 									<br><br>
 									<label>Expenditure</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="expend[]" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="number" name="expend[]" placeholder="Numbers Only" size="54"></i>
 									<br><br><hr>
 								</div>
 								<div class="formtext">
@@ -1227,11 +1261,11 @@
 									<br><br>
 									<label>Revenue</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="rev[]" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="number" name="rev[]" placeholder="Numbers Only" size="54"></i>
 									<br><br>
 									<label>Expenditure</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="expend[]" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="number" name="expend[]" placeholder="Numbers Only" size="54"></i>
 									<br><br><hr>
 								</div>
 								<div class="formtext">
@@ -1243,11 +1277,11 @@
 									<br><br>
 									<label>Revenue</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="rev[]" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="number" name="rev[]" placeholder="Numbers Only" size="54"></i>
 									<br><br>
 									<label>Expenditure</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="expend[]" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="number" name="expend[]" placeholder="Numbers Only" size="54"></i>
 									<br><br><hr>
 								</div>
 								<div class="formtext">
@@ -1259,11 +1293,11 @@
 									<br><br>
 									<label>Revenue</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="rev[]" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="number" name="rev[]" placeholder="Numbers Only" size="54"></i>
 									<br><br>
 									<label>Expenditure</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="expend[]" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="number" name="expend[]" placeholder="Numbers Only" size="54"></i>
 									<br><br><hr>
 								</div>
 								<div class="formtext">
@@ -1275,11 +1309,11 @@
 									<br><br>
 									<label>Revenue</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="rev[]" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="number" name="rev[]" placeholder="Numbers Only" size="54"></i>
 									<br><br>
 									<label>Expenditure</label>
 									<br>
-									<i class="fa fa-dollar"><input type="text" name="expend[]" placeholder="Numbers Only" size="54"></i>
+									<i class="fa fa-dollar"><input type="number" name="expend[]" placeholder="Numbers Only" size="54"></i>
 									<br><br>
 								</div>
                                 <div class="formtext submits">
