@@ -23,6 +23,8 @@ $sql9="SELECT * FROM annual_financial where StpID='$s'" ;
 $record9= mysqli_query($db,$sql9);
 $sql10="SELECT * FROM annual_financial where StpID='$s'" ;
 $record10= mysqli_query($db,$sql10);
+$sql11="SELECT * FROM st_team where StpID='$s'" ;
+$record11= mysqli_query($db,$sql11);
 
 require("../../generateonepager/fpdf.php");
 
@@ -33,23 +35,7 @@ class PDF extends FPDF {
     //     $this->Cell(0,10,'Page'.$this->PageNo(),0,0,'C');
     // }
 
-    // function mycell($w,$h,$x,$t){
-    //     $height=$h/3;
-    //     $first=$height+2;
-    //     $second=$height+$height+$height+3;
-    //     $len= strlen($t);
-    //     if($len>60){
-    //         $txt= str_split($t,50);
-    //         $this->SetX($x);
-    //         $this->Cell($w,$first,$txt[0],'','','');
-    //         $this->SetX($x);
-    //         $this->Cell($w,$second,$txt[1],'','','');
-    //     }
-    //     else {
-    //         $this->SetX($x);
-    //         $this->Cell($w,$h,$t,'','0','L','0');
-    //     }
-    // }
+
 }
 
 
@@ -59,10 +45,10 @@ $pdf->AddPage();
 
 
 
-while(($row1= mysqli_fetch_array($record1)) && ($row2= mysqli_fetch_array($record2)) ){
+    $row1= mysqli_fetch_array($record1);
+    $row2= mysqli_fetch_array($record2);
     $row3= mysqli_fetch_array($record3);
     $row4= mysqli_fetch_array($record4);
-    $row5= mysqli_fetch_array($record5);
     $pdf->SetFont('Arial','B',11);
     $pdf->SetXY(135,40);
     $pdf->cell(0,0, "Company ", 0, 1, 'L');
@@ -113,8 +99,18 @@ while(($row1= mysqli_fetch_array($record1)) && ($row2= mysqli_fetch_array($recor
     $pdf->cell(0, 10 , "Advisors", 0, 0, 'L');
     $pdf->SetXY(135,123);
     $pdf->SetFont('Arial','',11);
-    $pdf->cell(0, 10 , $row5['Name'], 0, 0, 'L');
-
+    while($row5= mysqli_fetch_assoc($record5)){
+      $pdf->cell(0, 10 , $row5['Name'], 0, 0, 'L');
+    }
+    $pdf->SetXY(135,131);
+    $pdf->SetFont('Arial','B',11);
+    $pdf->cell(0, 10 , "Team", 0, 1, 'L');
+    $pdf->SetXY(135,139);
+    $pdf->SetFont('Arial','',11);
+    while($row11= mysqli_fetch_assoc($record11)){
+      $pdf->cell(0, 10 , $row11['FName']." ".$row11['LName'], 0, 0, 'L');
+      $pdf->cell(0, 10 , $row11['Designation'], 0, 1, 'R');
+    }
 
     $pdf->SetXY(10,10);
     $pdf->SetFont('Arial','B',25);
@@ -246,9 +242,8 @@ while(($row1= mysqli_fetch_array($record1)) && ($row2= mysqli_fetch_array($recor
     $y = $pdf->GetY();
     $pdf->SetXY($x,$y);
     $pdf->SetFont('Arial','B',16);
-    $pdf->SetTextColor(135,206,235);
-    $pdf->cell(40, 5 , "Startup Anual Financial", 0, 1, 'L');
-    $pdf->SetTextColor(0,0,0);
+    $pdf->cell(40, 5 , "Startup Annual Financial", 0, 1, 'L');
+
 
     $x = $pdf->GetX();
     $y = $pdf->GetY();
@@ -280,8 +275,5 @@ while(($row1= mysqli_fetch_array($record1)) && ($row2= mysqli_fetch_array($recor
     }
     $pdf->Ln();
 
-
-
-}
 $pdf->OutPut();
 ?>
