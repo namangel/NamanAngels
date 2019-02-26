@@ -34,8 +34,6 @@
         mysqli_query($db, $q2);
 
         echo '<script>alert("Investor '.$userid.' added as Member '.$memid.'")</script>';
-        header('location: newmem.php');
-
     }
 
 
