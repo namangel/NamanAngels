@@ -97,9 +97,6 @@
 	}
 
 
-
-
-
 ?>
 
 <html>
@@ -205,18 +202,20 @@
                         </li>
                         <li><button class="b1" name="requestbtn" onclick="window.open('generateonepager.php?op=<?= $id?>','_blank')">Download One Pager</button></li>
 
-						<li>
-							<?php
+
+						<?php
+							if(isset($_SESSION['InvID'])){
 								$q = "SELECT * FROM current_round WHERE StpID='$id'";
 								$results = mysqli_query($db, $q);
 								if(mysqli_num_rows($results) != 0){
-									echo '<form method="post"><button class="b1" name="make_deal">'.$transbtn.'</button></form>';
+									echo '<li><form method="post"><button class="b1" name="make_deal">'.$transbtn.'</button></form></li>';
 								}
 								else{
-									echo '<p>Funding Round closed. Invest when open.</p>';
+									echo '<li><p>Funding Round closed. Invest when open.</p></li>';
 								}
-							?>
-						</li>
+							}
+						?>
+
 
 
                     </ul>
