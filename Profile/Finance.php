@@ -43,12 +43,10 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="css/companyprof.css" type="text/css">
-        <link rel="stylesheet" href="css/financial.css" type="text/css">
 		<title><?= $Stname ?>'s Profile- Finance | NAMAN</title>
   		<link rel="icon" href="../img/favicon.jpg" type="image/jpg" sizes="16x16">
 	<style>
-		.annual_table{
+		/* .annual_table{
 		width: 100%;
 		border: 2px solid silver;
 		border-collapse: collapse;
@@ -59,8 +57,48 @@
 		border: 2px solid silver;
 		border-collapse: collapse;
 		padding: 10px 10px 10px 10px;
+		} */
+		.LinkedIn, .Facebook, .Twitter, .Instagram, .Others{
+			display: none;
+			margin-bottom: 10px;
+		}
+		.annual_table{
+			width: 100%;
+			border: 2px solid silver;
+			border-collapse: collapse;
+			padding: 10px 10px 10px 10px;
+		}
+		.annual_table td{
+			width: 100%;
+			border: 2px solid silver;
+			border-collapse: collapse;
+			padding: 10px 10px 10px 10px;
+		}
+
+		.formfin{
+		/* display: grid; */
+		/* grid-template-rows:1fr 2fr; */
+		justify-items: center;
+		align-items: center;
+		width: 500px;
+		margin: 100px auto;
+		background-color: #eee;
+		padding: 50px;
+		box-sizing: border-box;
+		}
+		.formtextfin {
+		/* grid-row:2; */
+		max-width: 100%;
+		/* height: 100%; */
+		width: 400px;
+		}
+		.formheadfin {
+		/* grid-row:1; */
+		width: 400px;
 		}
 	</style>
+	<link rel="stylesheet" href="css/companyprof.css" type="text/css">
+	<link rel="stylesheet" href="css/financial.css" type="text/css">
     </head>
     <body>
 		<?php include('header.php') ?>
@@ -193,7 +231,7 @@
 					?>
 						<h4>Annual Revenue Run Rate: <?=$revrr?></h4>
 						<h4>Monthly Burn Rate: <?=$mbr?></h4>
-							<table class="annual_finance">
+							<table class="annual_table">
 								<td class="annual_head">Year</td>
 								<?php
 									$q = "SELECT year FROM annual_financial WHERE StpID='$id'";
