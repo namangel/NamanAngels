@@ -113,6 +113,7 @@
             }
             .admins .box {
             width:50%;
+            height: 500px;
 
             }
             .admins .box > h3 {
@@ -258,26 +259,32 @@
             ';
             while($row = mysqli_fetch_array($res_data))
             {
-            echo '
-                        <div class="col-md-6">
-                            <div class="box">
-                                <div class="admin">
-                                    <img src="../'.$row['CImg'].'" alt="Investor Image" style="width:30%; align:middle; border-radius:50%">
-                                    <center>
-                                    <h1 style="color:#FF8C00;text-align:center">'.$row['CName'].'</h1>
+                echo '
+                    <div class="col-md-6">
+                        <div class="box">
+                            <div class="admin">
+                                <img src="../'.$row['CImg'].'" alt="Investor Image" style="width:30%; align:middle; border-radius:50%">
+                                <center>';
 
-                                    <p><i class="fa fa-user"></i> &nbsp;&nbsp;'.$row['FName'].'</p>
-                                    <p><i class="fa fa-globe"></i> &nbsp;&nbsp;'.$row['LName'].'</p>
-                                    <p><i class="fa fa-link"></i> &nbsp;&nbsp;<a href="'.$row['WebLink'].'">'.$row['WebLink'].' </p>
-                                    <p><i class="fa fa-angellist" aria-hidden="true"></i> &nbsp;&nbsp;'.$row['AvgInv'].'</p>
-                                    </center>
+                            if(!empty($row['CName'])){
+                                 echo '<h1 style="color:#FF8C00;text-align:center">'.$row['CName'].'</h1>';
+                            }
+                            else{
+                                echo '<h1 style="color:#FF8C00;text-align:center">Individual</h1>';
+                            }
 
-                                    <a href="../Investor/Individual/Profile/index.php?searchquery='.$row['InvID'].'" target=_blank style="text-decoration:none;" >
-                                    <button type= submit name=subinv class=viewprofile value=View Profile action=index.php><h4>View Profile</h4></button></a>
-                                </div>
+                            echo '
+
+                                <p><i class="fa fa-star"></i> &nbsp;&nbsp;'.$row['InvID'].'</p>
+                                <p><i class="fa fa-user"></i> &nbsp;&nbsp;'.$row['FName'].'&nbsp;'.$row['LName'].'</p>
+                                <p><i class="fa fa-bar-chart"></i> &nbsp;&nbsp;'.$row['AvgInv'].'</p>
+                                <p><i class="fa fa-envelope-o"></i> &nbsp;&nbsp;'.$row['Email'].'</p>
+                                <p><i class="fa fa-phone-square"></i> &nbsp;&nbsp;'.$row['Phone'].'</p>
+                                </center>
                             </div>
-                        </div>';
-            }
+                        </div>
+                    </div>';
+        }
             echo '
                     </center>
                     </div>

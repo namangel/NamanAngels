@@ -73,7 +73,7 @@
                     {
                         $sid = $row['StpID'];
                         $sname = $row['Stname'];
-                        $sprofile = '/NamanAngels/Profile/index.php?s='.$sid ;
+                        $sprofile = '../Profile/index.php?s='.$sid ;
                         echo '<tr>';
                             echo '<td>'.$sid.'</td>';
                             echo '<td>'.$sname.'</td>';

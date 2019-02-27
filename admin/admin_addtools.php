@@ -219,7 +219,7 @@
                                 $qu1= "SELECT * FROM tools;";
                                 $res1 = mysqli_query($db, $qu1);
                                 while($row1 = mysqli_fetch_assoc($res1)){
-                                    echo '<option value="'.$row1['tool_id'].'">'.$row1['tl_name'].'</option>';
+                                    echo '<option value="'.$row1['ID'].'">'.$row1['Name'].'</option>';
                                 }
                                 echo '</select>
                                 <br><br>';

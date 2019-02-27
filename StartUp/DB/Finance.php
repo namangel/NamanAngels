@@ -325,7 +325,6 @@
         <link rel="stylesheet" href="../css/financial.css" type="text/css">
 		<title><?= $Stname?>-Finance | NAMAN</title>
   		<link rel="icon" href="../../img/favicon.jpg" type="image/jpg" sizes="16x16">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<style>
 		.LinkedIn, .Facebook, .Twitter, .Instagram, .Others{
 			display: none;
