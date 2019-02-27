@@ -316,39 +316,39 @@ if(!isset($_SESSION['adminID'])){
         <input type="text" placeholder="Type here"><i class="fa fa-search"></i>
       </div> -->
       <ul class="categories">
-      <li><i class="fa fa-dashboard fa-fw"></i><a href="dashboard.php"> Dashboard</span></a>
+      <li><i class="fa fa-dashboard fa-fw"></i><a href="dashboard.php">&nbsp;Dashboard</span></a>
         </li>
-        <li><i class="fa fa-address-book-o fa-fw"></i><a href="#"> View profiles</a>
+        <li><i class="fa fa-address-book-o fa-fw"></i><a href="#">&nbsp;View profiles</a>
           <ul class="side-nav-dropdown">
             <li><a href="viewstartup.php">Startups</a></li>
             <li><a href="admin_browseinv.php">Investors</a></li>
 
           </ul>
         </li>
-        <li><i class="fa fa-handshake-o fa-fw"></i><a href="transaction.php"> Deals </a></li>
-        <li><i class="fa fa-check-circle"></i><a href="verify.php"> Verify StartUps</a></li>
+        <li><i class="fa fa-handshake-o fa-fw"></i><a href="transaction.php">&nbsp;Deals </a></li>
+        <li><i class="fa fa-check-circle"></i><a href="verify.php">&nbsp;Verify StartUps</a></li>
 
-        <li><i class="fa fa-money"></i><a href="#">Investor Membership</a>
+        <li><i class="fa fa-money"></i><a href="#">&nbsp;Investor Membership</a>
           <ul class="side-nav-dropdown">
             <li><a href="estmem.php">Existing Investors</a></li>
             <li><a href="newmem.php">New Investors</a></li>
           </ul>
         </li>
         <!-- <li><i class="fa fa-bar-chart-o"></i><a href="analytics.php">Analysis</a></li> -->
-        <li><i class="fa fa-users fa-fw"></i><a href="#"> Our team</a>
+        <li><i class="fa fa-users fa-fw"></i><a href="#">&nbsp;Our team</a>
           <ul class="side-nav-dropdown">
             <li><a href="team.php">View team</a></li>
             <li><a href="manage_team.php">Manage team</a></li>
           </ul>
         </li>
-    
-        <li><i class="fa fa-cogs fa-fw"></i><a href="#"> Tools</a>
+
+        <li><i class="fa fa-cogs fa-fw"></i><a href="#">&nbsp;Tools</a>
           <ul class="side-nav-dropdown">
             <li><a href="admin_tools.php">View Tools</a></li>
             <li><a href="admin_addtools.php">Manage Tools</a></li>
           </ul>
         </li>
-        <li><i class="fa fa-user" aria-hidden="true"></i><a href="add_admin.php">Admins</a></li>
+        <li><i class="fa fa-user" aria-hidden="true"></i><a href="add_admin.php">&nbsp;Admins</a></li>
         <!-- <li><i class="fa fa-envelope-open-o fa-fw"></i><a href="#"> Inbox <span class="num dang">56</span></a></li> -->
         <!-- <li><i class="fa fa-wrench fa-fw"></i><a href="#"> Settings </span></a>
         </li> -->
