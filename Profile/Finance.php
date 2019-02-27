@@ -173,7 +173,6 @@
 				<div class="summary">
 					<center><i class="fa fa-lock icsize">Only NamanAngels users who have been granted access can view this content.</i></center>
 					<div class="databox">
-						<div style="float:right;margin-top:20px;"><a href="Consult.php" target="_blank"><i class="fa fa-question-circle-o"></i>&nbsp;Need help</a></div>
 						<h3>Current Funding Round (USD)</h3>
 
 							Detail your stage of funding, the capital you're seeking and your pre-money valuation.<br><br>
@@ -194,7 +193,7 @@
 											echo '<span style="float:left">Interest Rate</span><span style="float:right">'.$row['Interest_rate'].' %</span><br/><hr>';
 											echo '<span style="float:left">Term Length</span><span style="float:right">'.$row['Term_len'].' Months</span><br/><hr>';
 										}
-										echo '<button class="btnfund" onclick="clroundon()">Close Funding Round</button>';
+
 									}
 								}
 							?>
@@ -214,7 +213,7 @@
 						?>
 					</div>
 					<div class="databox">
-						<button class="pencil" onclick="annualon()"><i class="fa fa-pencil"></i></button>
+
 						<h3>Annual Financials (USD)</h3>
 						<div class="p2">
 						</div>
