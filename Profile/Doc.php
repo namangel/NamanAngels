@@ -112,7 +112,7 @@
 	                    <li style="list-style: none; display: inline">
 	                        <hr>
 	                    </li>
-						<li><button class="b1" name="requestbtn" onclick="">Download One Pager</button></li>
+						<li><button class="b1" name="requestbtn" onclick="window.open('generateonepager.php?op=<?= $id?>','_blank')">Download One Pager</button></li>
 	                </ul>
 	            </div>
 
