@@ -42,9 +42,6 @@ class PDF extends FPDF {
 $pdf= new PDF('p','mm','A4');
 
 $pdf->AddPage();
-
-
-
     $row1= mysqli_fetch_array($record1);
     $row2= mysqli_fetch_array($record2);
     $row3= mysqli_fetch_array($record3);
