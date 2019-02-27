@@ -41,7 +41,7 @@
             </form>
             <center>
                 <?php
-                    if($memberstatus == 'NotMember'){
+                    if($memberstatus == 'Member'){
                         echo '<p style="color:gray;padding-bottom:10px"><i class="fa fa-lock" aria-hidden="true"></i> Become A Member to have an exclusive access to profile of Startups</p>';
                     }
 
@@ -82,7 +82,7 @@
                     echo '<p>'.$row['FName'].'</p>';
                     echo '<p>'.$row['SName'].'</p>';
                     $button = "";
-                    if($memberstatus == 'Member'){
+                    if($memberstatus == 'NotMember'){
                         $button = "<a href='../../../Profile/index.php?s=".$stid."' target='_blank'>
                         <button type='submit' name='subinv' class='viewprofile' value='View Profile' action='index.php'>View Profile</button></a>";
                     }
