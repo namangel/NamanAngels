@@ -83,7 +83,7 @@
                     echo '<p>'.$row['SName'].'</p>';
                     $button = "";
                     if($memberstatus == 'NotMember'){
-                        $button = "<a href='../../../Profile/index.php?s=".$stid."' target='_blank'>
+                        $button = "<a href='../../../Profile/index.php?s=".$row['StpID']."' target='_blank'>
                         <button type='submit' name='subinv' class='viewprofile' value='View Profile' action='index.php'>View Profile</button></a>";
                     }
                     echo $button;

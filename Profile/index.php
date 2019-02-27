@@ -45,6 +45,60 @@
 	$Summary = $row['Summary']==""? 'The Startup Has Not Written A Summary Yet':$row['Summary'];
 	$OLP = $row['OLP']==""? 'The Startup Has Not Written A One Line Pitch Yet':$row['OLP'];
 
+	//
+	// if(isset($_SESSION['InvID'])){
+	// 	$makedeallabel = "Invest";
+	//
+	// 	$q = "SELECT * FROM requests WHERE St_ID='$id' AND Inv_ID = ";
+	// 	$resultdeal = mysqli_query($db, $q);
+	// 	$rowdeal = mysqli_fetch_assoc($resultdeal);
+	//
+	// 	if($rowdeal['Deal'] == 0){
+	// 		$makedeallabel = "Interested";
+	// 	}
+	// 	elseif ($rowdeal['Deal'] == 1) {
+	// 		$makedeallabel = "Invested";
+	// 	}
+	// }
+	//
+	// if(isset($_POST['dealrequestbtn'])){
+	// 	$q = "INSERT INTO requests ()"
+	// }
+
+	if(isset($_SESSION['InvID'])){
+		$invid = $_SESSION['InvID'];
+		$transbtn = "Invest";
+
+		$qr = "SELECT * FROM requests WHERE Inv_ID='$invid' AND St_ID='$id'";
+		$req = mysqli_query($db, $qr);
+		if (mysqli_num_rows($req) == 1)
+		{
+			$row1 = mysqli_fetch_assoc($req);
+			$deal = $row1['Deal'];
+			if($deal == 1)
+			{
+				$transbtn = "Invested";
+			}
+			if($deal == 0)
+			{
+				$transbtn = "Transaction In Progress";
+			}
+		}
+
+		if(isset($_POST["make_deal"]))
+		{
+			if (mysqli_num_rows($req) == 0)
+			{
+				$q = "INSERT into requests(Inv_ID,St_ID) values ('$invid','$id')";
+				mysqli_query($db, $q);
+			}
+			header('location: index.php?s='.$id);
+		}
+	}
+
+
+
+
 
 ?>
 
@@ -150,6 +204,21 @@
                             <hr>
                         </li>
                         <li><button class="b1" name="requestbtn" onclick="window.open('generateonepager.php?op=<?= $id?>','_blank')">Download One Pager</button></li>
+
+						<li>
+							<?php
+								$q = "SELECT * FROM current_round WHERE StpID='$id'";
+								$results = mysqli_query($db, $q);
+								if(mysqli_num_rows($results) != 0){
+									echo '<form method="post"><button class="b1" name="make_deal">'.$transbtn.'</button></form>';
+								}
+								else{
+									echo '<p>Funding Round closed. Invest when open.</p>';
+								}
+							?>
+						</li>
+
+
                     </ul>
                 </div>
 
