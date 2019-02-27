@@ -191,8 +191,8 @@
                 </form>
                 <table>
                     <tr>
-                        <th>Investor</th>
                         <th>Startup</th>
+                        <th>Investor</th>
                         <th>Deal Status</th>
                         <th>Round Status</th>
                         <th>Round</th>
