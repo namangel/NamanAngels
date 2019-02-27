@@ -12,6 +12,14 @@
   	$results = mysqli_query($db, $qu);
 	$row = mysqli_fetch_assoc($results);
     $cname = $row['CName'];
+
+    $qu = "SELECT * FROM userinv WHERE InvID='$u'";
+  	$resultrow = mysqli_query($db, $qu);
+    $row = mysqli_fetch_assoc($results);
+    $memberstatus = 'Member';
+    if(empty($row['MemID'])){
+        $memberstatus = 'NotMember'; ///not a member
+    }
 ?>
 <html>
 <head>
@@ -31,6 +39,14 @@
                 <input type="text" name="searchkey" placeholder="Enter Keyword">
                 <input type="submit" name="submit" value="Search">
             </form>
+            <center>
+                <?php
+                    if($memberstatus == 'NotMember'){
+                        echo '<p style="color:gray;padding-bottom:10px"><i class="fa fa-lock" aria-hidden="true"></i> Become A Member to have an exclusive access to profile of Startups</p>';
+                    }
+
+                ?>
+            </center>
         </div>
         <div class='output'>
             <?php
@@ -56,7 +72,7 @@
             $total_rows = $total_rows < 1? 1:$total_rows;
             $total_pages = ceil($total_rows/$no_of_records_per_page);
 
-            $sql = "SELECT * FROM Profile where Verified = 1 AND StpName Like '%{$sname}%' LIMIT $offset, $no_of_records_per_page";
+            $sql = "SELECT * FROM Profile where StpName Like '%{$sname}%' LIMIT $offset, $no_of_records_per_page";
             $res_data = mysqli_query($db,$sql);
             while($row = mysqli_fetch_array($res_data)){
                 echo '<div class="card">';
@@ -65,8 +81,12 @@
                     echo '<p class="title">'.$row['Type'].'</p>';
                     echo '<p>'.$row['FName'].'</p>';
                     echo '<p>'.$row['SName'].'</p>';
-                    echo "<a href='../../../Profile/index.php?s=".$row['StpID']."' target='_blank'>
-                    <button type='submit' name='subinv' class='viewprofile' value='View Profile' action='index.php'>View Profile</button></a>";
+                    $button = "";
+                    if($memberstatus == 'Member'){
+                        $button = "<a href='../../../Profile/index.php?s=".$stid."' target='_blank'>
+                        <button type='submit' name='subinv' class='viewprofile' value='View Profile' action='index.php'>View Profile</button></a>";
+                    }
+                    echo $button;
 
                 echo '</div>';
             }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 27, 2019 at 04:00 AM
+-- Generation Time: Feb 27, 2019 at 04:30 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -398,7 +398,7 @@ CREATE TABLE `siteinfo` (
 --
 
 INSERT INTO `siteinfo` (`ID`, `Counter`) VALUES
-(1, 9);
+(1, 10);
 
 -- --------------------------------------------------------
 
@@ -709,7 +709,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `profile`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `profile`  AS  select `a`.`StpID` AS `StpID`,`b`.`Stname` AS `StpName`,`a`.`Logo` AS `StpImg`,`b`.`Ffname` AS `FName`,`b`.`Sfname` AS `SName`,`b`.`Type` AS `Type`,`c`.`Verified` AS `Verified` from ((`st_uploads` `a` join `st_details` `b`) join `userstp` `c`) where ((`a`.`StpID` = `c`.`StpID`) and (`b`.`StpID` = `c`.`StpID`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `profile`  AS  select `a`.`StpID` AS `StpID`,`b`.`Stname` AS `StpName`,`a`.`Logo` AS `StpImg`,`b`.`Ffname` AS `FName`,`b`.`Sfname` AS `SName`,`b`.`Type` AS `Type`,`c`.`Verified` AS `Verified` from ((`st_uploads` `a` join `st_details` `b`) join `userstp` `c`) where ((`a`.`StpID` = `c`.`StpID`) and (`b`.`StpID` = `c`.`StpID`) and (`c`.`Verified` = 1)) ;
 
 --
 -- Indexes for dumped tables
