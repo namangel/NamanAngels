@@ -28,8 +28,8 @@
     <title>Existing Investors| NAMAN</title>
     <link rel="icon" href="../img/favicon.jpg" type="image/jpg" sizes="16x16">
 <style>
-    .card {
-      font-family: "Segoe UI", "Roboto";
+  .card {
+  font-family: "Segoe UI", "Roboto";
    margin-left: 350px;
    border-radius: 5px;
    overflow: hidden;
@@ -38,7 +38,25 @@
    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
    background-color:white;
 
-}
+  }
+  .welcome {
+    margin-left: 290px;
+    z-index: -100;
+    color: #CCC;
+  }
+  .welcome .content {
+    background-color: #313348;
+    padding: 15px;
+    margin-top: 25px;
+  }
+  .welcome h2 {
+    font-family: Calibri;
+    font-weight: 100;
+    margin-top: 0
+  }
+  .welcome p {
+    color: #999;
+  }
   .teamform{
     background-color: #ccc4d4;
     float: center;
@@ -72,8 +90,19 @@
   </style>
   </head>
 <body>
-<div class="teamform">
-
+    <div class="welcome">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="content">
+              <h2>View Members!</h2>
+              <p>Get the details of existing members.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="teamform">
     <form method="POST" action="estmem.php">
         <label>Inv Id:</label><br>
         <input type="text" name="inv_id" required><br><br>

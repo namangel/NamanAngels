@@ -61,6 +61,22 @@
             .cont{
                 margin-left: 290px;
             }
+            .welcome {
+                color: #CCC;
+            }
+            .welcome .content {
+                background-color: #313348;
+                padding: 15px;
+                margin-top: 25px;
+            }
+            .welcome h2 {
+                font-family: Calibri;
+                font-weight: 100;
+                margin-top: 0
+            }
+            .welcome p {
+                color: #999;
+            }
             .tab{
                 margin:40px;
             }
@@ -111,6 +127,18 @@
     <body>
         <?php require "sidebar.php" ?>
         <div class="cont">
+            <div class="welcome">
+            <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                <div class="content">
+                    <h2>Transaction Details!</h2>
+                    <p>Manage the deals made through Naman Angels and update the transaction details.</p>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
             <div class="tab">
                 <center>
                 <form method="post" action="transaction.php">

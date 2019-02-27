@@ -18,6 +18,22 @@
             .cont{
                 margin-left: 290px;
             }
+            .welcome {
+                color: #CCC;
+            }
+            .welcome .content {
+                background-color: #313348;
+                padding: 15px;
+                margin-top: 25px;
+            }
+            .welcome h2 {
+                font-family: Calibri;
+                font-weight: 100;
+                margin-top: 0
+            }
+            .welcome p {
+                color: #999;
+            }
             .tab{
                 margin:40px;
             }
@@ -58,6 +74,18 @@
     <body>
         <?php require "sidebar.php" ?>
         <div class="cont">
+            <div class="welcome">
+            <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                <div class="content">
+                    <h2>Verify Startups!</h2>
+                    <p>Visit startup profiles and verify them.</p>
+                </div>
+                </div>
+            </div>
+            </div>
+            </div>
             <div class="tab">
                 <table>
                     <tr>
