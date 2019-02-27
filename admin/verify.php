@@ -4,7 +4,8 @@
         header('location: index.php');
     }
     if(isset($_GET['add'])){
-        $qu = 'UPDATE userstp SET Verified = 1 where StpID = '.$_GET['add'];
+        $id = $_GET['add'];
+        $qu = "UPDATE userstp SET Verified = 1 where StpID = '$id'";
         mysqli_query($db,$qu);
     }
 ?>
